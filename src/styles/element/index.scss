@@ -1,136 +1,35 @@
-
-$primary: #fcbd01;
-$success: #32b332;
-$warning: #ffb73d;
-$danger: #ff5263;
-$info: #99a2ad;
-
-$color-gray-50: #fafbfc;
-$color-gray-100: #f3f4f6;
-$color-gray-200: #e6e8ed;
-$color-gray-300: #d3d8e0;
-$color-gray-400: #9ca3af;
-$color-gray-500: #6b7280;
-$color-gray-600: #4b5563;
-$color-gray-700: #333c4d;
-$color-gray-800: #222b3b;
-$color-gray-900: #111826;
-
-$color-text-regular: $color-gray-700;
-$background-color-base: $color-gray-100;
-
-$border-radius-sm: 2px;
-$border-radius: 4px;
-$border-radius-md: 6px;
-$border-radius-lg: 8px;
-$border-radius-xl: 12px;
-$border-radius-2xl: 16px;
-$border-radius-3xl: 24px;
-
-$shadow-sm: 0 1px 2px rgba(#000, 0.05);
-$shadow: 0 1px 2px rgba(#000, 0.06), 0 1px 3px rgba(#000, 0.09);
-$shadow-md: 0 2px 4px -1px rgba(#000, 0.06), 0 4px 6px -1px rgba(#000, 0.09);
-$shadow-lg: 0 4px 6px -2px rgba(#000, 0.05), 0 10px 15px -3px rgba(#000, 0.1);
-$shadow-xl: 0 10px 10px -5px rgba(#000, 0.04), 0 20px 25px -5px rgba(#000, 0.1);
-$shadow-2xl: 0 25px 50px -12px rgba(#000, 0.25);
-$shadow-inner: inset 0 2px 4px rgba(#000, 0.06);
-$shadow-none: none;
-
-$breakpoints: (
-  'sm': '640px',
-  'md': '768px',
-  'lg': '1024px',
-  'xl': '1280px',
-  '2xl': '1536px',
-);
-
-$themes: (
-  'vitality-yellow': #fcbd01,
-  'cobalt-blue': #2962ff,
-  'chalcedony-green': #37b057,
-  'amber': #ff9100,
-  'indigo': #00a8f0,
-  'slate-blue': #3781b8,
-);
-
-
-@forward "element-plus/theme-chalk/src/common/var.scss" with (
-  $colors: (
-    "primary": (
-      "base": #ba7221,
-    ),
-    "success": (
-      "base": #21ba45,
-    ),
-    "warning": (
-      "base": #f2711c,
-    ),
-    "danger": (
-      "base": #db2828,
-    ),
-    "error": (
-      "base": #db2828,
-    ),
-    "info": (
-      "base": #42b8dd,
-    ),
+$--colors: (
+  "primary": (
+    "base": rgb(238, 123, 15),
   ),
-
-  $button-padding-horizontal: (
-    "default": 80px
-  )
+  "success": (
+    "base": #21ba45,
+  ),
+  "warning": (
+    "base": #f2711c,
+  ),
+  "danger": (
+    "base": #db2828,
+  ),
+  "error": (
+    "base": #db2828,
+  ),
+  "info": (
+    "base": #42b8dd,
+  ),
 );
-/* 此文件要在element主样式文件之后引入 */
-/* 用了这种方法后，你不需要重写任何elementplus组件的颜色 */
 
-// :root {
-//   // 这里可以设置你自定义的颜色变量
-//   // 这个是element主要按钮:active的颜色，当主题更改后此变量的值也随之更改
-//   --el-color-primary-dark: #7aff0d;
-// }
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+@forward "element-plus/theme-chalk/src/common/var.scss" with
+  (
+    // do not use same name, it will override.
+    $colors: $--colors,
+    $button-padding-horizontal: ("default": 50px)
+  );
 
-// /* 核心组件的变量，下面这些样式是必须要写的 */
+// if you want to import all
+// @use "element-plus/theme-chalk/src/index.scss" as *;
 
-// .el-link.el-link--primary:hover {
-//   color: var(--el-color-primary-light-2) !important;
-// }
-
-// .el-tag {
-//   --el-tag-bg-color: var(--el-color-primary-light-9);
-//   --el-tag-border-color: var(--el-color-primary-light-8);
-//   --el-tag-text-color: var(--el-color-primary);
-//   --el-tag-hover-color: var(--el-color-primary);
-// }
-
-// .el-button--default:active {
-//   color: var(--el-color-primary-dark) !important;
-//   border-color: var(--el-color-primary-dark) !important;
-// }
-
-// .el-button--primary {
-//   --el-button-bg-color: var(--el-color-primary) !important;
-//   --el-button-border-color: var(--el-color-primary) !important;
-//   --el-button-hover-bg-color: var(--el-color-primary-light-2) !important;
-//   --el-button-hover-border-color: var(--el-color-primary-light-2) !important;
-//   --el-button-active-bg-color: var(--el-color-primary-dark) !important;
-//   --el-button-active-border-color: var(--el-color-primary-dark) !important;
-// }
-
-// // 你也可以降nProgress的颜色改成element主色调
-// #nprogress {
-//   & .bar {
-//     background-color: var(--el-color-primary) !important;
-//   }
-//   & .peg {
-//     box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
-//   }
-//   & .spinner-icon {
-//     border-top-color: var(--el-color-primary);
-//     border-left-color: var(--el-color-primary);
-//   }
-// }
-
-
-
-
-
+// You can comment it to hide debug info.
+// @debug $--colors;

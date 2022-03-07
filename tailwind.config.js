@@ -1,9 +1,11 @@
 /* eslint-disable */
 
 const { screens } = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 const spacing = {}
 const fontSize = {}
+
 for (let i = 0; i <= 500; i++) {
   spacing[i] = i === 0 ? i : `${i}px`
 }
@@ -12,30 +14,34 @@ for (let i = 12; i <= 100; i++) {
 }
 
 module.exports = {
+  // 去除默认的taiwindcss
   corePlugins: {
     preflight: false,
   },
   mode: 'jit',
-  darkMode: 'class',
-  important: false,
   theme: {
-    borderWidth: {
-      DEFAULT: '1px',
-      ...fontSize
-    },
-    borderRadius: {
-      'none': '0',
-      'sm': '0.125rem',
-      DEFAULT: '6px',
-      'md': '0.375rem',
-      'lg': '0.5rem',
-      'full': '9999px',
-      'large': '12px',
-      ...fontSize
-    },
     spacing,
-    minHeight: spacing,
-    minWidth: spacing,
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: {
+        50: 'var(--color-gray-50)',
+        100: 'var(--color-gray-100)',
+        200: 'var(--color-gray-200)',
+        300: 'var(--color-gray-300)',
+        400: 'var(--color-gray-400)',
+        500: 'var(--color-gray-500)',
+        600: 'var(--color-gray-600)',
+        700: 'var(--color-gray-700)',
+        800: 'var(--color-gray-800)',
+        900: 'var(--color-gray-900)',
+      },
+      red: colors.red,
+      yellow: colors.amber,
+      blue: colors.blue,
+    },
     boxShadow: {
       sm: 'var(--shadow-sm)',
       DEFAULT: 'var(--shadow)',
@@ -47,18 +53,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        gray: {
-          50: 'var(--color-gray-50)',
-          100: 'var(--color-gray-100)',
-          200: 'var(--color-gray-200)',
-          300: 'var(--color-gray-300)',
-          400: 'var(--color-gray-400)',
-          500: 'var(--color-gray-500)',
-          600: 'var(--color-gray-600)',
-          700: 'var(--color-gray-700)',
-          800: 'var(--color-gray-800)',
-          900: 'var(--color-gray-900)',
-        },
         primary: {
           DEFAULT: 'var(--color-primary-500)',
           50: 'var(--color-primary-50)',
@@ -77,12 +71,22 @@ module.exports = {
         danger: 'var(--danger)',
         info: 'var(--info)',
       },
+      width: fontSize,
       fontSize,
       fontFamily: {
         montserrat: 'Montserrat',
+        poppins: 'Poppins',
         inter: 'Inter',
       },
       minWidth: {
+        'screen-sm': screens.sm,
+        'screen-md': screens.md,
+        'screen-lg': screens.lg,
+        'screen-xl': screens.xl,
+        'screen-2xl': screens['2xl'],
+      },
+      minHeight: {
+        200: '200px',
         'screen-sm': screens.sm,
         'screen-md': screens.md,
         'screen-lg': screens.lg,
@@ -101,9 +105,8 @@ module.exports = {
       }
     },
   },
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    layers: ['utilities'],
-    content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
-  },
+  plugins: [
+    // require('@tailwindcss/line-clamp'),
+  ],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 }

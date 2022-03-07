@@ -11,8 +11,6 @@ for (let i = 12; i <= 100; i++) {
   if (i % 2 === 0) fontSize[i] = `${i}px`
 }
 
-
-
 module.exports = {
   corePlugins: {
     preflight: false,

@@ -5,12 +5,12 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Test: typeof import('./src/components/test/index.vue')['default']
     TestInner: typeof import('./src/components/test/testInner/index.vue')['default']
+    TestTwo: typeof import('./src/components/test/testTwo/index.vue')['default']
   }
 }
 

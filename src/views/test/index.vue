@@ -10,13 +10,18 @@
     <el-input v-model="input" placeholder="Please input" />
     <Test />
     <TestInner />
+    <TestInner />
+    <TestTwo />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 export default defineComponent({
-  components: {},
+  components: {
+    ElButton,
+  },
   setup() {
     const tableData = [
       {

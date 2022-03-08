@@ -3,6 +3,9 @@
 @import 'tailwindcss/utilities';
 @import './taiwindcss/index.scss';
 
+:root{
+  --el-color-paimary: yellow;
+}
 body {
   margin: 0;
 }

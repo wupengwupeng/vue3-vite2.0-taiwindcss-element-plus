@@ -1,6 +1,7 @@
+
 $--colors: (
   "primary": (
-    "base": rgb(238, 123, 15),
+    "base":red,
   ),
   "success": (
     "base": #21ba45,
@@ -29,7 +30,8 @@ $--colors: (
   );
 
 // if you want to import all
-// @use "element-plus/theme-chalk/src/index.scss" as *;
+@use "element-plus/theme-chalk/src/message.scss" as *;
 
 // You can comment it to hide debug info.
 // @debug $--colors;
+

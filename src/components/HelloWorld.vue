@@ -15,7 +15,10 @@ const toast = () => {
 </script>
 
 <template>
-  asdf
+  <div class="flex items-center justify-center">
+    <ChangeTheme />
+    <h3>切换主题</h3>
+  </div>
   <h1 class="text-red-300">{{ msg }}</h1>
   <span class="bg-red-700">你好测试taiwindcss</span>
   <p v-loading="loading">

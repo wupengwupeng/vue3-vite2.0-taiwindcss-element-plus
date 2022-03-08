@@ -12,6 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/': `${pathSrc}/`,
+      '@': path.resolve(__dirname, './src'),
     },
   },
   css: {

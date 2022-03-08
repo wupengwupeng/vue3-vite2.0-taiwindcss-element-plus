@@ -18,8 +18,9 @@ export default defineComponent({
     const mixWhite = '#ffffff'
     // 黑色混合色
     const mixBlack = '#000000'
-    const state: any = reactive({
-      color: localStorage.getItem('primaryColor'),
+    const defaultColor = '#0780F1'
+    const state: { color: string } = reactive({
+      color: localStorage.getItem('primaryColor') || defaultColor,
     })
 
     // 需要提到vuex中

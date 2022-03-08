@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
-
+import { useElPagination } from '@/utils/vueUse/index'
 defineProps<{ msg: string }>()
 
 const count = ref(0)
 const input = ref('element-plus')
 const loading = ref(true)
 const curDate = ''
-
+const checked1 = ref(false)
+const checked2 = ref(false)
+const pagination = useElPagination()
 const toast = () => {
   ElMessage.error('Hello')
 }
@@ -34,16 +36,12 @@ const toast = () => {
     <a href="https://element-plus.org" target="_blank">element-plus</a> for more information.
   </p>
   <el-pagination
-    v-model:currentPage="currentPage4"
-    v-model:page-size="pageSize4"
-    :page-sizes="[100, 200, 300, 400]"
-    :small="small"
-    :disabled="disabled"
-    :background="background"
+    v-model:currentPage="pagination.currentPage"
+    v-model:page-size="pagination.pageSize"
+    :page-sizes="pagination.pageSizes"
+    background
     layout="total, sizes, prev, pager, next, jumper"
-    :total="400"
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
+    :total="pagination.total"
   >
   </el-pagination>
   <!-- example components -->

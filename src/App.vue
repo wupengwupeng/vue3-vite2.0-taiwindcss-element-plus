@@ -2,9 +2,11 @@
   <BaseHeader />
   <!-- <img alt="Vue logo" class="element-plus-logo" src="./assets/logo.png" /> -->
   <HelloWorld msg="Hello Vue 3.0 + Element Plus + Vite" />
+  <Test />
 </template>
 
 <script setup lang="ts">
+import Test from '../src/views/test/index.vue'
 </script>
 
 <style>

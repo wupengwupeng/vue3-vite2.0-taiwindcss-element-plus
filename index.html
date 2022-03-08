@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Element Plus Vite Starter</title>
-    <!-- element css cdn, if you use custom theme, remove it. -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/element-plus/dist/index.css"
-    /> -->
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Element Plus Vite Starter</title>
+</head>
+
+<body>
+  <div id="app">
+    <style>
+      #firstScreenPage {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        text-align: center;
+        overflow-y: hidden;
+        font-size: 20px;
+        color: red;
+
+      }
+
+      #firstScreenPage img {
+        margin: auto;
+        padding: 100px;
+        width: 350px;
+        display: block;
+        border-radius: 50%;
+      }
+
+      #firstScreenPage p {
+        text-align: center;
+        height: 30px !important;
+      }
+
+      @media (min-width: 1024px) {
+        ::-webkit-scrollbar {
+
+
+          width: 16px;
+          height: 16px;
+
+
+        }
+      }
+    </style>
+    <div id="firstScreenPage">
+      <img src="http://img95.699pic.com/photo/40107/3040.gif_wh860.gif" alt="" />
+      <p>正在加载请稍等...</p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

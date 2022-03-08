@@ -19,6 +19,14 @@ const toast = () => {
     <ChangeTheme />
     <h3>切换主题</h3>
   </div>
+  <el-link href="https://element.eleme.io" target="_blank">default</el-link>
+  <el-link type="primary">primary</el-link>
+  <el-link type="success">success</el-link>
+  <el-link type="warning">warning</el-link>
+  <el-link type="danger">danger</el-link>
+  <el-link type="info">info</el-link>
+  <el-checkbox v-model="checked1" label="Option 1" size="large"></el-checkbox>
+  <el-checkbox v-model="checked2" label="Option 2" size="large"></el-checkbox>
   <h1 class="text-red-300">{{ msg }}</h1>
   <span class="bg-red-700">你好测试taiwindcss</span>
   <p v-loading="loading">

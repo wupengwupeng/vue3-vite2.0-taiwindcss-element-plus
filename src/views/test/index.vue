@@ -1,5 +1,5 @@
 <template>
-  <div class="aa text-yellow-300">asdf</div>
+  <div class="aa text-gray-200">asdf</div>
 </template>
 
 <script lang="ts">

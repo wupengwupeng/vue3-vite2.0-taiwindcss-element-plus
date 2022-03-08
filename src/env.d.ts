@@ -6,3 +6,10 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+declare module "nprogress" {
+  import nProgresss from "nprogress";
+  const progree: any;
+  export default progree
+}
+

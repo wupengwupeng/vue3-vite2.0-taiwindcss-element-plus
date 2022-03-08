@@ -22,7 +22,7 @@ export default defineComponent({
       color: localStorage.getItem("primaryColor"),
     });
 
-    // 这部分需要提到vuex中，这里暂时就不继续替换了
+    // 需要提到vuex中
     function changeTheme(color: string = state.color) {
       node.style.setProperty(pre, color);
       localStorage.setItem("primaryColor", color);

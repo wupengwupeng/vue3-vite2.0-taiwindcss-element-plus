@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-color-picker v-model="color" @change="changeTheme"></el-color-picker>
+    <span class="aa">asdfd</span>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ export default defineComponent({
     function changeTheme(color: string = state.color) {
       node.style.setProperty(pre, color);
       localStorage.setItem("primaryColor", color);
+      node.style.setProperty("--el-color-paimary", color);
       // 这里是覆盖原有颜色的核心代码
       for (let i = 1; i < 10; i += 1) {
         node.style.setProperty(
@@ -48,3 +50,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.aa {
+  color: var(--el-color-paimary);
+}
+</style>

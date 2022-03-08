@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseHeader from "./components/layouts/BaseHeader.vue";
-import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <style>

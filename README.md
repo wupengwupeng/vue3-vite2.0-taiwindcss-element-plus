@@ -1,16 +1,12 @@
-# element-plus-vite-starter
+# vue3-vite2.0-taiwindcss-element-plus
 
+# 使用的技术主要有vue3 以及element-plus框架，taiwindcss。 
+# 这个项目的目的是taiWindCss和element-plus的样式兼容，以及vue3的组件按需导入
+# 还有就是动态切换主题样式
 > A starter kit for Element Plus with Vite
 
 <img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
 
-- Preview: <https://vite-starter.element-plus.org>
-
-This is an example of on-demand element-plus with [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components).
-
-> If you want to import all, it may be so simple that no examples are needed. Just follow [quickstart | Docs](https://element-plus.org/zh-CN/guide/quickstart.html) and import them.
-
-If you just want an on-demand import example `manually`, you can check [unplugin-element-plus/examples/vite](https://github.com/element-plus/unplugin-element-plus/tree/main/examples/vite).
 
 ## Project setup
 
@@ -33,7 +29,7 @@ npm run build
 ## Usage
 
 ```bash
-git clone https://github.com/element-plus/element-plus-vite-starter
+git clone https://github.com/wupengwupeng/vue3-vite2.0-taiwindcss-element-plus.git
 cd element-plus-vite-starter
 npm i
 npm run dev

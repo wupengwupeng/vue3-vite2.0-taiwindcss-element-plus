@@ -1,5 +1,5 @@
 <template>
-  <div class="px-12 flex flex-col items-center">
+  <div class="px-12 w-full h-full flex flex-col items-center">
     <div class="flex justify-center items-center">
       <change-theme />
       <span>配置主题</span>
@@ -12,22 +12,46 @@
       <el-button type="danger" @click="count++">count is: {{ count }}</el-button>
       <el-button type="info" @click="count++">count is: {{ count }}</el-button>
     </div>
+
+    <div class="flex-1 w-full mt-12 flex justify-center">
+      <el-button @click="handlerOpen">打开弹框</el-button>
+      <div class="">
+        <el-link href="https://element.eleme.io" target="_blank">default</el-link>
+        <el-link type="primary">primary</el-link>
+        <el-link type="success">success</el-link>
+        <el-link type="warning">warning</el-link>
+        <el-link type="danger">danger</el-link>
+        <el-link type="info">info</el-link>
+      </div>
+    </div>
+
+    <DetialDialog v-if="visible" v-model:visible="visible"></DetialDialog>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { successMessage } from '@/components/dialog/DialogMessage'
+import DetialDialog from './DetialDialog.vue'
 export default defineComponent({
   name: 'Test',
+  components: {
+    DetialDialog,
+  },
   setup() {
     const count = ref(0)
+    const visible = ref(false)
     function toast() {
       successMessage('sdf', {})
     }
+    function handlerOpen() {
+      visible.value = true
+    }
     return {
       count,
+      visible,
       toast,
+      handlerOpen,
     }
   },
 })

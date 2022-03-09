@@ -10,6 +10,8 @@ declare module 'vue' {
     Echarts: typeof import('./components/echarts/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElLink: typeof import('element-plus/es')['ElLink']
     EllipsisBox: typeof import('./components/ellipsisBox/index.vue')['default']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']

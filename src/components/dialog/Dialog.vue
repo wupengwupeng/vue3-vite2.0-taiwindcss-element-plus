@@ -1,13 +1,11 @@
 <template>
-  <div v-elDraggableDialog>
-    <el-dialog v-model="visible" :title="title" destroy-on-close v-bind="$attrs" @close="handlerClose">
-      <slot />
-      <template #footer>
-        <el-button size="small" @click="handlerCansole">取消</el-button>
-        <el-button size="small" type="primary" @click="handlerSave">保存</el-button>
-      </template>
-    </el-dialog>
-  </div>
+  <el-dialog v-model="visible" :title="title" destroy-on-close :center="false" v-bind="$attrs" @close="handlerClose">
+    <slot />
+    <template #footer>
+      <el-button size="small" @click="handlerCansole">取消</el-button>
+      <el-button size="small" type="primary" @click="handlerSave">保存</el-button>
+    </template>
+  </el-dialog>
 </template>
 
 <script lang="ts">
@@ -25,7 +23,7 @@ export default defineComponent({
       default: '',
     },
   },
-  emits: ['handlerSave', 'close'],
+  emits: ['submit', 'close', 'update:visible'],
   setup(props, { emit, attrs }) {
     const { visible, title } = useVModels(props, emit)
 
@@ -37,7 +35,7 @@ export default defineComponent({
       handlerClose()
     }
     function handlerSave() {
-      emit('handlerSave')
+      emit('submit')
     }
     return {
       visible,

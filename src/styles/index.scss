@@ -19,21 +19,13 @@
 }
 body {
   margin: 0;
+  padding: 0;
 }
 
 a {
   color: var(--el-color-primary);
 }
 
-code {
-  border-radius: 2px;
-  padding: 2px 4px;
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-}
-.el-link.el-link--primary:hover{
-  color: var(--el-color-paimary);
-}
 #nprogress {
   & .bar {
     background-color: var(--el-color-primary) !important;
@@ -45,6 +37,8 @@ code {
     border-top-color: var(--el-color-primary) !important;
     border-left-color: var(--el-color-primary) !important;
   }
- 
+}
+.el-link.el-link--primary:hover{
+  color: var(--el-color-paimary) !important;
 }
 

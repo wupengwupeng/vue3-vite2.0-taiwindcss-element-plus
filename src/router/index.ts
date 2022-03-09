@@ -4,7 +4,7 @@ import nProgress from "nprogress"
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/test',
+    redirect: '/menuTwo',
   },
   {
     path: '/',

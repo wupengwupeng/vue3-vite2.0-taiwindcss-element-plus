@@ -1,3 +1,5 @@
+import { setTheme } from '@/utils/storage/index'
+
 type StringNumber = string | number
 export const mix = (color1: string, color2: string, weight: StringNumber) => {
   weight = Math.max(Math.min(Number(weight), 1), 0);
@@ -15,3 +17,25 @@ export const mix = (color1: string, color2: string, weight: StringNumber) => {
   b = ("0" + (b || 0).toString(16)).slice(-2);
   return "#" + r + g + b;
 };
+
+
+// 改变主题
+export function changeTheme(color: string) {
+  const node = document.documentElement
+  // 变量前缀
+  const pre = '--el-color-primary'
+  // 白色混合色
+  const mixWhite = '#ffffff'
+  // 黑色混合色
+  const mixBlack = '#000000'
+  node.style.setProperty(pre, color)
+  setTheme(color)
+  node.style.setProperty('--el-color-paimary', color)
+  // 这里是覆盖原有颜色的核心代码
+  for (let i = 1; i < 10; i += 1) {
+    node.style.setProperty(`${pre}-light-${i}`, mix(color, mixWhite, i * 0.1))
+    node.style.setProperty(`--el-color-primary-dark-${i}`, mix(color, mixBlack, 0.1))
+  }
+
+
+}

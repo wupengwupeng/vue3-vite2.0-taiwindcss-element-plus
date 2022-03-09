@@ -1,5 +1,5 @@
 <template>
-  <div class="w-240 h-screen aa">
+  <div class="w-240 h-screen bg-gray-100">
     <el-menu :default-active="activeMenu" router>
       <el-menu-item index="/test">
         <span>测试</span>
@@ -44,9 +44,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.aa {
-  // background: var(--el-color-primary-light-5);
-}
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);
 }

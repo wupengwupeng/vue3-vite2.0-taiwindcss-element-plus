@@ -4,11 +4,17 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppSvgIcon: typeof import('./components/appSvgIcon/index.vue')['default']
     ChangeTheme: typeof import('./components/theme/ChangeTheme.vue')['default']
+    Dialog: typeof import('./components/dialog/Dialog.vue')['default']
+    Echarts: typeof import('./components/echarts/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    EllipsisBox: typeof import('./components/ellipsisBox/index.vue')['default']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    TabBar: typeof import('./components/tabBar/index.vue')['default']
+    TablePage: typeof import('./components/tablePage/index.vue')['default']
   }
 }
 

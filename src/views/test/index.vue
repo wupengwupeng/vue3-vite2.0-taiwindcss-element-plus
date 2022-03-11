@@ -13,7 +13,7 @@
       <el-button type="info" @click="count++">count is: {{ count }}</el-button>
     </div>
 
-    <div class="flex-1 w-full mt-12 flex justify-center">
+    <div class="flex-1 w-full mt-12 flex flex-col items-center">
       <el-button @click="handlerOpen">打开弹框</el-button>
       <div class="">
         <el-link href="https://element.eleme.io" target="_blank">default</el-link>
@@ -23,6 +23,9 @@
         <el-link type="danger">danger</el-link>
         <el-link type="info">info</el-link>
       </div>
+
+      <div><a href="https://www.baidu.com">asdfasdfa</a>asdfasdfa</div>
+      <div class="h-100 w-full bg-yellow-300" v-loading="true"></div>
     </div>
 
     <DetialDialog v-if="visible" v-model:visible="visible"></DetialDialog>

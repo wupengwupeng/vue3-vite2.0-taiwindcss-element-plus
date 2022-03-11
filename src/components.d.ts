@@ -15,6 +15,7 @@ declare module 'vue' {
     EllipsisBox: typeof import('./components/ellipsisBox/index.vue')['default']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    Loading: typeof import('element-plus/es')['ElLoadingDirective']
     TabBar: typeof import('./components/tabBar/index.vue')['default']
     TablePage: typeof import('./components/tablePage/index.vue')['default']
   }

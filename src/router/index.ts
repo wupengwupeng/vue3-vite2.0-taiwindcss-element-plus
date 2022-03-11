@@ -4,12 +4,12 @@ import nProgress from "nprogress"
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/menuTwo',
-  },
-  {
-    path: '/',
     component: LayOut,
     children: [
+      {
+        path: '',
+        redirect: '/menuTwo',
+      },
       {
         path: '/test',
         component: () => import('@/views/testTwo/index.vue')

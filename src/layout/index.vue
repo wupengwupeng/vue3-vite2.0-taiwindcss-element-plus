@@ -24,13 +24,7 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref()
-    watch(
-      isCollapse,
-      () => {
-        console.log(isCollapse.value, 9999)
-      },
-      { immediate: true }
-    )
+
     return {
       isCollapse,
     }

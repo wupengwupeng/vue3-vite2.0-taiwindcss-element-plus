@@ -41,9 +41,7 @@ export default defineComponent({
       },
       { immediate: true, deep: true }
     )
-    watch(isCollapse, () => {
-      console.log(isCollapse.value)
-    })
+
     return {
       isCollapse,
       activeMenu,

@@ -12,14 +12,23 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/test',
+        meta: {
+          title: '测试页面一'
+        },
         component: () => import('@/views/testTwo/index.vue')
       },
       {
         path: '/menuTwo',
+        meta: {
+          title: '主页'
+        },
         component: () => import('@/views/test/index.vue')
       },
       {
         path: '/menuThree',
+        meta: {
+          title: '测试页面三'
+        },
         component: () => import('@/views/threes/index.vue')
       }
 

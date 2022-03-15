@@ -53,9 +53,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.el-menu {
+  border-top: 1px solid grey;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
 }
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);

@@ -13,6 +13,7 @@ declare module 'vue' {
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElImage: typeof import('element-plus/es')['ElImage']
     ElLink: typeof import('element-plus/es')['ElLink']
     EllipsisBox: typeof import('./components/ellipsisBox/index.vue')['default']
     ElMenu: typeof import('element-plus/es')['ElMenu']

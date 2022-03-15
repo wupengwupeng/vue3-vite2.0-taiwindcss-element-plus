@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, computed, toRefs } from 'vue'
-
+import circleUrl from '@/assets/logo.png'
 export default defineComponent({
   props: {
     modelValue: {
@@ -41,6 +41,7 @@ export default defineComponent({
 
     return {
       isCollapse,
+      circleUrl,
     }
   },
 })

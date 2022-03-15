@@ -1,6 +1,9 @@
 <template>
   <div class="h-screen w-screen flex">
-    <div>
+    <div class="flex flex-col">
+      <div class="h-60 w-full flex items-center justify-center">
+        <el-image :style="elImage" :src="logoUrl" fit="contain" />
+      </div>
       <SideBar :isCollapse="isCollapse" />
     </div>
     <div class="flex-1 flex flex-col">
@@ -13,10 +16,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, reactive, ref, toRef, computed, watch } from 'vue'
 import SideBar from './components/sidebar/index.vue'
 import NavBar from './components/nav/index.vue'
-
+import logoUrl from '@/assets/logo.png'
 export default defineComponent({
   components: {
     SideBar,
@@ -24,9 +27,13 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref()
-
+    const elImage = computed(() => {
+      return !isCollapse.value ? { width: '200px', height: '60px' } : { width: '63px', height: '60px' }
+    })
     return {
       isCollapse,
+      logoUrl,
+      elImage,
     }
   },
 })

@@ -1,10 +1,10 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import './taiwindcss/index.scss';
-@import './reboot';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./taiwindcss/index.scss";
+@import "./reboot";
 
-:root{
+:root {
   --el-color-paimary: yellow;
   --color-gray-50: #fafbfc;
   --color-gray-100: #f3f4f6;
@@ -35,11 +35,11 @@ a {
     box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
   }
   & .spinner-icon {
+    display: none;
     border-top-color: var(--el-color-primary) !important;
     border-left-color: var(--el-color-primary) !important;
   }
 }
-.el-link.el-link--primary:hover{
+.el-link.el-link--primary:hover {
   color: var(--el-color-paimary) !important;
 }
-

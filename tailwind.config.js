@@ -42,15 +42,15 @@ module.exports = {
       yellow: colors.amber,
       blue: colors.blue,
     },
-    boxShadow: {
-      sm: 'var(--shadow-sm)',
-      DEFAULT: 'var(--shadow)',
-      md: 'var(--shadow-md)',
-      lg: 'var(--shadow-lg)',
-      xl: 'var(--shadow-xl)',
-      '2xl': 'var(--shadow-2xl)',
-      inner: 'var(--shadow-inner)',
-    },
+    // boxShadow: {
+    //   sm: 'var(--shadow-sm)',
+    //   DEFAULT: 'var(--shadow)',
+    //   md: 'var(--shadow-md)',
+    //   lg: 'var(--shadow-lg)',
+    //   xl: 'var(--shadow-xl)',
+    //   '2xl': 'var(--shadow-2xl)',
+    //   inner: 'var(--shadow-inner)',
+    // },
     extend: {
       colors: {
         primary: {

@@ -2,6 +2,7 @@
   <div class="w-240 h-screen bg-gray-100">
     <el-menu :default-active="activeMenu" router>
       <el-menu-item index="/test">
+        <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
         <span>测试</span>
       </el-menu-item>
       <el-menu-item index="/menuTwo">
@@ -10,9 +11,6 @@
       <el-menu-item index="/menuThree">
         <span>菜单三</span>
       </el-menu-item>
-      <!-- <el-menu-item index="/test">
-        <span>测试</span>
-      </el-menu-item> -->
     </el-menu>
   </div>
 </template>
@@ -46,6 +44,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);
+}
+.aa {
+  color: var(--el-color-primary);
 }
 ::v-deep(.el-menu-item:hover) {
   // background: #ede9fe;

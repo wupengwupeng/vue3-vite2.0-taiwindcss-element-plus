@@ -1,7 +1,6 @@
 <template>
   <div class="w-full h-60 shadow flex justify-between">
     <div class="flex-1 flex items-center px-12 h-full">
-      <!-- <AppSvgIcon iconName="icon-change-menu" class="w-20 h-20" /> -->
       <el-radio-group v-model="isCollapse">
         <el-radio-button :label="false"> expand</el-radio-button>
         <el-radio-button :label="true">collapse</el-radio-button>

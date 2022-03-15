@@ -54,7 +54,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .el-menu {
-  border-top: 1px solid grey;
+  border-top: 1px solid var(--color-gray-200);
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

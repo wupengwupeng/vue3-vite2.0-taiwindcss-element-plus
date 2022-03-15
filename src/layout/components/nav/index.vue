@@ -18,11 +18,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch, computed, toRefs } from 'vue'
 
 export default defineComponent({
-  setup() {
-    const isCollapse = ref(true)
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const { modelValue } = toRefs(props)
+    const isCollapse = computed({
+      get() {
+        return modelValue.value
+      },
+      set(value: boolean) {
+        emit('update:modelValue', value)
+      },
+    })
+
     return {
       isCollapse,
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="w-240 h-screen bg-gray-100">
-    <el-menu :default-active="activeMenu" router>
+    <el-menu :default-active="activeMenu" router :collapse="isCollapse">
       <el-menu-item index="/test">
         <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
         <span>测试</span>
@@ -16,10 +16,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, watch } from 'vue'
+import { defineComponent, ref, reactive, watch, toRefs } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 export default defineComponent({
-  setup() {
+  props: {
+    isCollapse: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props, { emit }) {
+    const { isCollapse } = toRefs(props)
     const activeMenu = ref('/test')
     const route: any = useRoute()
     const router = useRouter()
@@ -34,7 +41,11 @@ export default defineComponent({
       },
       { immediate: true, deep: true }
     )
+    watch(isCollapse, () => {
+      console.log(isCollapse.value)
+    })
     return {
+      isCollapse,
       activeMenu,
     }
   },

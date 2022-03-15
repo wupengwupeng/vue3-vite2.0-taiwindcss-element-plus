@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-gray-100">
+  <div class="h-screen border-r shadow">
     <el-menu class="el-menu-vertical-demo" :default-active="activeMenu" router :collapse="isCollapse">
       <el-menu-item index="/test">
         <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
@@ -55,6 +55,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .el-menu {
   border-top: 1px solid var(--color-gray-200);
+  border-right: none;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

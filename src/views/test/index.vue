@@ -12,7 +12,7 @@
       <el-button type="danger" @click="count++">count is: {{ count }}</el-button>
       <el-button type="info" @click="count++">count is: {{ count }}</el-button>
     </div>
-    <el-button size="medium">
+    <el-button>
       <template #icon>
         <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
       </template>

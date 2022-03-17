@@ -7,8 +7,9 @@
 
 <img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
 
+## 建议用pnpm下载依赖
 ```javascript
-npm install -g  pnpm  // 建议用pnpm下载依赖
+npm install -g  pnpm  
 ```
 
 ```bash

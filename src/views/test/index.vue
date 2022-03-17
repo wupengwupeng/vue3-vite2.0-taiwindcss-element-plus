@@ -12,6 +12,11 @@
       <el-button type="danger" @click="count++">count is: {{ count }}</el-button>
       <el-button type="info" @click="count++">count is: {{ count }}</el-button>
     </div>
+    <div>
+      <el-tag v-for="tag in tags" :key="tag.name" class="mx-1" closable :type="tag.type">
+        {{ tag.name }}
+      </el-tag>
+    </div>
     <el-button>
       <template #icon>
         <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
@@ -50,6 +55,13 @@ export default defineComponent({
   setup() {
     const count = ref(0)
     const visible = ref(false)
+    const tags = ref([
+      { name: 'Tag 1', type: '' },
+      { name: 'Tag 2', type: 'success' },
+      { name: 'Tag 3', type: 'info' },
+      { name: 'Tag 4', type: 'warning' },
+      { name: 'Tag 5', type: 'danger' },
+    ])
     function toast() {
       successMessage('sdf', {})
     }
@@ -57,6 +69,7 @@ export default defineComponent({
       visible.value = true
     }
     return {
+      tags,
       count,
       visible,
       toast,

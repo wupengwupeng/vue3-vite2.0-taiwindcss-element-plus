@@ -13,6 +13,10 @@
         <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
         <span>菜单三</span>
       </el-menu-item>
+      <el-menu-item index="/logicFlow">
+        <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
+        <span>流程图</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>

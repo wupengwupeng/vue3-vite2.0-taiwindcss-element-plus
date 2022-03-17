@@ -1,9 +1,9 @@
 <template>
-  <Dialog :visible="visible" :title="'新增'" width="60%" draggable @submit="handlerSave" @close="handlerClose"> sdfasdfas </Dialog>
+  <Dialog :visible="visibles" :title="'新增'" width="60%" draggable @submit="handlerSave" @close="handlerClose"> sdfasdfas </Dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, ref, reactive } from 'vue'
+import { defineComponent, toRefs, ref, reactive, computed, unref,watch,isReactive, isRef } from 'vue'
 
 export default defineComponent({
   props: {
@@ -14,15 +14,23 @@ export default defineComponent({
   },
   emits: ['update:visible'],
   setup(props, { emit }) {
-    const { visible } = toRefs(props)
+    const visibles = computed(() => { // isRef? true
+       const { visible } = props
+       return visible
+    })
+    // const {visible} = props  // isRef? false
+    // const {visible} = toRefs(props) // isRef? true
+    console.log(isRef(visibles))
+    console.log(unref(visibles))
     function handlerSave() {
       console.log('保存')
     }
     function handlerClose() {
       emit('update:visible', false)
     }
+    
     return {
-      visible,
+      visibles,
       handlerSave,
       handlerClose,
     }

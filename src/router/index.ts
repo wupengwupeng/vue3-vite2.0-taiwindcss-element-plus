@@ -30,6 +30,13 @@ const routes: Array<RouteRecordRaw> = [
           title: '测试页面三'
         },
         component: () => import('@/views/threes/index.vue')
+      },
+      {
+        path: '/logicFlow',
+        meta: {
+          title: '流程图',
+        },
+        component: () => import('@/views/flowTest/index.vue')
       }
 
     ]

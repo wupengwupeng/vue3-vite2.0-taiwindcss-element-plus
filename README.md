@@ -11,6 +11,10 @@
 npm install -g  pnpm  // 建议用pnpm下载依赖
 ```
 
+```bash
+yarn add -g pnpm
+```
+
 ## Project setup
 
 ```bash

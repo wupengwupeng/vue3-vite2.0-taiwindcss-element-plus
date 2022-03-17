@@ -1,5 +1,9 @@
 <template>
-  <div ref="lfElRef" class="h-full"></div>
+  <div class="w-full h-full flex flex-col">
+    <LogicFlowToolBar />
+    <!-- <div class="bg-red-400 absolute top-0 right-0"></div> -->
+    <div class="flex-1" ref="lfElRef"></div>
+  </div>
 </template>
 <script lang="ts">
 import type { Ref } from 'vue'
@@ -8,6 +12,7 @@ import { defineComponent, ref, onMounted, unref, nextTick, computed, watch } fro
 import LogicFlow from '@logicflow/core'
 import { Snapshot, BpmnElement, Menu, DndPanel, SelectionSelect } from '@logicflow/extension'
 import { toLogicFlowData } from './adpterForTurbo'
+import { createFlowChartContext } from './logicFlowToolBar/useFlowContext'
 import { configDefaultDndPanel } from './config'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
@@ -39,6 +44,9 @@ export default defineComponent({
 
     const lfInstance = ref(null) as Ref<LogicFlow | null>
 
+    createFlowChartContext({
+      logicFlow: lfInstance as unknown as LogicFlow,
+    })
     const getFlowOptions = computed(() => {
       const { flowOptions } = props
 

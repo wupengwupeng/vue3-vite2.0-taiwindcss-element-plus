@@ -14,6 +14,7 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElLink: typeof import('element-plus/es')['ElLink']
     EllipsisBox: typeof import('./components/ellipsisBox/index.vue')['default']
@@ -22,8 +23,10 @@ declare module 'vue' {
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElTag: typeof import('element-plus/es')['ElTag']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     LogicFlow: typeof import('./components/logicFlow/index.vue')['default']
+    LogicFlowToolBar: typeof import('./components/logicFlow/logicFlowToolBar/index.vue')['default']
     TabBar: typeof import('./components/tabBar/index.vue')['default']
     TablePage: typeof import('./components/tablePage/index.vue')['default']
   }

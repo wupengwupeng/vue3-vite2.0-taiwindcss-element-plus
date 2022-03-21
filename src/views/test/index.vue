@@ -35,7 +35,7 @@
         <el-link type="info">info</el-link>
       </div>
 
-      <div><a href="https://www.baidu.com">asdfasdfa</a>asdfasdfa</div>
+      <div><a href="https://www.baidu.com/s?wd=vue3">asdfasdfa</a>asdfasdfa</div>
       <div class="h-100 w-full bg-yellow-300" v-loading="true"></div>
     </div>
 

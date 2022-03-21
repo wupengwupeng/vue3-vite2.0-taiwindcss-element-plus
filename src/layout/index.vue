@@ -9,7 +9,13 @@
     <div class="flex-1 flex flex-col">
       <NavBar v-model="isCollapse" />
       <div class="flex-1 overflow-hidden">
-        <router-view></router-view>
+        <router-view v-slot="{ Component, route }">
+          <transition name="app-main-fade" mode="out-in">
+            <keep-alive :max="10">
+              <component :is="Component" :key="route.path"></component>
+            </keep-alive>
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
@@ -27,6 +33,7 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref()
+    const keepAliveInclude = /^KeepAlive-/
     const elImage = computed(() => {
       return !isCollapse.value ? { width: '200px', height: '60px' } : { width: '63px', height: '60px' }
     })
@@ -34,6 +41,7 @@ export default defineComponent({
       isCollapse,
       logoUrl,
       elImage,
+      keepAliveInclude,
     }
   },
 })

@@ -1,4 +1,8 @@
 import { setTheme } from '@/utils/storage/index'
+import { RouteRecordRaw } from 'vue-router'
+
+
+
 
 type StringNumber = string | number
 export const mix = (color1: string, color2: string, weight: StringNumber) => {
@@ -36,6 +40,14 @@ export function changeTheme(color: string) {
     node.style.setProperty(`${pre}-light-${i}`, mix(color, mixWhite, i * 0.1))
     node.style.setProperty(`--el-color-primary-dark-${i}`, mix(color, mixBlack, 0.1))
   }
-
-
 }
+// Return newRoutes
+export function setRoutes(routes: RouteRecordRaw[]) {
+  const newRoutes = routes.map((res: RouteRecordRaw) => {
+    return res.children?.filter((item: any) => Boolean(item.meta.isShow))
+  }).flat(1)
+  return newRoutes
+}
+
+
+

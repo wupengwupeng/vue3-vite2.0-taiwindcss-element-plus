@@ -2,6 +2,7 @@ export interface RootStates {
   name: string
   age: string
   sex: string
+
 }
 
 export enum RootMutations {

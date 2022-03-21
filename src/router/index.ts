@@ -1,33 +1,42 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import LayOut from '@/layout/index.vue'
 import nProgress from "nprogress"
-const routes: Array<RouteRecordRaw> = [
+import { setRoutes } from '@/utils/storage/index'
+export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: LayOut,
+    component: () => import('@/layout/index.vue'),
     children: [
       {
         path: '',
         redirect: '/menuTwo',
+        meta: {
+          isShow: false
+        }
       },
       {
         path: '/test',
         meta: {
-          title: '测试页面一'
+          title: '测试页面一',
+          isShow: true,
+          iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/testTwo/index.vue')
       },
       {
         path: '/menuTwo',
         meta: {
-          title: '主页'
+          title: '主页',
+          isShow: true,
+          iconName: 'fn-pen',
         },
         component: () => import('@/views/test/index.vue')
       },
       {
         path: '/menuThree',
         meta: {
-          title: '测试页面三'
+          title: '测试页面三',
+          isShow: true,
+          iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/threes/index.vue')
       },
@@ -35,10 +44,19 @@ const routes: Array<RouteRecordRaw> = [
         path: '/logicFlow',
         meta: {
           title: '流程图',
+          isShow: true,
+          iconName: 'fn-pen',
+        },
+        component: () => import('@/views/flowTest/index.vue')
+      }, {
+        path: '/WUPENG',
+        meta: {
+          title: 'ADF',
+          isShow: true,
+          iconName: 'fn-pen',
         },
         component: () => import('@/views/flowTest/index.vue')
       }
-
     ]
   }
 ]
@@ -51,8 +69,11 @@ const router = createRouter({
   }),
   routes,
 })
+router.beforeEach((from, to, next) => {
+  setRoutes(routes)
+  nProgress.start() && next()
 
-router.beforeEach((from, to, next) => nProgress.start() && next());
+});
 
 router.afterEach(() => nProgress.done());
 

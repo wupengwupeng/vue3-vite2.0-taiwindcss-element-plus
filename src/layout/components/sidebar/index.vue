@@ -1,29 +1,21 @@
 <template>
   <div class="h-screen border-r shadow">
-    <el-menu class="el-menu-vertical-demo" :default-active="activeMenu" router :collapse="isCollapse">
-      <el-menu-item index="/test">
-        <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
-        <span>测试</span>
-      </el-menu-item>
-      <el-menu-item index="/menuTwo">
-        <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-        <span>菜单二</span>
-      </el-menu-item>
-      <el-menu-item index="/menuThree">
-        <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-        <span>buttons</span>
-      </el-menu-item>
-      <el-menu-item index="/logicFlow">
-        <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-        <span>流程图</span>
-      </el-menu-item>
+    <el-menu class="el-menu-vertical-demo" :default-active="activeMenu" mode router :collapse="isCollapse">
+      <template v-for="(item, index) in routess" :key="index + '1'">
+        <el-menu-item :index="item.path">
+          <app-svg-icon :icon-name="item.meta.iconName" class="w-20 h-20"></app-svg-icon>
+          <span>{{ item.meta.title }}</span>
+        </el-menu-item>
+      </template>
     </el-menu>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, watch, toRefs } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { defineComponent, ref, reactive, watch, toRefs, computed, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from '@/store'
+
 export default defineComponent({
   props: {
     isCollapse: {
@@ -33,9 +25,12 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { isCollapse } = toRefs(props)
+    const store = useStore()
     const activeMenu = ref('/test')
     const route: any = useRoute()
-    const router = useRouter()
+    const state: any = reactive({
+      routess: store.state.routes,
+    })
     watch(
       [() => route.path],
       (newVal: any, oldVal: any) => {
@@ -51,6 +46,7 @@ export default defineComponent({
     return {
       isCollapse,
       activeMenu,
+      ...toRefs(state),
     }
   },
 })

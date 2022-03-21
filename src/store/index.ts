@@ -6,24 +6,24 @@ import mutations from './mutations'
 import { RootState } from './type'
 import { getTheme } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
-import { changeTheme } from '@/utils/index'
+import { changeTheme, setRoutes } from '@/utils/index'
+import { getRoutes } from '@/utils/storage'
 
-
-// 主题默认值
+// Default topic
 const defaultColor = '#0780F1'
-// 初始化主题
-let theme: string = getTheme() || defaultColor // 可能为空字符串或不在已有主题里面
+// Init topic
+let theme: string = getTheme() || defaultColor // It may be an empty string or not in an existing topic
 if (theme) changeTheme(theme)
 
 export function getDefaultRootState() {
   const state = {
     name: '',
     theme,
-  }
+    routes: setRoutes(getRoutes())
+  } as any
   return state
 }
 const state = getDefaultRootState()
-export const key: InjectionKey<Store<RootState>> = Symbol()
 export const store = createStore({
   strict: true,
   state,
@@ -33,6 +33,8 @@ export const store = createStore({
     test
   }
 })
+export const key: InjectionKey<Store<RootState>> = Symbol()
+
 export function useStore() {
   return baseUseStore(key)
 }

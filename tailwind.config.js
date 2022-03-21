@@ -52,6 +52,32 @@ module.exports = {
     //   inner: 'var(--shadow-inner)',
     // },
     extend: {
+      keyframes: {
+        'text-shimmer': {
+          from: { backgroundPosition: '0 0' },
+          to: { backgroundPosition: '-200% 0' },
+        },
+        tilt: {
+          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(0.5deg)' },
+          '75%': { transform: 'rotate(-0.5deg)' },
+        },
+        flash: {
+          '0%': { opacity: '0.2' },
+          '20%': { opacity: '1' },
+          '100%': { opacity: '0.2' },
+        },
+        shimmer: {
+          from: { backgroundPosition: '200% 0' },
+          to: { backgroundPosition: '-200% 0' },
+        },
+      },
+      animation: {
+        'text-shimmer': 'text-shimmer 2.5s ease-out infinite alternate',
+        tilt: 'tilt 10s infinite linear',
+        flash: 'flash 1.4s infinite linear',
+        shimmer: 'shimmer 8s ease-in-out infinite',
+      },
       colors: {
         primary: {
           DEFAULT: 'var(--color-primary-500)',

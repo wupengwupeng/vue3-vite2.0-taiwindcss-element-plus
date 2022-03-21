@@ -11,7 +11,7 @@
       </el-menu-item>
       <el-menu-item index="/menuThree">
         <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-        <span>菜单三</span>
+        <span>buttons</span>
       </el-menu-item>
       <el-menu-item index="/logicFlow">
         <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>

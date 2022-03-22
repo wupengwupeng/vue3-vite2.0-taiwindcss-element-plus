@@ -3,7 +3,7 @@
     <!-- <div class="flex justify-center items-center">
       <change-theme />
       <span>配置主题</span>
-    </div> -->
+    </div>-->
     <div class="flex flex-wrap gap-12 mt-12">
       <el-button @click="toast">El Message</el-button>
       <el-button type="primary" @click="count++">count is: {{ count }}</el-button>
@@ -13,9 +13,13 @@
       <el-button type="info" @click="count++">count is: {{ count }}</el-button>
     </div>
     <div>
-      <el-tag v-for="tag in tags" :key="tag.name" class="mx-1" closable :type="tag.type">
-        {{ tag.name }}
-      </el-tag>
+      <el-tag
+        v-for="tag in tags"
+        :key="tag.name"
+        class="mx-1"
+        closable
+        :type="tag.type"
+      >{{ tag.name }}</el-tag>
     </div>
     <el-button>
       <template #icon>
@@ -26,7 +30,7 @@
 
     <div class="flex-1 w-full mt-12 flex flex-col items-center">
       <el-button @click="handlerOpen">打开弹框</el-button>
-      <div class="">
+      <div class>
         <el-link href="https://element.eleme.io" target="_blank">default</el-link>
         <el-link type="primary">primary</el-link>
         <el-link type="success">success</el-link>
@@ -35,7 +39,9 @@
         <el-link type="info">info</el-link>
       </div>
 
-      <div><a href="https://www.baidu.com/s?wd=vue3">asdfasdfa</a>asdfasdfa</div>
+      <div>
+        <a href="https://www.baidu.com/s?wd=vue3">asdfasdfa</a>asdfasdfa
+      </div>
       <div class="h-100 w-full bg-yellow-300" v-loading="true"></div>
     </div>
 
@@ -55,7 +61,7 @@ export default defineComponent({
   setup() {
     const count = ref(0)
     const visible = ref(false)
-    const tags = ref([
+    const tags = ref<any>([
       { name: 'Tag 1', type: '' },
       { name: 'Tag 2', type: 'success' },
       { name: 'Tag 3', type: 'info' },

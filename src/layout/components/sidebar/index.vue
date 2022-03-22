@@ -152,6 +152,7 @@ export default defineComponent({
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   height: calc(100vh - 60px);
+  background: #272a36;
 }
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);

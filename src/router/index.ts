@@ -34,7 +34,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/menuThree',
         meta: {
-          title: '测试页面三',
+          title: 'buttons',
           isShow: true,
           iconName: 'fn-shezhiq',
         },
@@ -48,6 +48,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-pen',
         },
         component: () => import('@/views/flowTest/index.vue')
+      },
+      {
+        path: '/scroll',
+        meta: {
+          title: '滚动',
+          isShow: true,
+          iconName: 'fn-pen',
+        },
+        component: () => import('@/views/scroll/index.vue')
       },
     ]
   }

@@ -8,15 +8,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^7.7.1",
     "@logicflow/core": "^1.1.7",
     "@logicflow/extension": "^1.1.7",
+    "@vueuse/core": "^7.7.1",
     "echarts": "^5.3.1",
     "element-plus": "^2.0.2",
     "nprogress": "^0.2.0",
     "store": "^2.0.12",
     "vue": "^3.2.31",
     "vue-router": "4",
+    "vue3-treeselect": "^0.1.10",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

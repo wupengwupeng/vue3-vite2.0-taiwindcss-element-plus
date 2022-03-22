@@ -12,4 +12,9 @@ declare module "nprogress" {
   const progree: any;
   export default progree
 }
+declare module "vue3-treeselect" {
+  import selectTree from ' vue3-treeselect'
+  const selectVue3: any;
+  export default selectTree
+}
 

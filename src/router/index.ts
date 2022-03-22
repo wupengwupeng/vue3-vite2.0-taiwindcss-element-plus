@@ -58,6 +58,15 @@ export const routes: Array<RouteRecordRaw> = [
         },
         component: () => import('@/views/scroll/index.vue')
       },
+      {
+        path: '/selectDown',
+        meta: {
+          title: '下拉树形选择',
+          isShow: true,
+          iconName: 'fn-pen',
+        },
+        component: () => import('@/views/selectDown/index.vue')
+      }
     ]
   }
 ]

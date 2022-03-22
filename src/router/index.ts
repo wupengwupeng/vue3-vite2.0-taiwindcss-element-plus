@@ -49,7 +49,6 @@ export const routes: Array<RouteRecordRaw> = [
         },
         component: () => import('@/views/flowTest/index.vue')
       },
-
     ]
   }
 ]

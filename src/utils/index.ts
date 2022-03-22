@@ -50,4 +50,75 @@ export function setRoutes(routes: RouteRecordRaw[]) {
 }
 
 
+type TreeListRow = {
+  id?: string,
+  pid?: string,
+  name?: string,
+  url?: string,
+  icon?: string,
+  children?: Array<TreeListRow>
+}
+// tree to list
+export function treeToList(tree: TreeListRow[]) {
+  const newTree: TreeListRow[] = tree.concat([])
+  const data = []
+  while (newTree.length !== 0) {
+    // 从stack中拿出来分析
+    let shift = newTree.pop() as TreeListRow // stack.pop()
+    data.unshift(shift)
+    let children = shift['children']
+    if (children) {
+      for (let i = 0; i < children.length; i++) {
+        // 把数据放入stack中
+        newTree.unshift(children[i])
+      }
+    }
+  }
+  return data
+}
+
+type ListRow = {
+  id?: string,
+  pid?: string,
+  name?: string,
+  url?: string,
+  children?: ListRow[]
+}
+type TagsProps = {
+  [propName: string]: Array<ListRow>
+}
+// list to tree
+// pid = 0 为起始节点
+export function getTrees(list: ListRow[], parentId = '0', pKey = 'pid', cKey = 'id') {
+  let items: TagsProps = {}
+  // 获取每个节点的直属子节点，*记住是直属，不是所有子节点
+  for (let i = 0; i < list.length; i++) {
+    let key: string = (list[i] as any)[pKey]
+    if (items[key]) {
+      items[key].push(list[i])
+    } else {
+      items[key] = []
+      items[key].push(list[i])
+    }
+  }
+  return formatTree(items, parentId, cKey)
+}
+
+// 利用递归格式化每个节点
+export function formatTree(items: ListRow, parentId: string, cKey: string) {
+  let result: any[] = []
+  if (!(items as any)[parentId]) {
+    return result
+  }
+  for (let t of (items as any)[parentId]) {
+    const temp = formatTree(items, t[cKey], cKey)
+    if (temp.length > 0) {
+      t.children = temp
+    }
+    result.push(t)
+  }
+  return result
+}
+
+
 

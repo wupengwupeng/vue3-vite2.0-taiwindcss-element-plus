@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import nProgress from "nprogress"
-import { setRoutes } from '@/utils/storage/index'
+
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -48,15 +48,8 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-pen',
         },
         component: () => import('@/views/flowTest/index.vue')
-      }, {
-        path: '/WUPENG',
-        meta: {
-          title: 'ADF',
-          isShow: true,
-          iconName: 'fn-pen',
-        },
-        component: () => import('@/views/flowTest/index.vue')
-      }
+      },
+
     ]
   }
 ]
@@ -70,9 +63,7 @@ const router = createRouter({
   routes,
 })
 router.beforeEach((from, to, next) => {
-  setRoutes(routes)
   nProgress.start() && next()
-
 });
 
 router.afterEach(() => nProgress.done());

@@ -7,8 +7,7 @@ import { RootState } from './type'
 import { getTheme } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
 import { changeTheme, setRoutes } from '@/utils/index'
-import { getRoutes } from '@/utils/storage'
-
+import { routes } from '@/router'
 // Default topic
 const defaultColor = '#0780F1'
 // Init topic
@@ -19,7 +18,7 @@ export function getDefaultRootState() {
   const state = {
     name: '',
     theme,
-    routes: setRoutes(getRoutes())
+    routes: setRoutes(routes)
   } as any
   return state
 }

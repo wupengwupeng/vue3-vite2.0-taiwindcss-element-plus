@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="shadow rounded p-12 w-full h-full">
+  <div class="shadow rounded py-12 w-full h-full">
     <slot></slot>
   </div>
 </template>

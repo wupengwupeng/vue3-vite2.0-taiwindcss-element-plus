@@ -2,12 +2,16 @@
   <div class="w-full h-60 shadow flex justify-between">
     <div class="flex-1 flex items-center px-12 h-full">
       <el-radio-group size="small" v-model="isCollapse">
-        <el-radio-button :label="false"> expand</el-radio-button>
+        <el-radio-button :label="false">expand</el-radio-button>
         <el-radio-button :label="true">collapse</el-radio-button>
       </el-radio-group>
       <div class="ml-12">
         <el-breadcrumb separator=">">
-          <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }"> {{ item.meta.title ? item.meta.title : '主页' }}</el-breadcrumb-item>
+          <el-breadcrumb-item
+            v-for="(item, index) in menus"
+            :key="index"
+            :to="{ path: item.path }"
+          >{{ item.meta.title ? item.meta.title : '主页' }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
     </div>

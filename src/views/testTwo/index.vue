@@ -1,7 +1,7 @@
 <template>
   <main-card>
-    <div class="overflow-auto">
-      <div class="h-500" v-for="item in 1" :key="item">
+    <div class="w-full h-full overflow-auto">
+      <div class="h-500" v-for="item in 3" :key="item">
         asdf
         <el-button>
           <AppSvgIcon iconName="fn-pen" class="w-20 h-20 aa" />asdf

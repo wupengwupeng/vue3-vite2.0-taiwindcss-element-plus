@@ -29,34 +29,36 @@ watch(value, () => {
 </script>
 
 <template>
-  <div class="mx-12 my-12 shadow rounded p-12">
-    <div class="card-header">
-      <span class="font-medium">
-        采用
-        <el-link
-          href="https://github.com/megafetis/vue3-treeselect"
-          target="_blank"
-          style="font-size: 16px; margin: 0 4px 5px"
-        >vue3-treeselect</el-link>
-        <el-link
-          href="https://github.com/megafetis/vue3-treeselect"
-          target="_blank"
-          style="font-size: 16px; margin: 0 4px 5px"
-        >TreeSelect</el-link>写法
-        <el-link
-          href="https://github.com/megafetis/vue3-treeselect"
-          target="_blank"
-          style="font-size: 16px; margin: 0 4px 5px"
-        >How to use it?</el-link>
-      </span>
+  <main-card>
+    <div class="p-12">
+      <div class="card-header">
+        <span class="font-medium">
+          采用
+          <el-link
+            href="https://github.com/megafetis/vue3-treeselect"
+            target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px"
+          >vue3-treeselect</el-link>
+          <el-link
+            href="https://github.com/megafetis/vue3-treeselect"
+            target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px"
+          >TreeSelect</el-link>写法
+          <el-link
+            href="https://github.com/megafetis/vue3-treeselect"
+            target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px"
+          >How to use it?</el-link>
+        </span>
+      </div>
+      <div>
+        <treeselect v-model="value" :multiple="true" placeholder="请选择企业架构" :options="options" />
+      </div>
+      <div class="w-full h-200 bg-gray-200">
+        <AppSvgIcon class="w-500 h-159 text-red-400" iconName="logo"></AppSvgIcon>
+      </div>
     </div>
-    <div>
-      <treeselect v-model="value" :multiple="true" placeholder="请选择企业架构" :options="options" />
-    </div>
-    <div class="w-full h-200 bg-gray-200">
-      <AppSvgIcon class="w-500 h-159 text-red-400" iconName="logo"></AppSvgIcon>
-    </div>
-  </div>
+  </main-card>
 </template>
 
 <style lang="scss" scoped>

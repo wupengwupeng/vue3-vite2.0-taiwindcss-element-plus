@@ -55,7 +55,7 @@ function changeDirection(val: string) {
 </script>
 
 <template>
-  <div>
+  <main-card>
     <h1 class="text-30">Infinite scroll</h1>
     {{ info }}
     <Child :info="info" @submit="handlerSubmit"></Child>
@@ -91,7 +91,7 @@ function changeDirection(val: string) {
         </re-seamless-scroll>
       </el-card>
     </el-space>
-  </div>
+  </main-card>
 </template>
 
 <style lang="scss" scoped>

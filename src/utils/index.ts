@@ -120,5 +120,14 @@ export function formatTree(items: ListRow, parentId: string, cKey: string) {
   return result
 }
 
+// 判断设备是是移动端还是PC端
+export function isMobile(): boolean {
+  const { body }: Document = document
+  const WIDTH: number = 1024
+  const RATIO: number = 3
+  const rect = body.getBoundingClientRect() as DOMRect
+  return rect.width - RATIO < WIDTH
+}
+
 
 

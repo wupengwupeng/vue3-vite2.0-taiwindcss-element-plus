@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full p-12">
     <Suspense>
       <template #default>
         <router-view v-slot="{ Component, route }">

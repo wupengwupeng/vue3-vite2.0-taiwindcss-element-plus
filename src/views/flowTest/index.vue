@@ -1,12 +1,10 @@
 <template>
-  <main-card class="h-full">
-    <div class="px-12 py-12 h-full w-full flex flex-col">
-      <h1 class="h-90 flex items-center">流程图</h1>
-      <div class="flex-1">
-        <LogicFlow :data="dataTurbo" />
-      </div>
+  <div class="px-12 py-12 h-full w-full flex flex-col">
+    <h1 class="h-90 flex items-center">流程图</h1>
+    <div class="flex-1">
+      <LogicFlow :data="dataTurbo" />
     </div>
-  </main-card>
+  </div>
 </template>
 
 

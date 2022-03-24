@@ -29,6 +29,7 @@ declare module 'vue' {
     ReSeamlessScroll: typeof import('./components/reSeamlessScroll/index.vue')['default']
     TabBar: typeof import('./components/tabBar/index.vue')['default']
     TablePage: typeof import('./components/tablePage/index.vue')['default']
+    WangEditor: typeof import('./components/wangEditor/index.vue')['default']
   }
 }
 

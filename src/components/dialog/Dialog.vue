@@ -1,5 +1,12 @@
 <template>
-  <el-dialog v-model="visible" :title="title" destroy-on-close :center="false" v-bind="$attrs" @close="handlerClose">
+  <el-dialog
+    v-model="visible"
+    :title="title"
+    destroy-on-close
+    :center="false"
+    v-bind="$attrs"
+    @close="handlerClose"
+  >
     <slot />
     <template #footer>
       <el-button size="small" @click="handlerCansole">取消</el-button>

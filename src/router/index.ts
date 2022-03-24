@@ -66,6 +66,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-pen',
         },
         component: () => import('@/views/selectDown/index.vue')
+      },
+      {
+        path: '/editWang',
+        meta: {
+          title: '编辑器',
+          isShow: true,
+          iconName: 'fn-shezhiq',
+        },
+        component: () => import('@/views/editWang/index.vue')
       }
     ]
   }

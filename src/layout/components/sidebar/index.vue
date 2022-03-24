@@ -25,7 +25,7 @@
           <el-menu-item v-else :key="group.id" :index="group.url">
             <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
             <span>{{ group.name }}</span>
-          </el-menu-item> -->
+          </el-menu-item>-->
           <el-menu-item :index="group.path">
             <app-svg-icon :icon-name="group.meta.iconName" class="w-20 h-20"></app-svg-icon>
             <span>{{ group.meta.title }}</span>
@@ -53,8 +53,8 @@ export default defineComponent({
     const store = useStore()
     const activeMenu = ref('/test')
     const route: any = useRoute()
-    const state: any = reactive({
-      routess: store.state.routes,
+    const state = reactive({
+      routess: store.state.routes as any,
     })
     /*
     {
@@ -157,4 +157,5 @@ export default defineComponent({
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);
 }
+
 </style>

@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+type Button = "default" | "small" | "large"
+const small = ref<Button>('default')
+</script>
 <template>
-  <router-view />
+  <el-config-provider :size="small">
+    <router-view />
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">

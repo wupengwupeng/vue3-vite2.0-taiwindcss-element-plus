@@ -63,13 +63,11 @@ export function treeToList(tree: TreeListRow[]) {
   const newTree: TreeListRow[] = tree.concat([])
   const data = []
   while (newTree.length !== 0) {
-    // 从stack中拿出来分析
-    let shift = newTree.pop() as TreeListRow // stack.pop()
+    let shift = (<TreeListRow>newTree.pop()) // stack.pop()
     data.unshift(shift)
     let children = shift['children']
     if (children) {
       for (let i = 0; i < children.length; i++) {
-        // 把数据放入stack中
         newTree.unshift(children[i])
       }
     }

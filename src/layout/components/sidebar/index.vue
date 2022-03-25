@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen overflow-auto border-r shadow">
+  <div class="h-screen overflow-auto shadow bg-[#272a36]">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         class="el-menu-vertical-demo"
@@ -149,13 +149,14 @@ export default defineComponent({
   border-top: 1px solid var(--color-gray-200);
   border-right: none;
 }
+.scrollbar-wrapper {
+  border-right: 1px solid #272a36;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   height: calc(100vh - 60px);
-  background: #272a36;
 }
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);
 }
-
 </style>

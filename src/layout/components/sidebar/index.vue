@@ -28,7 +28,9 @@
           </el-menu-item>-->
           <el-menu-item :index="group.path">
             <app-svg-icon :icon-name="group.meta.iconName" class="w-20 h-20"></app-svg-icon>
-            <span>{{ group.meta.title }}</span>
+            <template #title>
+              <span>{{ group.meta.title }}</span>
+            </template>
           </el-menu-item>
         </template>
       </el-menu>

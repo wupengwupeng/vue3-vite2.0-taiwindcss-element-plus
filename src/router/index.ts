@@ -75,6 +75,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/editWang/index.vue')
+      },
+      {
+        path: '/table',
+        meta: {
+          title: '表格',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/table/index.vue')
       }
     ]
   }

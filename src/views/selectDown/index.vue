@@ -5,6 +5,130 @@ import Treeselect from 'vue3-treeselect'
 // import the styles
 import 'vue3-treeselect/dist/vue3-treeselect.css'
 
+import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
+
+import { spanRow } from "element-ui-table-span-method";
+
+interface User {
+  id: string
+  name: string
+  amount1: string
+  amount2: string
+  amount3: number
+  amount4: string
+  amount5: string
+  amount6: number
+}
+
+interface SpanMethodProps {
+  row: User
+  column: TableColumnCtx<User>
+  rowIndex: number
+  columnIndex: number
+}
+
+
+const objectSpanMethod = ({
+  row,
+  column,
+  rowIndex,
+  columnIndex,
+}: SpanMethodProps): any => {
+  // console.log(row)
+  // console.log(column)
+  console.log(rowIndex, 'row')
+  console.log(columnIndex, 'column')
+  if (columnIndex === 0) {
+    if (rowIndex % 2 === 0) {
+      return {
+        rowspan: 2,
+        colspan: 1,
+      }
+    } else {
+      return {
+        rowspan: 0,
+        colspan: 0,
+      }
+    }
+  }
+}
+
+const tableData: User[] = [
+  {
+    id: '12987122',
+    name: 'Tom',
+    amount1: '234',
+    amount2: '3.2',
+    amount3: 10,
+    amount4: '234',
+    amount5: '3.2',
+    amount6: 10,
+  },
+  {
+    id: '12987123',
+    name: 'Tom',
+    amount1: '165',
+    amount2: '4.43',
+    amount3: 12,
+    amount4: '234',
+    amount5: '3.2',
+    amount6: 10,
+  },
+  {
+    id: '12987124',
+    name: 'Tom',
+    amount1: '324',
+    amount2: '1.9',
+    amount3: 9,
+    amount4: '234',
+    amount5: '3.2',
+    amount6: 10,
+  },
+  {
+    id: '12987125',
+    name: 'Tom',
+    amount1: '621',
+    amount2: '2.2',
+    amount3: 17,
+    amount4: '234',
+    amount5: '3.2',
+    amount6: 10,
+  },
+  {
+    id: '12987126',
+    name: 'Tom',
+    amount1: '539',
+    amount2: '4.1',
+    amount3: 15,
+    amount4: '234',
+    amount5: '3.2',
+    amount6: 10,
+  },
+]
+const data = [
+  { field1: "A", field2: "a", field3: "1", filed4: '12' },
+  { field1: "A", field2: "a", field3: "1", filed4: '12' },
+  { field1: "A", field2: "b", field3: "2", filed4: '12' },
+  { field1: "A", field2: "b", field3: "2", filed4: '12' },
+  { field1: "A", field2: "c", field3: "3", filed4: '12' },
+
+  { field1: "B", field2: "a", field3: "1", filed4: '12' },
+  { field1: "B", field2: "a", field3: "2", filed4: '12' },
+  { field1: "B", field2: "b", field3: "3", filed4: '12' },
+  { field1: "B", field2: "b", field3: "3", filed4: '12' },
+  { field1: "B", field2: "c", field3: "3", filed4: '12' },
+]
+const option = [
+  { index: 0, field: "field1" },
+  { index: 1, field: "field2" },
+]
+const onSpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
+  return spanRow(
+    { row, column, rowIndex, columnIndex },
+    data,
+    option
+  );
+}
 const value = ref(null)
 const options = ref([{
   id: 'a',
@@ -29,7 +153,7 @@ watch(value, () => {
 </script>
 
 <template>
-  <main-card>
+  <main-card class="overflow-y-auto overflow-x-hidden">
     <div class="p-12">
       <div class="card-header">
         <span class="font-medium">
@@ -54,9 +178,29 @@ watch(value, () => {
       <div>
         <treeselect v-model="value" :multiple="true" placeholder="请选择企业架构" :options="options" />
       </div>
-      <div class="w-full h-200 bg-gray-200">
-        <AppSvgIcon class="w-500 h-159 text-red-400" iconName="logo"></AppSvgIcon>
-      </div>
+      <el-table
+        :data="tableData"
+        :span-method="objectSpanMethod"
+        border
+        style="width: 100%; margin-top: 20px"
+      >
+        <el-table-column prop="id" label="ID" width="180" />
+        <el-table-column prop="name" label="Name" />
+        <el-table-column prop="amount1" label="Amount 1" />
+        <el-table-column prop="amount2" label="Amount 2" />
+        <el-table-column prop="amount3" label="Amount 3" />
+        <el-table-column prop="amount4" label="Amount 4" />
+        <el-table-column prop="amount5" label="Amount 5" />
+        <el-table-column prop="amount6" label="Amount 6" />
+      </el-table>
+    </div>
+    <div class="mt-12">
+      <el-table :data="data" border :span-method="onSpanMethod">
+        <el-table-column prop="field1" label="field1"></el-table-column>
+        <el-table-column prop="field2" label="field2"></el-table-column>
+        <el-table-column prop="field3" label="field3"></el-table-column>
+        <el-table-column prop="field4" label="field4"></el-table-column>
+      </el-table>
     </div>
   </main-card>
 </template>

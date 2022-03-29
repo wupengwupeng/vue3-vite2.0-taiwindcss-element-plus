@@ -1,8 +1,6 @@
 import { setTheme } from '@/utils/storage/index'
 import { RouteRecordRaw } from 'vue-router'
-
-
-
+import printJS from 'print-js' // TODO
 
 type StringNumber = string | number
 export const mix = (color1: string, color2: string, weight: StringNumber) => {
@@ -125,6 +123,11 @@ export function isMobile(): boolean {
   const RATIO: number = 3
   const rect = body.getBoundingClientRect() as DOMRect
   return rect.width - RATIO < WIDTH
+}
+
+// print-js
+export function print() {
+
 }
 
 

@@ -7,5 +7,7 @@ import "~/styles/index.scss";
 import 'nprogress/nprogress.css'  // 这个nprogress样式必须引入
 
 
+
+
 const app = createApp(App);
 app.use(router).use(store, key).mount("#app");

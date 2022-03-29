@@ -18,3 +18,9 @@ declare module "vue3-treeselect" {
   export default selectTree
 }
 
+declare module "print-js" {
+  import printJS from 'print-js'
+  const print: any;
+  export default print
+}
+

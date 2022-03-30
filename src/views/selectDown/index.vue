@@ -7,7 +7,7 @@ import 'vue3-treeselect/dist/vue3-treeselect.css'
 
 import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 
-import { spanRow } from "element-ui-table-span-method";
+
 
 interface User {
   id: string
@@ -105,30 +105,7 @@ const tableData: User[] = [
     amount6: 10,
   },
 ]
-const data = [
-  { field1: "A", field2: "a", field3: "1", filed4: '12' },
-  { field1: "A", field2: "a", field3: "1", filed4: '12' },
-  { field1: "A", field2: "b", field3: "2", filed4: '12' },
-  { field1: "A", field2: "b", field3: "2", filed4: '12' },
-  { field1: "A", field2: "c", field3: "3", filed4: '12' },
 
-  { field1: "B", field2: "a", field3: "1", filed4: '12' },
-  { field1: "B", field2: "a", field3: "2", filed4: '12' },
-  { field1: "B", field2: "b", field3: "3", filed4: '12' },
-  { field1: "B", field2: "b", field3: "3", filed4: '12' },
-  { field1: "B", field2: "c", field3: "3", filed4: '12' },
-]
-const option = [
-  { index: 0, field: "field1" },
-  { index: 1, field: "field2" },
-]
-const onSpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
-  return spanRow(
-    { row, column, rowIndex, columnIndex },
-    data,
-    option
-  );
-}
 const value = ref(null)
 const options = ref([{
   id: 'a',
@@ -192,14 +169,6 @@ watch(value, () => {
         <el-table-column prop="amount4" label="Amount 4" />
         <el-table-column prop="amount5" label="Amount 5" />
         <el-table-column prop="amount6" label="Amount 6" />
-      </el-table>
-    </div>
-    <div class="mt-12">
-      <el-table :data="data" border :span-method="onSpanMethod">
-        <el-table-column prop="field1" label="field1"></el-table-column>
-        <el-table-column prop="field2" label="field2"></el-table-column>
-        <el-table-column prop="field3" label="field3"></el-table-column>
-        <el-table-column prop="field4" label="field4"></el-table-column>
       </el-table>
     </div>
   </main-card>

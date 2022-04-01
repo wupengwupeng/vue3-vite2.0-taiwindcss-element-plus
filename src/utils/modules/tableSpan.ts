@@ -1,7 +1,4 @@
 import { watch, computed, unref } from 'vue';
-import utils from '@/utils';
-
-
 let rowspanArray: any
 
 function spanRow({ row, column, rowIndex, columnIndex }: any, data: any, option: any) {
@@ -33,17 +30,17 @@ function spanRow({ row, column, rowIndex, columnIndex }: any, data: any, option:
 // 获取分组得个数集合
 function getCollection(data: any) {
   return computed(() => {
-    let newData: any = {}
+    const newData: any = {}
     const arr: any = []
-    // data.forEach((items: any) => {
-    //   let keys: any = items.field1
-    //   if (!newData.hasOwnProperty(items.field1)) {
-    //     newData[keys] = [items]
-    //   } else {
-    //     newData[keys].push(items)
-    //   }
-    // });
-    newData = utils.groupArr(data, 'field1')
+    data.forEach((items: any) => {
+      let keys: any = items.field1
+      if (!newData.hasOwnProperty(items.field1)) {
+
+        newData[keys] = [items]
+      } else {
+        newData[keys].push(items)
+      }
+    });
     Object.keys(newData).forEach((res: any, index: number) => {
       if (newData[res].length) {
         if (!arr.length) {

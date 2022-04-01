@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-60 shadow flex justify-between">
+  <div class="w-full h-60 shadow-inner flex justify-between">
     <div class="flex-1 flex items-center px-12 h-full">
       <el-radio-group size="small" v-model="isCollapse">
         <el-radio-button :label="false">expand</el-radio-button>
@@ -70,4 +70,7 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+</style>
 

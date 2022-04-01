@@ -5,9 +5,7 @@ import { store, key } from '@/store/index'
 import 'virtual:svg-icons-register'
 import "~/styles/index.scss";
 import 'nprogress/nprogress.css'  // 这个nprogress样式必须引入
-
-
-
+import { install } from '@/utils' // 注册全局方法
 
 const app = createApp(App);
-app.use(router).use(store, key).mount("#app");
+app.use(router).use(store, key).use(install).mount("#app");

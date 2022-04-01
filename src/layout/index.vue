@@ -6,7 +6,7 @@
       </div>
       <SideBar :isCollapse="isCollapse" />
     </div>
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col overflow-hidden">
       <NavBar v-model="isCollapse" />
       <div class="flex-1 overflow-hidden">
         <AppMain></AppMain>

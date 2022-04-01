@@ -14,7 +14,8 @@
   height: 100%;
   padding: 12px;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }

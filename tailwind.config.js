@@ -52,6 +52,9 @@ module.exports = {
     //   inner: 'var(--shadow-inner)',
     // },
     extend: {
+      backgroundImage: {
+        'my-pic': "url('/src/assets/my-pic.jpg')",
+      },
       keyframes: {
         'text-shimmer': {
           from: { backgroundPosition: '0 0' },

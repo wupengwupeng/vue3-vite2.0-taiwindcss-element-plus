@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { spanRow } from "@/utils/tableSpan";
+import { printJs } from '@/utils/index'
 const data = [
   { field1: "营业收费系统", field2: "中国农业银行", field3: "2022-03", filed4: '2022-03-04', filed5: '4' },
   { field1: "营业收费系统", field2: "中国农业银行", field3: "2022-03", filed4: '2022-03-05', filed5: '2' },
@@ -136,19 +137,37 @@ const arraySpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
     }
   }
 }
+const printHtml = () => {
+  const payLoad = {
+    printable: 'printJS-table',
+    type: 'html',
+    header: 'PrintJS - table Element Selection',
+    // css: 'color: red'
+    // printable: data, properties: ['field1', 'field2', 'field3', 'filed4', 'filed5'], type: 'json'
+  }
+  printJs(payLoad)
+}
 
 </script>
 
 <template>
-  <main-card class="flex flex-col overflow-x-hidden overflow-y-auto">
-    <div class="p-12">
-      <el-table :data="data" border :span-method="onSpanMethod" style="width: 100%;" height="100%">
+  <main-card>
+    <div class="w-full h-500">
+      <el-table
+        id="printJS-table"
+        class="border"
+        :data="data"
+        border
+        :span-method="onSpanMethod"
+        height="100%"
+      >
         <el-table-column prop="field1" label="field1"></el-table-column>
         <el-table-column prop="field2" label="field2"></el-table-column>
         <el-table-column prop="field3" label="field3"></el-table-column>
         <el-table-column prop="filed4" label="filed4"></el-table-column>
         <el-table-column prop="filed5" label="filed5"></el-table-column>
       </el-table>
+      <el-button @click="printHtml">打印</el-button>
     </div>
     <div class="pt-12" v-if="false">
       <el-table :data="tableData" :span-method="arraySpanMethod" border style="width: 100%">

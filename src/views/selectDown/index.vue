@@ -36,8 +36,8 @@ const objectSpanMethod = ({
 }: SpanMethodProps): any => {
   // console.log(row)
   // console.log(column)
-  console.log(rowIndex, 'row')
-  console.log(columnIndex, 'column')
+  // console.log(rowIndex, 'row')
+  // console.log(columnIndex, 'column')
   if (columnIndex === 0) {
     if (rowIndex % 2 === 0) {
       return {

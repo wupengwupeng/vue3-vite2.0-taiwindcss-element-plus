@@ -1,6 +1,17 @@
 import { setTheme } from '@/utils/storage/index'
 import { RouteRecordRaw } from 'vue-router'
 import printJS from 'print-js' // TODO
+import type { App, Plugin } from 'vue'
+
+const modules = import.meta.globEager('./modules/*.ts')
+const newObj: any = {};
+for (const key in modules) {
+  for (const inKes in modules[key]) {
+    if (!newObj.hasOwnProperty(inKes)) {
+      newObj[inKes] = modules[key][inKes]
+    }
+  }
+}
 
 type StringNumber = string | number
 export const mix = (color1: string, color2: string, weight: StringNumber) => {
@@ -126,9 +137,51 @@ export function isMobile(): boolean {
 }
 
 // print-js
-export function print() {
-
+export function printJs({ ...org }) {
+  return printJS({ ...org })
 }
 
+/**
+ * Convert an Array-like object to a real Array.
+ */
+export function toArray(list: any[], start = 0) {
+  let i = list.length - start;
+  const ret = new Array(i);
+  while (i--) { // eslint-disable-line no-plusplus
+    ret[i] = list[i + start];
+  }
+  return ret;
+}
+
+
+// 对vue进行类型补充说明
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    addSum: any
+  }
+}
+
+const methd: any = {
+  mix,
+  changeTheme,
+  setRoutes,
+  treeToList,
+  getTrees,
+  formatTree,
+  isMobile,
+  printJs,
+  ...newObj
+}
+
+export const install = {
+  install: function (Vue: App, options: any) {
+    Object.keys(methd).forEach((res: any) => {
+      Vue.config.globalProperties[res] = methd[res]
+    })
+  },
+}
+export default {
+  ...methd
+}
 
 

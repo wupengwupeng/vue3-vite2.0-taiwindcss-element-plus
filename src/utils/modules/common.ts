@@ -39,6 +39,18 @@ export function groupArr(arr: Array<any>, property: string) {
   }, {})
 }
 
+// 数组进行分组
+export function groupArrAuth(list: Array<any>, property: string) {
+  const obj: any = {}
+  list.forEach((res: any) => {
+    if (obj.hasOwnProperty(property)) {
+      obj[property].push(res)
+    } else {
+      obj[property] = [res]
+    }
+  })
+}
+
 
 
 

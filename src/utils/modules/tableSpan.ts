@@ -52,12 +52,10 @@ function getCollection(data: any) {
     })
     return arr
   })
-
 }
 
 function computeSpanRow(data: any, option: any) {
   rowspanArray = []
-
   let tempRow = []
   for (let i = 0; i < data.length; i++) {
     for (let j = 0; j < option.length; j++) {

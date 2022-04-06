@@ -84,6 +84,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq'
         },
         component: () => import('@/views/table/index.vue')
+      },
+      {
+        path: '/amap',
+        meta: {
+          title: '地图',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/map/index.vue')
       }
     ]
   }

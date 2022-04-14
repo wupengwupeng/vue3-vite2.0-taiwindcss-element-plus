@@ -17,7 +17,7 @@
         "<style>.svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}</style>"
       );
     } catch (c) {
-      console && console.log(c);
+      console && //console.log(c);
     }
   }
   function h() {
@@ -28,7 +28,7 @@
     ((o = document.createElement("div")).innerHTML = i),
       (i = null),
       (e = o.getElementsByTagName("svg")[0]) &&
-        (e.setAttribute("aria-hidden", "true"),
+      (e.setAttribute("aria-hidden", "true"),
         (e.style.position = "absolute"),
         (e.style.width = 0),
         (e.style.height = 0),
@@ -42,11 +42,11 @@
       ? ~["complete", "loaded", "interactive"].indexOf(document.readyState)
         ? setTimeout(t, 0)
         : ((e = function () {
-            document.removeEventListener("DOMContentLoaded", e, !1), t();
-          }),
+          document.removeEventListener("DOMContentLoaded", e, !1), t();
+        }),
           document.addEventListener("DOMContentLoaded", e, !1))
       : document.attachEvent &&
-        ((o = t),
+      ((o = t),
         (a = c.document),
         (n = !1),
         (l = function () {

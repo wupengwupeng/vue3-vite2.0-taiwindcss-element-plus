@@ -17,8 +17,8 @@ const listTwo = [
   { id: 8, name: 'lm', age: 22 },
   { id: 9, name: 'xh', age: 79 }
 ]
-console.log(utils.unique(list), "list")
-console.log(utils.unique(listTwo, 'id'), 'nihao')
+//console.log(utils.unique(list), "list")
+//console.log(utils.unique(listTwo, 'id'), 'nihao')
 </script>
 
 <template>

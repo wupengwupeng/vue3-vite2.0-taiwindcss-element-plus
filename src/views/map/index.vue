@@ -20,7 +20,7 @@ const a: Person = {
 // You can't use a const to make a variable reference. However, you can use a type alias for a similar style of refactor
 type key = 'age'
 type Age = Person[key]
-console.log(a, 'a');
+//console.log(a, 'a');
 
 interface Dog {
   live(): void

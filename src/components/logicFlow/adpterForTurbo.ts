@@ -72,6 +72,6 @@ export function toLogicFlowData(data: any) {
         lfData.nodes.push(node);
       }
     });
-  console.log(lfData, "data")
+  //console.log(lfData, "data")
   return lfData;
 }

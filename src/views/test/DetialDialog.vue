@@ -1,12 +1,6 @@
 <template>
-  <Dialog
-    :visible="visibles"
-    :title="'新增'"
-    width="60%"
-    draggable
-    @submit="handlerSave"
-    @close="handlerClose"
-  >sdfasdfas</Dialog>
+  <Dialog :visible="visibles" :title="'新增'" width="60%" draggable @submit="handlerSave" @close="handlerClose">sdfasdfas
+  </Dialog>
 </template>
 
 <script lang="ts">
@@ -27,10 +21,10 @@ export default defineComponent({
     })
     // const {visible} = props  // isRef? false
     // const {visible} = toRefs(props) // isRef? true
-    console.log(isRef(visibles))
-    console.log(unref(visibles))
+    //console.log(isRef(visibles))
+    //console.log(unref(visibles))
     function handlerSave() {
-      console.log('保存')
+      //console.log('保存')
     }
     function handlerClose() {
       emit('update:visible', false)

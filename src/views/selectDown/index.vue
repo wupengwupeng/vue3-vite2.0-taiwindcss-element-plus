@@ -34,10 +34,10 @@ const objectSpanMethod = ({
   rowIndex,
   columnIndex,
 }: SpanMethodProps): any => {
-  // console.log(row)
-  // console.log(column)
-  // console.log(rowIndex, 'row')
-  // console.log(columnIndex, 'column')
+  // //console.log(row)
+  // //console.log(column)
+  // //console.log(rowIndex, 'row')
+  // //console.log(columnIndex, 'column')
   if (columnIndex === 0) {
     if (rowIndex % 2 === 0) {
       return {
@@ -125,7 +125,7 @@ const options = ref([{
   label: 'c',
 }])
 watch(value, () => {
-  console.log(unref(value), 223)
+  //console.log(unref(value), 223)
 })
 </script>
 
@@ -135,32 +135,18 @@ watch(value, () => {
       <div class="card-header">
         <span class="font-medium">
           采用
-          <el-link
-            href="https://github.com/megafetis/vue3-treeselect"
-            target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px"
-          >vue3-treeselect</el-link>
-          <el-link
-            href="https://github.com/megafetis/vue3-treeselect"
-            target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px"
-          >TreeSelect</el-link>写法
-          <el-link
-            href="https://github.com/megafetis/vue3-treeselect"
-            target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px"
-          >How to use it?</el-link>
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px">vue3-treeselect</el-link>
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px">TreeSelect</el-link>写法
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
+            style="font-size: 16px; margin: 0 4px 5px">How to use it?</el-link>
         </span>
       </div>
       <div>
         <treeselect v-model="value" :multiple="true" placeholder="请选择企业架构" :options="options" />
       </div>
-      <el-table
-        :data="tableData"
-        :span-method="objectSpanMethod"
-        border
-        style="width: 100%; margin-top: 20px"
-      >
+      <el-table :data="tableData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
         <el-table-column prop="id" label="ID" width="180" />
         <el-table-column prop="name" label="Name" />
         <el-table-column prop="amount1" label="Amount 1" />

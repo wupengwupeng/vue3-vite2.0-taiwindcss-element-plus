@@ -35,7 +35,7 @@ export default defineComponent({
     const elImage = computed(() => {
       return !isCollapse.value ? { width: '200px', height: '60px' } : { width: '63px', height: '60px' }
     })
-    console.log(navigator.userAgent, "isMobile")
+    //console.log(navigator.userAgent, "isMobile")
     return {
       isCollapse,
       logoUrl,

@@ -80,7 +80,7 @@ export default defineComponent({
     watch(
       () => unref(getFlowOptions),
       options => {
-        console.log(options, 'options')
+        //console.log(options, 'options')
         unref(lfInstance)?.updateEditConfig(options)
       }
     )
@@ -121,7 +121,7 @@ export default defineComponent({
       }
       const lFData = toLogicFlowData(props.data)
       const xmlData = lfJson2Xml(lFData)
-      console.log(xmlData, 'xmlData')
+      //console.log(xmlData, 'xmlData')
       lf.render(lFData)
     }
 

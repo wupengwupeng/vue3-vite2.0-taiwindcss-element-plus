@@ -117,7 +117,7 @@ const flitterData = (arr: any) => {
     one: spanOneArr,
   }
 }
-console.log(flitterData(tableData), "阿斯蒂芬")
+//console.log(flitterData(tableData), "阿斯蒂芬")
 const arraySpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
   if (rowIndex === 0) {
     if (columnIndex === 0) {
@@ -153,14 +153,7 @@ const printHtml = () => {
 <template>
   <main-card>
     <div class="w-full h-500">
-      <el-table
-        id="printJS-table"
-        class="border"
-        :data="data"
-        border
-        :span-method="onSpanMethod"
-        height="100%"
-      >
+      <el-table id="printJS-table" class="border" :data="data" border :span-method="onSpanMethod" height="100%">
         <el-table-column prop="field1" label="field1"></el-table-column>
         <el-table-column prop="field2" label="field2"></el-table-column>
         <el-table-column prop="field3" label="field3"></el-table-column>

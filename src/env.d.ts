@@ -24,6 +24,13 @@ declare module "print-js" {
   export default print
 }
 
+declare module "vue-3d-model" {
+  import { ModelObj } from 'vue-3d-model'
+  const mObj: any;
+  export default mObj;
+}
+
+
 
 
 

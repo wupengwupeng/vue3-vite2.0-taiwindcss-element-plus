@@ -25,6 +25,8 @@ declare module 'vue' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSpace: typeof import('element-plus/es')['ElSpace']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     LogicFlow: typeof import('./components/logicFlow/index.vue')['default']
@@ -34,6 +36,7 @@ declare module 'vue' {
     ReSeamlessScroll: typeof import('./components/reSeamlessScroll/index.vue')['default']
     TabBar: typeof import('./components/tabBar/index.vue')['default']
     TablePage: typeof import('./components/tablePage/index.vue')['default']
+    ThreeD: typeof import('./components/threeD/index.vue')['default']
     WangEditor: typeof import('./components/wangEditor/index.vue')['default']
   }
 }

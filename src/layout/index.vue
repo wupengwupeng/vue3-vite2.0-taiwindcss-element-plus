@@ -3,6 +3,7 @@
     <div class="flex flex-col">
       <div class="h-60 w-full flex items-center justify-center">
         <el-image :style="elImage" :src="logoUrl" fit="contain" />
+
       </div>
       <SideBar :isCollapse="isCollapse" />
     </div>
@@ -12,6 +13,8 @@
         <AppMain></AppMain>
       </div>
     </div>
+    <three-d></three-d>
+
   </div>
 </template>
 
@@ -42,4 +45,5 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

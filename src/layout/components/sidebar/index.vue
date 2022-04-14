@@ -1,16 +1,8 @@
 <template>
   <div class="h-screen overflow-auto shadow bg-[#272a36]">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        class="el-menu-vertical-demo"
-        menu-trigger="click"
-        background-color="#272a36"
-        text-color="#e7e7e7"
-        :default-active="activeMenu"
-        unique-opened
-        router
-        :collapse="isCollapse"
-      >
+      <el-menu class="el-menu-vertical-demo" menu-trigger="click" background-color="#272a36" text-color="#e7e7e7"
+        :default-active="activeMenu" unique-opened router :collapse="isCollapse">
         <template v-for="(group, index) in routess" :key="index + '1'">
           <!-- <el-sub-menu v-if="group.children && group.children.length > 0" :key="group.id" :index="group.id">
             <template #title>
@@ -151,13 +143,16 @@ export default defineComponent({
   border-top: 1px solid var(--color-gray-200);
   border-right: none;
 }
+
 .scrollbar-wrapper {
   border-right: 1px solid #272a36;
 }
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   height: calc(100vh - 60px);
 }
+
 ::v-deep(.is-active) {
   background: var(--el-color-primary-light-9);
 }

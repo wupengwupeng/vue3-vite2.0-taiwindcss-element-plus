@@ -19,6 +19,7 @@
     "print-js": "^1.6.0",
     "store": "^2.0.12",
     "vue": "^3.2.31",
+    "vue-3d-model": "^1.4.0",
     "vue-router": "4",
     "vue3-treeselect": "^0.1.10",
     "vuex": "^4.0.2",

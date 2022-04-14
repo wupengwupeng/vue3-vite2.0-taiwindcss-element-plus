@@ -24,7 +24,8 @@
       </div>
     </div>
     <div class="h-40 flex items-center bg-white shadow px-12 gap-12 w-full border-t">
-      <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type">
+      <el-tag v-for="tag in tags" class=" cursor-pointer" :key="tag.name" closable :type="tag.type" :color="tag.color"
+        @click="handlerClickTag(tag)">
         {{ tag.name }}
       </el-tag>
     </div>
@@ -32,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount } from 'vue'
+import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted } from 'vue';
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 export default defineComponent({
@@ -48,12 +49,12 @@ export default defineComponent({
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
     })
-    const tags = ref<Array<{ name: string; type: string }>>([
-      { name: 'Tag 1', type: '' },
-      { name: 'Tag 2', type: '' },
-      { name: 'Tag 3', type: '' },
-      { name: 'Tag 4', type: '' },
-      { name: 'Tag 5', type: '' },
+    const tags: Ref<Array<{ name: string; type: string; color: string }>> = ref<Array<{ name: string; type: string; color: string }>>([
+      { name: 'Tag 1', type: '', color: '#fff' },
+      { name: 'Tag 2', type: 'info', color: '#fff' },
+      { name: 'Tag 3', type: 'info', color: '#fff' },
+      { name: 'Tag 4', type: 'info', color: '#fff' },
+      { name: 'Tag 5', type: 'info', color: '#fff' },
     ])
     const route = useRoute()
     const isCollapse = computed({
@@ -68,6 +69,21 @@ export default defineComponent({
     function getMenus() {
       state.menus = route.matched
     }
+    function handlerClickTag(tag: { name: string; type: string; color: string }): void {
+      const getColor = document.documentElement.style.getPropertyValue('--el-tag-bg-color')
+      tags.value.forEach((res: any) => {
+        if (res.name === tag.name) {
+          res.type = ''
+          res.color = getColor
+        } else {
+          res.type = 'info'
+          res.color = '#fff'
+        }
+      })
+    }
+    onMounted(() => {
+      handlerClickTag({ ...tags.value[0] })
+    })
     watch(route, () => {
       getMenus()
     })
@@ -79,6 +95,7 @@ export default defineComponent({
       isCollapse,
       circleUrl,
       getMenus,
+      handlerClickTag,
       ...toRefs(state),
     }
   },

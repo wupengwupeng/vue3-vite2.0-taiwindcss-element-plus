@@ -23,9 +23,11 @@
         <el-avatar :size="50" :src="circleUrl" />
       </div>
     </div>
+
     <div class="h-40 flex items-center bg-white shadow px-12 gap-12 w-full border-t">
-      <el-tag v-for="tag in tags" class=" cursor-pointer" :key="tag.name" closable :type="tag.type" :color="tag.color"
-        @click="handlerClickTag(tag)">
+      <el-tag v-for="tag in tags" class=" cursor-pointer" :key="tag.name" closable :type="tag.type"
+        :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
+        @close="handleCloseTags(tag.name)">
         {{ tag.name }}
       </el-tag>
     </div>
@@ -36,6 +38,9 @@
 import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted } from 'vue';
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
+import { useStore } from '@/store/index';
+import { RootMutations } from '@/store/type'
+import path from 'path';
 export default defineComponent({
   props: {
     modelValue: {
@@ -46,17 +51,15 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const { modelValue } = toRefs(props)
+    const store = useStore();
+    const tags: any = store.state.tags;
+    const route: any = useRoute()
+    const router: any = useRouter()
+    const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
+      isActive: route.meta.title
     })
-    const tags: Ref<Array<{ name: string; type: string; color: string }>> = ref<Array<{ name: string; type: string; color: string }>>([
-      { name: 'Tag 1', type: '', color: '#fff' },
-      { name: 'Tag 2', type: 'info', color: '#fff' },
-      { name: 'Tag 3', type: 'info', color: '#fff' },
-      { name: 'Tag 4', type: 'info', color: '#fff' },
-      { name: 'Tag 5', type: 'info', color: '#fff' },
-    ])
-    const route = useRoute()
     const isCollapse = computed({
       get() {
         return modelValue.value
@@ -69,23 +72,29 @@ export default defineComponent({
     function getMenus() {
       state.menus = route.matched
     }
-    function handlerClickTag(tag: { name: string; type: string; color: string }): void {
-      const getColor = document.documentElement.style.getPropertyValue('--el-tag-bg-color')
-      tags.value.forEach((res: any) => {
-        if (res.name === tag.name) {
-          res.type = ''
-          res.color = getColor
-        } else {
-          res.type = 'info'
-          res.color = '#fff'
-        }
-      })
+    function handlerClickTag(tag: any): void {
+      router.push(tag.path)
+    }
+    // init tags
+    function initTags(tag: any) {
+      store.commit(RootMutations.SET_TAGS, tag)
+    }
+    function handleCloseTags(name: any) {
+      store.commit(RootMutations.REMOVE_TAGS, name)
+      router.push(tags[tags.length - 1].path)
     }
     onMounted(() => {
-      handlerClickTag({ ...tags.value[0] })
+      const initTag = {
+        name: route.meta.title,
+        path: route.path,
+        type: '',
+        color: getColor
+      }
+      initTags(initTag)
     })
     watch(route, () => {
       getMenus()
+      state.isActive = route.meta.title
     })
     onBeforeMount(() => {
       getMenus()
@@ -94,9 +103,11 @@ export default defineComponent({
       tags,
       isCollapse,
       circleUrl,
+      getColor,
+      ...toRefs(state),
       getMenus,
       handlerClickTag,
-      ...toRefs(state),
+      handleCloseTags
     }
   },
 })

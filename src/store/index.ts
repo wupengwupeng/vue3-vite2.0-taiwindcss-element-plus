@@ -15,10 +15,11 @@ let theme: string = getTheme() || defaultColor // It may be an empty string or n
 if (theme) changeTheme(theme)
 
 export function getDefaultRootState() {
-  const state = {
+  const state: RootState = {
     name: '',
     theme,
-    routes: setRoutes(routes)
+    routes: setRoutes(routes),
+    tags: []
   } as any
   return state
 }

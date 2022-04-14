@@ -18,7 +18,7 @@
             <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
             <span>{{ group.name }}</span>
           </el-menu-item>-->
-          <el-menu-item :index="group.path">
+          <el-menu-item :index="group.path" @click="handlerRouteAddTags(group)">
             <app-svg-icon :icon-name="group.meta.iconName" class="w-20 h-20"></app-svg-icon>
             <template #title>
               <span>{{ group.meta.title }}</span>
@@ -34,7 +34,7 @@
 import { defineComponent, ref, reactive, watch, toRefs, computed, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/store'
-
+import { RootMutations } from '@/store/type'
 export default defineComponent({
   props: {
     isCollapse: {
@@ -49,75 +49,17 @@ export default defineComponent({
     const route: any = useRoute()
     const state = reactive({
       routess: store.state.routes as any,
+      tags: store.state.tags
     })
-    /*
-    {
-          id: '1',
-          pid: '0',
-          name: '工作台',
-          url: '/dashboard',
-          icon: 'el-icon-s-platform',
-          children: [],
-        },
-        {
-          id: '2',
-          pid: '0',
-          name: '教务管理',
-          icon: 'el-icon-s-opportunity',
-          children: [
-            {
-              id: '21',
-              pid: '2',
-              name: '学员中心',
-              url: '/educate/student',
-            },
-            {
-              id: '22',
-              pid: '2',
-              name: '班级管理',
-              url: '/educate/class',
-            },
-            {
-              id: '23',
-              pid: '2',
-              name: '课程管理',
-              url: '/educate/course',
-            },
-            {
-              id: '24',
-              pid: '2',
-              name: '课表管理',
-              url: '/educate/table',
-            },
-          ],
-        },
-        {
-          id: '3',
-          pid: '0',
-          name: '系统设置',
-          icon: 'el-icon-s-opportunity',
-          children: [
-            {
-              id: '31',
-              pid: '3',
-              name: '基础信息',
-              url: '/setting/base',
-            },
-            {
-              id: '32',
-              pid: '3',
-              name: '职员管理',
-              url: '/setting/user',
-            },
-            {
-              id: '33',
-              pid: '3',
-              name: '岗位管理',
-              url: '/setting/role',
-            },
-          ],
-        },
-    */
+    function handlerRouteAddTags(tag: any) {
+      const tags = {
+        name: tag.meta.title,
+        path: tag.path,
+        type: '',
+        color: '#fff'
+      }
+      store.commit(RootMutations.SET_TAGS, tags)
+    }
     watch(
       [() => route.path],
       (newVal: any, oldVal: any) => {
@@ -133,6 +75,7 @@ export default defineComponent({
       isCollapse,
       activeMenu,
       ...toRefs(state),
+      handlerRouteAddTags
     }
   },
 })

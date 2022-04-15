@@ -24,23 +24,32 @@
       </div>
     </div>
 
-    <div class="h-40 flex items-center bg-white shadow px-12 gap-12 w-full border-t overflow-hidden">
-      <el-tag v-for="tag in tags" class=" cursor-pointer" :key="tag.name" closable :type="tag.type"
-        :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
-        @close="handleCloseTags(tag.name)">
-        {{ tag.name }}
-      </el-tag>
+    <div class="h-40 flex items-center bg-white shadow px-12  w-full border-t">
+      <el-button size="small" @click="handleScroll(180)">
+        <app-svg-icon iconName="arrow-left"></app-svg-icon>
+      </el-button>
+      <div class="flex-1 overflow-hidden px-16 flex flex-nowrap " ref="scrollbarDom">
+        <div class="flex flex-nowrap gap-12  overflow-visible" ref="tabDom" :style="getTabStyle">
+          <el-tag v-for="tag in tags" class="cursor-pointer" :key="tag.name" closable :type="tag.type"
+            :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
+            @close="handleCloseTags(tag.name)">
+            {{ tag.name }}
+          </el-tag>
+        </div>
+      </div>
+      <el-button size="small" @click="handleScroll(-180)">
+        <app-svg-icon class="rotate-180" iconName="arrow-left"></app-svg-icon>
+      </el-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted } from 'vue';
+import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted, CSSProperties } from 'vue';
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index';
 import { RootMutations } from '@/store/type'
-import path from 'path';
 export default defineComponent({
   props: {
     modelValue: {
@@ -50,16 +59,25 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const { modelValue } = toRefs(props)
+    const scrollbarDom = ref();
+    const tabDom = ref();
     const store = useStore();
-    const tags: any = store.state.tags;
     const route: any = useRoute()
     const router: any = useRouter()
-    const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
+    const tags: any = store.state.tags;
+    const translateX = ref<number>(0)
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
       isActive: route.meta.title
     })
+    const getTabStyle = computed((): CSSProperties => {
+      return {
+        transform: `translateX(${translateX.value}px)`
+      };
+    })
+
     const isCollapse = computed({
       get() {
         return modelValue.value
@@ -68,6 +86,26 @@ export default defineComponent({
         emit('update:modelValue', value)
       },
     })
+    const handleScroll = (offset: number): void => {
+      const scrollbarDomWidth = scrollbarDom.value
+        ? scrollbarDom.value?.offsetWidth
+        : 0;
+      const tabDomWidth = tabDom.value ? tabDom.value.offsetWidth : 0;
+      if (offset > 0) {
+        translateX.value = Math.min(0, translateX.value + offset);
+      } else {
+        if (scrollbarDomWidth < tabDomWidth) {
+          if (translateX.value >= -(tabDomWidth - scrollbarDomWidth)) {
+            translateX.value = Math.max(
+              translateX.value + offset,
+              scrollbarDomWidth - tabDomWidth - 30
+            );
+          }
+        } else {
+          translateX.value = 0;
+        }
+      }
+    };
 
     function getMenus() {
       state.menus = route.matched
@@ -83,6 +121,7 @@ export default defineComponent({
       store.commit(RootMutations.REMOVE_TAGS, name)
       router.push(tags[tags.length - 1].path)
     }
+
     onMounted(() => {
       const initTag = {
         name: route.meta.title,
@@ -100,14 +139,19 @@ export default defineComponent({
       getMenus()
     })
     return {
+      scrollbarDom,
+      tabDom,
       tags,
       isCollapse,
       circleUrl,
       getColor,
+      translateX,
+      getTabStyle,
       ...toRefs(state),
       getMenus,
       handlerClickTag,
-      handleCloseTags
+      handleCloseTags,
+      handleScroll,
     }
   },
 })

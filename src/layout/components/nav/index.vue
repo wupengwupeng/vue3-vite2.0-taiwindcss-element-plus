@@ -30,8 +30,8 @@
       </el-button>
       <div class="flex-1 overflow-hidden px-16 flex flex-nowrap " ref="scrollbarDom">
         <div class="flex flex-nowrap gap-12  overflow-visible" ref="tabDom" :style="getTabStyle">
-          <el-tag v-for="tag in tags" class="cursor-pointer" :key="tag.name" closable :type="tag.type"
-            :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
+          <el-tag v-for="(tag, index) in tags" class="cursor-pointer" :ref="'dynamic' + index" :key="tag.name" closable
+            :type="tag.type" :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
             @close="handleCloseTags(tag.name)">
             {{ tag.name }}
           </el-tag>
@@ -45,11 +45,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted, CSSProperties } from 'vue';
+import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted, CSSProperties, getCurrentInstance } from 'vue';
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index';
-import { RootMutations } from '@/store/type'
+import { RootMutations } from '@/store/type';
+import { useResizeObserver, useDebounceFn } from "@vueuse/core";
 export default defineComponent({
   props: {
     modelValue: {
@@ -62,6 +63,7 @@ export default defineComponent({
     const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const { modelValue } = toRefs(props)
     const scrollbarDom = ref();
+    const instance: any = getCurrentInstance();
     const tabDom = ref();
     const store = useStore();
     const route: any = useRoute()
@@ -86,6 +88,14 @@ export default defineComponent({
         emit('update:modelValue', value)
       },
     })
+    const moveToTags = () => {
+      const index = tags.findIndex((res: any) => res.name === route.meta.title)
+      moveToView(index)
+    }
+    useResizeObserver(scrollbarDom,
+      useDebounceFn(() => {
+        moveToTags()
+      }, 200))
     const handleScroll = (offset: number): void => {
       const scrollbarDomWidth = scrollbarDom.value
         ? scrollbarDom.value?.offsetWidth
@@ -104,6 +114,47 @@ export default defineComponent({
         } else {
           translateX.value = 0;
         }
+      }
+    };
+    const tabNavPadding = 12
+    // 跳转到对应的tag上去
+    const moveToView = (index: number): void => {
+      if (!instance.refs["dynamic" + index]) {
+        return;
+      }
+      const tabItemEl = instance.refs["dynamic" + index][0]?.$el;
+      const tabItemElOffsetLeft = (tabItemEl as HTMLElement)?.offsetLeft;
+      const tabItemOffsetWidth = (tabItemEl as HTMLElement)?.offsetWidth;
+
+      // 标签页导航栏可视长度（不包含溢出部分）
+      const scrollbarDomWidth = scrollbarDom.value
+        ? scrollbarDom.value?.offsetWidth
+        : 0;
+      // 已有标签页总长度（包含溢出部分）
+      const tabDomWidth = tabDom.value ? tabDom.value?.offsetWidth : 0;
+      if (tabDomWidth < scrollbarDomWidth || tabItemElOffsetLeft === 0) {
+        translateX.value = 0;
+      } else if (tabItemElOffsetLeft < -translateX.value) {
+        // 标签在可视区域左侧
+        translateX.value = -tabItemElOffsetLeft + tabNavPadding;
+      } else if (
+        tabItemElOffsetLeft > -translateX.value &&
+        tabItemElOffsetLeft + tabItemOffsetWidth <
+        -translateX.value + scrollbarDomWidth
+      ) {
+        // 标签在可视区域
+        translateX.value = Math.min(
+          0,
+          scrollbarDomWidth -
+          tabItemOffsetWidth -
+          tabItemElOffsetLeft -
+          tabNavPadding
+        );
+        console.log(translateX.value, "可视区域")
+      } else {
+        // 标签在可视区域右侧
+        translateX.value = -(tabItemElOffsetLeft - (scrollbarDomWidth - tabNavPadding - tabItemOffsetWidth));
+
       }
     };
 
@@ -132,8 +183,9 @@ export default defineComponent({
       initTags(initTag)
     })
     watch(route, () => {
-      getMenus()
-      state.isActive = route.meta.title
+      getMenus();
+      state.isActive = route.meta.title;
+      moveToTags();
     })
     onBeforeMount(() => {
       getMenus()
@@ -152,6 +204,8 @@ export default defineComponent({
       handlerClickTag,
       handleCloseTags,
       handleScroll,
+      moveToView,
+      moveToTags,
     }
   },
 })

@@ -3,7 +3,6 @@
     <div class="flex flex-col">
       <div class="h-60 w-full flex items-center justify-center">
         <el-image :style="elImage" :src="logoUrl" fit="contain" />
-
       </div>
       <SideBar :isCollapse="isCollapse" />
     </div>

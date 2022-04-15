@@ -150,7 +150,6 @@ export default defineComponent({
           tabItemElOffsetLeft -
           tabNavPadding
         );
-        console.log(translateX.value, "可视区域")
       } else {
         // 标签在可视区域右侧
         translateX.value = -(tabItemElOffsetLeft - (scrollbarDomWidth - tabNavPadding - tabItemOffsetWidth));
@@ -159,7 +158,7 @@ export default defineComponent({
     };
 
     function getMenus() {
-      state.menus = route.matched
+      state.menus = route.matched.filter((item: any) => item.meta && item.meta.title !== '主页');
     }
     function handlerClickTag(tag: any): void {
       router.push(tag.path)

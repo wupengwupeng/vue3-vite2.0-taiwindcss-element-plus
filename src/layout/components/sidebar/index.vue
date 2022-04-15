@@ -93,7 +93,7 @@ export default defineComponent({
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 260px);
 }
 
 ::v-deep(.is-active) {

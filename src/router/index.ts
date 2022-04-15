@@ -102,6 +102,33 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq'
         },
         component: () => import('@/views/map/index.vue')
+      },
+      {
+        path: '/test3',
+        meta: {
+          title: 'asd',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/map/index.vue')
+      },
+
+      {
+        path: '/test4',
+        meta: {
+          title: 'asdsdf',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/map/index.vue')
+      }, {
+        path: '/test5',
+        meta: {
+          title: 'sdsf',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/map/index.vue')
       }
     ]
   }

@@ -13,7 +13,6 @@
       </div>
     </div>
     <three-d></three-d>
-
   </div>
 </template>
 

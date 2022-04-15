@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="absolute bottom-30 left-0 ">
+  <div class="absolute top-5 left-25 ">
     <div class="maxDiv opacity-59 flex items-center justify-center">
       <div class="minDiv">
         <div></div>
@@ -28,21 +28,21 @@
 <style lang="scss" scoped>
 .maxDiv {
   perspective: 1200px;
-  width: 200px;
-  height: 200px;
+  width: 60px;
+  height: 60px;
 }
 
 .minDiv {
-  width: 50px;
-  height: 50px;
+  width: 10px;
+  height: 10px;
   transform-style: preserve-3d;
   animation: go 8s linear infinite;
 }
 
 .minDiv>div {
   background: var(--el-color-paimary);
-  width: 50px;
-  height: 50px;
+  width: 10px;
+  height: 10px;
   box-shadow: 0 0 15px var(--el-color-paimary);
   position: absolute;
   transition: 1s;
@@ -58,57 +58,57 @@
 }
 
 .minDiv>div:nth-child(1) {
-  transform: translateZ(-75px);
+  transform: translateZ(-15px);
 }
 
 .minDiv>div:nth-child(2) {
-  transform: rotateY(90deg) translateZ(75px);
+  transform: rotateY(90deg) translateZ(15px);
 }
 
 .minDiv>div:nth-child(3) {
-  transform: rotateY(90deg) translateZ(-75px);
+  transform: rotateY(90deg) translateZ(-15px);
 }
 
 .minDiv>div:nth-child(4) {
-  transform: rotateX(90deg) translateZ(-75px);
+  transform: rotateX(90deg) translateZ(-15px);
 }
 
 .minDiv>div:nth-child(5) {
-  transform: rotateX(90deg) translateZ(75px);
+  transform: rotateX(90deg) translateZ(15px);
 }
 
 .minDiv>div:nth-child(6) {
-  transform: translateZ(75px);
+  transform: translateZ(15px);
 }
 
 .minDiv:hover>div:nth-child(1) {
-  transform: translateZ(-50px);
+  transform: translateZ(-5px);
 }
 
 .minDiv:hover>div:nth-child(3) {
-  transform: rotateY(90deg) translateZ(-50px);
+  transform: rotateY(90deg) translateZ(-5px);
 }
 
 .minDiv:hover>div:nth-child(4) {
-  transform: rotateX(90deg) translateZ(-50px);
+  transform: rotateX(90deg) translateZ(-5px);
 }
 
 .minDiv:hover>div:nth-child(2) {
-  transform: rotateY(90deg) translateZ(50px);
+  transform: rotateY(90deg) translateZ(5px);
 }
 
 .minDiv:hover>div:nth-child(5) {
-  transform: rotateX(90deg) translateZ(50px);
+  transform: rotateX(90deg) translateZ(5px);
 }
 
 .minDiv:hover>div:nth-child(6) {
-  transform: translateZ(50px);
+  transform: translateZ(5px);
 }
 
 .minDiv>span {
   display: block;
-  height: 50px;
-  width: 50px;
+  height: 10px;
+  width: 10px;
   transform-style: preserve-3d;
 }
 
@@ -117,35 +117,35 @@
 }
 
 .minDiv>span>div {
-  height: 50px;
-  width: 50px;
+  height: 10px;
+  width: 10px;
   position: absolute;
   background: var(--el-color-primary-light-9);
   box-shadow: 0 0 10px var(--el-color-primary-light-9);
 }
 
 .minDiv>span>div:nth-child(1) {
-  transform: translateZ(-25px);
+  transform: translateZ(-10px);
 }
 
 .minDiv>span>div:nth-child(2) {
-  transform: rotateY(90deg) translateZ(25px);
+  transform: rotateY(90deg) translateZ(10px);
 }
 
 .minDiv>span>div:nth-child(3) {
-  transform: rotateY(90deg) translateZ(-25px);
+  transform: rotateY(90deg) translateZ(-10px);
 }
 
 .minDiv>span>div:nth-child(4) {
-  transform: rotateX(90deg) translateZ(-25px);
+  transform: rotateX(90deg) translateZ(-10px);
 }
 
 .minDiv>span>div:nth-child(5) {
-  transform: rotateX(90deg) translateZ(25px);
+  transform: rotateX(90deg) translateZ(10px);
 }
 
 .minDiv>span>div:nth-child(6) {
-  transform: translateZ(25px);
+  transform: translateZ(10px);
 }
 
 @keyframes goColor {

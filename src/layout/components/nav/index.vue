@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="h-40 flex items-center bg-white shadow px-12 gap-12 w-full border-t">
+    <div class="h-40 flex items-center bg-white shadow px-12 gap-12 w-full border-t overflow-hidden">
       <el-tag v-for="tag in tags" class=" cursor-pointer" :key="tag.name" closable :type="tag.type"
         :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
         @close="handleCloseTags(tag.name)">

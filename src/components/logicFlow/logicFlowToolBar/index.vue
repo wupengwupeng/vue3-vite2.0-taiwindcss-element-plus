@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-start items-center px-2 py-1">
-    <el-button v-for="item in toolbarItemList" :key="item.type" size="small" :ref="'controlButton' + key"
+    <el-button v-for="(item, key) in toolbarItemList" :key="item.type" size="small" :ref="'controlButton' + key"
       :disabled="item.disabled" :style="{
         cursor: item.disabled === false ? 'pointer' : 'not-allowed',
       }" @click="onControl(item)">

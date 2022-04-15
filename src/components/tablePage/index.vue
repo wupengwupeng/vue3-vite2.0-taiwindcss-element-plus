@@ -7,14 +7,8 @@
       <slot name="table" :data="data" />
     </section>
     <section class="w-full h-44 flex justify-end items-center">
-      <el-pagination
-        layout="prev,pager,next,jumper,sizes,total"
-        background
-        :page-sizes="pageSizes"
-        v-model:pageSize="pageSize"
-        v-model:currentPage="currentPage"
-        :total="total"
-      ></el-pagination>
+      <el-pagination layout="prev,pager,next,jumper,sizes,total" background :page-sizes="pageSizes"
+        v-model:pageSize="pageSize" v-model:currentPage="currentPage" :total="total"></el-pagination>
     </section>
   </div>
 </template>
@@ -88,20 +82,24 @@ export default defineComponent({
     background: white;
     height: v-bind(height);
   }
+
   .el-table th,
   .el-table td {
     padding: 0;
   }
+
   .el-table--border {
     border: none;
     border-top: 1px solid #e6e8ed;
   }
+
   .el-table--border::after {
     content: '';
     position: absolute;
     background: white;
     z-index: 1;
   }
+
   .el-table__row {
     height: v-bind(height);
   }

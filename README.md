@@ -5,7 +5,7 @@
 > 还有就是动态切换主题样式
 > A starter kit for Element Plus with Vite
 # 需要安装vue language features(Volar) 插件
-<img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
+<img width="800" alt="Element Plus" src="./src/assets/vue3-vite.png">
 
 ## 建议用pnpm下载依赖
 ```javascript

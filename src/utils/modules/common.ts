@@ -51,6 +51,12 @@ export function groupArrAuth(list: Array<any>, property: string) {
   })
 }
 
+// 判断是否是空对象
+export function isEmportyObject(obj: any): boolean {
+  if (!obj) return true
+  return !Object.keys(obj).length
+}
+
 
 
 

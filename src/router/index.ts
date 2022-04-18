@@ -14,15 +14,6 @@ export const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: '/test',
-        meta: {
-          title: '测试页面一',
-          isShow: true,
-          iconName: 'fn-shezhiq',
-        },
-        component: () => import('@/views/testTwo/index.vue')
-      },
-      {
         path: '/menuTwo',
         meta: {
           title: '主页',
@@ -101,34 +92,16 @@ export const routes: Array<RouteRecordRaw> = [
           isShow: true,
           iconName: 'fn-shezhiq'
         },
-        component: () => import('@/views/map/index.vue')
+        component: () => import('@/views/testTwo/index.vue')
       },
       {
-        path: '/test3',
+        path: '/virtualList',
         meta: {
-          title: 'asd',
+          title: '虚拟滚动',
           isShow: true,
           iconName: 'fn-shezhiq'
         },
-        component: () => import('@/views/map/index.vue')
-      },
-
-      {
-        path: '/test4',
-        meta: {
-          title: 'asdsdf',
-          isShow: true,
-          iconName: 'fn-shezhiq'
-        },
-        component: () => import('@/views/map/index.vue')
-      }, {
-        path: '/test5',
-        meta: {
-          title: 'sdsf',
-          isShow: true,
-          iconName: 'fn-shezhiq'
-        },
-        component: () => import('@/views/map/index.vue')
+        component: () => import('@/views/virtualList/index.vue')
       }
     ]
   }

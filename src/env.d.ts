@@ -29,6 +29,11 @@ declare module "vue-3d-model" {
   const mObj: any;
   export default mObj;
 }
+declare module "vue3-virtual-scroll-list" {
+  import VirtualList from 'vue3-virtual-scroll-list';
+  const virList: any;
+  export default virList;
+}
 
 
 

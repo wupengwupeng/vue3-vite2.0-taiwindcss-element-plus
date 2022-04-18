@@ -8,10 +8,11 @@
         </el-radio-group>
         <div class="ml-12">
           <el-breadcrumb separator=">">
-            <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }">{{
-              item.meta.title
-                ? item.meta.title : '主页'
-            }}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }"
+              @click="handlerClickBread(item)">{{
+                item.meta.title
+                  ? item.meta.title : '主页'
+              }}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
       </div>
@@ -51,6 +52,7 @@ import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index';
 import { RootMutations } from '@/store/type';
 import { useResizeObserver, useDebounceFn } from "@vueuse/core";
+import utils from '@/utils/index'
 export default defineComponent({
   props: {
     modelValue: {
@@ -157,6 +159,17 @@ export default defineComponent({
       }
     };
 
+    // 点击面包屑的时候
+    function handlerClickBread(item: any) {
+      if (!utils.isEmportyObject(item.meta)) return
+      const tags: any = {
+        name: '主页',
+        path: item.path,
+        type: '',
+        color: '#fff'
+      }
+      store.commit(RootMutations.SET_TAGS, tags)
+    }
     function getMenus() {
       state.menus = route.matched.filter((item: any) => item.meta && item.meta.title !== '主页');
     }
@@ -205,6 +218,7 @@ export default defineComponent({
       handleScroll,
       moveToView,
       moveToTags,
+      handlerClickBread,
     }
   },
 })

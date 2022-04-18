@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="absolute top-5 left-25 ">
+  <div class="absolute top-2  right-300 ">
     <div class="maxDiv opacity-59 flex items-center justify-center">
       <div class="minDiv">
         <div></div>

@@ -31,7 +31,7 @@
       </el-button>
       <div class="flex-1 overflow-hidden px-16 flex flex-nowrap " ref="scrollbarDom">
         <div class="flex flex-nowrap gap-12  overflow-visible" ref="tabDom" :style="getTabStyle">
-          <el-tag v-for="(tag, index) in tags" class="cursor-pointer" :ref="'dynamic' + index" :key="tag.name" closable
+          <el-tag v-for="(tag, index) in tags" class="cursor-pointer aaa" :ref="'dynamic' + index" :key="tag.name" closable
             :type="tag.type" :color="tag.name === isActive ? getColor : '#fff'" @click="handlerClickTag(tag)"
             @close="handleCloseTags(tag.name)">
             {{ tag.name }}
@@ -182,7 +182,11 @@ export default defineComponent({
     }
     function handleCloseTags(name: any) {
       store.commit(RootMutations.REMOVE_TAGS, name)
-      router.push(tags[tags.length - 1].path)
+      if(name === route.meta.title){
+        if(tags.length>=1){
+          router.push(tags[tags.length - 1].path)
+        }
+      }
     }
 
     onMounted(() => {
@@ -225,5 +229,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+::v-deep(.aaa:hover){
+  background: var(--el-tag-bg-color);
+}
 </style>
 

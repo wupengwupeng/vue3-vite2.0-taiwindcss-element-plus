@@ -4,7 +4,7 @@ import Item from './Item.vue'
 import { Random } from 'mockjs';
 import genUniqueId from './utils/gen-unique-id'
 import getSentences from './utils/sentences'
-import { ref } from 'vue'
+import { ref, computed, unref, Ref, getCurrentInstance, onMounted } from 'vue';
 
 const getPageData = (count: number, currentLength: number) => {
   const DataItems = [];
@@ -15,20 +15,43 @@ const getPageData = (count: number, currentLength: number) => {
       name: Random.name(),
       id: genUniqueId(index),
       desc: getSentences(),
+      checked: false
     });
   }
   return DataItems;
 };
 
 const pageSize = 20;
-const items = ref(getPageData(pageSize, 0));
+const items: any = ref(getPageData(pageSize, 0));
 const isLoading = ref(false);
+const initCheckAll = ref<boolean>(false)
+const checkAll = computed({
+  get() {
+    return unref(initCheckAll)
+  },
+  set(val) {
+    (initCheckAll as any).value = val
+    console.log(val, "val")
+    console.log(items, "items");
+    isChangedBox()
+  }
+})
+const { appContext: { app: { config: { globalProperties } } } }: any = getCurrentInstance()
+// Checkbox had changed?
+function isChangedBox() {
+  for (let i = 0; i < items.value.length; i++) items.value[i] = { ...items.value[i], checked: checkAll.value }
+}
+
+
+// singleChanged
+function changeSingleCheckBox(val: any) {
+  console.log(val, "adsf")
+}
 const onScrollToTop = () => {
   console.log('at top');
 };
 const onScrollToBottom = () => {
   console.log('at bottom');
-
   if (isLoading.value) {
     return;
   }
@@ -38,12 +61,19 @@ const onScrollToBottom = () => {
   setTimeout(() => {
     isLoading.value = false;
     items.value = items.value.concat(getPageData(pageSize, items.value.length));
+    isChangedBox()
   }, 50);
 };
+console.log(Item, "Item")
+
+onMounted(() => {
+  globalProperties.$myBus.on('changeSingleCheckBox', changeSingleCheckBox)
+})
 </script>
 
 <template>
   <MainCard>
+    <el-checkbox v-model="checkAll" label="全选" size="large" />
     <VirtualList class="list-infinite scroll-touch" :data-key="'id'" :data-sources="items" :data-component="Item"
       :estimate-size="70" :item-class="'list-item-infinite'" :footer-class="'loader-wrapper'" @totop="onScrollToTop"
       @tobottom="onScrollToBottom">

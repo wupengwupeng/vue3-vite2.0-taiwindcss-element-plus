@@ -15,6 +15,8 @@
     "echarts": "^5.3.1",
     "element-plus": "^2.0.2",
     "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "print-js": "^1.6.0",
     "store": "^2.0.12",
@@ -24,13 +26,12 @@
     "vue3-treeselect": "^0.1.10",
     "vue3-virtual-list": "^1.0.2",
     "vue3-virtual-scroll-list": "^0.2.0",
-    "mockjs": "^1.1.0",
     "vuex": "^4.0.2",
     "wangeditor": "^4.7.12"
   },
   "devDependencies": {
-    "@types/mockjs": "^1.0.4",
     "@types/lodash": "^4.14.172",
+    "@types/mockjs": "^1.0.4",
     "@types/node": "*",
     "@types/store": "^2.0.2",
     "@vitejs/plugin-vue": "^2.2.2",

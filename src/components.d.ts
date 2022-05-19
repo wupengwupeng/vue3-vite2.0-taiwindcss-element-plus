@@ -38,6 +38,7 @@ declare module 'vue' {
     TabBar: typeof import('./components/tabBar/index.vue')['default']
     TablePage: typeof import('./components/tablePage/index.vue')['default']
     ThreeD: typeof import('./components/threeD/index.vue')['default']
+    VirtuallList: typeof import('./components/virtuallList/index.vue')['default']
     WangEditor: typeof import('./components/wangEditor/index.vue')['default']
   }
 }

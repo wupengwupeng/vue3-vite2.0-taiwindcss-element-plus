@@ -12,6 +12,7 @@
     "@logicflow/core": "^1.1.7",
     "@logicflow/extension": "^1.1.7",
     "@vueuse/core": "^7.7.1",
+    "axios": "^0.21.1",
     "echarts": "^5.3.1",
     "element-plus": "^2.0.2",
     "lodash": "^4.17.21",

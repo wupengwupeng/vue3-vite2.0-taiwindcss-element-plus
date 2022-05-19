@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import nProgress from "nprogress"
+import errorRouter from './errorRouter'
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -102,9 +103,20 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq'
         },
         component: () => import('@/views/virtualList/index.vue')
+      },
+      {
+        path: '/virtualListVue',
+        meta: {
+          title: '虚拟滚动vueuse',
+          isShow: true,
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/vueuseVirtualList/index.vue')
       }
     ]
-  }
+  },
+  ...errorRouter,
+  { path: '/:pathMatch(.*)*', redirect: '/404' },
 ]
 
 const router = createRouter({

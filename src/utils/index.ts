@@ -52,7 +52,9 @@ export function changeTheme(color: string) {
 }
 // Return newRoutes
 export function setRoutes(routes: RouteRecordRaw[]) {
-  const newRoutes = routes.map((res: RouteRecordRaw) => {
+  // 去除errorpage
+  const newRoutess: RouteRecordRaw[] = [routes[0]]
+  const newRoutes = newRoutess.map((res: RouteRecordRaw) => {
     return res.children?.filter((item: any) => Boolean(item.meta.isShow))
   }).flat(1)
   return newRoutes

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import api from '@/api'
+import utils from '@/utils';
 type Button = "default" | "small" | "large"
 const small = ref<Button>('default')
+console.log(api, "api")
 </script>
 <template>
   <el-config-provider :size="small">

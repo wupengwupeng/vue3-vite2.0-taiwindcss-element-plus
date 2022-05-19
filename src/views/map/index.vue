@@ -1,5 +1,4 @@
 <script setup lang="ts" name="Map">
-import { VirtualList } from 'vue3-virtual-list';
 import { mock } from './utils';
 // interface Box {
 //   contents: unknown
@@ -106,7 +105,27 @@ import { mock } from './utils';
 //   }
 // }
 // const proxy = new UserTask(123)
-const dataSource = mock(100000)
+
+type DescribableFunction = {
+  description: string;
+  (someArg: string): string;
+}
+function doSomeThing(fn: DescribableFunction) {
+  console.log(fn.description + '' + fn('12'))
+}
+const obj = {
+  description: '23',
+  fn(a: string) {
+    return a
+  }
+
+}
+doSomeThing(obj)
+
+
+const dataSource = setTimeout(() => {
+  mock(100000)
+}, 3000)
 </script>
 
 
@@ -114,7 +133,7 @@ const dataSource = mock(100000)
   <MainCard>
     adfs
     <div class="h-500 w-full">
-      <VirtualList :data="dataSource" itemSize="150">
+      <VirtuallList :data="dataSource" itemSize="50">
         <template v-slot="{ item, index }">
           <div class="item-container">
             <div class="cell cell-index">{{ index + 1 }}</div>
@@ -123,14 +142,14 @@ const dataSource = mock(100000)
             <div class="cell">{{ item.address }}</div>
           </div>
         </template>
-      </VirtualList>
+      </VirtuallList>
     </div>
   </MainCard>
 </template>
 
 <style lang="scss" scoped>
 .item-container {
-  height: 100px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;

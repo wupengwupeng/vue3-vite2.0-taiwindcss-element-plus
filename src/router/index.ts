@@ -112,6 +112,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq'
         },
         component: () => import('@/views/vueuseVirtualList/index.vue')
+      },
+      {
+        path: '/doubbleColor',
+        meta: {
+          isShow: true,
+          title: '双色球模拟',
+          iconName: 'fn-shezhiq',
+        },
+        component: () => import('@/views/doubbleColor/index.vue')
       }
     ]
   },

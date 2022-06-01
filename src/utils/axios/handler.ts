@@ -2,9 +2,9 @@ import request from './request'
 import { AxiosRequestConfig } from 'axios'
 
 export type RecordApis<T extends string> = Record<T, AxiosRequestConfig>
-type ReturnTypeOfRequest = ReturnType<typeof request>
+export type ReturnTypeOfRequest = ReturnType<typeof request>
 
-interface HttpRequest {
+export interface HttpRequest {
   (data?: unknown): ReturnTypeOfRequest
 }
 

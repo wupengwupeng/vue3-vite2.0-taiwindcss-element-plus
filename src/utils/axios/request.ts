@@ -58,7 +58,7 @@ async function to(promise: AxiosPromise<ApiResponse>): Promise<[ApiResponse, nul
   try {
     const res = await promise
     const data = res.data
-    console.log(data, "data")
+    // console.log(data, "data")
     const code: string | number = data.code
     if (data.Debug) {
       console.debug(res.config.url, {

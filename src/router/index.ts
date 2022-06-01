@@ -121,6 +121,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/doubbleColor/index.vue')
+      },
+      {
+        path: '/buttonsLoading',
+        meta: {
+          isShow: true,
+          title: 'button测试',
+          iconName: 'fn-shezhiq',
+        },
+        component: () => import('@/views/buttonTest/index.vue')
       }
     ]
   },

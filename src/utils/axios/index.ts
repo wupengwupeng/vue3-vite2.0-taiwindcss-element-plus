@@ -6,10 +6,12 @@ const axios = Axios.create({
   timeout: TIME_OUT,
 })
 axios.interceptors.request.use(config => {
-  const token = '';
+  const token = '5207D6A2EB1B3145B49479C066D98C54';
   const lang = '';
   if (token) {
     config.headers[AUTHENTICATION] = token
+    // 用于账号系统
+    config.headers.Authorization = token;
   }
   if (lang) config.headers['Accept-Language'] = lang
   return config

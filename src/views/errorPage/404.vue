@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex items-center justify-center bg-white select-none">
-    <img class="w-300 h-300 object-contain" src="@/assets/img/404.svg" alt="图片" />
+    <!-- <img class="w-300 h-300 object-contain" src="@/assets/img/404.svg" alt="图片" /> -->
     <div class="max-w-md px-48">
       <div class="text-72 leading-tight font-semibold font-montserrat">404</div>
       <div class="text-18">{{ "404" }}</div>

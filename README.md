@@ -8,7 +8,7 @@
 <img width="800" alt="Element Plus" src="./src/assets/vue3-vite.png">
 
 ## 建议用pnpm下载依赖
-```javascript
+```bash
 npm install -g  pnpm  
 ```
 

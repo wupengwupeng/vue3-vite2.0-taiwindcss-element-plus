@@ -19,6 +19,7 @@
   --grayscale: grayscale(0);
   // color-scheme: light;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -28,30 +29,37 @@ body {
 a {
   color: var(--el-color-primary);
 }
+
 /*nprogress 样式覆盖*/
 #nprogress {
   & .bar {
     background-color: var(--el-color-primary) !important;
   }
+
   & .peg {
     box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
   }
+
   & .spinner-icon {
     display: none;
     border-top-color: var(--el-color-primary) !important;
     border-left-color: var(--el-color-primary) !important;
   }
 }
+
 .el-link.el-link--primary:hover {
   color: var(--el-color-paimary) !important;
 }
+
 .el-breadcrumb__inner.is-link,
 .el-breadcrumb__inner a {
   // color: var(--el-color-paimary);
 }
-.scrollbar-wrapper{
+
+.scrollbar-wrapper {
   overflow-x: hidden !important;
 }
+
 .el-dialog__headerbtn .el-dialog__close {
-  color: black ;
+  color: black;
 }

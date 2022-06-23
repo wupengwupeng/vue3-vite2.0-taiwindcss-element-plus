@@ -130,6 +130,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/buttonTest/index.vue')
+      },
+      {
+        path: '/drawLine',
+        meta: {
+          isShow: true,
+          title: '鼠标画线',
+          iconName: 'fn-shezhiq',
+        },
+        component: () => import('@/views/drawLine/index.vue')
       }
     ]
   },
@@ -147,6 +156,8 @@ const router = createRouter({
 })
 router.beforeEach((from, to, next) => {
   nProgress.start() && next()
+  // 判断是否登录
+
 });
 
 router.afterEach(() => nProgress.done());

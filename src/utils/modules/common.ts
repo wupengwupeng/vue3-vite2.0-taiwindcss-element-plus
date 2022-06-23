@@ -122,6 +122,32 @@ export function throttle(fn: any, gapTime: number) {
   };
 }
 
+// 函数柯里化效果
+export function currying(fn: any) {
+  var slice = Array.prototype.slice,
+    __args = slice.call(arguments, 1);
+  return function () {
+    var __inargs = slice.call(arguments);
+    return fn.apply(null, __args.concat(__inargs));
+  };
+}
+
+
+
+
+// 类数组转数组
+export function toArray(arg: any) {
+  try {
+    return Array.prototype.slice.call(arg)
+  } catch (error) {
+    const arr = []
+    for (let i = 0, len = arg.length; i < len; i++) {
+      arr[i] = arg[i]
+    }
+    return arr
+  }
+}
+
 
 
 

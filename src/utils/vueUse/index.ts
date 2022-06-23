@@ -1,4 +1,4 @@
-import { reactive, ref, computed, PropType, defineProps, defineEmits } from "vue";
+import { reactive, ref, computed, PropType, ExtractPropTypes } from "vue";
 
 // use分页
 export function useElPagination() {
@@ -24,9 +24,7 @@ export function useDefaultEmits() {
   return ['update:modelValue']
 }
 // useModelValue
-export function useModelVal() {
-  const props = defineProps(useDefaultProps())
-  const emits = defineEmits(useDefaultEmits())
+export function useModelVal(props: any, emits: any) {
   const val = computed({
     get() {
       return props.modelValue

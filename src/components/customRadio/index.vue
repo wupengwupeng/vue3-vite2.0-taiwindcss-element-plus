@@ -6,5 +6,8 @@
 </template>
 
 <script setup lang="ts">
-
+import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse'
+const props = defineProps(useDefaultProps())
+const emits = defineEmits(useDefaultEmits())
+const val = useModelVal(props, emits)
 </script>

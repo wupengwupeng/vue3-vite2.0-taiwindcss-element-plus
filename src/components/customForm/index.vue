@@ -37,12 +37,13 @@
         </custom-data-picker>
       </el-form-item>
       <el-form-item label="Activity type" prop="type">
-        <el-checkbox-group v-model="ruleForm.type">
+        <!-- <el-checkbox-group v-model="ruleForm.type">
           <el-checkbox label="Online activities" name="type" />
           <el-checkbox label="Promotion activities" name="type" />
           <el-checkbox label="Offline activities" name="type" />
           <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
+        </el-checkbox-group> -->
+        <custom-radio v-model="ruleForm.radio"></custom-radio>
       </el-form-item>
       <el-form-item label="Resources" prop="resource">
         <el-radio-group v-model="ruleForm.resource">
@@ -51,7 +52,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="Activity form" prop="desc">
-        <el-input v-model="ruleForm.desc" type="textarea" />
+        <!-- <el-input v-model="ruleForm.desc" type="textarea" /> -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">Create</el-button>
@@ -77,7 +78,8 @@ const ruleForm = reactive({
   desc: '',
   inputValue: '',
   select: 'Option1',
-  rangeTime: []
+  rangeTime: [],
+  radio: '',
 })
 
 const rules = reactive<FormRules>({

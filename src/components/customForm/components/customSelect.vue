@@ -3,12 +3,9 @@
     <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
       <slot v-if="slots.option" name="option" :item="item"></slot>
     </el-option>
-    <template v-if="slots.prefix" #prefix>
-      <slot name="prefix">头部</slot>
-    </template>
-    <!-- 无选项列表的时候 -->
-    <template v-if="slots.empty" #empty>
-      <slot name="empty"></slot>
+    <!-- 分发插槽 -->
+    <template v-for="(index, name) in slots" :key="index + 'g'" #[name]>
+      <slot :name="name"></slot>
     </template>
   </el-select>
 </template>

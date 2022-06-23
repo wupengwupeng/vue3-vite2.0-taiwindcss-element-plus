@@ -31,7 +31,10 @@
         </el-col>
       </el-form-item>
       <el-form-item label="Instant delivery" prop="delivery">
-        <el-switch v-model="ruleForm.delivery" />
+        <!-- <el-switch v-model="ruleForm.delivery" /> -->
+        <custom-data-picker v-model="ruleForm.rangeTime" type="datetimerange" :start-placeholder="'开始时间'"
+          :end-placeholder="'结束时间'" range-separator="To" :has-disable-date="true" :spacing-time="15">
+        </custom-data-picker>
       </el-form-item>
       <el-form-item label="Activity type" prop="type">
         <el-checkbox-group v-model="ruleForm.type">
@@ -73,7 +76,8 @@ const ruleForm = reactive({
   resource: '',
   desc: '',
   inputValue: '',
-  select: 'Option1'
+  select: 'Option1',
+  rangeTime: []
 })
 
 const rules = reactive<FormRules>({

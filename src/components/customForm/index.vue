@@ -50,10 +50,7 @@
         </custom-radio>
       </el-form-item>
       <el-form-item label="Resources" prop="resource">
-        <el-radio-group v-model="ruleForm.resource">
-          <el-radio label="Sponsorship" />
-          <el-radio label="Venue" />
-        </el-radio-group>
+        <custom-check-box></custom-check-box>
       </el-form-item>
       <el-form-item label="Activity form" prop="desc">
         <!-- <el-input v-model="ruleForm.desc" type="textarea" /> -->
@@ -71,6 +68,7 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 const emits = defineEmits([''])
 const ruleFormRef = ref<FormInstance>()
+const checkAll = ref(false)
 const ruleForm = reactive({
   name: 'Hello',
   region: '',

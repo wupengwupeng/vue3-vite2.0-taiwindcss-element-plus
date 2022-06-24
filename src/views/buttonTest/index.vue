@@ -32,6 +32,9 @@
         <aside>
           <section class="w-1/2 border">
             <custom-form></custom-form>
+            <div class="w-300">
+              <tag-scroll :options="options"></tag-scroll>
+            </div>
           </section>
         </aside>
       </main>
@@ -53,7 +56,23 @@ const visible = ref(false)
 const poperRef: Ref<InstanceType<typeof popoverCustom> | null> = ref(null)
 
 const a = { age: 12 } as const
-
+const options = ref([
+  {
+    name: 'test14444444444444444444',
+    checked: false
+  },
+  {
+    name: 'test2',
+    checked: false
+  },
+  {
+    name: 'test3',
+    checked: false
+  }, {
+    name: 'test4',
+    checked: false
+  }
+])
 function square(i: number) {
   return i * i
 }
@@ -94,3 +113,4 @@ type Includes<T extends readonly any[], U> = {
   // [k in keyof T]: Equal<T[k], U>;
 }
 </script>
+

@@ -43,7 +43,11 @@
           <el-checkbox label="Offline activities" name="type" />
           <el-checkbox label="Simple brand exposure" name="type" />
         </el-checkbox-group> -->
-        <custom-radio v-model="ruleForm.radio"></custom-radio>
+        <custom-radio v-model="ruleForm.radio" :options="optionsRadio">
+          <template #default="{ item }">
+            <span>---{{ item.value }}----</span>
+          </template>
+        </custom-radio>
       </el-form-item>
       <el-form-item label="Resources" prop="resource">
         <el-radio-group v-model="ruleForm.resource">
@@ -79,7 +83,7 @@ const ruleForm = reactive({
   inputValue: '',
   select: 'Option1',
   rangeTime: [],
-  radio: '',
+  radio: 'radios2',
 })
 
 const rules = reactive<FormRules>({
@@ -155,5 +159,15 @@ const options = ref([{
 {
   value: 'Option2',
   label: 'Option2',
-}]) 
+}])
+const optionsRadio = ref([
+  {
+    label: 'radios1',
+    value: 'value1'
+  },
+  {
+    label: 'radios2',
+    value: 'value2'
+  }
+])
 </script>

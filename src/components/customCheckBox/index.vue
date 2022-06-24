@@ -3,3 +3,7 @@
     复选框
   </div>
 </template>
+
+<script setup lang="ts">
+
+</script>

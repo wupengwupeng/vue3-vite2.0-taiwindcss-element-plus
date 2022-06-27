@@ -6,7 +6,7 @@
   </el-input>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="CustomInput">
 import { ref, computed, useSlots } from 'vue'
 const props = defineProps({
   modelValue: {

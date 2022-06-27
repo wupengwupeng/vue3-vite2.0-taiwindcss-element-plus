@@ -1,6 +1,7 @@
 <template>
   <main-card>
-    用鼠标进行画线
+    <span>form表单测试</span>
+    <form-custom name="11212" :type-component="'CustomInput'"></form-custom>
   </main-card>
 </template>
 

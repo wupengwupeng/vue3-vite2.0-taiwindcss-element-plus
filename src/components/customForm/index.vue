@@ -50,7 +50,12 @@
         </custom-radio>
       </el-form-item>
       <el-form-item label="Resources" prop="resource">
-        <custom-check-box></custom-check-box>
+        <custom-check-box v-model="checkAll" :isShowChecAll="true" v-model:checkedValue="ruleForm.checkedValue"
+          :options="checkBoxOptions" @changeGroup="handlerChangeGroup">
+          <template #default="{ item }">
+            <span>{{ item.item.name }}</span>
+          </template>
+        </custom-check-box>
       </el-form-item>
       <el-form-item label="Activity form" prop="desc">
         <!-- <el-input v-model="ruleForm.desc" type="textarea" /> -->
@@ -64,11 +69,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus'
 const emits = defineEmits([''])
 const ruleFormRef = ref<FormInstance>()
-const checkAll = ref(false)
 const ruleForm = reactive({
   name: 'Hello',
   region: '',
@@ -82,7 +86,34 @@ const ruleForm = reactive({
   select: 'Option1',
   rangeTime: [],
   radio: 'radios2',
+  checkedValue: [
+    "{\"name\":\"张三\",\"age\":15,\"six\":\"女\"}",
+    "{\"name\":\"wuoeng\",\"age\":12,\"six\":\"男\"}"
+  ]
 })
+
+const checkBoxOptions = ref([
+  {
+    item: {
+      name: '张三',
+      age: 15,
+      six: '女'
+    },
+    props: {}
+  },
+  {
+    item: {
+      name: 'wuoeng',
+      age: 12,
+      six: '男'
+    },
+    props: {}
+  }
+])
+const checkAll = computed(() => {
+  return ruleForm.checkedValue.length === checkBoxOptions.value.length
+})
+
 
 const rules = reactive<FormRules>({
   name: [
@@ -168,4 +199,9 @@ const optionsRadio = ref([
     value: 'value2'
   }
 ])
+const handlerChangeGroup = (res: Array<string>) => {
+  console.log(res)
+  console.log(ruleForm.checkedValue, "sdf")
+
+}
 </script>

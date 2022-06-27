@@ -21,6 +21,7 @@
     "nprogress": "^0.2.0",
     "print-js": "^1.6.0",
     "store": "^2.0.12",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue": "^3.2.31",
     "vue-3d-model": "^1.4.0",
     "vue-router": "4",

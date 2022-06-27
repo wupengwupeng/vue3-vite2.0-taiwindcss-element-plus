@@ -1,2 +1,2 @@
 
-export const defaultEmits = []
+export const defaultEmits = ['change', 'changeGroup', 'update:checkedValue']

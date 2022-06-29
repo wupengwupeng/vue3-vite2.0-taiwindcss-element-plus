@@ -12,10 +12,10 @@ import { installAllComponents } from '@/components/index'
 import plugin from '@/utils/plugin'
 const app = createApp(App);
 
-// 注册全局组件
+// 注册components全局组件
 installAllComponents(app)
 // 注册element plus
-plugin.createElementPlus(app, {})
+plugin.createElementPlus(app, { isAll: false })
 
 
 app.config.globalProperties.$myBus = mitt()

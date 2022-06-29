@@ -10,10 +10,6 @@ export type FormColumnRaw = {
   type: string | ComponentInternalInstance | Component // 组件的名字
 }
 export const defaultProps = {
-  formDate: {
-    type: Object as PropType<any>,
-    default: () => { }
-  },
   formColumn: {// 表单输props
     type: Array as PropType<Array<FormColumnRaw>>,
     default: () => []

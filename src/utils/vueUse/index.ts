@@ -14,7 +14,7 @@ export function useElPagination() {
 export function useDefaultProps<T extends Record<keyof T, any>>(arg?: T) {
   return {
     modelValue: {
-      type: String as PropType<any>
+      type: [Object, String, Number, Array, Boolean, undefined, null, Function] as PropType<any>
     },
     ...arg
   }

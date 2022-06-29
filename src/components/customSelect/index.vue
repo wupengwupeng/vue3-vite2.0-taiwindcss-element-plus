@@ -19,7 +19,7 @@ type OptionRaw = Array<{
 }>
 const props = defineProps({
   modelValue: {
-    type: String,
+    type: String as PropType<any>,
     default: '',
   },
   options: {

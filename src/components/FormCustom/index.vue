@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form v-bind="$attrs" ref="ruleFormRef" v-model="formDate" :rules="props.rules">
+    <el-form v-bind="$attrs" ref="ruleFormRef" :model="formDate" :rules="props.rules">
       <el-row>
         <el-col v-for="(item, index) in formColumn" :key="index + 'sd'" v-bind="item.col">
           <template v-if="item.slotName">
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSlots, reactive, ref, useAttrs } from 'vue'
+import { useSlots, reactive, ref, useAttrs, watch, Ref, markRaw } from 'vue'
 import { defaultProps } from './props'
 import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse';
 import type { FormInstance } from 'element-plus'
@@ -30,7 +30,7 @@ const emits = defineEmits([...useDefaultEmits()])
 const formDate = useModelVal(props, emits)
 
 // 将表单绑定的ref暴露给父组件
-const ruleFormRef = ref<FormInstance>();
+const ruleFormRef = ref();
 defineExpose({ ruleFormRef });
 
 </script>

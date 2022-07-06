@@ -22,7 +22,6 @@
 <script setup lang="ts">
 import { ref, reactive, markRaw } from 'vue'
 import { useFormColumn } from './index'
-import CreateTemplate from '@/components/CreateTemplate/index.vue'
 const { column, emitter, rules, } = useFormColumn()
 
 emitter.on('handlerChange', (val) => {

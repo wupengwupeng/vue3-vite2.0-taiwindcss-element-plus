@@ -1,6 +1,5 @@
 import { markRaw, h, ref } from 'vue'
 import CustomSelect from '@/components/customSelect/index.vue'
-import CreateTemplate from '@/components/CreateTemplate/index.vue'
 import mitt from 'mitt'
 export const emitter = mitt()
 

@@ -1,21 +1,21 @@
-import { markRaw } from 'vue'
+import { markRaw, h, ref } from 'vue'
 import CustomSelect from '@/components/customSelect/index.vue'
 import mitt from 'mitt'
 export const emitter = mitt()
 
-export const options = [
+export const options = ref([
   {
     value: 'zhangan',
     label: 'shangsan'
   }
-]
+])
 export const column = markRaw([
   {
     col: { span: 11 },
     formItemProps: {},
     label: '下拉框',
     prop: 'select',
-    componentsProps: { options: options, clearable: true, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
+    componentsProps: { clearable: true, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
     type: CustomSelect
   },
   {
@@ -57,6 +57,15 @@ export const column = markRaw([
     prop: 'val5',
     componentsProps: { clearable: true, type: "textarea", placeholder: '请输入你的意见或者建议' },
     type: 'el-input'
+  },
+  {
+    col: { span: 12 },
+    formItemProps: {},
+    label: '按钮',
+    prop: 'val5',
+    componentsProps: {},
+    slot: { default: () => '我是阿牛' },
+    type: 'el-button'
   },
   {
     slotName: 'footer',

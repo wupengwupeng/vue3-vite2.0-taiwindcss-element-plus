@@ -6,8 +6,10 @@ export type FormColumnRaw = {
   formItemProps: object // el-form-item的属性
   label: string // from表单的label
   prop: string // from表单的prop
-  componentsProps: object // 组件的props
+  componentsProps?: object // 组件的props
+  slot?: object // 组件的slot
   type: string | ComponentInternalInstance | Component // 组件的名字
+
 }
 export const defaultProps = {
   formColumn: {// 表单输props

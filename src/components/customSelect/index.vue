@@ -1,17 +1,16 @@
 <template>
-  <el-select v-bind="$attrs" v-model="val">
-    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      <slot v-if="slots.option" name="option" :item="item"></slot>
-    </el-option>
-    <!-- 分发插槽 -->
-    <template v-for="(index, name) in slots" :key="index + 'g'" #[name]>
-      <slot :name="name"></slot>
-    </template>
-  </el-select>
+  <div>
+    <el-select v-bind="$attrs" v-model="val">
+      <el-option v-for="(item, index) in options" :key="index + 'gs'" :label="item.label" :value="item.value">
+        <!-- <slot v-if="slots.option" name="option" :item="item">default</slot> -->
+        <create-element :slots="$attrs.slot"></create-element>
+      </el-option>
+    </el-select>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, PropType, computed, useSlots } from 'vue'
+import { ref, PropType, computed, useSlots, useAttrs, watch, Ref } from 'vue'
 type OptionRaw = Array<{
   value: string
   label: string
@@ -24,12 +23,18 @@ const props = defineProps({
   },
   options: {
     type: Array as PropType<OptionRaw>,
-    default: () => []
+    default: () => [{
+      value: 'zhangan',
+      label: 'shangsan'
+    }]
   }
 })
 const emits = defineEmits(['update:modelValue'])
-
+console.log(props.options, 'options')
 const slots = useSlots()
+const attrs = useAttrs()
+console.log(attrs, 'attrs')
+console.log(slots, "slots")
 const val = computed({
   get() {
     return props.modelValue

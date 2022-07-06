@@ -8,8 +8,8 @@
           </template>
           <el-form-item v-else :label="item.label" :prop="item.prop" v-bind="item.formItemProps">
             <component :is="item.type" v-bind="item.componentsProps" v-model="formDate[item.prop]">
-              <template v-for="(index, name) in slots" :key="index + 'gg'" #[name]>
-                <slot :name="name" :item="item"></slot>
+              <template v-if="item.slot">
+                <create-element :component-type="item.type" :slots="item.slot"></create-element>
               </template>
             </component>
           </el-form-item>
@@ -20,11 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import { useSlots, reactive, ref, useAttrs, watch, Ref, markRaw } from 'vue'
+import { ref } from 'vue'
 import { defaultProps } from './props'
 import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse';
-import type { FormInstance } from 'element-plus'
-const slots = useSlots()
 const props = defineProps({ ...useDefaultProps(), ...defaultProps })
 const emits = defineEmits([...useDefaultEmits()])
 const formDate = useModelVal(props, emits)

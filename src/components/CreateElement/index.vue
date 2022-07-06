@@ -13,6 +13,10 @@ export default defineComponent({
       type: Object as PropType<any>,
       default: () => { }
     },
+    slots: {
+      type: Object as PropType<any>,
+      default: () => { }
+    }
   },
   setup(props) {
     return {
@@ -20,11 +24,18 @@ export default defineComponent({
     }
   },
   render() {
-    const app = h(this.componentType, { ...this.hProps }, this.$slots.default?.call(this))
-    const other = h(this.componentType, { ...this.hProps }, this.$slots.other?.call(this, this.item))
-    return [h('div', [
-      this.$slots.default ? app : other
-    ])]
+    const app = h(this.componentType, { ...this.hProps }, this.$slots?.default?.call(this))
+    const other = h(this.componentType, { ...this.hProps }, this.$slots?.other?.call(this, this.item))
+    const isSlots = Object.keys(this.slots).length
+    if (isSlots) {
+      return ['div', [h(this.componentType, { ...this.hProps }, { ...this.slots })]]
+    } else {
+      return [h('div', [this.$slots.default ? app : other])]
+
+    }
+
+
+
   }
 })
 </script>

@@ -8,9 +8,13 @@
           </template>
           <el-form-item v-else :label="item.label" :prop="item.prop" v-bind="item.formItemProps">
             <component :is="item.type" v-bind="item.componentsProps" v-model="formDate[item.prop]">
-              <template v-if="item.slot">
-                <create-element :component-type="item.type" :slots="item.slot" :item="formDate[item.prop]">
+              <!-- 是否保留插槽这个地方 TODO -->
+              <!-- <template v-if="item.componentTypeSlot">
+                <create-element :component-type="item.componentTypeSlot" :item="formDate[item.prop]">
                 </create-element>
+              </template> -->
+              <template v-if="item.slot">
+                <create-element :slots="item.slot"></create-element>
               </template>
             </component>
           </el-form-item>

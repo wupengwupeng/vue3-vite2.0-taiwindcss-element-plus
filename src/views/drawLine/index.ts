@@ -1,5 +1,6 @@
 import { markRaw, h, ref } from 'vue'
 import CustomSelect from '@/components/customSelect/index.vue'
+import CreateTemplate from '@/components/CreateTemplate/index.vue'
 import mitt from 'mitt'
 export const emitter = mitt()
 
@@ -15,7 +16,7 @@ export const column = markRaw([
     formItemProps: {},
     label: '下拉框',
     prop: 'select',
-    componentsProps: { clearable: true, slot: { default: (val: any) => h('div', { class: 'text-red-300' }, '我是插槽') }, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
+    componentsProps: { clearable: true, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
     type: CustomSelect
   },
   {
@@ -64,7 +65,7 @@ export const column = markRaw([
     label: '按钮',
     prop: 'val5',
     componentsProps: {},
-    slot: { default: () => '我是阿牛' },
+    slot: { default: () => 'asf' },
     type: 'el-button'
   },
   {

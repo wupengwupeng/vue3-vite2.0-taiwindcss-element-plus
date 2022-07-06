@@ -12,11 +12,9 @@
       </form-custom>
     </section>
     <section class="border h-60">
-      <create-element :item="{ name: '你是你妈' }">
-        <template #other="{ name }">
-          {{ name }} woshi nidaye
-        </template>
-      </create-element>
+
+    </section>
+    <section class="border h-60">
     </section>
   </main-card>
 </template>
@@ -24,6 +22,7 @@
 <script setup lang="ts">
 import { ref, reactive, markRaw } from 'vue'
 import { useFormColumn } from './index'
+import CreateTemplate from '@/components/CreateTemplate/index.vue'
 const { column, emitter, rules, } = useFormColumn()
 
 emitter.on('handlerChange', (val) => {

@@ -10,7 +10,8 @@ export type FormColumnRaw = {
   label: string // from表单的label
   prop: string // from表单的prop
   componentsProps?: Obj // 组件的props
-  slot?: Obj// 组件的slot
+  componentTypeSlot?: string | ComponentInternalInstance | Component// 内部组件的slot 组件实例
+  slot?: Obj // 简单的字符串的插槽显示
   type: string | ComponentInternalInstance | Component // 组件的名字
 
 }

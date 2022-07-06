@@ -9,7 +9,8 @@
           <el-form-item v-else :label="item.label" :prop="item.prop" v-bind="item.formItemProps">
             <component :is="item.type" v-bind="item.componentsProps" v-model="formDate[item.prop]">
               <template v-if="item.slot">
-                <create-element :component-type="item.type" :slots="item.slot"></create-element>
+                <create-element :component-type="item.type" :slots="item.slot" :item="formDate[item.prop]">
+                </create-element>
               </template>
             </component>
           </el-form-item>

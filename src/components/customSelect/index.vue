@@ -3,7 +3,7 @@
     <el-select v-bind="$attrs" v-model="val">
       <el-option v-for="(item, index) in options" :key="index + 'gs'" :label="item.label" :value="item.value">
         <!-- <slot v-if="slots.option" name="option" :item="item">default</slot> -->
-        <create-element :slots="$attrs.slot"></create-element>
+        <create-element v-if="$attrs.slot" :slots="$attrs.slot" :item="item"></create-element>
       </el-option>
     </el-select>
   </div>
@@ -33,7 +33,7 @@ const emits = defineEmits(['update:modelValue'])
 console.log(props.options, 'options')
 const slots = useSlots()
 const attrs = useAttrs()
-console.log(attrs, 'attrs')
+console.log(attrs, 'attrssdf')
 console.log(slots, "slots")
 const val = computed({
   get() {

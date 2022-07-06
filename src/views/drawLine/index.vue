@@ -11,6 +11,13 @@
         </template>
       </form-custom>
     </section>
+    <section class="border h-60">
+      <create-element :item="{ name: '你是你妈' }">
+        <template #other="{ name }">
+          {{ name }} woshi nidaye
+        </template>
+      </create-element>
+    </section>
   </main-card>
 </template>
 

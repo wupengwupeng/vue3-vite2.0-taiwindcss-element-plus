@@ -15,7 +15,7 @@ export const column = markRaw([
     formItemProps: {},
     label: '下拉框',
     prop: 'select',
-    componentsProps: { clearable: true, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
+    componentsProps: { clearable: true, slot: { default: (val: any) => h('div', { class: 'text-red-300' }, '我是插槽') }, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
     type: CustomSelect
   },
   {

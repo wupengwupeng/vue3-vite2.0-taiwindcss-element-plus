@@ -8,7 +8,6 @@ declare module 'vue' {
     ButtonLoading: typeof import('./components/buttonLoading/index.vue')['default']
     ChangeTheme: typeof import('./components/theme/ChangeTheme.vue')['default']
     CreateElement: typeof import('./components/CreateElement/index.vue')['default']
-    CreateTemplate: typeof import('./components/CreateTemplate/index.vue')['default']
     CustomCheckBox: typeof import('./components/customCheckBox/index.vue')['default']
     CustomDataPicker: typeof import('./components/customDataPicker/index.vue')['default']
     CustomForm: typeof import('./components/customForm/index.vue')['default']

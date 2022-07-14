@@ -14,7 +14,12 @@
     <section class="border h-60">
 
     </section>
-    <section class="border h-60">
+    <section class="border">
+      <div class="w-200">
+        <ellipsis-box :is-more="true"
+          :content="'你是大爷吗我是你大爷反正我是你sddddddddddd首发式地方撒旦发顺丰第三方案说法爸爸dffffffffffffffffffffffffffffffffffffffffffffffffff'">
+        </ellipsis-box>
+      </div>
     </section>
   </main-card>
 </template>

@@ -18,8 +18,7 @@
       <!-- 多选的时候的多选框 -->
       <template v-else>
         <el-checkbox-button v-for="(item, index) in options" :key="index + 'gg'" v-bind="item.props"
-          :label="JSON.stringify(item.item)"
-          @change="(val: boolean, item: OptionsRaw) => handlerCheckItemBox(val, item)">
+          :label="JSON.stringify(item.item)" @change="(val: boolean, item) => handlerCheckItemBox(val, item)">
           <template v-for="(index, slotName) in slots" :key="index + 'hh'" #[slotName]>
             <slot :name="slotName" :item="item"></slot>
           </template>
@@ -34,7 +33,7 @@ import { ref, computed, unref, Ref, useSlots } from 'vue'
 import { defaultProps } from './props'
 import { defaultEmits } from './emits'
 import { useDefaultProps, useDefaultEmits, useModelVal } from '@/utils/vueUse'
-import { OptionsRaw } from './props'
+import type { OptionsRaw } from './props'
 
 const props = defineProps({ ...useDefaultProps(), ...defaultProps })
 const emits = defineEmits([...useDefaultEmits(), ...defaultEmits])

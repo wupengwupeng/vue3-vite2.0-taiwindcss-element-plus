@@ -139,6 +139,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/drawLine/index.vue')
+      },
+      {
+        path: '/page',
+        meta: {
+          isShow: true,
+          title: 'page组件',
+          iconName: 'fn-shezhiq',
+        },
+        component: () => import('@/views/pageComponent/index.vue')
       }
     ]
   },

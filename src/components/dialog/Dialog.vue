@@ -1,18 +1,13 @@
 <template>
-  <el-dialog
-    v-model="visible"
-    :title="title"
-    destroy-on-close
-    :center="false"
-    v-bind="$attrs"
-    @close="handlerClose"
-  >
-    <slot />
-    <template #footer>
-      <el-button size="small" @click="handlerCansole">取消</el-button>
-      <el-button size="small" type="primary" @click="handlerSave">保存</el-button>
-    </template>
-  </el-dialog>
+  <div v-elDraggableDialog:[isDraggable]>
+    <el-dialog v-model="visible" :title="title" destroy-on-close v-bind="$attrs" @close="handlerClose">
+      <slot />
+      <template #footer>
+        <el-button size="small" @click="handlerCansole">{{ cancelText }}</el-button>
+        <el-button size="small" type="primary" @click="handlerSave">{{ confirmText }}</el-button>
+      </template>
+    </el-dialog>
+  </div>
 </template>
 
 <script lang="ts">
@@ -29,10 +24,23 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    confirmText: {
+      type: String,
+      default: '保存'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    isDraggable: {
+      type: Boolean,
+      default: true
+    }
   },
-  emits: ['submit', 'close', 'update:visible'],
+  emits: ['handlerSave', 'close'],
   setup(props, { emit, attrs }) {
-    const { visible, title } = useVModels(props, emit)
+
+    const { visible, title, confirmText, cancelText, isDraggable } = useVModels(props, emit)
 
     function handlerClose() {
       visible.value = false
@@ -40,13 +48,17 @@ export default defineComponent({
     }
     function handlerCansole() {
       handlerClose()
+      emit('close')
     }
     function handlerSave() {
-      emit('submit')
+      emit('handlerSave')
     }
     return {
       visible,
       title,
+      confirmText,
+      cancelText,
+      isDraggable,
       ...toRefs(attrs),
       handlerClose,
       handlerCansole,

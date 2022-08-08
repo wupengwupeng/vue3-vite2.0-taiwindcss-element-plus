@@ -35,6 +35,12 @@ declare module "vue3-virtual-scroll-list" {
   export default virList;
 }
 
+declare module "only-number-input" {
+  import numberInput from 'only-number-input'
+  const numb: any
+  export default numb
+}
+
 
 
 

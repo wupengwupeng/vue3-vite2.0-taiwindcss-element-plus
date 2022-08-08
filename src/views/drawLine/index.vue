@@ -11,8 +11,12 @@
         </template>
       </form-custom>
     </section>
-    <section class="border h-60">
+    <section class="border h-auto">
+      <el-button @click="handlerOpen">点击我打开弹框</el-button>
+      <!-- <custom-input-number v-model="value"></custom-input-number> -->
 
+      <div>222222222</div>
+      <custom-input v-model="value" :argOptions="{ maxLength: 4, reg: /[^\d\,]/g }" />
     </section>
     <section class="border">
       <div class="w-200">
@@ -21,14 +25,24 @@
         </ellipsis-box>
       </div>
     </section>
+
+    <section>
+      <span>导出excel为chart</span>
+      <el-button @click="handlerExportExcel">导出为excel</el-button>
+    </section>
   </main-card>
+  <TemplateDown v-if="templateVisible" v-model:visible="templateVisible"></TemplateDown>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, markRaw } from 'vue'
+import { ref, reactive, markRaw, Ref } from 'vue'
 import { useFormColumn } from './index'
+import TemplateDown from './newComponents/templateDown.vue'
+
+
 const { column, emitter, rules, } = useFormColumn()
 
+const templateVisible: Ref<boolean> = ref(false)
 emitter.on('handlerChange', (val) => {
   console.log(val, "val")
 })
@@ -43,11 +57,57 @@ const state = reactive({
     val5: '你好哇',
   },
 })
+const value = ref('')
 
 
 
 function handleSubmit() {
   console.log(state.formDate, "formDate")
+}
+
+function handlerOpen() {
+  templateVisible.value = true
+}
+async function handlerExportExcel() {
+  console.log(123)
+
+  // const gen = new XlsxGenerator();
+
+  // await gen.createWorkbook();
+
+  // const sheet1 = await gen.createWorksheet("sheet1");
+
+  // const sheet2 = await gen.createWorksheet("sheetWithChart2");
+
+  // const header = ["h", "b", "c", "d"];
+  // const row1 = ["label1", 2, 3, 4];
+  // const row2 = ["label2", 5, 6, 7];
+
+  // await sheet2.addTable([header, row1, row2]);
+
+  // const opt: IData = {
+  //   title: {
+  //     name: "testChart line",
+  //     color: "8ab4f8",
+  //     size: 5000,
+  //   },
+  //   range: "B1:D3",
+  //   type: "line",
+  //   rgbColors: ["8ab4f8", "ff7769"],
+  //   labels: true, //table contains labels
+  //   marker: {
+  //     size: 4,
+  //     shape: "square", //marker shapes, can be circle, diamond, star
+  //   },
+  //   lineWidth: 20000,
+  // };
+
+  // await sheet2.addChart(opt);
+
+  // const sheet3 = await gen.createWorksheet("sheet3");
+
+  // await gen.generate(__dirname + "/test", "file");
+  // you can also generate buffer
 }
 
 </script>

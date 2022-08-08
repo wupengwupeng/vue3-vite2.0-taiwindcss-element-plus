@@ -1,7 +1,8 @@
 <template>
   <div>
     <template v-if="hasDisableDate">
-      <el-date-picker v-bind="$attrs" v-model="val" :disabledDate="disabledDate" @calendar-change="handleChange">
+      <el-date-picker v-bind="$attrs" v-model="val" :disabledDate="disabledDate" @calendar-change="handleChange"
+        @focus="handleFocus">
         <template v-for="(index, name) in slots" :key="index + 'g'" #[name]>
           <slot :name="name"></slot>
         </template>
@@ -22,7 +23,7 @@ import { ref, reactive, unref, computed, Ref, useSlots, PropType } from 'vue'
 
 const props = defineProps({
   modelValue: {
-    type: Array as PropType<Array<string | number> | string>
+    type: Array as PropType<Array<string | number> | string>,
   },
   // 间隔的天数
   spacingTime: {
@@ -31,7 +32,7 @@ const props = defineProps({
   },
   hasDisableDate: {
     type: Boolean,
-    default: false
+    default: true
   }
 })
 const emits = defineEmits(['update:modelValue'])
@@ -47,6 +48,8 @@ const val = computed({
   }
 })
 
+
+
 function disabledDate(time: any) {
   if (!unref(pickTime)) {
     return false
@@ -60,6 +63,8 @@ function disabledDate(time: any) {
 function handleChange(val: Date[]) {
   const [firstTime] = val
   pickTime.value = firstTime
-
+}
+function handleFocus() {
+  pickTime.value = null
 }
 </script>

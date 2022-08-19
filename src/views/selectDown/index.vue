@@ -163,12 +163,12 @@ watch(value, () => {
 <style lang="scss" scoped>
 // ::v-deep(.vue-treeselect__multi-value-item),
 // ::v-deep(.vue-treeselect__value-remove) {
-//   color: var(--el-color-paimary);
+//   color: var(--el-color-primary);
 // }
 // ::v-deep(.vue-treeselect__checkbox--indeterminate) {
-//   background-color: var(--el-color-paimary);
+//   background-color: var(--el-color-primary);
 // }
 // ::v-deep(.vue-treeselect__checkbox--checked) {
-//   background-color: var(--el-color-paimary);
+//   background-color: var(--el-color-primary);
 // }
 </style>

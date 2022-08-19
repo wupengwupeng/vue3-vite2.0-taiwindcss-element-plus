@@ -97,6 +97,7 @@ export default defineComponent({
 }
 
 ::v-deep(.is-active) {
-  background: var(--el-color-primary-light-9);
+  color: #fff !important;
+  background: var(--el-color-primary);
 }
 </style>

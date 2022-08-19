@@ -20,9 +20,9 @@ export default defineConfig(({ command, mode }) => {
     },
     css: {
       preprocessorOptions: {
-        scss: {
-          additionalData: `@use "~/styles/element/index.scss" as *;`,
-        },
+        // scss: {
+        //   additionalData: `@use "@/styles/element/index.scss" as *;`,
+        // },
       },
     },
     plugins: [

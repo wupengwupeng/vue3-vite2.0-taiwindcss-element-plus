@@ -15,8 +15,9 @@
   padding: 12px;
   border-radius: 1rem;
   overflow-y: auto;
-  background: rgba(255, 255, 255); // TODO Should i add opacity property?
+  // background: rgba(255, 255, 255); // TODO Should i add opacity property?
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
+  background: var(--background);
 }
 </style>

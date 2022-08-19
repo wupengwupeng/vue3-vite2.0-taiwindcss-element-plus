@@ -31,6 +31,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .aa {
-  color: var(--el-color-paimary);
+  color: var(--el-color-primary);
 }
 </style>

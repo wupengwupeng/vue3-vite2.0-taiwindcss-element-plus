@@ -75,7 +75,7 @@ export default defineComponent({
         totalStyle.value = ''
       })
     }
-    window.addEventListener('resize', debounce(watchDom, 1000))
+    window.addEventListener('resize', debounce(watchDom, 1000), true)
     watch(content, () => {
       watchDom()
     }, { flush: 'post' })

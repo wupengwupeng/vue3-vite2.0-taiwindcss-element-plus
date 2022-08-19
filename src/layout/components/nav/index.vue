@@ -10,8 +10,8 @@
           <el-breadcrumb separator=">">
             <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }"
               @click="handlerClickBread(item)">{{
-                item.meta.title
-                  ? item.meta.title : '主页'
+                  item.meta.title
+                    ? item.meta.title : '主页'
               }}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>

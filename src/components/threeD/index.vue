@@ -40,10 +40,10 @@
 }
 
 .minDiv>div {
-  background: var(--el-color-paimary);
+  background: var(--el-color-primary);
   width: 10px;
   height: 10px;
-  box-shadow: 0 0 15px var(--el-color-paimary);
+  box-shadow: 0 0 15px var(--el-color-primary);
   position: absolute;
   transition: 1s;
   animation-play-state: running;
@@ -150,20 +150,20 @@
 
 @keyframes goColor {
   0% {
-    background: var(--el-color-paimary);
-    box-shadow: 0 0 15px var(--el-color-paimary);
+    background: var(--el-color-primary);
+    box-shadow: 0 0 15px var(--el-color-primary);
     opacity: 0.2;
   }
 
   50% {
-    background: var(--el-color-paimary);
-    box-shadow: 0 0 15px var(--el-color-paimary);
+    background: var(--el-color-primary);
+    box-shadow: 0 0 15px var(--el-color-primary);
     opacity: 0.3;
   }
 
   100% {
-    background: var(--el-color-paimary);
-    box-shadow: 0 0 15px var(--el-color-paimary);
+    background: var(--el-color-primary);
+    box-shadow: 0 0 15px var(--el-color-primary);
     opacity: 0.2;
   }
 }

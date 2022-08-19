@@ -1,67 +1,9 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "./taiwindcss/index.scss";
-@import "./reboot";
-
-@import "./element/element-plus/el-dialog";
-
-:root {
-  --el-color-paimary: yellow;
-  --color-gray-50: #fafbfc;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e6e8ed;
-  --color-gray-300: #d3d8e0;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #333c4d;
-  --color-gray-800: #222b3b;
-  --color-gray-900: #111826;
-  --grayscale: grayscale(0);
-  // color-scheme: light;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  filter: var(--grayscale);
-}
-
-a {
-  color: var(--el-color-primary);
-}
-
-/*nprogress 样式覆盖*/
-#nprogress {
-  & .bar {
-    background-color: var(--el-color-primary) !important;
-  }
-
-  & .peg {
-    box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
-  }
-
-  & .spinner-icon {
-    display: none;
-    border-top-color: var(--el-color-primary) !important;
-    border-left-color: var(--el-color-primary) !important;
-  }
-}
-
-.el-link.el-link--primary:hover {
-  color: var(--el-color-paimary) !important;
-}
-
-.el-breadcrumb__inner.is-link,
-.el-breadcrumb__inner a {
-  // color: var(--el-color-paimary);
-}
-
-.scrollbar-wrapper {
-  overflow-x: hidden !important;
-}
-
-.el-dialog__headerbtn .el-dialog__close {
-  color: black;
-}
+@use "tailwindcss/base";
+// @import "element-plus/dist/index.css";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+@use "./taiwindcss/index.scss" as taiwindCss;
+@use "./reboot";
+@use "./element/element-plus/index.scss" as elementPlus;
+@use './theme';
+@use './other';

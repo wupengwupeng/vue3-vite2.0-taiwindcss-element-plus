@@ -7,7 +7,7 @@ const small = ref<Button>('default')
 console.log(api, "api")
 </script>
 <template>
-  <el-config-provider :size="small">
+  <el-config-provider>
     <router-view />
   </el-config-provider>
 </template>
@@ -16,6 +16,10 @@ console.log(api, "api")
 </script>
 
 <style>
+body {
+  background: var(--background);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

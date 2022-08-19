@@ -10,6 +10,7 @@
         <button-loading></button-loading>
         <button-loading></button-loading>
         <button-loading></button-loading>
+        <span class="bg-red-300 text-yellow-300">sdfa</span>
       </header>
       <main>
         <article>

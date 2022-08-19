@@ -6,7 +6,7 @@
       <span>配置主题</span>
       </div>-->
       <div class="flex flex-wrap gap-12 mt-12">
-        <el-button @click="toast">El Message</el-button>
+        <el-button size="large" @click="toast">El Message</el-button>
         <el-button type="primary" @click="count++">count is: {{ count }}</el-button>
         <el-button type="success" @click="count++">count is: {{ count }}</el-button>
         <el-button type="warning" @click="count++">count is: {{ count }}</el-button>
@@ -14,13 +14,7 @@
         <el-button type="info" @click="count++">count is: {{ count }}</el-button>
       </div>
       <div>
-        <el-tag
-          v-for="tag in tags"
-          :key="tag.name"
-          class="mx-1"
-          closable
-          :type="tag.type"
-        >{{ tag.name }}</el-tag>
+        <el-tag v-for="tag in tags" :key="tag.name" class="mx-1" closable :type="tag.type">{{ tag.name }}</el-tag>
       </div>
       <el-button>
         <template #icon>

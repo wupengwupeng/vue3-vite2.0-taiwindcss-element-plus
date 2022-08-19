@@ -84,7 +84,7 @@ export const onlyNumber: Directive = {
         }
       }
       if (vnode.dirs[0].instance) { // 手动触发双向绑定
-        vnode.dirs[0].instance.$emit('input', this.value);
+        vnode.dirs[0].instance.$emit('update:modelValue', this.value);
       } else {
         vnode.elm.dispatchEvent(new CustomEvent('input', this.value));
       }

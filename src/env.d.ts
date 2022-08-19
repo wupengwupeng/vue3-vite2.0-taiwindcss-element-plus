@@ -45,7 +45,7 @@ declare module "only-number-input" {
 declare module "css-color-function" {
   import { convert } from 'css-color-function'
   const con: any;
-  export default con;
+  export { convert };
 }
 
 

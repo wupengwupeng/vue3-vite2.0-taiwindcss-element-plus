@@ -1,11 +1,11 @@
 <template>
-  <Dialog :visible="visibles" :title="'新增'" width="60%" draggable @submit="handlerSave" @close="handlerClose">sdfasdfas
+  <Dialog :visible="visibles" :title="'新增'" width="60%" @submit="handlerSave" @close="handlerClose">
+    sdfasdfas
   </Dialog>
 </template>
 
 <script lang="ts">
 import { defineComponent, toRefs, ref, reactive, computed, unref, watch, isReactive, isRef } from 'vue'
-
 export default defineComponent({
   props: {
     visible: {

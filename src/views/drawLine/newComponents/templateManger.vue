@@ -19,12 +19,12 @@
                 <el-table-column type="selection" width="55" />
                 <el-table-column label="模板类型">
                   <template #default="{ row }">
-                    <span>{{ row.name.value }}</span>
+                    <span>{{  row.name.value  }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column prop="" label="模板名称">
                   <template #default="{ row }">
-                    <span>{{ row.name.value }}</span>
+                    <span>{{  row.name.value  }}</span>
                   </template>
                 </el-table-column>
 
@@ -32,7 +32,7 @@
                   <template #default="{ row }">
                     <el-input v-if="row.name.isShow" size="small" v-onlyNumber v-focus placeholder="请输入循环层号"
                       v-model="row.name.value" @blur="row.name.isShow = false"></el-input>
-                    <span v-else>{{ row.name.value }}</span>
+                    <span v-else>{{  row.name.value  }}</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, Ref } from 'vue'
-import TemplateManager from '@/components/dialog/Dialog.vue'
+import TemplateManager from '@/components/dialog/index.vue'
 
 
 const props = defineProps({

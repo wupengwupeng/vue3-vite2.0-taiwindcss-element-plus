@@ -15,13 +15,15 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '~/': `${pathSrc}/`,
         '@': path.resolve(__dirname, './src'),
+        'path': 'path-browserify'
         // fs: require.resolve('rollup-plugin-node-builtins')
       },
     },
     css: {
       preprocessorOptions: {
+        // 设置全局的样式
         // scss: {
-        //   additionalData: `@use "@/styles/element/index.scss" as *;`,
+        //   additionalData: `@use "" as *;`,
         // },
       },
     },

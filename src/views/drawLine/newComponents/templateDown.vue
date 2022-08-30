@@ -21,7 +21,7 @@
                   <template #default="{ row }">
                     <el-input v-if="row.name.isShow" size="small" v-onlyNumber v-focus placeholder="请输入循环层号"
                       v-model="row.name.value" @blur="row.name.isShow = false"></el-input>
-                    <span v-else>{{ row.name.value }}</span>
+                    <span v-else>{{  row.name.value  }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column prop="" label="操作" width="100">
@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import { reactive, ref, Ref } from 'vue';
 
-import TemplateDown from '@/components/dialog/Dialog.vue'
+import TemplateDown from '@/components/dialog/index.vue'
 import CustomSelect from '@/components/customSelect/index.vue'
 import TemplateManger from './templateManger.vue'
 const emits = defineEmits(["update:visible"])

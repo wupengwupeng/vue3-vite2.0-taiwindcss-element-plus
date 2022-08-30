@@ -148,6 +148,15 @@ export const routes: Array<RouteRecordRaw> = [
           iconName: 'fn-shezhiq',
         },
         component: () => import('@/views/pageComponent/index.vue')
+      },
+      {
+        path: '/menu',
+        meta: {
+          isShow: true,
+          title: 'menu',
+          iconName: 'fn-shezhiq'
+        },
+        component: () => import('@/views/menu/index.vue')
       }
     ]
   },

@@ -39,10 +39,9 @@
         </div>
         <div class="h-100 w-full bg-yellow-300" v-loading="true"></div>
       </div>
-
-      <DetialDialog v-if="visible" v-model:visible="visible"></DetialDialog>
     </div>
   </main-card>
+  <DetialDialog v-if="visible" v-model:visible="visible"></DetialDialog>
 </template>
 
 <script lang="ts">
@@ -69,6 +68,7 @@ export default defineComponent({
     }
     function handlerOpen() {
       visible.value = true
+      console.log(visible.value, "value")
     }
     return {
       tags,

@@ -1,5 +1,5 @@
 <script setup lang="ts" name="Map">
-import { mock } from './utils';
+// import { mock } from './utils';
 // interface Box {
 //   contents: unknown
 // }
@@ -108,26 +108,26 @@ import { mock } from './utils';
 // }
 // const proxy = new UserTask(123)
 
-type DescribableFunction = {
-  description: string;
-  (someArg: string): string;
-}
-function doSomeThing(fn: DescribableFunction) {
-  console.log(fn.description + '' + fn('12'))
-}
-const obj = {
-  description: '23',
-  fn(a: string) {
-    return a
-  }
+// type DescribableFunction = {
+//   description: string;
+//   (someArg: string): string;
+// }
+// function doSomeThing(fn: DescribableFunction) {
+//   console.log(fn.description + '' + fn('12'))
+// }
+// const obj = {
+//   description: '23',
+//   fn(a: string) {
+//     return a
+//   }
 
-}
-doSomeThing(obj)
+// }
+// doSomeThing(obj)
 
 
-const dataSource = setTimeout(() => {
-  mock(100000)
-}, 3000)
+// const dataSource = setTimeout(() => {
+//   mock(100000)
+// }, 3000)
 </script>
 
 
@@ -135,7 +135,7 @@ const dataSource = setTimeout(() => {
   <MainCard>
     adfs
     <div class="h-500 w-full">
-      <VirtuallList :data="dataSource" itemSize="50">
+      <!-- <VirtuallList :data="dataSource" itemSize="50">
         <template v-slot="{ item, index }">
           <div class="item-container">
             <div class="cell cell-index">{{ index + 1 }}</div>
@@ -144,7 +144,7 @@ const dataSource = setTimeout(() => {
             <div class="cell">{{ item.address }}</div>
           </div>
         </template>
-      </VirtuallList>
+      </VirtuallList> -->
     </div>
   </MainCard>
 </template>

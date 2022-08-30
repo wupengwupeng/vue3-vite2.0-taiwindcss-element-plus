@@ -4,24 +4,10 @@
       <el-menu class="el-menu-vertical-demo" menu-trigger="click" background-color="#272a36" text-color="#e7e7e7"
         :default-active="activeMenu" unique-opened router :collapse="isCollapse">
         <template v-for="(group, index) in routess" :key="index + '1'">
-          <!-- <el-sub-menu v-if="group.children && group.children.length > 0" :key="group.id" :index="group.id">
-            <template #title>
-              <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-              <span>{{ group.name }}</span>
-            </template>
-            <el-menu-item v-for="menu in group.children" :key="menu.id" :index="menu.url">
-              <i class="icon iconfont icon-pointer" style="vertical-align: baseline" />
-              {{ menu.name }}
-            </el-menu-item>
-          </el-sub-menu>
-          <el-menu-item v-else :key="group.id" :index="group.url">
-            <app-svg-icon icon-name="fn-pen" class="w-20 h-20"></app-svg-icon>
-            <span>{{ group.name }}</span>
-          </el-menu-item>-->
           <el-menu-item :index="group.path" @click="handlerRouteAddTags(group)">
             <app-svg-icon :icon-name="group.meta.iconName" class="w-20 h-20"></app-svg-icon>
             <template #title>
-              <span>{{ group.meta.title }}</span>
+              <span>{{  group.meta.title  }}</span>
             </template>
           </el-menu-item>
         </template>

@@ -1,17 +1,29 @@
 <template>
   <div v-elDraggableDialog:[isDraggable]>
-    <el-dialog v-model="visible" :title="title" destroy-on-close v-bind="$attrs" @close="handlerClose">
+    <el-dialog :model-value="visible" :title="title" destroy-on-close v-bind="$attrs" @close="handlerClose">
       <slot />
       <template #footer>
-        <el-button size="small" @click="handlerCansole">{{ cancelText }}</el-button>
-        <el-button size="small" type="primary" @click="handlerSave">{{ confirmText }}</el-button>
+        <div class="flex justify-between">
+          <div>
+            <slot name="footerLeft"></slot>
+          </div>
+          <div>
+            <el-button size="small" @click="handlerCansole">{{ cancelText }}</el-button>
+            <el-button :disabled="isConfirmDisabled" :loading="loading" size="small" type="primary"
+              @click="handlerSave">
+              {{
+                  confirmText
+              }}
+            </el-button>
+          </div>
+        </div>
       </template>
     </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, ref } from 'vue'
+import { defineComponent, toRefs, ref, inject } from 'vue'
 import { useVModels } from '@vueuse/core'
 export default defineComponent({
   name: 'Dialog',
@@ -35,13 +47,19 @@ export default defineComponent({
     isDraggable: {
       type: Boolean,
       default: true
+    },
+    isConfirmDisabled: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['handlerSave', 'close'],
-  setup(props, { emit, attrs }) {
-
-    const { visible, title, confirmText, cancelText, isDraggable } = useVModels(props, emit)
-
+  setup(props, { emit, attrs, slots }) {
+    const { visible, title, confirmText, cancelText, isDraggable, loading } = useVModels(props, emit)
     function handlerClose() {
       visible.value = false
       emit('close')
@@ -59,6 +77,7 @@ export default defineComponent({
       confirmText,
       cancelText,
       isDraggable,
+      loading,
       ...toRefs(attrs),
       handlerClose,
       handlerCansole,

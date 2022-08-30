@@ -1,9 +1,9 @@
 @use "tailwindcss/base";
-// @import "element-plus/dist/index.css";
+@use "element-plus/dist/index.css";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 @use "./taiwindcss/index.scss" as taiwindCss;
-@use "./reboot";
+@use "./taiwindcss/reboot";
 @use "./element/element-plus/index.scss" as elementPlus;
 @use './theme';
 @use './other';

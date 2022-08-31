@@ -6,7 +6,7 @@ const componentsRouter: RouteRecordRaw = {
   component: Layout,
   redirect: "/components/button",
   meta: {
-    icon: "fn-pen",
+    icon: "icon-servers",
     title: "组件集合",
   },
   children: [
@@ -16,7 +16,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/button/index.vue"),
       meta: {
         title: "按钮",
-        icon: "fn-pen"
+        icon: "more"
       },
     },
     {
@@ -25,7 +25,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/animation/index.vue"),
       meta: {
         title: "动画",
-        icon: "fn-pen"
+        icon: "icon-settings"
       },
     },
     {
@@ -34,7 +34,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/flowTest/index.vue"),
       meta: {
         title: "流程图",
-        icon: "fn-pen"
+        icon: "icon-search-mid"
       },
     },
     {
@@ -43,7 +43,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/selectDown/index.vue"),
       meta: {
         title: "树形下拉框",
-        icon: "fn-pen"
+        icon: "icon-cloud-upload"
       },
     },
     {
@@ -52,7 +52,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/tableMerge/index.vue"),
       meta: {
         title: "table合并",
-        icon: "fn-pen"
+        icon: "fn-tuodon"
       },
     },
     {
@@ -61,7 +61,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/editWang/index.vue"),
       meta: {
         title: "富文本",
-        icon: "fn-pen"
+        icon: "fn-restart"
       },
     },
     {
@@ -70,7 +70,7 @@ const componentsRouter: RouteRecordRaw = {
       component: () => import("@/views/components/doubbleColor/index.vue"),
       meta: {
         title: "双色球",
-        icon: "fn-pen"
+        icon: "fn-email"
       },
     },
   ]

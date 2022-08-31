@@ -5,8 +5,8 @@ const homeRouter = {
   component: Layout,
   redirect: "/home",
   meta: {
-    icon: "fn-pen",
-    title: "其他管理",
+    icon: "fn-tuodon",
+    title: "主页",
     i18n: false,
     rank: 14
   },
@@ -18,7 +18,7 @@ const homeRouter = {
       meta: {
         title: "主页",
         i18n: false,
-        icon: "fn-shezhiq"
+        icon: "fn-tuodon"
       },
     },
   ]

@@ -18,7 +18,7 @@ export function getDefaultRootState() {
   const state: RootState = {
     name: '',
     theme,
-    routes: setRoutes(routes),
+    routes: [], //setRoutes(routes)
     tags: []
   } as any
   return state

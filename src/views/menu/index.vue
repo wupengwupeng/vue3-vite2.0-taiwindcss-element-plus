@@ -48,4 +48,5 @@ import { useRoute } from "vue-router";
 console.log(menuData, "menuData")
 
 const route = useRoute()
+console.log(route, "route")
 </script>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VirtualList from 'vue3-virtual-scroll-list';
 import Item from './Item.vue'
+import VueUseVirtualList from './vueuseVirtualList.vue'
 import { Random } from 'mockjs';
 import genUniqueId from './utils/gen-unique-id'
 import getSentences from './utils/sentences'
@@ -81,6 +82,9 @@ onMounted(() => {
         <div class="loader"></div>
       </template>
     </VirtualList>
+
+    <div class="w-full h-2"></div>
+    <VueUseVirtualList />
   </MainCard>
 </template>
 

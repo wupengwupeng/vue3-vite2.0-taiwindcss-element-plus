@@ -26,7 +26,7 @@ const handleScrollTo = () => {
 
 <template>
   <div class="w-500 h-500 bg-red-50">
-    <div v-bind="containerProps" class="h-full">
+    <div v-bind="containerProps" class="w-full h-full">
       <div v-bind="wrapperProps">
         <div v-for="item in list" :key="item.index" style="height: 10px">
           {{ item.index }} Row: {{ item.data }}

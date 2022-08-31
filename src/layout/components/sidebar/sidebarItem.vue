@@ -3,15 +3,14 @@
     hasOneShowingChild(props.item!.children, props.item!) &&
     (!onlyOneChild.children || onlyOneChild.noShowingChildren)
   ">
-    <el-menu-item v-bind="$attrs" :index="resolvePath(onlyOneChild.path)"
-      @click="handlerMenuItem(onlyOneChild, basePath)">
+    <el-menu-item :index="resolvePath(onlyOneChild.path)" @click="handlerMenuItem(onlyOneChild, basePath)">
+      <app-svg-icon :icon-name="onlyOneChild.meta.icon"></app-svg-icon>
       <template #title>
-        <app-svg-icon :icon-name="onlyOneChild.meta.icon"></app-svg-icon>
         <span>{{ onlyOneChild.meta?.title }}</span>
       </template>
     </el-menu-item>
   </template>
-  <el-sub-menu v-else v-bind="$attrs" :index="resolvePath(props.item!.path)" popper-append-to-body>
+  <el-sub-menu v-else :index="resolvePath(props.item!.path)" popper-append-to-body>
     <template #title>
       <app-svg-icon :icon-name="item.meta.icon"></app-svg-icon>
       <span>{{ item?.meta?.title }}</span>

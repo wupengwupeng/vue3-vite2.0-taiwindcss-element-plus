@@ -8,7 +8,6 @@ const aboutRouter = {
     icon: "fn-pen",
     title: "其他管理",
     i18n: false,
-    rank: 14
   },
   children: [
     {

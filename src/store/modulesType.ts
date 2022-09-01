@@ -10,5 +10,6 @@ export enum RootMutations {
   SET_TOKEN = 'SET_TOKEN',
   SET_USER = 'SET_USER',
   LOGOUT = 'LOGOUT',
-  SET_TAGS = 'SET_TAGS'
+  SET_TAGS = 'SET_TAGS',
+  SET_NAV = 'SET_NAV'
 }

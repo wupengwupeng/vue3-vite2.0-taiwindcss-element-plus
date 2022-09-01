@@ -73,6 +73,24 @@ const componentsRouter: RouteRecordRaw = {
         icon: "fn-email"
       },
     },
+    {
+      path: "/components/menu",
+      name: "Menu",
+      component: () => import("@/views/components/menu/index.vue"),
+      meta: {
+        title: "菜单",
+        icon: "icon-apps-add"
+      },
+    },
+    {
+      path: "/components/dialog",
+      name: "Dialog",
+      component: () => import("@/views/components/dialog/index.vue"),
+      meta: {
+        title: "侧边栏&弹框",
+        icon: "icon-apps-add"
+      },
+    },
   ]
 }
 

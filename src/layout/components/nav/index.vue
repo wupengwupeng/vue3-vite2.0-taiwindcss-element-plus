@@ -1,18 +1,20 @@
 <template>
   <div class="w-full shadow-inner flex flex-col">
-    <div class="flex h-60 justify-between">
-      <div class="flex-1 flex items-center px-12 h-full">
+    <div class=" flex h-60 justify-between">
+      <div v-if="!isHorizontalNav" class="flex-1 flex items-center px-12 h-full">
         <navIcon v-model="isCollapse"></navIcon>
         <div class="ml-12">
           <nav-bread-crumb-vue :menus="menus"></nav-bread-crumb-vue>
         </div>
       </div>
-      <div class="w-200 flex items-center justify-between px-12">
-        <div class="flex items-center">
-          <ChangeTheme />
-          <span>切换主题</span>
-        </div>
+      <div v-if="isHorizontalNav" class="flex-1 flex items-center h-full overflow-hidden ">
+        <horizontalVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></horizontalVue>
+      </div>
+      <div class="w-150 flex gap-x-12 items-center justify-between px-12">
         <el-avatar :size="50" :src="circleUrl" />
+        <el-button size="default" style="borderStyle: none" @click="visible = true">
+          <app-svg-icon iconName="fn-shezhiq"></app-svg-icon>
+        </el-button>
       </div>
     </div>
 
@@ -33,6 +35,7 @@
         <app-svg-icon class="rotate-180" iconName="arrow-left"></app-svg-icon>
       </el-button>
     </div>
+    <settingDrawerVue v-if="visible" v-model:visible="visible"></settingDrawerVue>
   </div>
 </template>
 
@@ -45,21 +48,30 @@ import { useStore } from '@/store/index';
 import { RootMutations } from '@/store/type';
 import { useResizeObserver, useDebounceFn } from "@vueuse/core";
 import navBreadCrumbVue from './navBreadCrumb.vue';
+import settingDrawerVue from './settingDrawer.vue';
+import horizontalVue from '../sidebar/horizontal.vue';
 export default defineComponent({
   components: {
     navIcon,
     navBreadCrumbVue,
+    settingDrawerVue,
+    horizontalVue,
   },
   props: {
     modelValue: {
       type: Boolean,
       default: false,
     },
+    isHorizontalNav: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const { modelValue } = toRefs(props)
+    const visible = ref(false)
     const scrollbarDom = ref();
     const instance: any = getCurrentInstance();
     const tabDom = ref();
@@ -198,6 +210,7 @@ export default defineComponent({
       getMenus()
     })
     return {
+      visible,
       scrollbarDom,
       tabDom,
       tags,

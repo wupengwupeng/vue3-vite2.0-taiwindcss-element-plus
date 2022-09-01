@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full">
-    <el-menu default-active="2" class="w-400">
+  <div class="w-full  grid  grid-cols-2  gap-12">
+    <el-menu default-active="2" class="w-200">
       <el-sub-menu index="1">
         <template #title>
           <app-svg-icon icon-name="fn-pen"></app-svg-icon>
@@ -30,14 +30,14 @@
         </el-sub-menu>
       </el-sub-menu>
     </el-menu>
-    <div class="w-full h-20">
-      asf
-    </div>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu class="w-400" :default-active="route.path" unique-opened router mode="vertical">
         <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
+    <el-menu :default-active="route.path" unique-opened router mode="horizontal">
+      <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
+    </el-menu>
   </div>
 </template>
 

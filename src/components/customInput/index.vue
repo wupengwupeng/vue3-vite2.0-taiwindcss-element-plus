@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts" name="OnlyNumberInput">
-import { ref, computed, useSlots, PropType } from 'vue'
+import { ref, computed, useSlots, PropType, Ref } from 'vue'
 export type Arg = {
   maxLength?: number
   reg?: RegExp
@@ -18,7 +18,7 @@ const props = defineProps({
     default: ''
   },
   argOptions: {
-    type: Object as PropType<Arg>,
+    type: Object as PropType<Arg | any>,
     default: () => {
       // maxLength: 5,
       // reg: /[^\d\,]/g

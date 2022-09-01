@@ -1,13 +1,11 @@
 <template>
   <div class="h-screen w-screen flex" v-resize>
-    <div class="flex flex-col" v-if="isHideSideBar">
-      <div class="h-60 w-full flex items-center justify-center">
-        <el-image :style="elImage" :src="logoUrl" fit="contain" />
-      </div>
+    <div class="flex flex-col" v-if="isHideSideBar && isHorizontalNav">
+      <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
       <SideBar :isCollapse="isCollapse" />
     </div>
     <div class="flex-1 flex flex-col overflow-hidden">
-      <NavBar v-model="isCollapse" />
+      <NavBar v-model="isCollapse" :isHorizontalNav="!isHorizontalNav" />
       <div class="flex-1 overflow-hidden">
         <AppMain></AppMain>
       </div>
@@ -20,23 +18,28 @@
 import { defineComponent, reactive, ref, toRef, computed, watch } from 'vue'
 import SideBar from './components/sidebar/index.vue'
 import NavBar from './components/nav/index.vue'
+import logoVue from './components/nav/logo.vue'
 import AppMain from './components/appMain/index.vue'
 import { emitter } from "@/utils/mitt";
 import { deviceDetection } from '@/utils/index'
-import logoUrl from '@/assets/logo.png'
+import { useStore } from '@/store'
+
 export default defineComponent({
   components: {
     SideBar,
     NavBar,
     AppMain,
+    logoVue,
   },
   setup() {
     const isCollapse = ref()
     const isHideSideBar = ref(true)
     const isMobile = deviceDetection()
-    const elImage = computed(() => {
-      return !isCollapse.value ? { width: '200px', height: '60px' } : { width: '63px', height: '60px' }
+    const store = useStore()
+    const isHorizontalNav = computed(() => {
+      return store.state.config.nav === '1'
     })
+
     // 监听容器
     emitter.on("resize", ({ detail }) => {
       if (isMobile) return;
@@ -57,9 +60,9 @@ export default defineComponent({
       }
     });
     return {
+      isHorizontalNav,
       isCollapse,
-      logoUrl,
-      elImage,
+
       isHideSideBar,
     }
   },

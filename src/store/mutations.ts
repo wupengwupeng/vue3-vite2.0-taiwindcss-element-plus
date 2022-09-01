@@ -33,8 +33,10 @@ const mutations: MutationTree<RootState> = {
   },
   [RootMutations.SET_NAV](state, type) {
     state.config.nav = type
+  },
+  [RootMutations.SET_DATDARK](state, type) {
+    state.config.dayDark = type
   }
-
 }
 
 export default mutations

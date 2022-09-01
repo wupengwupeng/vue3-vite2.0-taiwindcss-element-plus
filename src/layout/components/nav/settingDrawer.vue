@@ -22,15 +22,15 @@
     <el-divider>主题</el-divider>
     <div class="flex w-full justify-center">
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon"
-        :inactive-icon="lightIcon" />
+        :inactive-icon="lightIcon" @change="dataThemeChange" />
     </div>
   </custom-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, Ref, defineComponent, h } from 'vue'
+import { ref, computed, Ref, defineComponent, h, watch } from 'vue'
 import { useStore } from '@/store'
-import { setNav, getNav } from '@/utils/storage'
+import { setNav, setDayDark } from '@/utils/storage'
 import { RootMutations } from '@/store/type'
 import AppSvgIcon from '@/components/appSvgIcon/index.vue';
 const props = defineProps({
@@ -41,8 +41,10 @@ const props = defineProps({
 })
 const emits = defineEmits(["update:visible"])
 const store = useStore()
-
-const lightDark = ref(false)
+const body = document.documentElement as HTMLElement;
+const lightDark = computed(() => {
+  return store.state.config.dayDark === '2'
+})
 
 const isAcitveNav: Ref<string> = ref(store.state.config.nav)
 
@@ -76,4 +78,16 @@ const handlerSaveNav = (type: string) => {
   store.commit(RootMutations.SET_NAV, type)
   setNav(type)
 }
+const dataThemeChange = (type: boolean) => {
+  const newType = type ? '2' : '1'
+  store.commit(RootMutations.SET_DATDARK, newType)
+  setDayDark(newType)
+}
+watch(lightDark, () => {
+  if (lightDark.value) {
+    body.setAttribute("data-theme", "dark");
+  } else {
+    body.setAttribute("data-theme", "");
+  }
+}, { immediate: true })
 </script>

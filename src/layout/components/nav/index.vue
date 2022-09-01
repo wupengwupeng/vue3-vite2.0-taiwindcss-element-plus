@@ -35,7 +35,7 @@
         <app-svg-icon class="rotate-180" iconName="arrow-left"></app-svg-icon>
       </el-button>
     </div>
-    <settingDrawerVue v-if="visible" v-model:visible="visible"></settingDrawerVue>
+    <settingDrawerVue ref="settingRef" v-model:visible="visible"></settingDrawerVue>
   </div>
 </template>
 
@@ -72,6 +72,7 @@ export default defineComponent({
     const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const { modelValue } = toRefs(props)
     const visible = ref(false)
+    const settingRef = ref()
     const scrollbarDom = ref();
     const instance: any = getCurrentInstance();
     const tabDom = ref();
@@ -200,6 +201,7 @@ export default defineComponent({
         color: getColor
       }
       initTags(initTag)
+      console.log(settingRef.value, "settting")
     })
     watch(route, () => {
       getMenus();
@@ -210,6 +212,7 @@ export default defineComponent({
       getMenus()
     })
     return {
+      settingRef,
       visible,
       scrollbarDom,
       tabDom,

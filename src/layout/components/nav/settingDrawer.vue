@@ -19,14 +19,20 @@
       <ChangeTheme />
       <span>切换主题</span>
     </div>
+    <el-divider>主题</el-divider>
+    <div class="flex w-full justify-center">
+      <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon"
+        :inactive-icon="lightIcon" />
+    </div>
   </custom-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, Ref } from 'vue'
+import { ref, computed, Ref, defineComponent, h } from 'vue'
 import { useStore } from '@/store'
 import { setNav, getNav } from '@/utils/storage'
 import { RootMutations } from '@/store/type'
+import AppSvgIcon from '@/components/appSvgIcon/index.vue';
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -36,8 +42,24 @@ const props = defineProps({
 const emits = defineEmits(["update:visible"])
 const store = useStore()
 
+const lightDark = ref(false)
+
 const isAcitveNav: Ref<string> = ref(store.state.config.nav)
 
+const darkIcon = defineComponent({
+  setup() {
+    return () => {
+      return h(AppSvgIcon, { iconName: 'dark' })
+    }
+  }
+})
+const lightIcon = defineComponent({
+  setup() {
+    return () => {
+      return h(AppSvgIcon, { iconName: 'day' })
+    }
+  }
+})
 const navOneStyle = computed(() => {
   return isAcitveNav.value === '1' ? 'border-2 border-blue-500' : ''
 })

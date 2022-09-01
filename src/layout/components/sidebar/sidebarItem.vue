@@ -21,15 +21,15 @@
 </template>
 
 <script setup lang="ts" name="SideBarItem">
-import { ref, PropType } from 'vue'
+import { ref, PropType, Ref } from 'vue'
 import path from "path"
-import { useRoute } from 'vue-router'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
 import type { childrenType } from '../../index.type'
 const props = defineProps({
   item: {
-    type: Object as PropType<childrenType>
+    type: Object as PropType<any>,
+    default: () => { }
   },
   isNest: {
     type: Boolean,
@@ -42,7 +42,7 @@ const props = defineProps({
 });
 const emits = defineEmits(["handlerItem"])
 
-const onlyOneChild: childrenType = ref(null);
+const onlyOneChild: Ref<childrenType> = ref(null);
 const store = useStore()
 
 function handlerRouteAddTags(tag: any) {

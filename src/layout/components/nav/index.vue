@@ -2,18 +2,9 @@
   <div class="w-full shadow-inner flex flex-col">
     <div class="flex h-60 justify-between">
       <div class="flex-1 flex items-center px-12 h-full">
-        <el-radio-group size="small" v-model="isCollapse">
-          <el-radio-button :label="false">expand</el-radio-button>
-          <el-radio-button :label="true">collapse</el-radio-button>
-        </el-radio-group>
+        <navIcon v-model="isCollapse"></navIcon>
         <div class="ml-12">
-          <el-breadcrumb separator=">">
-            <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }"
-              @click="handlerClickBread(item)">{{
-                  item.meta.title
-                    ? item.meta.title : '主页'
-              }}</el-breadcrumb-item>
-          </el-breadcrumb>
+          <nav-bread-crumb-vue :menus="menus"></nav-bread-crumb-vue>
         </div>
       </div>
       <div class="w-200 flex items-center justify-between px-12">
@@ -47,13 +38,18 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted, CSSProperties, getCurrentInstance } from 'vue';
+import navIcon from './navIcon.vue'
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index';
 import { RootMutations } from '@/store/type';
 import { useResizeObserver, useDebounceFn } from "@vueuse/core";
-import utils from '@/utils/index'
+import navBreadCrumbVue from './navBreadCrumb.vue';
 export default defineComponent({
+  components: {
+    navIcon,
+    navBreadCrumbVue,
+  },
   props: {
     modelValue: {
       type: Boolean,
@@ -125,7 +121,13 @@ export default defineComponent({
       if (!instance.refs["dynamic" + index]) {
         return;
       }
-      const tabItemEl = instance.refs["dynamic" + index][0]?.$el;
+      // TODO development and production is different
+      let tabItemEl;
+      if (process.env.NODE_ENV === 'development') {
+        tabItemEl = instance.refs["dynamic" + index][0]?.$el;
+      } else {
+        tabItemEl = instance._.refs["dynamic" + index][0]?.$el;
+      }
       const tabItemElOffsetLeft = (tabItemEl as HTMLElement)?.offsetLeft;
       const tabItemOffsetWidth = (tabItemEl as HTMLElement)?.offsetWidth;
 
@@ -159,20 +161,8 @@ export default defineComponent({
 
       }
     };
-
-    // 点击面包屑的时候
-    function handlerClickBread(item: any) {
-      if (!utils.isEmportyObject(item.meta)) return
-      const tags: any = {
-        name: '主页',
-        path: item.path,
-        type: '',
-        color: '#fff'
-      }
-      store.commit(RootMutations.SET_TAGS, tags)
-    }
     function getMenus() {
-      state.menus = route.matched.filter((item: any) => item.meta && item.meta.title !== '主页');
+      state.menus = route.matched.filter((item: any) => item.path !== '/');
     }
     function handlerClickTag(tag: any): void {
       router.push(tag.path)
@@ -223,7 +213,6 @@ export default defineComponent({
       handleScroll,
       moveToView,
       moveToTags,
-      handlerClickBread,
     }
   },
 })

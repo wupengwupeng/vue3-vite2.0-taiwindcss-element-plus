@@ -47,6 +47,7 @@ const store = useStore()
 
 function handlerRouteAddTags(tag: any) {
   const tags = {
+    ...tag,
     name: tag.meta.title,
     path: tag.path,
     type: '',
@@ -88,7 +89,7 @@ function resolvePath(routePath: any) {
   }
 }
 function handlerMenuItem(data: childrenType, basePath: string) {
-  const newDate = JSON.parse(JSON.stringify({ ...data, path: basePath }))
+  const newDate = { ...data, path: basePath }
   handlerRouteAddTags(newDate)
 }
 </script>

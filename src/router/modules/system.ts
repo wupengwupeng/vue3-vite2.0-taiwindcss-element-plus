@@ -23,7 +23,7 @@ const systemRouter = {
     },
     {
       path: "/system/menu",
-      name: "Menu",
+      name: "Menus", // ?menu
       redirect: "/system/menu/test",
       component: () => import("@/views/system/menu/index.vue"),
       meta: {

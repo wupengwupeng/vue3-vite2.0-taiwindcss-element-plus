@@ -11,13 +11,12 @@
         <horizontalVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></horizontalVue>
       </div>
       <div class="w-auto flex items-center justify-between ">
-        <searchVue></searchVue>
-        <notice></notice>
-        <screenFullVue>
-        </screenFullVue>
-        <headPicture></headPicture>
-        <settingVue @openSetting="visible = true">
-        </settingVue>
+        <searchVue />
+        <notice />
+        <screenFullVue />
+        <translateVue />
+        <headPicture />
+        <settingVue @openSetting="visible = true" />
       </div>
     </div>
     <!-- 标签-->
@@ -58,6 +57,7 @@ import settingVue from './setting/index.vue'
 import headPicture from './headPicture/index.vue'
 import notice from './notice/index.vue'
 import searchVue from './search/index.vue'
+import translateVue from './translate/index.vue'
 export default defineComponent({
   components: {
     navIcon,
@@ -69,6 +69,7 @@ export default defineComponent({
     headPicture,
     notice,
     searchVue,
+    translateVue,
   },
   props: {
     modelValue: {
@@ -214,7 +215,6 @@ export default defineComponent({
         color: getColor
       }
       initTags(initTag)
-      console.log(settingRef.value, "settting")
     })
     watch(route, () => {
       getMenus();

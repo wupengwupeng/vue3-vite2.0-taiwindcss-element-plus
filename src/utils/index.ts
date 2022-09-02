@@ -79,15 +79,15 @@ export function setRoutes(routes: RouteRecordRaw[]) {
 
 
 type TreeListRow = {
-  id?: string,
-  pid?: string,
-  name?: string,
-  url?: string,
-  icon?: string,
+  id?: string
+  pid?: string
+  name?: string
+  url?: string
+  icon?: string
   children?: Array<TreeListRow>
 }
 // tree to list
-export function treeToList(tree: TreeListRow[]) {
+export function treeToList(tree: Array<TreeListRow | any>) {
   const newTree: TreeListRow[] = tree.concat([])
   const data = []
   while (newTree.length !== 0) {

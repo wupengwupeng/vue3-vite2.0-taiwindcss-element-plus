@@ -3,11 +3,11 @@
     <el-dialog :model-value="visible" :title="title" destroy-on-close v-bind="$attrs" @close="handlerClose">
       <slot />
       <template #footer>
-        <div class="flex justify-between">
-          <div>
+        <div class="footer-content">
+          <div class="footer-left">
             <slot name="footerLeft"></slot>
           </div>
-          <div>
+          <div v-if="footerRight">
             <el-button size="small" @click="handlerCansole">{{ cancelText }}</el-button>
             <el-button :disabled="isConfirmDisabled" :loading="loading" size="small" type="primary"
               @click="handlerSave">
@@ -55,11 +55,16 @@ export default defineComponent({
     loading: {
       type: Boolean,
       default: false
+    },
+    // 是否有footer右边的dom
+    footerRight: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ['handlerSave', 'close'],
   setup(props, { emit, attrs, slots }) {
-    const { visible, title, confirmText, cancelText, isDraggable, loading } = useVModels(props, emit)
+    const { visible, title, confirmText, cancelText, isDraggable, loading, footerRight } = useVModels(props, emit)
     function handlerClose() {
       visible.value = false
       emit('close')
@@ -78,6 +83,7 @@ export default defineComponent({
       cancelText,
       isDraggable,
       loading,
+      footerRight,
       ...toRefs(attrs),
       handlerClose,
       handlerCansole,
@@ -86,3 +92,16 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .footer-left {
+    flex: 1;
+    overflow: hidden;
+  }
+}
+</style>

@@ -34,8 +34,6 @@ export default defineComponent({
       tags: store.state.tags,
       menuData: defaultRoutes
     })
-
-
     return {
       route,
       isCollapse,

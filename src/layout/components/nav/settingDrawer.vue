@@ -24,11 +24,13 @@
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon"
         :inactive-icon="lightIcon" @change="dataThemeChange" />
     </div>
+    <el-button @click="toggle()">切换主题</el-button>
   </custom-drawer>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, Ref, defineComponent, h, watch } from 'vue'
+import { useDark, useToggle } from '@vueuse/core'
 import { useStore } from '@/store'
 import { setNav, setDayDark } from '@/utils/storage'
 import { RootMutations } from '@/store/type'
@@ -40,6 +42,8 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(["update:visible"])
+const isDark = useDark()
+const toggle = useToggle(isDark)
 const store = useStore()
 const body = document.documentElement as HTMLElement;
 const lightDark = computed(() => {

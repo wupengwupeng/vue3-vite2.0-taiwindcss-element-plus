@@ -23,7 +23,7 @@ const systemRouter = {
     },
     {
       path: "/system/menu",
-      name: "Menu",
+      name: "Menus", // ?menu
       redirect: "/system/menu/test",
       component: () => import("@/views/system/menu/index.vue"),
       meta: {
@@ -37,7 +37,7 @@ const systemRouter = {
           name: "Test",
           component: () => import("@/views/system/menu/index.vue"),
           meta: {
-            title: "菜单管理下面的三级菜单1",
+            title: "三级菜单1",
             i18n: false,
             icon: "fn-shezhiq"
           },
@@ -47,7 +47,7 @@ const systemRouter = {
           name: "Name",
           component: () => import("@/views/system/menu/index.vue"),
           meta: {
-            title: "菜单管理下面的三级菜单2",
+            title: "三级菜单2",
             i18n: false,
             icon: "fn-shezhiq"
           },

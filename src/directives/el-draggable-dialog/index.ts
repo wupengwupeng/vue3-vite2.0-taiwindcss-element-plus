@@ -3,11 +3,8 @@ import { Directive, nextTick } from 'vue';
 export const elDraggableDialog: Directive = {
   async mounted(el, _, vnode) {
     await nextTick()
-    console.log(document, "document")
-    console.log(el, "el")
     if (!_.arg) return
     const dragDom = document.querySelector('.el-dialog') as HTMLElement
-    console.log(dragDom, "dragDom")
     const dialogHeaderEl = document.querySelector('.el-dialog__header') as HTMLElement
     // dragDom.style.backgroundColor = '#eeeeee'
     dragDom.style.cssText += ';top:0px;'

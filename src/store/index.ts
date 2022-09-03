@@ -4,7 +4,7 @@ import { createStore, useStore as baseUseStore } from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import { RootState } from './type'
-import { getTheme } from '@/utils/storage'
+import { getTheme, getNav, getDayDark } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
 import { changeTheme, setRoutes } from '@/utils/index'
 import { routes } from '@/router'
@@ -18,8 +18,12 @@ export function getDefaultRootState() {
   const state: RootState = {
     name: '',
     theme,
-    routes: setRoutes(routes),
-    tags: []
+    routes: [], //setRoutes(routes)
+    tags: [],
+    config: {
+      nav: getNav() || '1',// 导航条类型 1竖屏2横屏
+      dayDark: getDayDark() || '1'
+    }
   } as any
   return state
 }

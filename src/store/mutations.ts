@@ -30,8 +30,13 @@ const mutations: MutationTree<RootState> = {
       const index = state.tags.findIndex(res => res.name === tag)
       state.tags.splice(index, 1)
     }
+  },
+  [RootMutations.SET_NAV](state, type) {
+    state.config.nav = type
+  },
+  [RootMutations.SET_DATDARK](state, type) {
+    state.config.dayDark = type
   }
-
 }
 
 export default mutations

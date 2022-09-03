@@ -5,6 +5,10 @@ import printJS from 'print-js' // TODO
 import type { App, Plugin } from 'vue'
 import { shadeBgColor, writeNewStyle, createNewStyle } from '@/utils/theme/index'
 
+interface deviceInter {
+  match: Fn;
+}
+
 const modules = import.meta.globEager('./modules/*.ts')
 const newObj: any = {};
 for (const key in modules) {
@@ -75,15 +79,15 @@ export function setRoutes(routes: RouteRecordRaw[]) {
 
 
 type TreeListRow = {
-  id?: string,
-  pid?: string,
-  name?: string,
-  url?: string,
-  icon?: string,
+  id?: string
+  pid?: string
+  name?: string
+  url?: string
+  icon?: string
   children?: Array<TreeListRow>
 }
 // tree to list
-export function treeToList(tree: TreeListRow[]) {
+export function treeToList(tree: Array<TreeListRow | any>) {
   const newTree: TreeListRow[] = tree.concat([])
   const data = []
   while (newTree.length !== 0) {
@@ -150,6 +154,21 @@ export function isMobile(): boolean {
   const rect = body.getBoundingClientRect() as DOMRect
   return rect.width - RATIO < WIDTH
 }
+// 检测设备类型(手机返回true,反之)
+export const deviceDetection = () => {
+  const sUserAgent: deviceInter = navigator.userAgent.toLowerCase();
+  // const bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+  const bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+  const bIsMidp = sUserAgent.match(/midp/i) == "midp";
+  const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+  const bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+  const bIsAndroid = sUserAgent.match(/android/i) == "android";
+  const bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+  const bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+  return (
+    bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM
+  );
+};
 
 // print-js
 export function printJs({ ...org }) {

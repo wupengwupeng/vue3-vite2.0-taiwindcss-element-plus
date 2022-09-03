@@ -65,7 +65,7 @@ export function isEmportyObject(obj: any): boolean {
  * @param that 执行上下文
  * @param immediate 是否立即执行
  */
-export function debounce(func: any, wait: any, that: any, immediate: boolean) {
+export function debounce(func: any, wait: any, that?: any, immediate?: boolean) {
   let timeout: any, params: any, context: any, timestamp: any, result: any;
 
   context = that;
@@ -77,6 +77,7 @@ export function debounce(func: any, wait: any, that: any, immediate: boolean) {
     if (last < wait && last > 0) {
       timeout = setTimeout(later, wait - last);
     } else {
+      // 大于就执行
       timeout = null;
       // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
       if (!immediate) {

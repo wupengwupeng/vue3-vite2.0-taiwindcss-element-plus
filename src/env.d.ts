@@ -48,6 +48,10 @@ declare module "css-color-function" {
   export { convert };
 }
 
+declare interface Fn<T = any, R = T> {
+  (...arg: T[]): R;
+}
+
 
 
 

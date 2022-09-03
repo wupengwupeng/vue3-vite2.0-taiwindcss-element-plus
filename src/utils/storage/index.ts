@@ -1,8 +1,21 @@
 import storage from 'store'
 
 const THEME = 'THEME'
+const SETTINGNAV = 'SETTINGNAV'
+const DAYDARK = 'DAYDARK'
 
 
+// 设置主题色
 export const getTheme = (): string => storage.get(THEME, '')
 export const setTheme = (theme: string) => storage.set(THEME, theme)
+export const removeTheme = () => storage.remove(THEME)
 
+// 设置框架的结构
+export const getNav = (): string => storage.get(SETTINGNAV, '')
+export const setNav = (type: string) => storage.set(SETTINGNAV, type)
+export const removeNav = () => storage.remove(SETTINGNAV)
+
+// 设置主题
+export const getDayDark = (): string => storage.get(DAYDARK, '')
+export const setDayDark = (theme: string) => storage.set(DAYDARK, theme)
+export const removeDayDark = () => storage.remove(DAYDARK)

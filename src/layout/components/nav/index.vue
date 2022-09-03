@@ -1,30 +1,25 @@
 <template>
   <div class="w-full shadow-inner flex flex-col">
-    <div class="flex h-60 justify-between">
-      <div class="flex-1 flex items-center px-12 h-full">
-        <el-radio-group size="small" v-model="isCollapse">
-          <el-radio-button :label="false">expand</el-radio-button>
-          <el-radio-button :label="true">collapse</el-radio-button>
-        </el-radio-group>
+    <div class=" flex h-58 justify-between">
+      <div v-if="!isHorizontalNav" class="flex-1 flex items-center px-12 h-full">
+        <navIcon v-model="isCollapse"></navIcon>
         <div class="ml-12">
-          <el-breadcrumb separator=">">
-            <el-breadcrumb-item v-for="(item, index) in menus" :key="index" :to="{ path: item.path }"
-              @click="handlerClickBread(item)">{{
-                  item.meta.title
-                    ? item.meta.title : '主页'
-              }}</el-breadcrumb-item>
-          </el-breadcrumb>
+          <nav-bread-crumb-vue :menus="menus"></nav-bread-crumb-vue>
         </div>
       </div>
-      <div class="w-200 flex items-center justify-between px-12">
-        <div class="flex items-center">
-          <ChangeTheme />
-          <span>切换主题</span>
-        </div>
-        <el-avatar :size="50" :src="circleUrl" />
+      <div v-if="isHorizontalNav" class="flex-1 flex items-center h-full overflow-hidden ">
+        <horizontalVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></horizontalVue>
+      </div>
+      <div class="w-auto flex items-center justify-between ">
+        <searchVue />
+        <notice />
+        <screenFullVue />
+        <translateVue />
+        <headPicture />
+        <settingVue @openSetting="visible = true" />
       </div>
     </div>
-
+    <!-- 标签-->
     <div class="h-40 flex items-center bg-white shadow px-12  w-full border-t">
       <el-button size="small" @click="handleScroll(180)">
         <app-svg-icon iconName="arrow-left"></app-svg-icon>
@@ -42,28 +37,56 @@
         <app-svg-icon class="rotate-180" iconName="arrow-left"></app-svg-icon>
       </el-button>
     </div>
+    <settingDrawerVue ref="settingRef" v-model:visible="visible"></settingDrawerVue>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch, computed, toRefs, reactive, onBeforeMount, unref, Ref, onMounted, CSSProperties, getCurrentInstance } from 'vue';
+import navIcon from './navIcon.vue'
 import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index';
 import { RootMutations } from '@/store/type';
 import { useResizeObserver, useDebounceFn } from "@vueuse/core";
-import utils from '@/utils/index'
+import navBreadCrumbVue from './navBreadCrumb.vue';
+import settingDrawerVue from './settingDrawer.vue';
+import horizontalVue from '../sidebar/horizontal.vue';
+import screenFullVue from './screenfull/index.vue';
+import settingVue from './setting/index.vue'
+import headPicture from './headPicture/index.vue'
+import notice from './notice/index.vue'
+import searchVue from './search/index.vue'
+import translateVue from './translate/index.vue'
 export default defineComponent({
+  components: {
+    navIcon,
+    navBreadCrumbVue,
+    settingDrawerVue,
+    horizontalVue,
+    screenFullVue,
+    settingVue,
+    headPicture,
+    notice,
+    searchVue,
+    translateVue,
+  },
   props: {
     modelValue: {
       type: Boolean,
       default: false,
     },
+    isHorizontalNav: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const getColor: string = document.documentElement.style.getPropertyValue('--el-tag-bg-color') as string
     const { modelValue } = toRefs(props)
+    const visible = ref(false)
+    const settingRef = ref()
     const scrollbarDom = ref();
     const instance: any = getCurrentInstance();
     const tabDom = ref();
@@ -125,7 +148,13 @@ export default defineComponent({
       if (!instance.refs["dynamic" + index]) {
         return;
       }
-      const tabItemEl = instance.refs["dynamic" + index][0]?.$el;
+      // TODO development and production is different
+      let tabItemEl;
+      if (process.env.NODE_ENV === 'development') {
+        tabItemEl = instance.refs["dynamic" + index][0]?.$el;
+      } else {
+        tabItemEl = instance._.refs["dynamic" + index][0]?.$el;
+      }
       const tabItemElOffsetLeft = (tabItemEl as HTMLElement)?.offsetLeft;
       const tabItemOffsetWidth = (tabItemEl as HTMLElement)?.offsetWidth;
 
@@ -159,20 +188,8 @@ export default defineComponent({
 
       }
     };
-
-    // 点击面包屑的时候
-    function handlerClickBread(item: any) {
-      if (!utils.isEmportyObject(item.meta)) return
-      const tags: any = {
-        name: '主页',
-        path: item.path,
-        type: '',
-        color: '#fff'
-      }
-      store.commit(RootMutations.SET_TAGS, tags)
-    }
     function getMenus() {
-      state.menus = route.matched.filter((item: any) => item.meta && item.meta.title !== '主页');
+      state.menus = route.matched.filter((item: any) => item.path !== '/');
     }
     function handlerClickTag(tag: any): void {
       router.push(tag.path)
@@ -208,6 +225,8 @@ export default defineComponent({
       getMenus()
     })
     return {
+      settingRef,
+      visible,
       scrollbarDom,
       tabDom,
       tags,
@@ -223,7 +242,6 @@ export default defineComponent({
       handleScroll,
       moveToView,
       moveToTags,
-      handlerClickBread,
     }
   },
 })

@@ -1,5 +1,9 @@
 <template>
   <div>
-    菜单管理
+    菜单
   </div>
 </template>
+
+<script setup lang="ts" name="Menu">
+
+</script>

@@ -24,7 +24,7 @@
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon"
         :inactive-icon="lightIcon" @change="dataThemeChange" />
     </div>
-    <el-button @click="toggle()">切换主题</el-button>
+    <!-- <el-button @click="toggle()">切换主题</el-button> -->
   </custom-drawer>
 </template>
 

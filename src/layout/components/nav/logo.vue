@@ -1,12 +1,11 @@
 <template>
   <div class="h-60 w-full flex items-center justify-center">
-    <img :style="elImage" :src="imgSrc" />
+    <app-svg-icon :style="elImage" icon-name="logo"></app-svg-icon>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, CSSProperties, Ref } from 'vue'
-import logoUrl from '@/assets/logo.png'
 const props = defineProps({
   isCollapse: {
     type: Boolean,
@@ -18,7 +17,6 @@ const props = defineProps({
   }
 })
 const elImage: Ref<CSSProperties> = computed(() => {
-  return !props.isCollapse && props.isHorizontalNav ? { width: '200px', height: '60px' } : { width: '63px', height: '60px', objectFit: 'contain' }
+  return !props.isCollapse && props.isHorizontalNav ? { display:'block',width: '200px', height: '58px' } : {display:'block', width: '63px', height: '58px', objectFit: 'contain' }
 })
-const imgSrc = ref(logoUrl)
 </script>

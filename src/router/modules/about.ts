@@ -13,7 +13,7 @@ const aboutRouter = {
     {
       path: "/about/index",
       name: "About",
-      component: () => import("@/views/system/user/index.vue"),
+      component: () => import("@/views/other/index.vue"),
       meta: {
         title: "其他管理",
         i18n: false,

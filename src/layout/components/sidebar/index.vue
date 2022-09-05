@@ -38,8 +38,6 @@ export default defineComponent({
       route,
       isCollapse,
       ...toRefs(state),
-
-
     }
   },
 })

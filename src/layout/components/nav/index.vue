@@ -101,7 +101,7 @@ export default defineComponent({
     })
 
     const navRight = computed(() => {
-      if (store.state.config.nav === '2' && store.state.config.dayDark) {
+      if (store.state.config.nav === '2' && store.state.config.dayDark === '1') {
         return "bg-[#001529] text-[#fff]"
       }
       return ""

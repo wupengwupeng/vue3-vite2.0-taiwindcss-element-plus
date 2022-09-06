@@ -3,8 +3,8 @@
     <div class="w-200 h-full">
       <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
     </div>
-    <el-menu class="flex-1 overflow-hidden el-menu-horizontal-demo" :default-active="route.path" unique-opened router
-      mode="horizontal">
+    <el-menu class="flex-1 overflow-hidden el-menu-horizontal-demo" :default-active="route.path" menu-trigger="hover"
+      unique-opened router mode="horizontal">
       <sidebarItemVue v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
     </el-menu>
   </div>
@@ -32,9 +32,4 @@ const menuData = ref(defaultRoutes)
 </script>
 
 <style lang="scss" scoped>
-.el-menu-horizontal-demo {
-  border-style: none;
-  padding: 0;
-  margin: 0;
-}
 </style>

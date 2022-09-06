@@ -4,7 +4,6 @@ import api from '@/api'
 import utils from '@/utils';
 type Button = "default" | "small" | "large"
 const small = ref<Button>('default')
-console.log(api, "api")
 </script>
 <template>
   <el-config-provider>
@@ -18,6 +17,7 @@ console.log(api, "api")
 <style>
 body {
   background: var(--background);
+  color: #000 !important;
 }
 
 #app {

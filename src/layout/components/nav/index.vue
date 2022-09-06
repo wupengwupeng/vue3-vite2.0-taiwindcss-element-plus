@@ -10,7 +10,7 @@
       <div v-if="isHorizontalNav" class="flex-1 flex items-center h-full overflow-hidden ">
         <horizontalVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></horizontalVue>
       </div>
-      <div class="w-auto flex items-center justify-between ">
+      <div class="w-auto flex items-center justify-between" :class="navRight">
         <searchVue />
         <notice />
         <screenFullVue />
@@ -98,6 +98,14 @@ export default defineComponent({
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
       isActive: route.meta.title
+    })
+
+    const navRight = computed(() => {
+      if (store.state.config.nav === '2' && store.state.config.dayDark) {
+        return "bg-[#001529] text-[#fff]"
+      }
+      return ""
+
     })
     const getTabStyle = computed((): CSSProperties => {
       return {
@@ -225,6 +233,7 @@ export default defineComponent({
       getMenus()
     })
     return {
+      navRight,
       settingRef,
       visible,
       scrollbarDom,

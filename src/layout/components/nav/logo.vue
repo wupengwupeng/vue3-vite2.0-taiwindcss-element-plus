@@ -1,5 +1,5 @@
 <template>
-  <div class="h-60 w-full flex items-center justify-center">
+  <div class="h-60 w-full flex items-center justify-center logo-bg">
     <app-svg-icon :style="elImage" icon-name="logo"></app-svg-icon>
   </div>
 </template>
@@ -17,6 +17,12 @@ const props = defineProps({
   }
 })
 const elImage: Ref<CSSProperties> = computed(() => {
-  return !props.isCollapse && props.isHorizontalNav ? { display:'block',width: '200px', height: '58px' } : {display:'block', width: '63px', height: '58px', objectFit: 'contain' }
+  return !props.isCollapse && props.isHorizontalNav ? { display: 'block', width: '200px', height: '58px' } : { display: 'block', width: '63px', height: '58px', objectFit: 'contain' }
 })
 </script>
+
+<style lang="scss" scoped>
+.logo-bg {
+  background-color: var(--menuBg);
+}
+</style>

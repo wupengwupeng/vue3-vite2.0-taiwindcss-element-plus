@@ -1,0 +1,80 @@
+.el-menu {
+  background: var(--menuBg) !important;
+
+  span,
+  svg,
+  i {
+    color: var(--menuText);
+  }
+}
+
+.el-sub-menu {
+  .el-menu-item {
+    background: var(--subMenuBg) !important;
+  }
+}
+
+.el-sub-menu>.el-sub-menu__title {
+
+  &:hover {
+    background: var(--menuHover) !important;
+
+    span,
+    svg,
+    i {
+      color: var(--menuTitleHover) !important;
+    }
+  }
+}
+
+.el-menu-item {
+
+  &:hover {
+    background: var(--menuHover) !important;
+
+    span,
+    svg,
+    i {
+      color: var(--menuTitleHover) !important;
+    }
+  }
+}
+
+.el-menu-item.is-active {
+  background: var(--subMenuActiveBg) !important;
+
+  span,
+  svg,
+  i {
+    color: var(--menuText) !important;
+  }
+}
+
+// horizontal
+.el-menu--horizontal {
+  .el-menu {
+    .el-menu-item {
+      background: var(--subMenuBg) !important;
+    }
+
+    .el-sub-menu {
+      .el-sub-menu__title {
+        background: var(--menuBg) !important;
+      }
+    }
+
+    .el-menu-item.is-active {
+      background: var(--subMenuActiveBg) !important;
+
+      span,
+      svg,
+      i {
+        color: var(--menuText) !important;
+      }
+    }
+  }
+}
+
+.el-popper.is-light {
+  border: none !important;
+}

@@ -29,5 +29,13 @@
 
   body {
     background-color: var(--main-content-bg);
+    color: #000 !important;
+
+    div,
+    svg,
+    label,
+    span {
+      color: #000;
+    }
   }
 }

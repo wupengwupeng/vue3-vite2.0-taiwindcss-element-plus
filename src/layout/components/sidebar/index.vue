@@ -1,8 +1,8 @@
 <template>
   <div class="h-screen overflow-auto shadow app-content">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu class="el-menu-vertical-demo" menu-trigger="click" :default-active="route.path" unique-opened router
-        :collapse="isCollapse">
+      <el-menu class="el-menu-vertical-demo outer-most" menu-trigger="click" :default-active="route.path" unique-opened
+        router :collapse="isCollapse">
         <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
@@ -45,26 +45,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app-content {
-  // background: var(--backgroudcolor);
   border-right: 1px solid var(--color-gray-200);
-}
+  background: var(--menuBg);
 
-.scrollbar-wrapper {
-  border-right: 1px solid #272a36;
-}
-
-.el-menu-vertical-demo {
-  border-top: 1px solid var(--color-gray-200);
-  border-right: none;
-
-  &:not(.el-menu--collapse) {
-    width: 200px;
-    height: calc(100vh - 260px);
+  .scrollbar-wrapper {
+    border-right: 1px solid #272a36;
   }
 
-  ::v-deep(.el-menu-item.is-active) {
-    background: var(--el-color-primary-light-9);
-  }
+  .el-menu-vertical-demo {
+    border-top: 1px solid var(--color-gray-200);
+    border-right: none;
 
+    &:not(.el-menu--collapse) {
+      width: 200px;
+      height: calc(100vh - 260px);
+    }
+  }
 }
 </style>

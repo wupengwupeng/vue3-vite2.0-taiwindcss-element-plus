@@ -27,6 +27,7 @@ const handlerClick = () => {
 
   &:hover {
     background-color: #f6f6f6;
+    color: #000;
     cursor: pointer;
   }
 }

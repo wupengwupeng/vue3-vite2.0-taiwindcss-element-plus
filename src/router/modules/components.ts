@@ -91,6 +91,15 @@ const componentsRouter: RouteRecordRaw = {
         icon: "icon-apps-add"
       },
     },
+    {
+      path: "/components/theme",
+      name: "Theme",
+      component: () => import("@/views/components/theme/index.vue"),
+      meta: {
+        title: "theme主题组件",
+        icon: "fn-shezhiq"
+      }
+    }
   ]
 }
 

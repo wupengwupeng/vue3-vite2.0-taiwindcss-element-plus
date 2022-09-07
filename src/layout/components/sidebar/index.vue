@@ -33,9 +33,6 @@ export default defineComponent({
       tags: store.state.tags,
       menuData: defaultRoutes,
     })
-    onMounted(() => {
-      console.log('side-bar')
-    })
     return {
       route,
       isCollapse,

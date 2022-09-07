@@ -63,6 +63,7 @@ export default defineComponent({
        */
       if (width > 0 && width <= 760) {
         isHideSideBar.value = false
+        isCollapseIphone.value = false
         isCollapse.value = true
       } else if (width > 760 && width <= 990) {
         isCollapse.value = true

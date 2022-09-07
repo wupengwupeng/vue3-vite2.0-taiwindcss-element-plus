@@ -1,8 +1,7 @@
 <template>
   <div class="h-screen overflow-auto shadow app-content">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu class="el-menu-vertical-demo outer-most" menu-trigger="click" :default-active="route.path" unique-opened
-        router :collapse="isCollapse">
+      <el-menu class="el-menu-vertical-demo outer-most" menu-trigger="click" :default-active="route.path" unique-opened router :collapse="isCollapse">
         <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
@@ -17,7 +16,7 @@ import { useStore } from '@/store'
 import { routes as defaultRoutes } from '@/router/modules/index'
 export default defineComponent({
   components: {
-    SideBarItem
+    SideBarItem,
   },
   props: {
     isCollapse: {
@@ -32,7 +31,10 @@ export default defineComponent({
     const state = reactive({
       routess: store.state.routes as any,
       tags: store.state.tags,
-      menuData: defaultRoutes
+      menuData: defaultRoutes,
+    })
+    onMounted(() => {
+      console.log('side-bar')
     })
     return {
       route,

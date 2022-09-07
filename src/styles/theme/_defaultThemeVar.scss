@@ -3,6 +3,8 @@
 
   /* 菜单背景 */
   $menuBg: #001529 !default;
+  /* dark 菜单背景*/
+  $menuBgDark: #ffffff !default;
 
   /* 鼠标覆盖到菜单时的背景 */
   $menuHover: #0b274b !default;
@@ -11,7 +13,7 @@
   $subMenuBg: #0f0303 !default;
 
   /* 有无子集的激活菜单背景 */
-  $subMenuActiveBg: #4091f7 !default;
+  $subMenuActiveBg: var(--el-color-primary-light-3) !default;
   $menuText: rgb(254 254 254 / 65%) !default;
 
   /* 鼠标覆盖到菜单时的字体颜色 */
@@ -32,7 +34,7 @@
     --bg-body-light: #fff;
     --backgroudcolor: #272a36;
     --main-content-bg: var(--bg-body-light);
-    --main-car-components: var(--color-gray-200);
+    --main-car-components: var(--el-color-primary-light-9);
     /* 菜单选中后字体样式 */
     --subMenuActiveText: #{$subMenuActiveText};
     /* 菜单背景 */
@@ -71,13 +73,13 @@
     // /* 菜单选中后字体样式 */
     // --subMenuActiveText: $subMenuActiveText;
     // /* 菜单背景 */
-    // --menuBg: $menuBg;
+    --menuBg: #{$menuBgDark};
     // /* 鼠标覆盖到菜单时的背景 */
     // --menuHover: $menuHover;
     // /* 子菜单背景 */
     // --subMenuBg: $subMenuBg;
     // /* 有无子集的激活菜单背景 */
-    // --subMenuActiveBg: $subMenuActiveBg;
+    --subMenuActiveBg: var(--el-color-primary-light-9);
     // --menuText: $menuText;
     // /* 鼠标覆盖到菜单时的字体颜色 */
     // /* 鼠标覆盖到菜单时的字体颜色 */

@@ -56,6 +56,8 @@ import circleUrl from '@/assets/logo.png'
 import { useRouter, useRoute, RouteLocationMatched } from 'vue-router'
 import { useStore } from '@/store/index'
 import { RootMutations } from '@/store/type'
+import { emitter } from '@/utils/mitt'
+import { deviceDetection } from '@/utils/index'
 import { useResizeObserver, useDebounceFn } from '@vueuse/core'
 import navBreadCrumbVue from './navBreadCrumb.vue'
 import settingDrawerVue from './settingDrawer.vue'
@@ -98,6 +100,7 @@ export default defineComponent({
     const scrollbarDom = ref()
     const instance: any = getCurrentInstance()
     const tabDom = ref()
+    const isMobile = deviceDetection()
     const store = useStore()
     const route: any = useRoute()
     const router: any = useRouter()
@@ -106,6 +109,17 @@ export default defineComponent({
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
       isActive: route.meta.title,
+    })
+
+    // 监听容器
+    emitter.on('resize', ({ detail }) => {
+      if (isMobile) return
+      let { width } = detail
+      /** width app-wrapper类容器宽度
+       * 0 < width <= 760 隐藏侧边栏
+       * 760 < width <= 990 折叠侧边栏
+       * width > 990 展开侧边栏
+       */
     })
 
     const navRight = computed(() => {

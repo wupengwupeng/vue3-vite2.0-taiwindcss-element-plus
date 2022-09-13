@@ -82,12 +82,18 @@ const handleEnter = () => {
   routerPush()
 }
 const handleDown = () => {
-  if (isActive.value === menus.value.length - 1) return
-  isActive.value += 1
+  if (isActive.value >= menus.value.length - 1) {
+    isActive.value = 0
+  } else {
+    isActive.value += 1
+  }
 }
 const handleUp = () => {
-  if (isActive.value === 0) return
-  isActive.value -= 1
+  if (isActive.value <= 0) {
+    isActive.value = menus.value.length - 1
+  } else {
+    isActive.value -= 1
+  }
 }
 const handlerClose = () => {
   emits('update:visible', false)

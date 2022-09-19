@@ -1,10 +1,10 @@
 <template>
   <div class="w-full shadow-inner flex flex-col">
     <div class="flex h-58 justify-between">
-      <div v-if="!isHorizontalNav" class="flex-1 flex items-center px-12 h-full">
+      <div v-if="!isHorizontalNav" class="flex-1 overflow-hidden flex items-center px-12 h-full">
         <navIcon v-model="isCollapse" @handlerClickIcon="handlerClickIcon"></navIcon>
         <div class="ml-12">
-          <nav-bread-crumb-vue :menus="menus"></nav-bread-crumb-vue>
+          <nav-bread-crumb-vue v-if="isShowBreadCrumb" :menus="menus"></nav-bread-crumb-vue>
         </div>
       </div>
       <div v-if="isHorizontalNav" class="flex-1 flex items-center h-full overflow-hidden">
@@ -101,6 +101,7 @@ export default defineComponent({
     const instance: any = getCurrentInstance()
     const tabDom = ref()
     const isMobile = deviceDetection()
+    const isShowBreadCrumb = ref(true)
     const store = useStore()
     const route: any = useRoute()
     const router: any = useRouter()
@@ -113,13 +114,18 @@ export default defineComponent({
 
     // 监听容器
     emitter.on('resize', ({ detail }) => {
-      if (isMobile) return
+      // if (isMobile) return
       let { width } = detail
       /** width app-wrapper类容器宽度
        * 0 < width <= 760 隐藏侧边栏
        * 760 < width <= 990 折叠侧边栏
        * width > 990 展开侧边栏
        */
+      if (width < 630) {
+        isShowBreadCrumb.value = false
+      } else {
+        isShowBreadCrumb.value = true
+      }
     })
 
     const navRight = computed(() => {
@@ -240,6 +246,8 @@ export default defineComponent({
       getMenus()
     })
     return {
+      isShowBreadCrumb,
+      isMobile,
       navRight,
       settingRef,
       visible,

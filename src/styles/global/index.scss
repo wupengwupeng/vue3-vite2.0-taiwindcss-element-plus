@@ -1,7 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-  filter: var(--grayscale);
+  filter: var(--grayscale); // 默哀设置
+  background: var(--background);
+  color: #000 !important;
+}
+
+#app {
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Inter Medium';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 
 a {

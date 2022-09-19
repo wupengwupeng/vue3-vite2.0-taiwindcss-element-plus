@@ -18,30 +18,35 @@ export default defineComponent({
 .main-app {
   width: 100px;
   height: 30px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   border-right: 1px solid var(--el-color-primary);
   position: relative;
+
   .child-app {
     width: 100px;
-    min-height: 30px;
-    background-color: yellow;
     display: none;
     .child-app-content {
       display: flex;
       flex-direction: column;
+      min-height: 100px;
+      overflow: hidden;
+      align-items: flex-end;
     }
   }
   &:hover {
     cursor: pointer;
+
     .child-app {
       display: block;
       position: absolute;
       bottom: 0;
       left: 0;
       top: 30px;
+      z-index: 999;
     }
   }
 }

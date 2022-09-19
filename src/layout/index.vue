@@ -54,7 +54,7 @@ export default defineComponent({
 
     // 监听容器
     emitter.on('resize', ({ detail }) => {
-      if (isMobile) return
+      // if (isMobile) return
       let { width } = detail
       /** width app-wrapper类容器宽度
        * 0 < width <= 760 隐藏侧边栏

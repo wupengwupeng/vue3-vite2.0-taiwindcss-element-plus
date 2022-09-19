@@ -22,7 +22,7 @@ export default defineComponent({
       return result
     }
     const calcSliceIndex = menu => {
-      if (!menu.value) return -1  
+      if (!menu.value) return -1
       const items = Array.from(menu.value?.childNodes ?? []).filter((item: any) => item.nodeName !== '#text' || item.nodeValue) as HTMLElement[]
       const moreItemWidth = 40
       const paddingLeft = Number.parseInt(getComputedStyle(menu.value!).paddingLeft, 10)
@@ -68,7 +68,7 @@ export default defineComponent({
       return sliceArr
     }
 
-    return h('div', { class: 'w-full h-30 px-20' }, [
+    return h('div', { class: 'w-full h-auto px-20' }, [
       h(
         'ul',
         { class: 'w-full h-full flex  px-20', ref: 'content' },

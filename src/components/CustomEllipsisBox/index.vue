@@ -12,13 +12,16 @@ export default defineComponent({
     const flattedChildren = (children: VNodeNormalizedChildren) => {
       const vnodes = Array.isArray(children) ? children : [children]
       const result: any[] = []
+      // console.log(vnodes, 'vnodes')
       vnodes.forEach((child: any) => {
-        if (Array.isArray(child.children)) {
-          result.push(...flattedChildren(child.children))
-        } else {
-          result.push(child)
-        }
+        // TODO 不需要拓展
+        // if (Array.isArray(child.children)) {
+        //   result.push(...flattedChildren(child.children))
+        // } else {
+        result.push(child)
+        // }
       })
+      // console.log(result, 'result')
       return result
     }
     const calcSliceIndex = menu => {

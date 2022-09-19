@@ -13,11 +13,11 @@ export default defineComponent({
       const vnodes = Array.isArray(children) ? children : [children]
       const result: any[] = []
       vnodes.forEach((child: any) => {
-        if (Array.isArray(child.children)) {
-          result.push(...flattedChildren(child.children))
-        } else {
-          result.push(child)
-        }
+        // if (Array.isArray(child.children)) {
+        //   result.push(...flattedChildren(child.children))
+        // } else {
+        result.push(child)
+        // }
       })
       return result
     }

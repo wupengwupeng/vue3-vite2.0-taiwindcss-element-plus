@@ -4,11 +4,14 @@
       <el-col :span="24">
         <el-input v-model="search" size="large" v-focus placeholder="请输入查询菜单" clearable></el-input>
       </el-col>
-      <el-col v-for="(item, index) in menus" :key="index + 'gg'" :span="24" @click="handleClickItem(index)">
+      <!-- <el-col v-for="(item, index) in menus" :key="index + 'gg'" :span="24" @click="handleClickItem(index)">
         <div class="menu-item" :class="{ isActive: isActive === index }">
           {{ item!.meta.title }}
         </div>
-      </el-col>
+      </el-col> -->
+      <template v-if="menus.length">
+        <ListItem v-for="(item, index) in menus" :key="index" :item="item" :depth="1" :id="listItemId(index)" :is-active="activeId" />
+      </template>
       <el-col v-if="!menus.length" :span="24">
         <div
           class="w-full h-100 flex items-center justify-center animate-text-shimmer bg-clip-text text-transparent bg-[linear-gradient(110deg,#e2e8f0,45%,#1e293b,55%,#e2e8f0)] bg-[length:250%_100%]"
@@ -31,12 +34,13 @@
 </template>
 
 <script setup lang="ts" name="SearchDialog">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 import { routes as defaultRoutes } from '@/router/modules/index'
 import { debounce } from '@/utils/modules/common'
 import { treeToList } from '@/utils/index'
-import { useRouter } from 'vue-router'
+import { useRouter, RouteRecordRaw } from 'vue-router'
+import ListItem from './listItem.vue'
 import { cloneDeep } from 'lodash'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
@@ -57,6 +61,7 @@ const store = useStore()
 const search = ref('')
 const isActive = ref(0)
 const menus = ref([])
+const activeId = ref('0-1')
 const emits = defineEmits(['update:visible'])
 
 const routerPush = () => {
@@ -75,55 +80,82 @@ const routerPush = () => {
 }
 const handleClickItem = index => {
   routerPush()
-  isActive.value = index
+  // isActive.value = index
+}
+// 父级拼接id
+const listItemId = index => {
+  return index + '-' + (index + 1)
 }
 
 const handleEnter = () => {
   routerPush()
 }
-const handleDown = () => {
-  if (isActive.value >= menus.value.length - 1) {
-    isActive.value = 0
-  } else {
-    isActive.value += 1
+// 直接返回下一个的activeId TODO 获取树形数据中对应的值。
+const computedDownActiveId = date => {
+  const arr = activeId.value.split('-')
+  let i = arr[0]
+  const each = (date, i) => {
+    if (date[arr[i]].children.length) {
+      each(date[arr[i]].children, 0)
+    } else {
+    }
   }
+
+  return
+}
+// 获取最深层的层数
+function getMaxFloor(treeData) {
+  let floor = 0
+  let v = this
+  let max = 0
+  function each(data, floor) {
+    data.forEach(e => {
+      e.floor = floor
+      if (floor > max) {
+        max = floor
+      }
+      if (e?.children?.length > 0) {
+        each(e?.children, floor + 1)
+      }
+    })
+  }
+  each(treeData, 1)
+  return max
+}
+
+// TODO 找到对应的active的选项，判断下方是否还有多余的值，如果有就+1，没有就回退到上一级进行加减。
+const handleDown = () => {
+  console.log(menus.value)
+  const arr = activeId.value.split('-')
+  const index = getMaxFloor(menus.value)
+  console.log(index, 'index')
 }
 const handleUp = () => {
-  if (isActive.value <= 0) {
-    isActive.value = menus.value.length - 1
-  } else {
-    isActive.value -= 1
-  }
+  console.log(activeId.value, 'up')
+  console.log(menus.value)
 }
 const handlerClose = () => {
   emits('update:visible', false)
 }
 
-// TODO 改进优化
-// const treeToList = (menuArr: any[]) => {
-//   const data = []
-//   while (menuArr.length !== 0) {
-//     const popData = menuArr.pop()
-//     if (popData && popData.children) {
-//       popData.children.forEach(res => {
-//         if (res.children && res.children.length) {
-//           res.children.forEach(item => {
-//             data.unshift(item)
-//           })
-//         } else {
-//           data.unshift(res)
-//         }
-//       })
-//     }
-//   }
-//   return data
-// }
-const handlerSearch = () => {
-  menus.value = treeToList(cloneDeep(defaultRoutes)).filter(res => {
-    if (search.value.length) {
-      return res.meta.title.includes(search.value)
+const searchTreeDateList = (date: Array<RouteRecordRaw>, search: string) => {
+  let arr: Array<RouteRecordRaw> = []
+  date.forEach(res => {
+    if (search.length && (res.meta.title as string).includes(search)) {
+      arr.push(res)
+    } else {
+      if (res?.children?.length) {
+        const temp = searchTreeDateList(res?.children, search)
+        arr = arr.concat(temp)
+      }
     }
   })
+  return arr
+}
+
+const handlerSearch = () => {
+  menus.value = searchTreeDateList(cloneDeep(defaultRoutes), search.value)
+  console.log(menus.value, 'menus')
 }
 watch(search, debounce(handlerSearch, 500), { immediate: true })
 onKeyStroke('Enter', handleEnter)
@@ -131,27 +163,4 @@ onKeyStroke('ArrowUp', handleUp)
 onKeyStroke('ArrowDown', handleDown)
 </script>
 
-<style lang="scss" scoped>
-.menu-item {
-  width: 100%;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  border-radius: 8px;
-  margin-top: 8px;
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
-}
-
-.isActive {
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-</style>
+<style lang="scss" scoped></style>

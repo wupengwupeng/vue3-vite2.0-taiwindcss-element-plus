@@ -6,7 +6,7 @@
       </div>
     </template>
     <template #default>
-      <div class="translate-content" :class="{ isActive: item === LONGBOW[getLang()] }" v-for="item in LANGARR" :key="item" @click="handlerChangeLang(item)">
+      <div class="translate-content" :class="{ isActive: item === LONGBOW[lang] }" v-for="item in LANGARR" :key="item" @click="handlerChangeLang(item)">
         <span>{{ item }}</span> <app-svg-icon icon-name="right_arrow_o"></app-svg-icon>
       </div>
     </template>
@@ -16,6 +16,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getLang, setLang } from '@/utils/storage'
+import { useStore } from '@/store'
+import { RootMutations } from '@/store/type'
 const visible = ref(false)
 const LANGARR = ['中文', '英文', '繁体']
 const LONGBOW: { [key: string]: string } = {
@@ -23,6 +25,9 @@ const LONGBOW: { [key: string]: string } = {
   'zh-CN': '中文',
   'zh-TW': '繁体',
 }
+
+const store = useStore()
+const lang = store.state.config.lang
 const handlerChangeLang = (item: string) => {
   const obj = {
     中文: 'zh-CN',
@@ -30,6 +35,7 @@ const handlerChangeLang = (item: string) => {
     繁体: 'zh-TW',
   }
   if (obj[item] === getLang()) return
+  store.commit(RootMutations.SET_LANG, obj[item])
   setLang(obj[item])
   window.location.reload()
 }

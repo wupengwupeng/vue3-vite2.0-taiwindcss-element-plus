@@ -2,7 +2,6 @@ export interface RootStates {
   name: string
   age: string
   sex: string
-
 }
 
 export enum RootMutations {
@@ -11,5 +10,5 @@ export enum RootMutations {
   SET_USER = 'SET_USER',
   LOGOUT = 'LOGOUT',
   SET_TAGS = 'SET_TAGS',
-  SET_NAV = 'SET_NAV'
+  SET_NAV = 'SET_NAV',
 }

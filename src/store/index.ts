@@ -4,7 +4,7 @@ import { createStore, useStore as baseUseStore } from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import { RootState } from './type'
-import { getTheme, getNav, getDayDark } from '@/utils/storage'
+import { getTheme, getNav, getDayDark, getLang } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
 import { changeTheme, setRoutes } from '@/utils/index'
 import { routes } from '@/router'
@@ -21,9 +21,10 @@ export function getDefaultRootState() {
     routes: [], //setRoutes(routes)
     tags: [],
     config: {
-      nav: getNav() || '1',// 导航条类型 1竖屏2横屏
-      dayDark: getDayDark() || '1'
-    }
+      nav: getNav() || '1', // 导航条类型 1竖屏2横屏
+      dayDark: getDayDark() || '1',
+      lang: getLang() || 'zh-CN', // 中英文切换
+    },
   } as any
   return state
 }
@@ -34,8 +35,8 @@ export const store = createStore({
   getters,
   mutations,
   modules: {
-    test
-  }
+    test,
+  },
 })
 export const key: InjectionKey<Store<RootState>> = Symbol()
 

@@ -28,11 +28,11 @@ const props = defineProps({
   },
   id: {
     type: String,
-    default: '0-1',
+    default: '0-0',
   },
   isActive: {
     type: String,
-    default: '0-01',
+    default: '0-0',
   },
 })
 const itemStyle = computed(() => {

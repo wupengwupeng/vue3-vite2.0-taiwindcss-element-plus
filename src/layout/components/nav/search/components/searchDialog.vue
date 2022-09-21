@@ -10,7 +10,7 @@
         </div>
       </el-col> -->
       <template v-if="menus.length">
-        <ListItem v-for="(item, index) in menus" :key="index" :item="item" :depth="1" :id="listItemId(index)" :is-active="activeId" />
+        <ListItem v-for="(item, index) in menus" :key="index" :item="item" :depth="1" :id="index + ''" :is-active="activeId" />
       </template>
       <el-col v-if="!menus.length" :span="24">
         <div
@@ -61,7 +61,7 @@ const store = useStore()
 const search = ref('')
 const isActive = ref(0)
 const menus = ref([])
-const activeId = ref('0-1')
+const activeId = ref('0')
 const emits = defineEmits(['update:visible'])
 
 const routerPush = () => {
@@ -82,10 +82,6 @@ const handleClickItem = index => {
   routerPush()
   // isActive.value = index
 }
-// 父级拼接id
-const listItemId = index => {
-  return index + '-' + (index + 1)
-}
 
 const handleEnter = () => {
   routerPush()
@@ -93,15 +89,70 @@ const handleEnter = () => {
 // 直接返回下一个的activeId TODO 获取树形数据中对应的值。
 const computedDownActiveId = date => {
   const arr = activeId.value.split('-')
-  let i = arr[0]
-  const each = (date, i) => {
-    if (date[arr[i]].children.length) {
-      each(date[arr[i]].children, 0)
-    } else {
-    }
+  const len = arr.length
+  const dateLen = date.length
+  let [first, second, three] = arr
+  switch (len) {
+    case 1:
+      console.log(first, 'kkk')
+      if (date[first].children && date[first].children.length > 1) {
+        if (second) {
+          second = Number(second) + 1 + ''
+          if (second >= date[first].children.length) return
+        } else {
+          second = 0 + ''
+        }
+      } else {
+        if (Number(first) >= dateLen - 1) {
+          return
+        } else {
+          first = Number(first) + 1 + ''
+        }
+      }
+      break
+    case 2:
+      if (Number(second) >= date[first].children.length - 1) {
+        if (date[first].children[second].children && date[first].children[second].children.length) {
+          if (three) {
+            three = Number(three) + 1 + ''
+          } else {
+            three = 0 + ''
+          }
+        } else {
+          // 二级菜单完 回到父级菜单
+          second = void 0
+          if (Number(first) >= dateLen - 1) {
+            return
+          } else {
+            first = Number(first) + 1 + ''
+          }
+        }
+      } else {
+        second = Number(second) + 1 + ''
+      }
+      break
+    case 3:
+      if (Number(three) >= date[first].children[second].children.length - 1) {
+        // 暂时只能支持三级
+        // three = date[first].children[second].children.length - 1 + ''
+        if (Number(first) >= dateLen - 1) {
+          return
+        } else {
+          first = Number(first) + 1 + ''
+          three = void 0
+          second = void 0
+        }
+      } else {
+        three = Number(three) + 1 + ''
+      }
+      break
+    default:
+      console.log('暂不支持')
   }
 
-  return
+  const finallArr = [first, second, three].filter(Boolean).join('-')
+  console.log(finallArr, 'finall')
+  return finallArr
 }
 // 获取最深层的层数
 function getMaxFloor(treeData) {
@@ -126,9 +177,8 @@ function getMaxFloor(treeData) {
 // TODO 找到对应的active的选项，判断下方是否还有多余的值，如果有就+1，没有就回退到上一级进行加减。
 const handleDown = () => {
   console.log(menus.value)
-  const arr = activeId.value.split('-')
-  const index = getMaxFloor(menus.value)
-  console.log(index, 'index')
+  activeId.value = computedDownActiveId(menus.value)
+  // console.log(date, 'date')
 }
 const handleUp = () => {
   console.log(activeId.value, 'up')
@@ -154,8 +204,8 @@ const searchTreeDateList = (date: Array<RouteRecordRaw>, search: string) => {
 }
 
 const handlerSearch = () => {
-  menus.value = searchTreeDateList(cloneDeep(defaultRoutes), search.value)
-  console.log(menus.value, 'menus')
+  menus.value = searchTreeDateList(cloneDeep(defaultRoutes) as RouteRecordRaw[], search.value)
+  activeId.value = '0'
 }
 watch(search, debounce(handlerSearch, 500), { immediate: true })
 onKeyStroke('Enter', handleEnter)

@@ -9,11 +9,8 @@
           </div>
           <div v-if="footerRight">
             <el-button size="small" @click="handlerCansole">{{ cancelText }}</el-button>
-            <el-button :disabled="isConfirmDisabled" :loading="loading" size="small" type="primary"
-              @click="handlerSave">
-              {{
-                  confirmText
-              }}
+            <el-button :disabled="isConfirmDisabled" :loading="loading" size="small" type="primary" @click="handlerSave">
+              {{ confirmText }}
             </el-button>
           </div>
         </div>
@@ -38,29 +35,29 @@ export default defineComponent({
     },
     confirmText: {
       type: String,
-      default: '保存'
+      default: '保存',
     },
     cancelText: {
       type: String,
-      default: '取消'
+      default: '取消',
     },
     isDraggable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     isConfirmDisabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 是否有footer右边的dom
     footerRight: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   emits: ['handlerSave', 'close'],
   setup(props, { emit, attrs, slots }) {

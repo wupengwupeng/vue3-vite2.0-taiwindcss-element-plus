@@ -1,8 +1,10 @@
 <template>
-  <template v-if="
+  <template
+    v-if="
     hasOneShowingChild(props.item!.children, props.item!) &&
     (!onlyOneChild.children || onlyOneChild.noShowingChildren)
-  ">
+  "
+  >
     <el-menu-item :index="resolvePath(onlyOneChild.path)" @click="handlerMenuItem(onlyOneChild, basePath)">
       <app-svg-icon :icon-name="onlyOneChild.meta.icon"></app-svg-icon>
       <template #title>
@@ -15,34 +17,33 @@
       <app-svg-icon :icon-name="item.meta.icon"></app-svg-icon>
       <span>{{ item?.meta?.title }}</span>
     </template>
-    <SideBarItem v-for="child in item?.children" :key="child.path" :is-nest="true" :item="child"
-      :base-path="resolvePath(child.path)"></SideBarItem>
+    <SideBarItem v-for="child in item?.children" :key="child.path" :is-nest="true" :item="child" :base-path="resolvePath(child.path)"></SideBarItem>
   </el-sub-menu>
 </template>
 
 <script setup lang="ts" name="SideBarItem">
 import { ref, PropType, Ref } from 'vue'
-import path from "path"
+import path from 'path'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
 import type { childrenType } from '../../index.type'
 const props = defineProps({
   item: {
     type: Object as PropType<any>,
-    default: () => { }
+    default: () => {},
   },
   isNest: {
     type: Boolean,
-    default: false
+    default: false,
   },
   basePath: {
     type: String,
-    default: ""
-  }
-});
-const emits = defineEmits(["handlerItem"])
+    default: '',
+  },
+})
+const emits = defineEmits(['handlerItem'])
 
-const onlyOneChild: Ref<childrenType> = ref(null);
+const onlyOneChild: Ref<childrenType> = ref(null)
 const store = useStore()
 
 function handlerRouteAddTags(tag: any) {
@@ -51,41 +52,38 @@ function handlerRouteAddTags(tag: any) {
     name: tag.meta.title,
     path: tag.path,
     type: '',
-    color: '#fff'
+    color: '#fff',
   }
   store.commit(RootMutations.SET_TAGS, tags)
 }
 
-function hasOneShowingChild(
-  children: childrenType[] = [],
-  parent: childrenType
-) {
+function hasOneShowingChild(children: childrenType[] = [], parent: childrenType) {
   const showingChildren = children.filter((item: any) => {
-    onlyOneChild.value = item;
-    return true;
-  });
+    onlyOneChild.value = item
+    return true
+  })
 
   if (showingChildren[0]?.meta?.showParent) {
-    return false;
+    return false
   }
 
   if (showingChildren.length === 1) {
-    return true;
+    return true
   }
 
   if (showingChildren.length === 0) {
-    onlyOneChild.value = { ...parent, path: "", noShowingChildren: true };
-    return true;
+    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true }
+    return true
   }
-  return false;
+  return false
 }
 
 function resolvePath(routePath: any) {
-  const httpReg = /^http(s?):\/\//;
+  const httpReg = /^http(s?):\/\//
   if (httpReg.test(routePath) || httpReg.test(props.basePath)) {
-    return routePath || props.basePath;
+    return routePath || props.basePath
   } else {
-    return path.resolve(props.basePath, routePath);
+    return path.resolve(props.basePath, routePath)
   }
 }
 function handlerMenuItem(data: childrenType, basePath: string) {
@@ -93,3 +91,5 @@ function handlerMenuItem(data: childrenType, basePath: string) {
   handlerRouteAddTags(newDate)
 }
 </script>
+
+<style lang="scss"></style>

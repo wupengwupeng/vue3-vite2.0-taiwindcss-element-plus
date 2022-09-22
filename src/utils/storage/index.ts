@@ -3,7 +3,11 @@ import storage from 'store'
 const THEME = 'THEME'
 const SETTINGNAV = 'SETTINGNAV'
 const DAYDARK = 'DAYDARK'
-
+const LANG = 'LANG'
+// 设置语言环境
+export const getLang = (): string => storage.get(LANG, '')
+export const setLang = (lang: string) => storage.set(LANG, lang)
+export const removeLang = () => storage.remove(LANG)
 
 // 设置主题色
 export const getTheme = (): string => storage.get(THEME, '')

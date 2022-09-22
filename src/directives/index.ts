@@ -13,3 +13,13 @@ export * from './clipboard'
 export * from './autFocus'
 
 export * from './elResizeDetector'
+
+export * from './draggableElement'
+
+export * from './emoji'
+
+export * from './lazyImg'
+
+export * from './longPress'
+
+export * from './numberInput'

@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url('./font/montserrat/Montserrat-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Montserrat SemiBold';
+  src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('./font/montserrat/Montserrat-SemiBold.otf') format('opentype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Montserrat Bold';
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url('./font/montserrat/Montserrat-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+// @font-face {
+//   font-family: 'Poppins';
+//   src: local('Poppins Light'), local('Poppins-Light'), url('../font/poppins/Poppins-Light.otf') format('opentype');
+//   font-weight: 300;
+// }
+@font-face {
+  font-family: 'Poppins Regular';
+  src: local('Poppins Regular'), local('Poppins-Regular'), url('./font/poppins/Poppins-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Poppins Medium';
+  src: local('Poppins Medium'), local('Poppins-Medium'), url('./font/poppins/Poppins-Medium.otf') format('opentype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Inter Regular';
+  src: local('Inter Regular'), local('Inter-Regular'), url('./font/Inter/Inter-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Inter Medium';
+  src: local('Inter Medium'), local('Inter-Medium'), url('./font/Inter/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+}

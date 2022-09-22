@@ -1,23 +1,21 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app-content">
-    <!-- <el-config-provider>
-      <router-view v-slot="{ Component, route }">
+    <el-config-provider>
+      <!-- <router-view v-slot="{ Component, route }">
         <transition :name="route.meta.transition || 'fade'" mode="out-in">
           <component :is="Component" :key="route.path" />
         </transition>
+      </router-view> -->
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
       </router-view>
-    </el-config-provider> -->
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-
+    </el-config-provider>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .app-content {

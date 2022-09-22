@@ -1,4 +1,3 @@
-
 import { AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import axios from './index'
 import * as redirect from '@/utils/config/redirect'
@@ -12,7 +11,6 @@ export type ApiResponse = {
   Debug?: string
   TraceIdentifier?: string
 }
-
 
 // 拦截axios的一些常见错误
 function handlerAxiosResponseError(res: AxiosResponse) {
@@ -58,14 +56,13 @@ async function to(promise: AxiosPromise<ApiResponse>): Promise<[ApiResponse, nul
   try {
     const res = await promise
     const data = res.data
-    // console.log(data, "data")
     const code: string | number = data.code
-    if (data.Debug) {
-      console.debug(res.config.url, {
-        Debug: data.Debug,
-        TraceIdentifier: data.TraceIdentifier
-      })
-    }
+    // if (data.Debug) {
+    //   console.debug(res.config.url, {
+    //     Debug: data.Debug,
+    //     TraceIdentifier: data.TraceIdentifier,
+    //   })
+    // }
     if (code === '1001') {
       return [data, null]
     } else {
@@ -83,14 +80,13 @@ async function to(promise: AxiosPromise<ApiResponse>): Promise<[ApiResponse, nul
       } else {
         handlerAxiosResponseError(res)
       }
+    } else {
+      errorMessage(error)
     }
     return [null, err]
   }
 }
 
-
 export default (config: AxiosRequestConfig) => {
   return to(axios(config))
 }
-
-

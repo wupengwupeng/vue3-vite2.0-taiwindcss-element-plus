@@ -39,6 +39,7 @@
     "store": "^2.0.12",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-3d-model": "^1.4.0",
+    "vue-i18n": "9.1.7",
     "vue-router": "4",
     "vue3-treeselect": "^0.1.10",
     "vue3-virtual-list": "^1.0.2",

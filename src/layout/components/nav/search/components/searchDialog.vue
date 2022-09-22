@@ -4,11 +4,14 @@
       <el-col :span="24">
         <el-input v-model="search" size="large" v-focus placeholder="请输入查询菜单" clearable></el-input>
       </el-col>
-      <el-col v-for="(item, index) in menus" :key="index + 'gg'" :span="24" @click="handleClickItem(index)">
+      <!-- <el-col v-for="(item, index) in menus" :key="index + 'gg'" :span="24" @click="handleClickItem(index)">
         <div class="menu-item" :class="{ isActive: isActive === index }">
           {{ item!.meta.title }}
         </div>
-      </el-col>
+      </el-col> -->
+      <template v-if="menus.length">
+        <ListItem v-for="(item, index) in menus" :key="index" :item="item" :depth="1" :id="index + ''" :is-active="activeId" :handler-click="handlerClickItem" />
+      </template>
       <el-col v-if="!menus.length" :span="24">
         <div
           class="w-full h-100 flex items-center justify-center animate-text-shimmer bg-clip-text text-transparent bg-[linear-gradient(110deg,#e2e8f0,45%,#1e293b,55%,#e2e8f0)] bg-[length:250%_100%]"
@@ -31,12 +34,13 @@
 </template>
 
 <script setup lang="ts" name="SearchDialog">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 import { routes as defaultRoutes } from '@/router/modules/index'
 import { debounce } from '@/utils/modules/common'
 import { treeToList } from '@/utils/index'
-import { useRouter } from 'vue-router'
+import { useRouter, RouteRecordRaw } from 'vue-router'
+import ListItem from './listItem.vue'
 import { cloneDeep } from 'lodash'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
@@ -55,12 +59,11 @@ const props = defineProps({
 const router = useRouter()
 const store = useStore()
 const search = ref('')
-const isActive = ref(0)
 const menus = ref([])
+const activeId = ref('0')
 const emits = defineEmits(['update:visible'])
 
-const routerPush = () => {
-  const routeActive = menus.value[isActive.value]
+const routerPush = routeActive => {
   if (routeActive && routeActive.path) {
     router.push(routeActive.path)
     store.commit(RootMutations.SET_TAGS, {
@@ -70,54 +73,221 @@ const routerPush = () => {
       type: '',
       color: '#fff',
     })
-    handlerClose()
+    // handlerClose()
   }
 }
-const handleClickItem = index => {
-  routerPush()
-  isActive.value = index
+const handleEnter = () => {
+  const menusActive = findMenuById()
+  routerPush(menusActive)
+  handlerClose()
+}
+// 直接返回下一个的activeId TODO 获取树形数据中对应的值。
+const computedDownActiveId = date => {
+  const arr = activeId.value.split('-')
+  const len = arr.length
+  const dateLen = date.length
+  let [first, second, three] = arr
+  switch (len) {
+    case 1:
+      if (date[first].children && date[first].children.length > 1) {
+        if (second) {
+          second = Number(second) + 1 + ''
+          if (second >= date[first].children.length) return
+        } else {
+          second = 0 + ''
+        }
+      } else {
+        if (Number(first) >= dateLen - 1) {
+          first = 0 + ''
+        } else {
+          first = Number(first) + 1 + ''
+        }
+      }
+      break
+    case 2:
+      if (Number(second) >= date[first].children.length - 1) {
+        if (date[first].children[second].children && date[first].children[second].children.length) {
+          if (three) {
+            three = Number(three) + 1 + ''
+          } else {
+            three = 0 + ''
+          }
+        } else {
+          // 二级菜单完 回到父级菜单
+          second = void 0
+          if (Number(first) >= dateLen - 1) {
+            first = 0 + ''
+          } else {
+            first = Number(first) + 1 + ''
+          }
+        }
+      } else {
+        second = Number(second) + 1 + ''
+      }
+      break
+    case 3:
+      if (Number(three) >= date[first].children[second].children.length - 1) {
+        // 暂时只能支持三级
+        three = void 0
+        second = void 0
+        if (Number(first) >= dateLen - 1) {
+          first = 0 + ''
+        } else {
+          first = Number(first) + 1 + ''
+        }
+      } else {
+        three = Number(three) + 1 + ''
+      }
+      break
+    default:
+      console.log('暂不支持')
+  }
+
+  const finallArr = [first, second, three].filter(Boolean).join('-')
+  return finallArr
+}
+// 获取最深层的层数
+function getMaxFloor(treeData) {
+  let floor = 0
+  let v = this
+  let max = 0
+  function each(data, floor) {
+    data.forEach(e => {
+      e.floor = floor
+      if (floor > max) {
+        max = floor
+      }
+      if (e?.children?.length > 0) {
+        each(e?.children, floor + 1)
+      }
+    })
+  }
+  each(treeData, 1)
+  return max
 }
 
-const handleEnter = () => {
-  routerPush()
-}
+// TODO 找到对应的active的选项，判断下方是否还有多余的值，如果有就+1，没有就回退到上一级进行加减。
 const handleDown = () => {
-  if (isActive.value === menus.value.length - 1) return
-  isActive.value += 1
+  activeId.value = computedDownActiveId(menus.value)
 }
+// 最多只能支持三级菜单暂时 TODO 无限
 const handleUp = () => {
-  if (isActive.value === 0) return
-  isActive.value -= 1
+  const arr = activeId.value.split('-')
+  let [first, second, three] = arr
+  switch (arr.length) {
+    case 1:
+      if (first === '0') {
+        first = menus.value.length - 1 + ''
+        if (menus.value.length === 1) {
+          const pre = menus.value[0]
+          if (pre.children && pre.children.length) {
+            second = pre.children.length - 1 + ''
+            const preIn = pre.children[pre.children.length - 1]
+            if (preIn.children && preIn.children.length) {
+              three = preIn.children.length - 1 + ''
+            }
+          }
+        }
+      } else {
+        const pre = menus.value[Number(first) - 1]
+        if (pre.children && pre.children.length) {
+          second = pre.children.length - 1 + ''
+          const preIn = pre.children[pre.children.length - 1]
+          if (preIn.children && preIn.children.length) {
+            three = preIn.children.length - 1 + ''
+          }
+        }
+        first = Number(first) - 1 + ''
+      }
+      break
+    case 2:
+      if (second === '0') {
+        second = undefined
+      } else {
+        second = Number(second) - 1 + ''
+      }
+      break
+    case 3:
+      if (three === '0') {
+        three = undefined
+      } else {
+        three = Number(three) - 1 + ''
+      }
+      break
+    default:
+      console.log('暂不支持')
+  }
+  activeId.value = [first, second, three].filter(Boolean).join('-')
 }
 const handlerClose = () => {
   emits('update:visible', false)
 }
 
-// TODO 改进优化
-// const treeToList = (menuArr: any[]) => {
-//   const data = []
-//   while (menuArr.length !== 0) {
-//     const popData = menuArr.pop()
-//     if (popData && popData.children) {
-//       popData.children.forEach(res => {
-//         if (res.children && res.children.length) {
-//           res.children.forEach(item => {
-//             data.unshift(item)
-//           })
-//         } else {
-//           data.unshift(res)
-//         }
-//       })
-//     }
-//   }
-//   return data
-// }
-const handlerSearch = () => {
-  menus.value = treeToList(cloneDeep(defaultRoutes)).filter(res => {
-    if (search.value.length) {
-      return res.meta.title.includes(search.value)
+const searchTreeDateList = (date: Array<RouteRecordRaw>, search: string) => {
+  let arr: Array<RouteRecordRaw> = []
+  date.forEach(res => {
+    if (search.length && (res.meta.title as string).includes(search)) {
+      arr.push(res)
+    } else {
+      if (res?.children?.length) {
+        const temp = searchTreeDateList(res?.children, search)
+        arr = arr.concat(temp)
+      }
     }
   })
+  return arr
+}
+// 根据activeId 查找路由 最多支持三级
+const findMenuById = () => {
+  let obj: RouteRecordRaw | any = {}
+  const [first, second, three] = activeId.value.split('-')
+  if (first) {
+    obj = menus.value[first]
+  }
+  if (second) {
+    obj = obj.children[second]
+  }
+  if (three) {
+    obj = obj.children[three]
+  }
+  return obj
+}
+// 根据title查找activeId
+const findAcitiveId = (array, label) => {
+  const find = (array, label) => {
+    let stack = []
+    let going = true
+    const walker = (array, label) => {
+      array.forEach((item, index) => {
+        if (!going) return
+        stack.push(index + '')
+        if (item.meta.title === label) {
+          going = false
+        } else if (item['children']) {
+          walker(item['children'], label)
+        } else {
+          stack.pop()
+        }
+      })
+      if (going) stack.pop()
+    }
+
+    walker(array, label)
+
+    return stack.join('-')
+  }
+  return find(array, label)
+}
+
+const handlerSearch = () => {
+  menus.value = searchTreeDateList(cloneDeep(defaultRoutes) as RouteRecordRaw[], search.value)
+  activeId.value = '0'
+}
+const handlerClickItem = (item: RouteRecordRaw) => {
+  // 高亮显示
+  const idS = findAcitiveId(menus.value, item.meta.title)
+  activeId.value = idS
+  routerPush(item)
 }
 watch(search, debounce(handlerSearch, 500), { immediate: true })
 onKeyStroke('Enter', handleEnter)
@@ -125,27 +295,4 @@ onKeyStroke('ArrowUp', handleUp)
 onKeyStroke('ArrowDown', handleDown)
 </script>
 
-<style lang="scss" scoped>
-.menu-item {
-  width: 100%;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  border-radius: 8px;
-  margin-top: 8px;
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
-}
-
-.isActive {
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-</style>
+<style lang="scss" scoped></style>

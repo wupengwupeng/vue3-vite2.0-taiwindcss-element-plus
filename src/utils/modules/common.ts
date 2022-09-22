@@ -1,5 +1,3 @@
-
-
 // 数组去重(基本类型的数组，或者对象数组)
 export function unique(list: any[], key?: any) {
   if (!Array.isArray(list)) new Error('请输入一个正确的数组！！')
@@ -22,7 +20,7 @@ export function unique(list: any[], key?: any) {
   // 方法三 推荐
   const obj: any = {}
   return list.reduce((pre, cur) => {
-    obj[cur[key]] ? '' : obj[cur[key]] = true && pre.push(cur)
+    obj[cur[key]] ? '' : (obj[cur[key]] = true && pre.push(cur))
     return pre
   }, [])
 }
@@ -66,44 +64,42 @@ export function isEmportyObject(obj: any): boolean {
  * @param immediate 是否立即执行
  */
 export function debounce(func: any, wait: any, that?: any, immediate?: boolean) {
-  let timeout: any, params: any, context: any, timestamp: any, result: any;
+  let timeout: any, params: any, context: any, timestamp: any, result: any
 
-  context = that;
+  context = that
 
   const later = () => {
     // 据上一次触发时间间隔
-    const last = +new Date() - timestamp;
+    const last = +new Date() - timestamp
     // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
     if (last < wait && last > 0) {
-      timeout = setTimeout(later, wait - last);
+      timeout = setTimeout(later, wait - last)
     } else {
       // 大于就执行
-      timeout = null;
+      timeout = null
       // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
       if (!immediate) {
-        result = func.apply(context, params);
-        if (!timeout) context = params = null;
+        result = func.apply(context, params)
+        if (!timeout) context = params = null
       }
     }
-  };
+  }
   return function (...args: any) {
     // context = this;
-    params = args;
-    timestamp = +new Date();
-    const callNow = immediate && !timeout;
+    params = args
+    timestamp = +new Date()
+    const callNow = immediate && !timeout
     // console.log(timeout, "timeout")
     // 如果延时不存在，重新设定延时
-    if (!timeout) timeout = setTimeout(later, wait);
+    if (!timeout) timeout = setTimeout(later, wait)
     if (callNow) {
-      result = func.apply(context, args);
-      context = args = null;
+      result = func.apply(context, args)
+      context = args = null
     }
 
-    return result;
-  };
+    return result
+  }
 }
-
-
 
 // 节流 函数多次触发，按照一定的时间间隔执行 在一定的时间内，限制一个动作只执行一次。
 
@@ -113,28 +109,25 @@ export function debounce(func: any, wait: any, that?: any, immediate?: boolean) 
  * @param gapTime 间隔事件
  */
 export function throttle(fn: any, gapTime: number) {
-  let _lastTime: any = 0;
+  let _lastTime: any = 0
   return function (...arg: any) {
-    const _nowTime = +new Date();
+    const _nowTime = +new Date()
     if (_nowTime - _lastTime > gapTime || _lastTime === 0) {
-      fn(arg);
-      _lastTime = _nowTime;
+      fn(arg)
+      _lastTime = _nowTime
     }
-  };
+  }
 }
 
 // 函数柯里化效果
 export function currying(fn: any) {
   var slice = Array.prototype.slice,
-    __args = slice.call(arguments, 1);
+    __args = slice.call(arguments, 1)
   return function () {
-    var __inargs = slice.call(arguments);
-    return fn.apply(null, __args.concat(__inargs));
-  };
+    var __inargs = slice.call(arguments)
+    return fn.apply(null, __args.concat(__inargs))
+  }
 }
-
-
-
 
 // 类数组转数组
 export function toArray(arg: any) {
@@ -148,8 +141,6 @@ export function toArray(arg: any) {
     return arr
   }
 }
-
-
 
 /**
  * 解决JSON.stringify和JSON.parse不能转换RegExp的问题
@@ -166,14 +157,14 @@ export function parseJson(jsonStr: string) {
     try {
       // 将正则字符串转成正则对象
       if (eval(v) instanceof RegExp) {
-        return eval(v);
+        return eval(v)
       }
     } catch (e) {
       // nothing
     }
 
-    return v;
-  });
+    return v
+  })
 }
 
 /**
@@ -184,19 +175,11 @@ export function stringifyJson(json: { [key: string]: any }) {
   return JSON.stringify(json, (k, v) => {
     // 将正则对象转换为正则字符串
     if (v instanceof RegExp) {
-      return v.toString();
+      return v.toString()
     }
 
-    return v;
-  });
+    return v
+  })
 }
 
-
-
-
-
-
-
-
-
-
+//

@@ -14,12 +14,14 @@ const mutations: MutationTree<RootState> = {
     state.routes = routes
   },
   [RootMutations.SET_TAGS](state, tag) {
-    if (state.tags.length) { // length > 1
+    if (state.tags.length) {
+      // length > 1
       const index = state.tags.findIndex(res => res.name === tag.name)
       if (index === -1) {
         state.tags.push(tag)
       }
-    } else {// init tags
+    } else {
+      // init tags
       state.tags.push(tag)
     }
   },
@@ -36,7 +38,10 @@ const mutations: MutationTree<RootState> = {
   },
   [RootMutations.SET_DATDARK](state, type) {
     state.config.dayDark = type
-  }
+  },
+  [RootMutations.SET_LANG](state, type) {
+    state.config.lang = type
+  },
 }
 
 export default mutations

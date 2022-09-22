@@ -4,13 +4,17 @@
       <el-col :span="24">
         <el-input v-model="search" size="large" v-focus placeholder="请输入查询菜单" clearable></el-input>
       </el-col>
-      <!-- <el-col v-for="(item, index) in menus" :key="index + 'gg'" :span="24" @click="handleClickItem(index)">
-        <div class="menu-item" :class="{ isActive: isActive === index }">
-          {{ item!.meta.title }}
-        </div>
-      </el-col> -->
       <template v-if="menus.length">
-        <ListItem v-for="(item, index) in menus" :key="index" :item="item" :depth="1" :id="index + ''" :is-active="activeId" :handler-click="handlerClickItem" />
+        <ListItem
+          v-for="(item, index) in menus"
+          :key="index"
+          :item="item"
+          :depth="1"
+          :id="index + ''"
+          :is-active="activeId"
+          :handler-click="handlerClickItem"
+          :search-title="search"
+        />
       </template>
       <el-col v-if="!menus.length" :span="24">
         <div
@@ -149,7 +153,6 @@ const computedDownActiveId = date => {
 // 获取最深层的层数
 function getMaxFloor(treeData) {
   let floor = 0
-  let v = this
   let max = 0
   function each(data, floor) {
     data.forEach(e => {

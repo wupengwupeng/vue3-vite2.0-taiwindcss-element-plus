@@ -1,41 +1,54 @@
+# vue3-vite2.0-taiwindcss-element-plus
 
+> 2022/03/04 by wupeng
 
-### 使用教程
-```bash
-npm install only-number-input
-```
+# 使用的技术主要有 vue3 以及 element-plus 框架，taiwindcss。
 
+# 这个项目的目的是 tailWindCss 和 element-plus 的样式兼容，以及 vue3 的组件按需导入
 
+# 还有就是动态切换主题样式
 
+> A starter kit for Element Plus with Vite
 
+<img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
+
+## 建议用 pnpm 下载依赖
 
 ```javascript
-// 再main.js 项目入口文件中进行使用
-import OnlyNumberInput from 'only-number-input'
-const app = crateApp()
-app.use(OnlyNumberInput)
+npm install -g  pnpm
 ```
 
-### Props 配置 也可直接使用el-input的所有属性和方法
-
-| 参数 | 说明                         |  类型   | 默认值 |
-| :--- | :--------------------------- | :-----: | :----: |
-| argOptions       | 可选项传入正则表达式/[^\d\,]/g 只能输入数字和英文逗号 |  Object  |   {maxLength: 2,reg: /[^\d]/g}   |
-
-## 再组件中进行使用
-
-```vue3
-<template>
-<OnlyNumberInput :argOptions="{maxLength:4,reg: /[^\d\,]/g}" />
-</template>
-
-
-<script setup lang="ts">
-import {ref Ref} from 'vue'
-
-const obj = ref({
-  maxLength: 3,
-  reg: /[^\d\,]/g
-})
-</script>
+```bash
+yarn add -g pnpm
 ```
+
+## Project setup
+
+```bash
+pnpm install
+```
+
+### Compiles and hot-reloads for development
+
+```bash
+npm run dev
+```
+
+### Compiles and minifies for production
+
+```bash
+npm run build
+```
+
+## Usage
+
+```bash
+git clone https://github.com/wupengwupeng/vue3-vite2.0-taiwindcss-element-plus.git
+cd element-plus-vite-starter
+npm i
+npm run dev
+```
+
+### Custom theme
+
+See `src/styles/element/index.scss`.

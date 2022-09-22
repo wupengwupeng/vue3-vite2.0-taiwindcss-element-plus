@@ -30,15 +30,17 @@
 }
 
 .el-dialog__header {
-  display: flex;
-  height: 70px;
+  display: flex !important;
+  width: 100% !important;
+  height: 70px !important;
   user-select: none;
+  align-items: center !important;
   border-bottom: thin solid #eee;
 
   &btn {
     width: 40px;
     height: 40px;
-    transform: translate(-10px, -5px);
+    transform: translateY(8px);
 
     .el-dialog__close {
       font-size: 20px;
@@ -48,7 +50,7 @@
 
 .el-dialog__title {
   color: #111826;
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .el-dialog__body {

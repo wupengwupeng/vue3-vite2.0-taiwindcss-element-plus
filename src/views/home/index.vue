@@ -33,10 +33,7 @@
           <el-link type="danger">danger</el-link>
           <el-link type="info">info</el-link>
         </div>
-
-        <div>
-          <a href="https://www.baidu.com/s?wd=vue3">asdfasdfa</a>asdfasdfa
-        </div>
+        <div><a href="https://www.baidu.com/s?wd=vue3">asdfasdfa</a>asdfasdfa</div>
         <div class="h-100 w-full bg-yellow-300" v-loading="true"></div>
       </div>
     </div>
@@ -46,7 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { successMessage } from '@/components/dialog/DialogMessage'
+import { successMessage } from '@/components/Dialog/DialogMessage'
 import DetialDialog from './DetialDialog.vue'
 export default defineComponent({
   name: 'Test',
@@ -65,40 +62,44 @@ export default defineComponent({
     ])
     const a = ref('099999sdddddddd')
 
-
     function computedLength() {
       const arr = a.value.split('')
-      const newArr = arr.map((res, index) => {
-        if (arr[index] + '' !== arr[index + 1] + '') {
-          return index + 1
-        }
-      }).filter(Boolean)
+      const newArr = arr
+        .map((res, index) => {
+          if (arr[index] + '' !== arr[index + 1] + '') {
+            return index + 1
+          }
+        })
+        .filter(Boolean)
       const ab = [0, ...newArr]
-      const newB = ab.map((res, index) => {
-        return ab[index + 1] - ab[index]
-      }).filter(res => !isNaN(res))
+      const newB = ab
+        .map((res, index) => {
+          return ab[index + 1] - ab[index]
+        })
+        .filter(res => !isNaN(res))
       return Math.max(...newB)
     }
     const len = computedLength()
-    console.log(len, "len")
+    console.log(len, 'len')
 
     function test() {
-      const name = "abcabcbb";  //需要验证的字符串
-      let lcontinuity = 0; //用于连贯个数的计数
+      const name = 'abcabcbb' //需要验证的字符串
+      let lcontinuity = 0 //用于连贯个数的计数
       for (var i = 1; i < name.length; i++) {
-        if (((name[i].charCodeAt(0)) - (name[i - 1].charCodeAt(0)) == 1) || ((name[i].charCodeAt(0)) - (name[i - 1].charCodeAt(0)) == -1)) { //1正序连贯；-1倒序连贯
-          lcontinuity += 1; //存在连贯：计数+1
-        };
+        if (name[i].charCodeAt(0) - name[i - 1].charCodeAt(0) == 1 || name[i].charCodeAt(0) - name[i - 1].charCodeAt(0) == -1) {
+          //1正序连贯；-1倒序连贯
+          lcontinuity += 1 //存在连贯：计数+1
+        }
       }
       return lcontinuity
     }
-    console.log(test(), "test")
+    console.log(test(), 'test')
     function toast() {
       successMessage('sdf', {})
     }
     function handlerOpen() {
       visible.value = true
-      console.log(visible.value, "value")
+      console.log(visible.value, 'value')
     }
     return {
       tags,
@@ -111,5 +112,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

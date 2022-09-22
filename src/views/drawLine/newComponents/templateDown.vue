@@ -1,7 +1,6 @@
 <template>
   <div>
-    <TemplateDown title="选择导出方式" :visible="visible" :confirm-text="'导出'" @close="handlerClose"
-      @handler-save="handlerSave">
+    <TemplateDown title="选择导出方式" :visible="visible" :confirm-text="'导出'" @close="handlerClose" @handler-save="handlerSave">
       <el-form :model="ruleForm" :label-position="'top'" :rules="state.rules">
         <el-row>
           <el-col :span="12">
@@ -19,9 +18,16 @@
               <el-table :data="ruleForm.tableData" style="width: 100%" max-height="250" @cell-click="handlerCellClick">
                 <el-table-column prop="name" label="Name">
                   <template #default="{ row }">
-                    <el-input v-if="row.name.isShow" size="small" v-onlyNumber v-focus placeholder="请输入循环层号"
-                      v-model="row.name.value" @blur="row.name.isShow = false"></el-input>
-                    <span v-else>{{  row.name.value  }}</span>
+                    <el-input
+                      v-if="row.name.isShow"
+                      size="small"
+                      v-onlyNumber
+                      v-focus
+                      placeholder="请输入循环层号"
+                      v-model="row.name.value"
+                      @blur="row.name.isShow = false"
+                    ></el-input>
+                    <span v-else>{{ row.name.value }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column prop="" label="操作" width="100">
@@ -41,23 +47,20 @@
 
     <TemplateManger v-if="visibleManger" v-model:visible="visibleManger"></TemplateManger>
   </div>
-
-
 </template>
 
-
 <script setup lang="ts">
-import { reactive, ref, Ref } from 'vue';
+import { reactive, ref, Ref } from 'vue'
 
-import TemplateDown from '@/components/dialog/index.vue'
+import TemplateDown from '@/components/Dialog/index.vue'
 import CustomSelect from '@/components/customSelect/index.vue'
 import TemplateManger from './templateManger.vue'
-const emits = defineEmits(["update:visible"])
+const emits = defineEmits(['update:visible'])
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 const validatorCheck = (rule: any, value: any, callback: any) => {
   const reg = /(^\,+[\d*\,*]*)|([\d*\,*]*\,+$)|(\d+\,{2,})/g
@@ -76,41 +79,37 @@ const ruleForm = reactive({
     {
       name: {
         value: '',
-        isShow: false
-      }
+        isShow: false,
+      },
     },
     {
       name: {
         value: '',
-        isShow: false
-      }
+        isShow: false,
+      },
     },
   ],
 })
 const state = reactive({
   rules: {
-    tableData: [
-      { required: true, validator: validatorCheck, trigger: ['change', 'blur'] }
-    ]
-  }
+    tableData: [{ required: true, validator: validatorCheck, trigger: ['change', 'blur'] }],
+  },
 })
 const visibleManger: Ref<boolean> = ref(false)
 
 const options = [
   {
     value: '1',
-    label: '循环层序号'
+    label: '循环层序号',
   },
   {
     value: '2',
-    label: '工步层序号'
-  }
+    label: '工步层序号',
+  },
 ]
 
-
-
 const handlerClose = () => {
-  emits("update:visible", false)
+  emits('update:visible', false)
 }
 
 const handlerSave = () => {
@@ -122,10 +121,10 @@ const handlerClickAdd = (row: any, index: number) => {
   const obj = {
     name: {
       value: '',
-      isShow: false
-    }
+      isShow: false,
+    },
   }
-  ruleForm.tableData.splice((index + 1), 0, obj)
+  ruleForm.tableData.splice(index + 1, 0, obj)
 }
 // 删除
 const handlerClickMenu = (row: any, index: number) => {
@@ -141,5 +140,4 @@ const handlerCellClick = async (row: any, column: any, cell: HTMLElement, event:
 const handlerMangerTemplate = () => {
   visibleManger.value = true
 }
-
 </script>

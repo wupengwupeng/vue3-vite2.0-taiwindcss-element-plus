@@ -1,5 +1,5 @@
 <template>
-  <Dialog v-model:visible="visible" :footer-right="false" @close="handlerClose">
+  <Dialog v-model:visible="visible" title="菜单搜索" :footer-right="false" @close="handlerClose">
     <el-row>
       <el-col :span="24">
         <el-input v-model="search" size="large" v-focus placeholder="请输入查询菜单" clearable></el-input>
@@ -25,13 +25,14 @@
       </el-col>
     </el-row>
     <template #footerLeft>
-      <div class="w-full flex justify-start gap-x-8">
+      <div class="w-full flex items-center justify-start gap-x-8 relative">
         <span v-for="(index, item) in OBJICON" :key="index">
           <span class="inline-flex items-center justify-center w-28 h-28 bg-white border rounded shadow-2xl" :class="{ 'rotate-180': item === '向上' }">
             <AppSvgIcon :icon-name="OBJICON[item]"></AppSvgIcon>
           </span>
           <span class="ml-4">{{ item }}</span>
         </span>
+        <span class="absolute right-10">同时按下Shift+p 打开搜索</span>
       </div>
     </template>
   </Dialog>
@@ -77,13 +78,12 @@ const routerPush = routeActive => {
       type: '',
       color: '#fff',
     })
-    // handlerClose()
+    handlerClose()
   }
 }
 const handleEnter = () => {
   const menusActive = findMenuById()
   routerPush(menusActive)
-  handlerClose()
 }
 // 直接返回下一个的activeId TODO 获取树形数据中对应的值。
 const computedDownActiveId = date => {
@@ -272,6 +272,7 @@ const findAcitiveId = (array, label) => {
           stack.pop()
         }
       })
+      // remove last index
       if (going) stack.pop()
     }
 

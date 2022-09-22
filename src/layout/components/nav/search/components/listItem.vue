@@ -2,12 +2,20 @@
   <div class="w-full">
     <el-row>
       <el-col :span="24">
-        <div class="menu-item" :class="{ isActive: props.isActive === props.id }" :style="itemStyle">
+        <div class="menu-item" :class="{ isActive: props.isActive === props.id }" :style="itemStyle" @click="handlerClick(props.item)">
           <app-svg-icon class="rotate-180 text-red-300" icon-name="icon-back-down"></app-svg-icon>
           <span class="ml-5">{{ props?.item?.meta?.title }}</span>
         </div>
         <template v-if="props.item && props.item.children && props.item.children.length > 1">
-          <list-item class="w-full" v-for="(res, inx) in props.item.children" :item="res" :depth="props.depth + 1" :id="listItemId(inx)" :is-active="props.isActive" />
+          <list-item
+            class="w-full"
+            v-for="(res, inx) in props.item.children"
+            :item="res"
+            :depth="props.depth + 1"
+            :id="listItemId(inx)"
+            :is-active="props.isActive"
+            :handlerClick="props.handlerClick"
+          />
         </template>
       </el-col>
     </el-row>
@@ -34,6 +42,10 @@ const props = defineProps({
     type: String,
     default: '0-0',
   },
+  handlerClick: {
+    type: Function,
+    required: true,
+  },
 })
 const itemStyle = computed(() => {
   return {
@@ -45,7 +57,9 @@ const itemStyle = computed(() => {
 const listItemId = inx => {
   return props.id + '-' + inx
 }
-console.log(props.id, 'id')
+const handlerClick = item => {
+  props.handlerClick(item)
+}
 </script>
 
 <style lang="scss" scoped>

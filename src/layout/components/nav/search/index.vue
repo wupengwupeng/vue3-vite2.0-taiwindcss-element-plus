@@ -1,6 +1,8 @@
 <template>
   <div class="search-menu" @click="handlerClick">
-    <app-svg-icon icon-name="nav-search"></app-svg-icon>
+    <app-svg-icon class="mr-4" icon-name="nav-search"></app-svg-icon>
+    <span>Search</span>
+    <span>Shift+P</span>
   </div>
   <SearchDialog v-if="visible" v-model:visible="visible"></SearchDialog>
 </template>
@@ -41,16 +43,29 @@ onKeyStroke(['P', 'p'], keyBoardP)
 
 <style lang="scss" scoped>
 .search-menu {
-  width: 40px;
+  min-width: 100px;
   height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  font-weight: 500;
+  span {
+    margin: 0px 5px;
+  }
+  span:nth-child(3) {
+    padding: 0 3px;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 4px;
+    color: var(--color-gray-300);
+  }
 
   &:hover {
-    background-color: #f6f6f6;
     color: #000;
     cursor: pointer;
+    span:nth-child(3) {
+      color: var(--el-color-primary);
+      border-color: var(--el-color-primary);
+    }
   }
 }
 </style>

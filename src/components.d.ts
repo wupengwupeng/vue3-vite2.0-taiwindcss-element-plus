@@ -17,7 +17,7 @@ declare module 'vue' {
     CustomRadio: typeof import('./components/customRadio/index.vue')['default']
     CustomSelect: typeof import('./components/customSelect/index.vue')['default']
     CustomTable: typeof import('./components/CustomTable/index.vue')['default']
-    Dialog: typeof import('./components/dialog/index.vue')['default']
+    Dialog: typeof import('./components/Dialog/index.vue')['default']
     Echarts: typeof import('./components/echarts/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']
@@ -70,6 +70,7 @@ declare module 'vue' {
     TablePage: typeof import('./components/tablePage/index.vue')['default']
     TagScroll: typeof import('./components/tagScroll/index.vue')['default']
     ThreeD: typeof import('./components/threeD/index.vue')['default']
+    TreeList: typeof import('./components/TreeList/index.vue')['default']
     VirtuallList: typeof import('./components/virtuallList/index.vue')['default']
     WangEditor: typeof import('./components/wangEditor/index.vue')['default']
   }

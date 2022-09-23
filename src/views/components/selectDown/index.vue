@@ -7,8 +7,6 @@ import 'vue3-treeselect/dist/vue3-treeselect.css'
 
 import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 
-
-
 interface User {
   id: string
   name: string
@@ -27,13 +25,7 @@ interface SpanMethodProps {
   columnIndex: number
 }
 
-
-const objectSpanMethod = ({
-  row,
-  column,
-  rowIndex,
-  columnIndex,
-}: SpanMethodProps): any => {
+const objectSpanMethod = ({ row, column, rowIndex, columnIndex }: SpanMethodProps): any => {
   // //console.log(row)
   // //console.log(column)
   // //console.log(rowIndex, 'row')
@@ -107,23 +99,98 @@ const tableData: User[] = [
 ]
 
 const value = ref(null)
-const options = ref([{
-  id: 'a',
-  label: 'a',
-  children: [{
-    id: 'aa',
-    label: 'aa',
-  }, {
-    id: 'ab',
-    label: 'ab',
-  }],
-}, {
-  id: 'b',
-  label: 'b',
-}, {
-  id: 'c',
-  label: 'c',
-}])
+const isActive = ref('')
+const options = ref([
+  {
+    id: 'a',
+    label: 'a',
+    name: 'a',
+    children: [
+      {
+        id: 'aa',
+        name: 'a-a',
+        label: 'aa',
+        children: [
+          {
+            id: 'ab-a',
+            name: 'a-b-a',
+            label: 'ab-a',
+          },
+        ],
+      },
+      {
+        id: 'ab',
+        name: 'a-b',
+        label: 'ab',
+      },
+    ],
+  },
+  {
+    id: 'b',
+    name: 'b',
+    label: 'b',
+    children: [
+      {
+        id: 'b-b',
+        name: 'b-b',
+        label: 'b-b',
+      },
+      {
+        id: 'b-b-b',
+        name: 'b-b-b',
+        label: 'b-b-b',
+      },
+    ],
+  },
+  {
+    id: 'c',
+    name: 'c',
+    label: 'c',
+    children: [
+      {
+        id: 'c-c',
+        name: 'c-c',
+        label: 'c-c',
+      },
+      {
+        id: 'c-c-c',
+        name: 'c-c-c',
+        label: 'c-c-c',
+      },
+    ],
+  },
+])
+// 查找所有父级得name
+const findAcitiveId = (array, label) => {
+  const find = (array, label) => {
+    let stack = []
+    let going = true
+    const walker = (array, label) => {
+      array.forEach((item, index) => {
+        if (!going) return
+        stack.push(item.name + '')
+        if (item.name === label) {
+          going = false
+        } else if (item['children']) {
+          walker(item['children'], label)
+        } else {
+          stack.pop()
+        }
+      })
+      // remove last index
+      if (going) stack.pop()
+    }
+    walker(array, label)
+    return stack.join('^')
+  }
+  return find(array, label)
+}
+
+const handlerClick = item => {
+  if (!(item.children && item.children.length)) {
+    isActive.value = findAcitiveId(options.value, item.name)
+  }
+}
 watch(value, () => {
   //console.log(unref(value), 223)
 })
@@ -135,18 +202,16 @@ watch(value, () => {
       <div class="card-header">
         <span class="font-medium">
           采用
-          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px">vue3-treeselect</el-link>
-          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px">TreeSelect</el-link>写法
-          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank"
-            style="font-size: 16px; margin: 0 4px 5px">How to use it?</el-link>
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank" style="font-size: 16px; margin: 0 4px 5px">vue3-treeselect</el-link>
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank" style="font-size: 16px; margin: 0 4px 5px">TreeSelect</el-link>写法
+          <el-link href="https://github.com/megafetis/vue3-treeselect" target="_blank" style="font-size: 16px; margin: 0 4px 5px">How to use it?</el-link>
         </span>
       </div>
       <div>
         <treeselect v-model="value" :multiple="true" placeholder="请选择企业架构" :options="options" />
       </div>
-      <el-table :data="tableData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
+      <el-divider />
+      <el-table :data="tableData" :span-method="objectSpanMethod" border>
         <el-table-column prop="id" label="ID" width="180" />
         <el-table-column prop="name" label="Name" />
         <el-table-column prop="amount1" label="Amount 1" />
@@ -156,6 +221,10 @@ watch(value, () => {
         <el-table-column prop="amount5" label="Amount 5" />
         <el-table-column prop="amount6" label="Amount 6" />
       </el-table>
+    </div>
+    <el-divider />
+    <div class="border">
+      <tree-list v-for="(res, index) in options" :item="res" :id="res.name" :is-active="isActive" :handlerClick="handlerClick" />
     </div>
   </main-card>
 </template>

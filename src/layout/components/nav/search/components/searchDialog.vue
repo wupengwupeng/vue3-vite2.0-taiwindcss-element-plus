@@ -85,7 +85,7 @@ const handleEnter = () => {
   const menusActive = findMenuById()
   routerPush(menusActive)
 }
-// 直接返回下一个的activeId TODO 获取树形数据中对应的值。
+// 直接返回下一个的activeId TODO 获取树形数据中对应的值。考虑性能关系不建议使用递归
 const computedDownActiveId = date => {
   const arr = activeId.value.split('-')
   const len = arr.length
@@ -110,7 +110,7 @@ const computedDownActiveId = date => {
       break
     case 2:
       if (Number(second) >= date[first].children.length - 1) {
-        if (date[first].children[second].children && date[first].children[second].children.length) {
+        if (date[first].children && date[first].children[second].children && date[first].children[second].children.length) {
           if (three) {
             three = Number(three) + 1 + ''
           } else {
@@ -171,6 +171,7 @@ function getMaxFloor(treeData) {
 
 // TODO 找到对应的active的选项，判断下方是否还有多余的值，如果有就+1，没有就回退到上一级进行加减。
 const handleDown = () => {
+  if (!menus.value.length) return
   activeId.value = computedDownActiveId(menus.value)
 }
 // 最多只能支持三级菜单暂时 TODO 无限
@@ -240,7 +241,7 @@ const searchTreeDateList = (date: Array<RouteRecordRaw>, search: string) => {
   })
   return arr
 }
-// 根据activeId 查找路由 最多支持三级
+// 根据activeId 查找路由
 const findMenuById = () => {
   let obj: RouteRecordRaw | any = {}
   const [first, second, three] = activeId.value.split('-')
@@ -255,8 +256,8 @@ const findMenuById = () => {
   }
   return obj
 }
-// 根据title查找activeId
-const findAcitiveId = (array, label) => {
+// 根据title查找activeId 所有父级得index
+const findActiveId = (array, label) => {
   const find = (array, label) => {
     let stack = []
     let going = true
@@ -272,10 +273,8 @@ const findAcitiveId = (array, label) => {
           stack.pop()
         }
       })
-      // remove last index
       if (going) stack.pop()
     }
-
     walker(array, label)
 
     return stack.join('-')
@@ -289,7 +288,7 @@ const handlerSearch = () => {
 }
 const handlerClickItem = (item: RouteRecordRaw) => {
   // 高亮显示
-  const idS = findAcitiveId(menus.value, item.meta.title)
+  const idS = findActiveId(menus.value, item.meta.title)
   activeId.value = idS
   routerPush(item)
 }

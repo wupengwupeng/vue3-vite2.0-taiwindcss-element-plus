@@ -9,7 +9,7 @@ import { test } from '@/store/modules/test/index'
 import { changeTheme, setRoutes } from '@/utils/index'
 import { routes } from '@/router'
 // Default topic
-const defaultColor = '#0780F1'
+const defaultColor = '#AB4BF5'
 // Init topic
 let theme: string = getTheme() || defaultColor // It may be an empty string or not in an existing topic
 if (theme) changeTheme(theme)

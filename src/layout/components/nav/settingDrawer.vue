@@ -7,7 +7,7 @@
     <el-divider>主题色</el-divider>
     <div class="flex w-full gap-x-12 justify-center items-center">
       <ChangeTheme />
-      <span>切换主题</span>
+      <!-- <span>切换主题</span> -->
     </div>
     <el-divider>导航栏模式</el-divider>
     <ul class="grid grid-cols-2 justify-center justify-items-center">

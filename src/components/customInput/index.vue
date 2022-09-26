@@ -15,15 +15,15 @@ export type Arg = {
 const props = defineProps({
   modelValue: {
     type: String,
-    default: ''
+    default: '',
   },
   argOptions: {
     type: Object as PropType<Arg | any>,
     default: () => {
       // maxLength: 5,
       // reg: /[^\d\,]/g
-    }
-  }
+    },
+  },
 })
 const emit = defineEmits(['update:modelValue'])
 const arg = stringifyJson(props.argOptions)
@@ -34,7 +34,7 @@ const val = computed({
   },
   set(v) {
     emit('update:modelValue', v)
-  }
+  },
 })
 
 /**
@@ -45,12 +45,10 @@ function stringifyJson(json: { [key: string]: any }) {
   return JSON.stringify(json, (k, v) => {
     // 将正则对象转换为正则字符串
     if (v instanceof RegExp) {
-      return v.toString();
+      return v.toString()
     }
 
-    return v;
-  });
+    return v
+  })
 }
-
-
 </script>

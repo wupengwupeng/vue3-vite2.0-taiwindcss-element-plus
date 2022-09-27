@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center">
     <el-color-picker v-model="color" @change="changeTheme"></el-color-picker>
-    <div>其他颜色</div>
+    <div>切换颜色</div>
   </div>
 </template>
 

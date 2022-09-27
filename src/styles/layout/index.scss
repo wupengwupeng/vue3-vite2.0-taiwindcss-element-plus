@@ -1,0 +1,60 @@
+.app-content-menu {
+  background: var(--menuBg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-right: 1px solid var(--menuBorder);
+  .el-scrollbar {
+    .scrollbar-wrapper {
+      flex: 1;
+      overflow: auto;
+      .el-menu-vertical-demo {
+        border-right: none;
+
+        &:not(.el-menu--collapse) {
+          width: 200px;
+          height: calc(100vh - 260px);
+        }
+      }
+    }
+  }
+}
+
+.logo-bg {
+  background-color: var(--menuBg);
+  height: 58px;
+  svg {
+    display: block;
+  }
+}
+
+.horizontal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 58px;
+  .logo-vue {
+    width: 200px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .horizontal-content {
+    flex: 1;
+    overflow: hidden;
+    border-bottom: none !important;
+  }
+}
+.mix-horizontal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  &-content {
+    flex: 1;
+    overflow: hidden;
+    border-bottom: none !important;
+  }
+}

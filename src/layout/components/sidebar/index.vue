@@ -1,7 +1,8 @@
 <template>
-  <div class="h-screen overflow-auto shadow app-content">
+  <div class="app-content-menu">
+    <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu class="el-menu-vertical-demo outer-most" menu-trigger="click" :default-active="route.path" unique-opened router :collapse="isCollapse">
+      <el-menu class="el-menu-vertical-demo" menu-trigger="click" :default-active="route.path" unique-opened router :collapse="isCollapse">
         <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
@@ -11,15 +12,21 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, watch, toRefs, computed, onMounted, nextTick } from 'vue'
 import SideBarItem from '@/layout/components/sidebar/sidebarItem.vue'
+import logoVue from '../nav/logo.vue'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/store'
 import { routes as defaultRoutes } from '@/router/modules/index'
 export default defineComponent({
   components: {
     SideBarItem,
+    logoVue,
   },
   props: {
     isCollapse: {
+      type: Boolean,
+      default: false,
+    },
+    isHorizontalNav: {
       type: Boolean,
       default: false,
     },
@@ -42,23 +49,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.app-content {
-  border-right: 1px solid var(--color-gray-200);
-  background: var(--menuBg);
-
-  .scrollbar-wrapper {
-    border-right: 1px solid #272a36;
-  }
-
-  .el-menu-vertical-demo {
-    border-top: 1px solid var(--color-gray-200);
-    border-right: none;
-
-    &:not(.el-menu--collapse) {
-      width: 200px;
-      height: calc(100vh - 260px);
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

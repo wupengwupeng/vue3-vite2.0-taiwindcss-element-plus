@@ -25,9 +25,8 @@
 import { ref, PropType, Ref } from 'vue'
 import path from 'path'
 import { RouteRecordRaw } from 'vue-router'
-import { useStore } from '@/store'
-import { RootMutations } from '@/store/type'
 import type { childrenType } from '../../index.type'
+import { navUse } from './navUse'
 const props = defineProps({
   item: {
     type: Object as PropType<RouteRecordRaw | any>,
@@ -43,20 +42,8 @@ const props = defineProps({
   },
 })
 const emits = defineEmits(['handlerItem'])
-
+const { handlerRouteAddTags } = navUse()
 const onlyOneChild: Ref<childrenType> = ref(null)
-const store = useStore()
-
-function handlerRouteAddTags(tag: any) {
-  const tags = {
-    ...tag,
-    name: tag.meta.title,
-    path: tag.path,
-    type: '',
-    color: '#fff',
-  }
-  store.commit(RootMutations.SET_TAGS, tags)
-}
 
 function hasOneShowingChild(children: childrenType[] = [], parent: childrenType) {
   const showingChildren = children.filter((item: any) => {

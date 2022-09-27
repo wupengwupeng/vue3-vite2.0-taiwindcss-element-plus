@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full h-58 flex items-center">
-    <div class="w-200 h-58" v-if="isShowBreadCrumb">
+  <div class="horizontal">
+    <div class="logo-vue" v-if="isShowBreadCrumb">
       <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
     </div>
-    <el-menu class="flex-1 h-58 overflow-hidden border-none el-menu-horizontal-demo" :default-active="route.path" menu-trigger="hover" unique-opened router mode="horizontal">
+    <el-menu class="horizontal-content" :default-active="route.path" menu-trigger="hover" unique-opened router mode="horizontal">
       <sidebarItemVue v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
     </el-menu>
   </div>
@@ -34,4 +34,4 @@ const route = useRoute()
 const menuData = ref(defaultRoutes)
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>

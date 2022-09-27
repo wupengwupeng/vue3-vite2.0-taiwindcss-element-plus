@@ -2,15 +2,13 @@
   <div class="h-screen w-screen flex" v-resize>
     <!-- 菜单类型1 -->
     <div class="flex flex-col" v-if="isHideSideBar && isHorizontalNav">
-      <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
-      <SideBar key="side-one" :isCollapse="isCollapse" />
+      <SideBar key="side-one" :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav" />
     </div>
     <!-- 适应手机端 -->
     <div v-if="sideBarIphone" class="side-bar-position">
       <div class="side-bar-left" ref="target">
         <div v-if="isHorizontalNav">
-          <logoVue :isCollapse="isCollapseIphone" :isHorizontalNav="isHorizontalNav"></logoVue>
-          <SideBar key="side-two" :isCollapse="isCollapseIphone" />
+          <SideBar key="side-two" :isCollapse="isCollapseIphone" :isHorizontalNav="isHorizontalNav" />
         </div>
         <div v-if="menuTypeThree">
           <MenuMix key="side-three" :isCollapse="isCollapseIphone" :menuDate="menuDate" />
@@ -59,7 +57,6 @@ export default defineComponent({
     const store = useStore()
     const route = useRoute()
     const menuDate: Ref<Array<RouteRecordRaw>> = ref([])
-    console.log(route.path, 'route')
 
     const isHorizontalNav = computed(() => {
       return store.state.config.nav === '1'

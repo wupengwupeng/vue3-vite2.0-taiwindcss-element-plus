@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-full flex-shrink-0 flex">
-    <el-menu class="flex-1 overflow-hidden el-menu-horizontal-demo" :default-active="defaultActive" menu-trigger="hover" unique-opened router mode="horizontal">
+  <div class="mix-horizontal">
+    <el-menu class="mix-horizontal-content" :default-active="defaultActive" menu-trigger="hover" unique-opened router mode="horizontal">
       <el-menu-item v-for="item in defaultRoutes" :key="item.path" :index="resolvePath(item) || item.redirect" @click="handlerRoute(item)">
         <app-svg-icon :icon-name="item.meta.icon + ''"></app-svg-icon>
         <template #title>
@@ -15,11 +15,12 @@
 import { ref, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { routes as defaultRoutes } from '@/router/modules/index'
-import { useStore } from '@/store'
-import { RootMutations } from '@/store/type'
 import { getParentPaths, findRouteByPath } from '@/utils/modules/common'
 import { emitter } from '@/utils/mitt'
-const store = useStore()
+import { navUse } from '../navUse'
+
+const { handlerRouteAddTags } = navUse()
+
 const route = useRoute()
 let defaultActive = ref(null)
 function getDefaultActive(routePath) {
@@ -46,16 +47,6 @@ function resolvePath(route) {
   } else {
     return routeChildPath
   }
-}
-function handlerRouteAddTags(tag: any) {
-  const tags = {
-    ...tag,
-    name: tag.meta.title,
-    path: tag.path,
-    type: '',
-    color: '#fff',
-  }
-  store.commit(RootMutations.SET_TAGS, tags)
 }
 function handlerRoute(item) {
   const defaultRoute = item.children[0]

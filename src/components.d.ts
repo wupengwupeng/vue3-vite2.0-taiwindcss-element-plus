@@ -70,7 +70,9 @@ declare module 'vue' {
     TablePage: typeof import('./components/tablePage/index.vue')['default']
     TagScroll: typeof import('./components/tagScroll/index.vue')['default']
     ThreeD: typeof import('./components/threeD/index.vue')['default']
+    TreeItem: typeof import('./components/TreeItem/index.vue')['default']
     TreeList: typeof import('./components/TreeList/index.vue')['default']
+    TreeSelect: typeof import('./components/TreeSelect/index.vue')['default']
     VirtuallList: typeof import('./components/virtuallList/index.vue')['default']
     WangEditor: typeof import('./components/wangEditor/index.vue')['default']
   }

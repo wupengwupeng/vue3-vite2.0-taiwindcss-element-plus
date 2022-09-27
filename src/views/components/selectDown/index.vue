@@ -99,7 +99,6 @@ const tableData: User[] = [
 ]
 
 const value = ref(null)
-const isActive = ref('')
 const options = ref([
   {
     id: 'a',
@@ -160,37 +159,7 @@ const options = ref([
     ],
   },
 ])
-// 查找所有父级得name
-const findAcitiveId = (array, label) => {
-  const find = (array, label) => {
-    let stack = []
-    let going = true
-    const walker = (array, label) => {
-      array.forEach((item, index) => {
-        if (!going) return
-        stack.push(item.name + '')
-        if (item.name === label) {
-          going = false
-        } else if (item['children']) {
-          walker(item['children'], label)
-        } else {
-          stack.pop()
-        }
-      })
-      // remove last index
-      if (going) stack.pop()
-    }
-    walker(array, label)
-    return stack.join('^')
-  }
-  return find(array, label)
-}
 
-const handlerClick = item => {
-  if (!(item.children && item.children.length)) {
-    isActive.value = findAcitiveId(options.value, item.name)
-  }
-}
 watch(value, () => {
   //console.log(unref(value), 223)
 })
@@ -224,7 +193,7 @@ watch(value, () => {
     </div>
     <el-divider />
     <div class="border">
-      <tree-list v-for="(res, index) in options" :item="res" :id="res.name" :is-active="isActive" :handlerClick="handlerClick" />
+      <tree-list :tree-list="options"></tree-list>
     </div>
   </main-card>
 </template>

@@ -1,32 +1,35 @@
 <template>
   <div class="app-content-menu">
-    <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
+    <logoVue :isCollapse="isCollapse" :isHorizontalNav="isMenuThreeNav"></logoVue>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu class="el-menu-vertical-demo" menu-trigger="click" :default-active="route.path" unique-opened router :collapse="isCollapse">
-        <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
+        <mixSideBarItemVue v-for="routes in menuDate" :key="routes.path" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, reactive, watch, toRefs, computed, onMounted, nextTick } from 'vue'
-import SideBarItem from '@/layout/components/sidebar/sidebarItem.vue'
-import logoVue from '../nav/logo.vue'
-import { useRoute } from 'vue-router'
+<script lang="ts" name="MenuMix">
+import { defineComponent, PropType, ref, reactive, watch, toRefs, computed, onMounted, nextTick } from 'vue'
+import mixSideBarItemVue from '../sidebarItem.vue'
+import logoVue from '../../nav/logo.vue'
+import { useRoute, RouteRecordRaw } from 'vue-router'
 import { useStore } from '@/store'
-import { routes as defaultRoutes } from '@/router/modules/index'
+
 export default defineComponent({
   components: {
-    SideBarItem,
+    mixSideBarItemVue,
     logoVue,
   },
   props: {
+    menuDate: {
+      type: Array as PropType<RouteRecordRaw[]>,
+    },
     isCollapse: {
       type: Boolean,
       default: false,
     },
-    isHorizontalNav: {
+    isMenuThreeNav: {
       type: Boolean,
       default: false,
     },
@@ -38,7 +41,6 @@ export default defineComponent({
     const state = reactive({
       routess: store.state.routes as any,
       tags: store.state.tags,
-      menuData: defaultRoutes,
     })
     return {
       route,

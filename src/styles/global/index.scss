@@ -42,3 +42,25 @@ a {
 .el-dialog__headerbtn .el-dialog__close {
   color: black;
 }
+.app-content {
+  background: var(--menuBg);
+  display: flex;
+  flex-direction: column;
+
+  .el-scrollbar {
+    border-right: 1px solid var(--color-gray-200) !important;
+
+    .scrollbar-wrapper {
+      flex: 1;
+      overflow: auto;
+      .el-menu-vertical-demo {
+        border-right: none;
+
+        &:not(.el-menu--collapse) {
+          width: 200px;
+          height: calc(100vh - 260px);
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@
   </template>
   <el-sub-menu v-else :index="resolvePath(props.item!.path)" popper-append-to-body>
     <template #title>
-      <app-svg-icon :icon-name="item.meta.icon"></app-svg-icon>
+      <app-svg-icon :icon-name="item.meta.icon + ''"></app-svg-icon>
       <span>{{ item?.meta?.title }}</span>
     </template>
     <SideBarItem v-for="child in item?.children" :key="child.path" :is-nest="true" :item="child" :base-path="resolvePath(child.path)"></SideBarItem>
@@ -24,12 +24,12 @@
 <script setup lang="ts" name="SideBarItem">
 import { ref, PropType, Ref } from 'vue'
 import path from 'path'
-import { useStore } from '@/store'
-import { RootMutations } from '@/store/type'
+import { RouteRecordRaw } from 'vue-router'
 import type { childrenType } from '../../index.type'
+import { navUse } from './navUse'
 const props = defineProps({
   item: {
-    type: Object as PropType<any>,
+    type: Object as PropType<RouteRecordRaw | any>,
     default: () => {},
   },
   isNest: {
@@ -42,20 +42,8 @@ const props = defineProps({
   },
 })
 const emits = defineEmits(['handlerItem'])
-
+const { handlerRouteAddTags } = navUse()
 const onlyOneChild: Ref<childrenType> = ref(null)
-const store = useStore()
-
-function handlerRouteAddTags(tag: any) {
-  const tags = {
-    ...tag,
-    name: tag.meta.title,
-    path: tag.path,
-    type: '',
-    color: '#fff',
-  }
-  store.commit(RootMutations.SET_TAGS, tags)
-}
 
 function hasOneShowingChild(children: childrenType[] = [], parent: childrenType) {
   const showingChildren = children.filter((item: any) => {

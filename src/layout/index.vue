@@ -1,39 +1,49 @@
 <template>
   <div class="h-screen w-screen flex" v-resize>
+    <!-- 菜单类型1 -->
     <div class="flex flex-col" v-if="isHideSideBar && isHorizontalNav">
-      <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
-      <SideBar key="side-one" :isCollapse="isCollapse" />
+      <SideBar key="side-one" :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav" />
     </div>
+    <!-- 适应手机端 -->
     <div v-if="sideBarIphone" class="side-bar-position">
       <div class="side-bar-left" ref="target">
-        <logoVue :isCollapse="isCollapseIphone" :isHorizontalNav="isHorizontalNav"></logoVue>
-        <SideBar key="side-two" :isCollapse="isCollapseIphone" />
+        <div v-if="isHorizontalNav">
+          <SideBar key="side-two" :isCollapse="isCollapseIphone" :isHorizontalNav="isHorizontalNav" />
+        </div>
+        <div v-if="menuTypeThree">
+          <MenuMix key="side-three" :isCollapse="isCollapseIphone" :menuDate="menuDate" />
+        </div>
       </div>
     </div>
+    <!-- 菜单类型3 -->
+    <div v-if="isHideSideBar && menuTypeThree"><MenuMix :isCollapse="isCollapse" key="side-three-key" :isMenuThreeNav="menuTypeThree" :menuDate="menuDate" /></div>
     <div class="flex-1 flex flex-col overflow-hidden">
-      <NavBar v-model="isCollapse" :isHorizontalNav="!isHorizontalNav" @handlerClickIcon="handlerClickIcon" />
+      <NavBar v-model="isCollapse" :isHorizontalNav="!isHorizontalNav" :isMenuThreeNav="menuTypeThree" @handlerClickIcon="handlerClickIcon" />
       <div class="flex-1 overflow-hidden">
         <AppMain></AppMain>
       </div>
     </div>
-    <three-d></three-d>
+    <!-- <three-d></three-d> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRef, computed, watch } from 'vue'
+import { defineComponent, reactive, ref, Ref, toRef, computed, watch, provide } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import SideBar from './components/sidebar/index.vue'
+import MenuMix from './components/sidebar/menuMix/index.vue'
 import NavBar from './components/nav/index.vue'
 import logoVue from './components/nav/logo.vue'
 import AppMain from './components/appMain/index.vue'
 import { emitter } from '@/utils/mitt'
 import { deviceDetection } from '@/utils/index'
 import { useStore } from '@/store'
+import { useRoute, RouteRecordRaw } from 'vue-router'
 
 export default defineComponent({
   components: {
     SideBar,
+    MenuMix,
     NavBar,
     AppMain,
     logoVue,
@@ -45,11 +55,17 @@ export default defineComponent({
     const isHideSideBar = ref(true)
     const isMobile = deviceDetection()
     const store = useStore()
+    const route = useRoute()
+    const menuDate: Ref<Array<RouteRecordRaw>> = ref([])
+
     const isHorizontalNav = computed(() => {
       return store.state.config.nav === '1'
     })
+    const menuTypeThree = computed(() => {
+      return store.state.config.nav === '3'
+    })
     const sideBarIphone = computed(() => {
-      return !isHideSideBar.value && isHorizontalNav.value && !isCollapseIphone.value
+      return !isHideSideBar.value && (isHorizontalNav.value || menuTypeThree.value) && !isCollapseIphone.value
     })
 
     // 监听容器
@@ -73,15 +89,21 @@ export default defineComponent({
         isCollapse.value = false
       }
     })
+    emitter.on('emitsCustom', function (item) {
+      menuDate.value = (item as RouteRecordRaw | any).children
+    })
     onClickOutside(target, event => {
       isCollapseIphone.value = true
       isCollapse.value = false
     })
+
     const handlerClickIcon = (data: boolean) => {
       isCollapseIphone.value = false
     }
     return {
       sideBarIphone,
+      menuDate,
+      menuTypeThree,
       target,
       isHorizontalNav,
       isCollapse,
@@ -98,6 +120,7 @@ export default defineComponent({
 .side-bar-position {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   position: absolute;
   background: rgb(000, 000, 000, 0.4);
   left: 0;

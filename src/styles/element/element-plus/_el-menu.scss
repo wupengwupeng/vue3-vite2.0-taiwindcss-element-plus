@@ -14,8 +14,7 @@
   }
 }
 
-.el-sub-menu>.el-sub-menu__title {
-
+.el-sub-menu > .el-sub-menu__title {
   &:hover {
     background: var(--menuHover) !important;
 
@@ -28,7 +27,6 @@
 }
 
 .el-menu-item {
-
   &:hover {
     background: var(--menuHover) !important;
 
@@ -73,6 +71,9 @@
       }
     }
   }
+}
+.el-menu-horizontal-demo {
+  border: none !important;
 }
 
 .el-popper.is-light {

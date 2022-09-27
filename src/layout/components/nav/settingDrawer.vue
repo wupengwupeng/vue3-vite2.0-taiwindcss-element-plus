@@ -1,5 +1,5 @@
 <template>
-  <custom-drawer v-model:visible="visible" title="系统设置" :size="300" @close="handlerClose">
+  <custom-drawer v-model:visible="visible" title="系统设置" :size="350" @close="handlerClose">
     <el-divider>主题</el-divider>
     <div class="flex w-full justify-center">
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon" :inactive-icon="lightIcon" @change="dataThemeChange" />
@@ -10,7 +10,7 @@
       <!-- <span>切换主题</span> -->
     </div>
     <el-divider>导航栏模式</el-divider>
-    <ul class="grid grid-cols-2 justify-center justify-items-center">
+    <ul class="grid grid-cols-3 justify-center justify-items-center">
       <li class="w-100 h-100 flex hover:cursor-pointer" :class="navOneStyle" @click="handlerSaveNav('1')">
         <div class="w-1/3 h-full bg-[#272a36]"></div>
         <div class="w-2/3 h-full">
@@ -22,6 +22,13 @@
         <div class="w-full h-1/4 bg-[#272a36]"></div>
         <div class="w-full h-3/4 bg-gray-100"></div>
       </li>
+      <li class="w-100 h-100 flex flex-col hover:cursor-pointer" :class="navThreeStyle" @click="handlerSaveNav('3')">
+        <div class="w-full h-25 bg-[#272a36]"></div>
+        <div class="flex flex-1 overflow-hidden">
+          <div class="w-1/3 h-full bg-[#3e4252]"></div>
+          <div class="flex-1 bg-gray-100"></div>
+        </div>
+      </li>
     </ul>
     <!-- <el-button @click="toggle()">切换主题</el-button> -->
   </custom-drawer>
@@ -32,6 +39,7 @@ import { ref, computed, Ref, defineComponent, h, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { useStore } from '@/store'
 import { setNav, setDayDark } from '@/utils/storage'
+import { errorMessage } from '@/components/Dialog/DialogMessage'
 import { RootMutations } from '@/store/type'
 import AppSvgIcon from '@/components/appSvgIcon/index.vue'
 const props = defineProps({
@@ -49,7 +57,7 @@ const lightDark = computed(() => {
   return store.state.config.dayDark === '2'
 })
 
-const isAcitveNav: Ref<string> = ref(store.state.config.nav)
+const isActiveNav: Ref<string> = ref(store.state.config.nav)
 
 const darkIcon = defineComponent({
   setup() {
@@ -66,10 +74,13 @@ const lightIcon = defineComponent({
   },
 })
 const navOneStyle = computed(() => {
-  return isAcitveNav.value === '1' ? 'border-2 border-blue-500' : ''
+  return isActiveNav.value === '1' ? 'border-2 border-blue-500' : ''
 })
 const navTwoStyle = computed(() => {
-  return isAcitveNav.value === '2' ? 'border-2 border-blue-500' : ''
+  return isActiveNav.value === '2' ? 'border-2 border-blue-500' : ''
+})
+const navThreeStyle = computed(() => {
+  return isActiveNav.value === '3' ? 'border-2 border-blue-500' : ''
 })
 
 const handlerClose = () => {
@@ -77,7 +88,11 @@ const handlerClose = () => {
 }
 
 const handlerSaveNav = (type: string) => {
-  isAcitveNav.value = type
+  // if (type === '3') {
+  //   errorMessage('暂时未实现')
+  //   return
+  // }
+  isActiveNav.value = type
   store.commit(RootMutations.SET_NAV, type)
   setNav(type)
 }

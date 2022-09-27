@@ -1,5 +1,5 @@
 <template>
-  <div class="h-60 w-full flex items-center justify-center logo-bg">
+  <div class="logo-bg">
     <app-svg-icon :style="elImage" icon-name="logo"></app-svg-icon>
   </div>
 </template>
@@ -9,20 +9,14 @@ import { computed, ref, CSSProperties, Ref } from 'vue'
 const props = defineProps({
   isCollapse: {
     type: Boolean,
-    default: false
+    default: false,
   },
   isHorizontalNav: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 const elImage: Ref<CSSProperties> = computed(() => {
-  return !props.isCollapse && props.isHorizontalNav ? { display: 'block', width: '200px', height: '58px' } : { display: 'block', width: '63px', height: '58px', objectFit: 'contain' }
+  return !props.isCollapse && props.isHorizontalNav ? { width: '200px', height: '58px' } : { width: '63px', height: '58px', objectFit: 'contain' }
 })
 </script>
-
-<style lang="scss" scoped>
-.logo-bg {
-  background-color: var(--menuBg);
-}
-</style>

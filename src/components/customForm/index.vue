@@ -16,8 +16,7 @@
       <el-form-item label="Activity time" required>
         <el-col :span="11">
           <el-form-item prop="date1">
-            <el-date-picker v-model="ruleForm.date1" type="date" label="Pick a date" placeholder="Pick a date"
-              style="width: 100%" />
+            <el-date-picker v-model="ruleForm.date1" type="date" label="Pick a date" placeholder="Pick a date" style="width: 100%" />
           </el-form-item>
         </el-col>
         <el-col class="text-center" :span="2">
@@ -25,15 +24,21 @@
         </el-col>
         <el-col :span="11">
           <el-form-item prop="date2">
-            <el-time-picker v-model="ruleForm.date2" label="Pick a time" placeholder="Pick a time"
-              style="width: 100%" />
+            <el-time-picker v-model="ruleForm.date2" label="Pick a time" placeholder="Pick a time" style="width: 100%" />
           </el-form-item>
         </el-col>
       </el-form-item>
       <el-form-item label="Instant delivery" prop="delivery">
         <!-- <el-switch v-model="ruleForm.delivery" /> -->
-        <custom-data-picker v-model="ruleForm.rangeTime" type="datetimerange" :start-placeholder="'开始时间'"
-          :end-placeholder="'结束时间'" range-separator="To" :has-disable-date="true" :spacing-time="15">
+        <custom-data-picker
+          v-model="ruleForm.rangeTime"
+          type="datetimerange"
+          :start-placeholder="'开始时间'"
+          :end-placeholder="'结束时间'"
+          range-separator="To"
+          :has-disable-date="true"
+          :spacing-time="15"
+        >
         </custom-data-picker>
       </el-form-item>
       <el-form-item label="Activity type" prop="type">
@@ -50,8 +55,7 @@
         </custom-radio>
       </el-form-item>
       <el-form-item label="Resources" prop="resource">
-        <custom-check-box v-model="checkAll" :isShowChecAll="true" v-model:checkedValue="ruleForm.checkedValue"
-          :options="checkBoxOptions" @changeGroup="handlerChangeGroup">
+        <custom-check-box v-model="checkAll" :isShowChecAll="true" v-model:checkedValue="ruleForm.checkedValue" :options="checkBoxOptions" @changeGroup="handlerChangeGroup">
           <template #default="{ item }">
             <span>{{ item.item.name }}</span>
           </template>
@@ -69,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue';
+import { reactive, ref, computed } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 const emits = defineEmits([''])
 const ruleFormRef = ref<FormInstance>()
@@ -86,10 +90,7 @@ const ruleForm = reactive({
   select: 'Option1',
   rangeTime: [],
   radio: 'radios2',
-  checkedValue: [
-    "{\"name\":\"张三\",\"age\":15,\"six\":\"女\"}",
-    "{\"name\":\"wuoeng\",\"age\":12,\"six\":\"男\"}"
-  ]
+  checkedValue: ['{"name":"张三","age":15,"six":"女"}', '{"name":"wuoeng","age":12,"six":"男"}'],
 })
 
 const checkBoxOptions = ref([
@@ -97,23 +98,22 @@ const checkBoxOptions = ref([
     item: {
       name: '张三',
       age: 15,
-      six: '女'
+      six: '女',
     },
-    props: {}
+    props: {},
   },
   {
     item: {
       name: 'wuoeng',
       age: 12,
-      six: '男'
+      six: '男',
     },
-    props: {}
-  }
+    props: {},
+  },
 ])
 const checkAll = computed(() => {
   return ruleForm.checkedValue.length === checkBoxOptions.value.length
 })
-
 
 const rules = reactive<FormRules>({
   name: [
@@ -158,17 +158,15 @@ const rules = reactive<FormRules>({
       trigger: 'change',
     },
   ],
-  desc: [
-    { required: true, message: 'Please input activity form', trigger: 'blur' },
-  ],
+  desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }],
 })
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  console.log(ruleForm, "ruleForm")
+  console.log(ruleForm, 'ruleForm')
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log(ruleForm, "ruleForm")
+      console.log(ruleForm, 'ruleForm')
       console.log('submit!')
     } else {
       console.log('error submit!', fields)
@@ -181,27 +179,28 @@ const resetForm = (formEl: FormInstance | undefined) => {
   formEl.resetFields()
 }
 
-const options = ref([{
-  value: 'Option1',
-  label: 'Option1',
-},
-{
-  value: 'Option2',
-  label: 'Option2',
-}])
+const options = ref([
+  {
+    value: 'Option1',
+    label: 'Option1',
+  },
+  {
+    value: 'Option2',
+    label: 'Option2',
+  },
+])
 const optionsRadio = ref([
   {
     label: 'radios1',
-    value: 'value1'
+    value: 'value1',
   },
   {
     label: 'radios2',
-    value: 'value2'
-  }
+    value: 'value2',
+  },
 ])
 const handlerChangeGroup = (res: Array<string>) => {
   console.log(res)
-  console.log(ruleForm.checkedValue, "sdf")
-
+  console.log(ruleForm.checkedValue, 'sdf')
 }
 </script>

@@ -14,7 +14,7 @@
   </template>
   <el-sub-menu v-else :index="resolvePath(props.item!.path)" popper-append-to-body>
     <template #title>
-      <app-svg-icon :icon-name="item.meta.icon"></app-svg-icon>
+      <app-svg-icon :icon-name="item.meta.icon + ''"></app-svg-icon>
       <span>{{ item?.meta?.title }}</span>
     </template>
     <SideBarItem v-for="child in item?.children" :key="child.path" :is-nest="true" :item="child" :base-path="resolvePath(child.path)"></SideBarItem>
@@ -24,12 +24,13 @@
 <script setup lang="ts" name="SideBarItem">
 import { ref, PropType, Ref } from 'vue'
 import path from 'path'
+import { RouteRecordRaw } from 'vue-router'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
 import type { childrenType } from '../../index.type'
 const props = defineProps({
   item: {
-    type: Object as PropType<any>,
+    type: Object as PropType<RouteRecordRaw | any>,
     default: () => {},
   },
   isNest: {

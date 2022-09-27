@@ -1,15 +1,18 @@
 <template>
   <div class="w-full shadow-inner flex flex-col">
     <div class="flex h-58 justify-between">
-      <div v-if="!isHorizontalNav" class="flex-1 overflow-hidden flex items-center px-12 h-full">
+      <div v-if="!isHorizontalNav || isMenuThreeNav" class="flex items-center px-12 h-full" :class="navRight">
         <navIcon v-model="isCollapse" @handlerClickIcon="handlerClickIcon"></navIcon>
         <div class="ml-12">
-          <nav-bread-crumb-vue v-if="isShowBreadCrumb" :menus="menus"></nav-bread-crumb-vue>
+          <nav-bread-crumb-vue v-if="isShowBreadCrumb && !isMenuThreeNav" :menus="menus"></nav-bread-crumb-vue>
         </div>
       </div>
-      <div v-if="isHorizontalNav" class="flex-1 flex items-center h-full overflow-hidden">
-        <horizontalVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></horizontalVue>
+      <!-- 菜单类型2 -->
+      <div v-if="isHorizontalNav && !isMenuThreeNav" class="flex-1 flex items-center h-full overflow-hidden">
+        <horizontalVue :isCollapse="isCollapse" :isShowBreadCrumb="isShowBreadCrumb" :isHorizontalNav="isHorizontalNav"></horizontalVue>
       </div>
+      <!-- 菜单类型3 -->
+      <div v-if="isMenuThreeNav" class="flex-1 overflow-hidden"><MixHorizontal /></div>
       <div class="w-auto flex items-center justify-between" :class="navRight">
         <searchVue />
         <notice />
@@ -62,6 +65,7 @@ import { useResizeObserver, useDebounceFn } from '@vueuse/core'
 import navBreadCrumbVue from './navBreadCrumb.vue'
 import settingDrawerVue from './settingDrawer.vue'
 import horizontalVue from '../sidebar/horizontal.vue'
+import MixHorizontal from '../sidebar/menuMix/mixHorizontal.vue'
 import screenFullVue from './screenfull/index.vue'
 import settingVue from './setting/index.vue'
 import headPicture from './headPicture/index.vue'
@@ -74,6 +78,7 @@ export default defineComponent({
     navBreadCrumbVue,
     settingDrawerVue,
     horizontalVue,
+    MixHorizontal,
     screenFullVue,
     settingVue,
     headPicture,
@@ -87,6 +92,10 @@ export default defineComponent({
       default: false,
     },
     isHorizontalNav: {
+      type: Boolean,
+      default: false,
+    },
+    isMenuThreeNav: {
       type: Boolean,
       default: false,
     },
@@ -121,7 +130,7 @@ export default defineComponent({
        * 760 < width <= 990 折叠侧边栏
        * width > 990 展开侧边栏
        */
-      if (width < 630) {
+      if (width < 780) {
         isShowBreadCrumb.value = false
       } else {
         isShowBreadCrumb.value = true
@@ -129,7 +138,7 @@ export default defineComponent({
     })
 
     const navRight = computed(() => {
-      if (store.state.config.nav === '2' && store.state.config.dayDark === '1') {
+      if ((store.state.config.nav === '2' || store.state.config.nav === '3') && store.state.config.dayDark === '1') {
         return 'bg-[#001529] text-[#fff]'
       }
       return ''

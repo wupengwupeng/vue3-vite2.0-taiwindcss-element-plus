@@ -60,7 +60,7 @@ onKeyStroke(['P', 'p'], keyBoardP)
   }
 
   &:hover {
-    color: #000;
+    // color: #000;
     cursor: pointer;
     span:nth-child(3) {
       color: var(--el-color-primary);

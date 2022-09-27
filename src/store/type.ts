@@ -1,8 +1,9 @@
 import { RouteRecordRaw } from 'vue-router'
-type Nav = '1' | '2'
+type DayDark = '1' | '2'
+type Nav = '1' | '2' | '3'
 export type Config = {
   nav: Nav
-  dayDark: Nav
+  dayDark: DayDark
   lang: string
 }
 export interface RootState {

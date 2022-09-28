@@ -1,6 +1,5 @@
-
-import { getCurrentInstance, App, provide } from "vue"
-import createElementPlus from './element'
+import { getCurrentInstance, App, provide } from 'vue'
+import { createElementPlus } from './element'
 //设置组件的命名
 const installSetComponetNamefun = {
   install(app: any, optons: any) {
@@ -9,10 +8,9 @@ const installSetComponetNamefun = {
       instance!.type!.name = name
     }
     app.provide('setComponentName', setComponentName)
-  }
+  },
 }
 export default {
   installSetComponetNamefun,
   createElementPlus,
-
 }

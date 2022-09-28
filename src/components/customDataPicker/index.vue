@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, unref, computed, Ref, useSlots, PropType } from 'vue'
+import { ref, unref, computed, Ref, useSlots, PropType } from 'vue'
 
 const props = defineProps({
   modelValue: {

@@ -53,7 +53,7 @@
 import { reactive, ref, Ref } from 'vue'
 
 import TemplateDown from '@/components/Dialog/index.vue'
-import CustomSelect from '@/components/customSelect/index.vue'
+import CustomSelect from '@/components/CustomSelect/index.vue'
 import TemplateManger from './templateManger.vue'
 const emits = defineEmits(['update:visible'])
 const props = defineProps({

@@ -1,13 +1,13 @@
 import { markRaw, h, ref } from 'vue'
-import CustomSelect from '@/components/customSelect/index.vue'
+import CustomSelect from '@/components/CustomSelect/index.vue'
 import mitt from 'mitt'
 export const emitter = mitt()
 
 export const options = ref([
   {
     value: 'zhangan',
-    label: 'shangsan'
-  }
+    label: 'shangsan',
+  },
 ])
 export const column = markRaw([
   {
@@ -16,7 +16,7 @@ export const column = markRaw([
     label: '下拉框',
     prop: 'select',
     componentsProps: { clearable: true, onChange: handlerChange, onVisibleChange: handlerChangeVisible },
-    type: CustomSelect
+    type: CustomSelect,
   },
   {
     col: { span: 11, offset: 2 },
@@ -24,15 +24,15 @@ export const column = markRaw([
     label: 'name',
     prop: 'val',
     componentsProps: { clearable: true },
-    type: 'el-input'
+    type: 'el-input',
   },
   {
-    col: { span: 11, },
+    col: { span: 11 },
     formItemProps: {},
     label: '数字:',
     prop: 'val2',
-    componentsProps: { clearable: true, placeholder: "Please input" },
-    type: 'el-input-number'
+    componentsProps: { clearable: true, placeholder: 'Please input' },
+    type: 'el-input-number',
   },
   {
     col: { span: 11, offset: 2 },
@@ -40,23 +40,23 @@ export const column = markRaw([
     label: '评分',
     prop: 'val3',
     componentsProps: { clearable: true },
-    type: 'el-rate'
+    type: 'el-rate',
   },
   {
-    col: { span: 11, },
+    col: { span: 11 },
     formItemProps: {},
     label: '滑块',
     prop: 'val4',
     componentsProps: { clearable: true },
-    type: 'el-slider'
+    type: 'el-slider',
   },
   {
-    col: { span: 24, },
+    col: { span: 24 },
     formItemProps: {},
     label: '意见',
     prop: 'val5',
-    componentsProps: { clearable: true, type: "textarea", placeholder: '请输入你的意见或者建议' },
-    type: 'el-input'
+    componentsProps: { clearable: true, type: 'textarea', placeholder: '请输入你的意见或者建议' },
+    type: 'el-input',
   },
   {
     col: { span: 12 },
@@ -65,7 +65,7 @@ export const column = markRaw([
     prop: 'val5',
     componentsProps: {},
     slot: { default: () => 'asf' },
-    type: 'el-button'
+    type: 'el-button',
   },
   {
     slotName: 'footer',
@@ -74,21 +74,19 @@ export const column = markRaw([
     label: '',
     prop: '',
     componentsProps: {},
-    type: ''
-  }
+    type: '',
+  },
 ])
 export const rules = markRaw({
-  select: [
-    { required: true, message: 'Please select name', trigger: 'change' }
-  ],
-  val: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' }
-  ],
+  select: [{ required: true, message: 'Please select name', trigger: 'change' }],
+  val: [{ required: true, message: 'Please input Activity name', trigger: 'blur' }],
   val5: [
     {
-      required: true, message: 'Please input your suggestion', trigger: 'blur'
-    }
-  ]
+      required: true,
+      message: 'Please input your suggestion',
+      trigger: 'blur',
+    },
+  ],
 })
 
 export function handlerChange(val?: any) {

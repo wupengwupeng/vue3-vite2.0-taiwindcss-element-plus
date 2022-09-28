@@ -1,26 +1,26 @@
 import { Directive } from 'vue'
-export const clickout: Directive = {
+export const outClick: Directive = {
   mounted(el: any, binding: any) {
-    const callback = binding.value;
-    const directiveClass = 'v-clickout-active';
+    const callback = binding.value
+    const directiveClass = 'v-clickout-active'
 
     el.clickEvent = function (event: Event) {
-      const elementIsActive = event.target === el || el.contains(event.target);
+      const elementIsActive = event.target === el || el.contains(event.target)
 
       if (elementIsActive) {
-        el.classList.add(directiveClass);
+        el.classList.add(directiveClass)
       } else if (el.classList.contains(directiveClass)) {
-        el.classList.remove(directiveClass);
-        callback({ el, event });
+        el.classList.remove(directiveClass)
+        callback({ el, event })
       }
     }
 
-    document.body.addEventListener('click', el.clickEvent);
+    document.body.addEventListener('click', el.clickEvent)
   },
 
   unmounted(el: any) {
-    document.body.removeEventListener('click', el.clickEvent);
-  }
+    document.body.removeEventListener('click', el.clickEvent)
+  },
 }
 
 /**

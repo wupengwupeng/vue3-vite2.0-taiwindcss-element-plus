@@ -7,14 +7,7 @@
       <slot name="table" :data="data" />
     </section>
     <section class="w-full h-44 flex justify-end items-center">
-      <el-pagination
-        layout="prev,pager,next,jumper,sizes,total"
-        background
-        :page-sizes="pageSizes"
-        v-model:pageSize="pageSize"
-        v-model:currentPage="currentPage"
-        :total="total"
-      ></el-pagination>
+      <ElPagination layout="prev,pager,next,jumper,sizes,total" background :page-sizes="pageSizes" v-model:pageSize="pageSize" v-model:currentPage="currentPage" :total="total" />
     </section>
   </div>
 </template>
@@ -22,10 +15,14 @@
 <script lang="ts">
 import { defineComponent, toRefs, ref, watch, onMounted, reactive } from 'vue'
 // import { useElPagination } from '@/lib/vue-use'
+import { ElPagination } from 'element-plus'
 import { myMixin } from './props'
 // import api from './fetch'
 export default defineComponent({
   name: 'TablePage',
+  components: {
+    ElPagination,
+  },
   mixins: [myMixin],
   setup(props, { emit, attrs, slots }) {
     // const pagination = useElPagination()

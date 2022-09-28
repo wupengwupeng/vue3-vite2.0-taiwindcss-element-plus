@@ -198,15 +198,4 @@ watch(value, () => {
   </main-card>
 </template>
 
-<style lang="scss" scoped>
-// ::v-deep(.vue-treeselect__multi-value-item),
-// ::v-deep(.vue-treeselect__value-remove) {
-//   color: var(--el-color-primary);
-// }
-// ::v-deep(.vue-treeselect__checkbox--indeterminate) {
-//   background-color: var(--el-color-primary);
-// }
-// ::v-deep(.vue-treeselect__checkbox--checked) {
-//   background-color: var(--el-color-primary);
-// }
-</style>
+<style lang="scss" scoped></style>

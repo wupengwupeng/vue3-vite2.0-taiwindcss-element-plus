@@ -53,9 +53,7 @@ export default defineComponent({
     const isCollapseIphone = ref(false)
     const target = ref(null)
     const isHideSideBar = ref(true)
-    const isMobile = deviceDetection()
     const store = useStore()
-    const route = useRoute()
     const menuDate: Ref<Array<RouteRecordRaw>> = ref([])
 
     const isHorizontalNav = computed(() => {
@@ -115,30 +113,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.side-bar-position {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  background: rgb(000, 000, 000, 0.4);
-  left: 0;
-  top: 0;
-  z-index: 999;
-  .side-bar-left {
-    width: 200px;
-    height: 100%;
-    background: red;
-    animation: 1s sideBarAnimation;
-  }
-  @keyframes sideBarAnimation {
-    0% {
-      width: 0px;
-    }
-    100% {
-      width: 200px;
-    }
-  }
-}
-</style>

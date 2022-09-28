@@ -37,14 +37,28 @@
     }
   }
 }
+.is-active > .el-sub-menu__title,
+.is-active.submenu-title-noDropdown {
+  color: var(--subMenuActiveBg) !important;
+  i {
+    color: var(--menuText) !important;
+  }
+}
 
 .el-menu-item.is-active {
   background: var(--subMenuActiveBg) !important;
-
   span,
   svg,
   i {
     color: var(--menuText) !important;
+  }
+}
+
+.el-sub-menu.is-active > .el-sub-menu__title {
+  span,
+  svg,
+  i {
+    color: var(--el-color-primary);
   }
 }
 
@@ -71,9 +85,6 @@
       }
     }
   }
-}
-.el-menu-horizontal-demo {
-  border: none !important;
 }
 
 .el-popper.is-light {

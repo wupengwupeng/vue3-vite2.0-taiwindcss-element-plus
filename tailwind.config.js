@@ -14,6 +14,7 @@ for (let i = 12; i <= 100; i++) {
 }
 
 module.exports = {
+  darkMode: 'class',
   // 去除默认的taiwindcss
   corePlugins: {
     preflight: false,

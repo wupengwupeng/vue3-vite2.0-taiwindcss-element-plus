@@ -23,7 +23,7 @@
       </div>
     </div>
     <!-- 标签-->
-    <div class="h-40 flex items-center bg-white shadow px-12 w-full border-t">
+    <div class="h-40 flex items-center bg-white dark:bg-black shadow px-12 w-full border-t dark:border-t-[#4c4d4f]">
       <el-button size="small" @click="handleScroll(180)">
         <app-svg-icon iconName="arrow-left"></app-svg-icon>
       </el-button>

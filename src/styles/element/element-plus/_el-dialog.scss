@@ -6,7 +6,7 @@
   margin: 5vh auto !important;
   border-radius: 40px;
   overflow: hidden;
-  background: #fff;
+  background-color: var(--el-bg-color);
 
   &.is-fullscreen {
     max-width: initial;
@@ -35,7 +35,7 @@
   height: 70px !important;
   user-select: none;
   align-items: center !important;
-  border-bottom: thin solid #eee;
+  border-bottom: thin solid var(--el-border-color);
 
   &btn {
     width: 40px;
@@ -63,6 +63,6 @@
 .el-dialog__footer {
   height: 56px;
   justify-content: flex-end;
-  border-top: thin solid #eee;
-  background-color: #fafbfc;
+  border-top: thin solid var(--el-border-color);
+  background-color: var(--el-bg-color);
 }

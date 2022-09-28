@@ -1,10 +1,10 @@
-  .el-drawer__header {
-    border-bottom: 1px solid var(--color-gray-200);
-    display: flex;
-    padding: 12px 20px 12px !important;
-    margin-bottom: 0 !important;
-  }
+.el-drawer__header {
+  border-bottom: 1px solid var(--el-border-color);
+  display: flex;
+  padding: 12px 20px 12px !important;
+  margin-bottom: 0 !important;
+}
 
-  .el-drawer__body {
-    padding: 12px 12px 12px !important;
-  }
+.el-drawer__body {
+  padding: 12px 12px 12px !important;
+}

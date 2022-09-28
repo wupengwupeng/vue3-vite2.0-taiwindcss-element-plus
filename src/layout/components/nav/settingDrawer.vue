@@ -1,8 +1,9 @@
 <template>
   <custom-drawer v-model:visible="visible" title="系统设置" :size="350" @close="handlerClose">
     <el-divider>主题</el-divider>
-    <div class="flex w-full justify-center">
+    <div class="flex w-full items-center flex-col">
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon" :inactive-icon="lightIcon" @change="dataThemeChange" />
+      <el-button @click="toggle()">第二种主题开发中主题</el-button>
     </div>
     <el-divider>主题色</el-divider>
     <div class="flex w-full gap-x-12 justify-center items-center">
@@ -30,7 +31,6 @@
         </div>
       </li>
     </ul>
-    <!-- <el-button @click="toggle()">切换主题</el-button> -->
   </custom-drawer>
 </template>
 
@@ -41,7 +41,7 @@ import { useStore } from '@/store'
 import { setNav, setDayDark } from '@/utils/storage'
 import { errorMessage } from '@/components/Dialog/DialogMessage'
 import { RootMutations } from '@/store/type'
-import AppSvgIcon from '@/components/appSvgIcon/index.vue'
+import AppSvgIcon from '@/components/AppSvgIcon/index.vue'
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -88,10 +88,6 @@ const handlerClose = () => {
 }
 
 const handlerSaveNav = (type: string) => {
-  // if (type === '3') {
-  //   errorMessage('暂时未实现')
-  //   return
-  // }
   isActiveNav.value = type
   store.commit(RootMutations.SET_NAV, type)
   setNav(type)

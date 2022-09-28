@@ -21,8 +21,8 @@
 .app-content {
   width: 100%;
   height: 100%;
-  background: var(--main-content-bg);
-  border-top: 1px solid var(--color-gray-200);
+  background: var(--el-bg-color);
+  border-top: 1px solid var(--el-border-color);
   padding: 12px 12px;
 }
 

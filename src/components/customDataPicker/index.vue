@@ -1,8 +1,7 @@
 <template>
   <div>
     <template v-if="hasDisableDate">
-      <el-date-picker v-bind="$attrs" v-model="val" :disabledDate="disabledDate" @calendar-change="handleChange"
-        @focus="handleFocus">
+      <el-date-picker v-bind="$attrs" v-model="val" :disabledDate="disabledDate" @calendar-change="handleChange" @focus="handleFocus">
         <template v-for="(index, name) in slots" :key="index + 'g'" #[name]>
           <slot :name="name"></slot>
         </template>
@@ -28,12 +27,12 @@ const props = defineProps({
   // 间隔的天数
   spacingTime: {
     type: Number,
-    default: 7
+    default: 7,
   },
   hasDisableDate: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 const emits = defineEmits(['update:modelValue'])
 const slots = useSlots()
@@ -45,10 +44,8 @@ const val = computed({
   },
   set(v) {
     emits('update:modelValue', v)
-  }
+  },
 })
-
-
 
 function disabledDate(time: any) {
   if (!unref(pickTime)) {

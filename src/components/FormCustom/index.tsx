@@ -1,6 +1,6 @@
-import { useSlots, reactive, ref, useAttrs, watch, Ref, markRaw, defineComponent, unref, h, resolveComponent } from 'vue';
+import { useSlots, reactive, ref, useAttrs, watch, Ref, markRaw, defineComponent, unref, h, resolveComponent } from 'vue'
 import { defaultProps } from './props'
-import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse';
+import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse'
 export default defineComponent({
   props: {
     ...useDefaultProps(),
@@ -17,27 +17,29 @@ export default defineComponent({
     }
   },
   render() {
-    const OtherTemplate = (_: any, { }) => <div v-slots={_.slotName}></div>
-    const ElFormItems = (props: any, { }) =>
+    const OtherTemplate = (_: any, {}) => <div v-slots={_.slotName}></div>
+    const ElFormItems = (props: any, {}) => (
       <el-form-item label={props.Label} prop={props.prop} {...props}>
         {h(resolveComponent('ElInput'), { props: { modelValue: 'WOSHINIDAYE' } })}
       </el-form-item>
-    return <>
-      <div>
-        <el-form {...this.$attrs} ref={this.ruleFormRef} model={this.formDate}>
-          <el-row>
-            {this.formColumn.map((res, index) => {
-              return (
-                <el-col  {...res.col} key={index + 'ks'}>
-                  {res.slotName && <OtherTemplate slotName={res.slotName} item={res} />}
-                  {!res.slotName && <ElFormItems label={res.label} prop={res.prop} {...res.formItemProps} />}
-                </el-col>
-              )
-            })}
-          </el-row>
-        </el-form>
-      </div>
-    </>
-  }
-
+    )
+    return (
+      <>
+        <div>
+          <el-form {...this.$attrs} ref={this.ruleFormRef} model={this.formDate}>
+            <el-row>
+              {this.formColumn.map((res, index) => {
+                return (
+                  <el-col {...res.col} key={index + 'ks'}>
+                    {res.slotName && <OtherTemplate slotName={res.slotName} item={res} />}
+                    {!res.slotName && <ElFormItems label={res.label} prop={res.prop} {...res.formItemProps} />}
+                  </el-col>
+                )
+              })}
+            </el-row>
+          </el-form>
+        </div>
+      </>
+    )
+  },
 })

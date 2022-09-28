@@ -10,7 +10,7 @@ export default function barChartOptions(source: any = [], series: any = []) {
     dataset: {
       source: source,
     },
-    xAxis: { type: "category", },
+    xAxis: { type: 'category' },
     yAxis: {}, //{ gridIndex: 1 }
     grid: {},
     series: series,
@@ -18,5 +18,5 @@ export default function barChartOptions(source: any = [], series: any = []) {
     // { type: "bar", },
     // { type: "bar", },
     // { type: "bar", },
-  };
+  }
 }

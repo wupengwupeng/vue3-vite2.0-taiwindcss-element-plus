@@ -22,11 +22,13 @@ const props = defineProps({
   },
   options: {
     type: Array as PropType<OptionRaw>,
-    default: () => [{
-      value: 'zhangan',
-      label: 'shangsan'
-    }]
-  }
+    default: () => [
+      {
+        value: 'zhangan',
+        label: 'shangsan',
+      },
+    ],
+  },
 })
 const emits = defineEmits(['update:modelValue'])
 const slots = useSlots()
@@ -37,6 +39,6 @@ const val = computed({
   },
   set(v) {
     emits('update:modelValue', v)
-  }
+  },
 })
 </script>

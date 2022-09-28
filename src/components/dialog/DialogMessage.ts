@@ -4,17 +4,16 @@ import { h } from 'vue'
 export function successMessage(msg: string, arg?: Omit<MessageProps, any>) {
   ElMessage.success({
     message: msg,
-    ...arg
+    ...arg,
   })
 }
 
 export function errorMessage(msg: string, arg?: Omit<MessageProps, any>) {
   ElMessage.error({
     message: msg,
-    ...arg
+    ...arg,
   })
 }
-
 
 // import leftImg from "@/icons/svg/icon-chart-heat-map.svg";
 /**
@@ -35,7 +34,7 @@ export function succesMsg(msgInfo: string, arg?: Omit<MessageProps, any>) {
     showClose: true,
     dangerouslyUseHTMLString: true,
     message: msgInfo,
-    ...arg
+    ...arg,
   })
 }
 
@@ -46,7 +45,7 @@ export function warnMsg(msgInfo: string, arg?: Omit<MessageProps, any>) {
     showClose: true,
     dangerouslyUseHTMLString: true,
     message: msgInfo,
-    ...arg
+    ...arg,
   })
 }
 
@@ -57,7 +56,7 @@ export function errorMsg(msgInfo: string, arg?: Omit<MessageProps, any>) {
     showClose: true,
     dangerouslyUseHTMLString: true,
     message: msgInfo,
-    ...arg
+    ...arg,
   })
 }
 
@@ -68,7 +67,7 @@ export function infoMsg(msgInfo: string, arg?: Omit<MessageProps, any>) {
     showClose: true,
     dangerouslyUseHTMLString: true,
     message: msgInfo,
-    ...arg
+    ...arg,
   })
 }
 
@@ -78,8 +77,8 @@ export function alertBox(msg: string, btnName: string, fun: any) {
   return ElMessageBox.alert(msg, '提示', {
     confirmButtonText: confirmName,
     dangerouslyUseHTMLString: true,
-    callback: fun
-  });
+    callback: fun,
+  })
 }
 
 export const succesElNotification = (msg: string) => {

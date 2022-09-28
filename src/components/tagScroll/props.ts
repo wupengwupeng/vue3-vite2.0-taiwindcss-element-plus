@@ -4,7 +4,6 @@ export type OptionsRaw = {
 }
 export const defaultProps = {
   options: {
-    type: Array as PropType<OptionsRaw>
+    type: Array as PropType<OptionsRaw[]>,
   },
-  
 }

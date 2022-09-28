@@ -1,4 +1,3 @@
-
 import { PropType } from 'vue'
 export type Label = string | number | boolean
 export type OptionsRaw = {
@@ -7,10 +6,10 @@ export type OptionsRaw = {
 export const defaultProps = {
   options: {
     type: Array as PropType<Array<OptionsRaw>>,
-    default: () => []
+    default: () => [],
   },
   hasRadioButton: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 }

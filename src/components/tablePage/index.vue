@@ -7,8 +7,14 @@
       <slot name="table" :data="data" />
     </section>
     <section class="w-full h-44 flex justify-end items-center">
-      <el-pagination layout="prev,pager,next,jumper,sizes,total" background :page-sizes="pageSizes"
-        v-model:pageSize="pageSize" v-model:currentPage="currentPage" :total="total"></el-pagination>
+      <el-pagination
+        layout="prev,pager,next,jumper,sizes,total"
+        background
+        :page-sizes="pageSizes"
+        v-model:pageSize="pageSize"
+        v-model:currentPage="currentPage"
+        :total="total"
+      ></el-pagination>
     </section>
   </div>
 </template>
@@ -74,7 +80,6 @@ export default defineComponent({
   },
 })
 </script>
-
 
 <style lang="scss">
 .table-self-content-component {

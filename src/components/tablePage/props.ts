@@ -1,9 +1,8 @@
-
 export const myMixin = {
   props: {
     parems: {
       type: Object,
-      default: () => { }
+      default: () => {},
     },
     list: {
       type: Array,
@@ -11,11 +10,11 @@ export const myMixin = {
     },
     url: {
       type: String,
-      default: "",
+      default: '',
     },
     height: {
       type: String,
-      default: '36px'
-    }
-  }
+      default: '36px',
+    },
+  },
 }

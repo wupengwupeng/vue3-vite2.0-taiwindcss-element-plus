@@ -7,9 +7,13 @@
     </el-checkbox>
     <el-checkbox-group v-bind="$attrs" v-model="checkedOptions" @change="handleCheckedCitiesChange">
       <template v-if="!isCheckButton">
-        <el-checkbox v-for="(item, index) in options" :key="index + 'gg'" v-bind="item.props"
+        <el-checkbox
+          v-for="(item, index) in options"
+          :key="index + 'gg'"
+          v-bind="item.props"
           :label="JSON.stringify(item.item)"
-          @change="(val: boolean, item: OptionsRaw) => handlerCheckItemBox(val, item)">
+          @change="(val: boolean, item: OptionsRaw) => handlerCheckItemBox(val, item)"
+        >
           <template v-for="(index, slotName) in slots" :key="index + 'hh'" #[slotName]>
             <slot :name="slotName" :item="item"></slot>
           </template>
@@ -17,8 +21,13 @@
       </template>
       <!-- 多选的时候的多选框 -->
       <template v-else>
-        <el-checkbox-button v-for="(item, index) in options" :key="index + 'gg'" v-bind="item.props"
-          :label="JSON.stringify(item.item)" @change="(val: boolean, item) => handlerCheckItemBox(val, item)">
+        <el-checkbox-button
+          v-for="(item, index) in options"
+          :key="index + 'gg'"
+          v-bind="item.props"
+          :label="JSON.stringify(item.item)"
+          @change="(val: boolean, item) => handlerCheckItemBox(val, item)"
+        >
           <template v-for="(index, slotName) in slots" :key="index + 'hh'" #[slotName]>
             <slot :name="slotName" :item="item"></slot>
           </template>
@@ -42,15 +51,13 @@ const slots = useSlots()
 const isShowChecAll = computed(() => typeof props.modelValue !== 'undefined')
 const checkAll = useModelVal(props, emits)
 
-
-
 const checkedOptions: Ref<Array<string> | undefined> = computed({
   get() {
     return props.checkedValue
   },
   set(v) {
     emits('update:checkedValue', v)
-  }
+  },
 })
 const isIndeterminate: Ref<boolean> = computed(() => {
   const checkedCount = checkedOptions.value?.length

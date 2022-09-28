@@ -11,13 +11,13 @@ import { useSlots } from 'vue'
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
-const emits = defineEmits(["update:visible", "close"])
+const emits = defineEmits(['update:visible', 'close'])
 const slots = useSlots()
 const handlerClose = () => {
-  emits("update:visible", false)
-  emits("close")
+  emits('update:visible', false)
+  emits('close')
 }
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, useSlots, h } from 'vue'
-import AppSvgIcon from '@/components/appSvgIcon/index.vue'
+import AppSvgIcon from '@/components/AppSvgIcon/index.vue'
 
 export default defineComponent({
   setup(_, { slots }) {

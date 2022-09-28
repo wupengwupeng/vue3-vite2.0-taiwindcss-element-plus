@@ -27,13 +27,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { defaultProps } from './props'
-import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse';
+import { useModelVal, useDefaultProps, useDefaultEmits } from '@/utils/vueUse'
 const props = defineProps({ ...useDefaultProps(), ...defaultProps })
 const emits = defineEmits([...useDefaultEmits()])
 const formDate = useModelVal(props, emits)
 
 // 将表单绑定的ref暴露给父组件
-const ruleFormRef = ref();
-defineExpose({ ruleFormRef });
-
+const ruleFormRef = ref()
+defineExpose({ ruleFormRef })
 </script>

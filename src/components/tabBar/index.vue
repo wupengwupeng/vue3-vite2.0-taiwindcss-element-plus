@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs } from 'vue'
-import { State, ListItem } from './type'
+import { defineComponent, PropType, reactive, toRefs } from 'vue'
+import type { State, ListItem } from './type'
 export default defineComponent({
   name: 'TabBar',
   props: {
@@ -23,7 +23,7 @@ export default defineComponent({
       default: 0,
     },
     list: {
-      type: Array,
+      type: Array as PropType<ListItem[]>,
       default: () => [],
     },
   },

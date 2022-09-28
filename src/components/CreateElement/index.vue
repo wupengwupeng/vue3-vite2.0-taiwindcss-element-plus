@@ -3,20 +3,20 @@ import { defineComponent, h, PropType, toRefs } from 'vue'
 export default defineComponent({
   props: {
     item: {
-      type: String as PropType<any>
+      type: String as PropType<any>,
     },
     componentType: {
       type: String as PropType<any>,
-      default: 'div'
+      default: 'div',
     },
     hProps: {
       type: Object as PropType<any>,
-      default: () => { }
+      default: () => {},
     },
     slots: {
       type: Object as PropType<any>,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
   setup(props) {
     return {
@@ -31,11 +31,7 @@ export default defineComponent({
       return ['div', [h(this.componentType, { ...this.hProps }, { ...this.slots })]]
     } else {
       return [h('div', [this.$slots.default ? app : other])]
-
     }
-
-
-
-  }
+  },
 })
 </script>

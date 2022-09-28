@@ -1,4 +1,3 @@
-
 <template>
   <div ref="totalRef" class="w-full flex items-center relative">
     <div class="flex-1 flex items-center w-full h-full" :class="totalStyle">
@@ -6,26 +5,25 @@
         <span ref="contentRef" :style="styleContent" :class="contentClass">{{ content }}</span>
       </el-tooltip>
     </div>
-    <span class="absolute -right-25 top-1 cursor-pointer" :style="moreStyle" v-if="!isDisabled && isMore"
-      @click="handlerMore">
+    <span class="absolute -right-25 top-1 cursor-pointer" :style="moreStyle" v-if="!isDisabled && isMore" @click="handlerMore">
       <slot>更多</slot>
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs, watch, Ref, computed, nextTick, onMounted, onUnmounted, CSSProperties, PropType } from 'vue';
+import { defineComponent, ref, reactive, toRefs, watch, Ref, computed, nextTick, onMounted, onUnmounted, CSSProperties, PropType } from 'vue'
 import { debounce } from 'lodash'
 export default defineComponent({
   name: 'ElipsisBox',
   props: {
     isMore: {
       type: Boolean,
-      default: false
+      default: false,
     },
     moreStyle: {
       type: Object as PropType<CSSProperties | any>,
-      default: () => { }
+      default: () => {},
     },
     content: {
       type: String,
@@ -52,7 +50,7 @@ export default defineComponent({
       },
       set(v) {
         state.styleContent = v
-      }
+      },
     })
     const totalStyle: Ref<string> = computed({
       get() {
@@ -60,7 +58,7 @@ export default defineComponent({
       },
       set(v) {
         state.totalStyle = v
-      }
+      },
     })
     async function watchDom() {
       await nextTick()
@@ -76,9 +74,13 @@ export default defineComponent({
       })
     }
     window.addEventListener('resize', debounce(watchDom, 1000), true)
-    watch(content, () => {
-      watchDom()
-    }, { flush: 'post' })
+    watch(
+      content,
+      () => {
+        watchDom()
+      },
+      { flush: 'post' }
+    )
     onMounted(watchDom)
     // 组件卸载的时候执行的钩子
     onUnmounted(() => {
@@ -94,9 +96,8 @@ export default defineComponent({
       styleContent,
       totalStyle,
 
-      handlerMore
+      handlerMore,
     }
   },
 })
 </script>
-

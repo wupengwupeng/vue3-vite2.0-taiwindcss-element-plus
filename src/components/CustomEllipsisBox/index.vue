@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent, h, Ref, ref, nextTick, useSlots, VNodeNormalizedChildren } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
-import AppSvgIcon from '@/components/appSvgIcon/index.vue'
 import mainAppVue from './moreContent.vue'
 import { debounce } from '@/utils/modules/common'
 export default defineComponent({

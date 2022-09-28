@@ -6,17 +6,17 @@ export type OptionsRaw = {
 export const defaultProps = {
   isCheckAll: {
     type: Boolean,
-    default: true
+    default: true,
   },
   isCheckButton: {
     type: Boolean,
-    default: false
+    default: false,
   },
   options: {
-    type: Array as PropType<Array<OptionsRaw>>
+    type: Array as PropType<Array<OptionsRaw>>,
   },
   checkedValue: {
     type: Array as PropType<Array<string>>,
-    default: () => []
-  }
+    default: () => [],
+  },
 }

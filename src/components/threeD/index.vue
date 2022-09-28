@@ -1,9 +1,7 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="absolute bottom-2  left-50 ">
+  <div class="absolute bottom-2 left-50">
     <div class="maxDiv opacity-59 flex items-center justify-center">
       <div class="minDiv">
         <div></div>
@@ -39,7 +37,7 @@
   animation: go 8s linear infinite;
 }
 
-.minDiv>div {
+.minDiv > div {
   background: var(--el-color-primary);
   width: 10px;
   height: 10px;
@@ -53,70 +51,70 @@
   animation-play-state: paused;
 }
 
-.minDiv:hover>div {
+.minDiv:hover > div {
   animation: goColor 1s linear infinite;
 }
 
-.minDiv>div:nth-child(1) {
+.minDiv > div:nth-child(1) {
   transform: translateZ(-15px);
 }
 
-.minDiv>div:nth-child(2) {
+.minDiv > div:nth-child(2) {
   transform: rotateY(90deg) translateZ(15px);
 }
 
-.minDiv>div:nth-child(3) {
+.minDiv > div:nth-child(3) {
   transform: rotateY(90deg) translateZ(-15px);
 }
 
-.minDiv>div:nth-child(4) {
+.minDiv > div:nth-child(4) {
   transform: rotateX(90deg) translateZ(-15px);
 }
 
-.minDiv>div:nth-child(5) {
+.minDiv > div:nth-child(5) {
   transform: rotateX(90deg) translateZ(15px);
 }
 
-.minDiv>div:nth-child(6) {
+.minDiv > div:nth-child(6) {
   transform: translateZ(15px);
 }
 
-.minDiv:hover>div:nth-child(1) {
+.minDiv:hover > div:nth-child(1) {
   transform: translateZ(-5px);
 }
 
-.minDiv:hover>div:nth-child(3) {
+.minDiv:hover > div:nth-child(3) {
   transform: rotateY(90deg) translateZ(-5px);
 }
 
-.minDiv:hover>div:nth-child(4) {
+.minDiv:hover > div:nth-child(4) {
   transform: rotateX(90deg) translateZ(-5px);
 }
 
-.minDiv:hover>div:nth-child(2) {
+.minDiv:hover > div:nth-child(2) {
   transform: rotateY(90deg) translateZ(5px);
 }
 
-.minDiv:hover>div:nth-child(5) {
+.minDiv:hover > div:nth-child(5) {
   transform: rotateX(90deg) translateZ(5px);
 }
 
-.minDiv:hover>div:nth-child(6) {
+.minDiv:hover > div:nth-child(6) {
   transform: translateZ(5px);
 }
 
-.minDiv>span {
+.minDiv > span {
   display: block;
   height: 10px;
   width: 10px;
   transform-style: preserve-3d;
 }
 
-.minDiv:hover>span {
+.minDiv:hover > span {
   animation: go 4s linear infinite;
 }
 
-.minDiv>span>div {
+.minDiv > span > div {
   height: 10px;
   width: 10px;
   position: absolute;
@@ -124,27 +122,27 @@
   box-shadow: 0 0 10px var(--el-color-primary-light-9);
 }
 
-.minDiv>span>div:nth-child(1) {
+.minDiv > span > div:nth-child(1) {
   transform: translateZ(-10px);
 }
 
-.minDiv>span>div:nth-child(2) {
+.minDiv > span > div:nth-child(2) {
   transform: rotateY(90deg) translateZ(10px);
 }
 
-.minDiv>span>div:nth-child(3) {
+.minDiv > span > div:nth-child(3) {
   transform: rotateY(90deg) translateZ(-10px);
 }
 
-.minDiv>span>div:nth-child(4) {
+.minDiv > span > div:nth-child(4) {
   transform: rotateX(90deg) translateZ(-10px);
 }
 
-.minDiv>span>div:nth-child(5) {
+.minDiv > span > div:nth-child(5) {
   transform: rotateX(90deg) translateZ(10px);
 }
 
-.minDiv>span>div:nth-child(6) {
+.minDiv > span > div:nth-child(6) {
   transform: translateZ(10px);
 }
 

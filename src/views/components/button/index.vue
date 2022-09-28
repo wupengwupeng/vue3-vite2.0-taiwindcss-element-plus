@@ -48,7 +48,6 @@ import { ApiResponse } from '@/utils/axios/request'
 import utils from '@/utils/index'
 import { onMounted, ref, Ref } from 'vue'
 import popoverCustom from '@/components/PopoverCustom/index.vue'
-import { debounce } from 'lodash'
 
 const visible = ref(false)
 const poperRef: Ref<InstanceType<typeof popoverCustom> | null> = ref(null)

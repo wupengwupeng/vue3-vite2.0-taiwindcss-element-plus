@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 defineProps({
   iconName: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>
 <template>
@@ -12,5 +12,3 @@ defineProps({
     <use :xlink:href="'#icon-' + iconName" />
   </svg>
 </template>
-
-

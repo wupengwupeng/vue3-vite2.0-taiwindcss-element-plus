@@ -1,25 +1,49 @@
-export * from './el-draggable-dialog'
+import { Directive, App } from 'vue'
+import { elDraggableDialog } from './el-draggable-dialog'
 
-export * from './showTick'
+import { showTips } from './showTick'
 
-export * from './onlyNumber'
+import { onlyNumber } from './onlyNumber'
 
-export * from './outClick'
+import { outClick } from './outClick'
 
-export * from './waves'
+import { waves } from './waves'
 
-export * from './clipboard'
+import { clipboard } from './clipboard'
 
-export * from './autFocus'
+import { focus } from './autFocus'
 
-export * from './elResizeDetector'
+import { resize } from './elResizeDetector'
 
-export * from './draggableElement'
+import { draggable } from './draggableElement'
 
-export * from './emoji'
+import { emoji } from './emoji'
 
-export * from './lazyImg'
+import { lazyImg } from './lazyImg'
 
-export * from './longPress'
+import { longPress } from './longPress'
 
-export * from './numberInput'
+import { numberInput } from './numberInput'
+const directives: { [key: string]: Directive } = {
+  elDraggableDialog,
+  showTips,
+  onlyNumber,
+  outClick,
+  waves,
+  clipboard,
+  focus,
+  resize,
+  draggable,
+  emoji,
+  lazyImg,
+  longPress,
+  numberInput,
+}
+
+export default {
+  install(app: App) {
+    Object.keys(directives).forEach(res => {
+      app.directive(res, directives[res])
+    })
+  },
+}

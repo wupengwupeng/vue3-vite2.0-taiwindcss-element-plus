@@ -195,6 +195,8 @@ watch(value, () => {
     <div class="border">
       <tree-list :tree-list="options"></tree-list>
     </div>
+    <el-divider></el-divider>
+    <tree-select />
   </main-card>
 </template>
 

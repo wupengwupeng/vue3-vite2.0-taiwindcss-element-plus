@@ -101,6 +101,15 @@ const componentsRouter: RouteRecordRaw = {
         icon: 'fn-shezhiq',
       },
     },
+    {
+      path: '/components/form',
+      name: 'Form',
+      component: () => import('@/views/components/form/index.vue'),
+      meta: {
+        title: '自定义form组件',
+        icon: 'icon-apps-add',
+      },
+    },
   ],
 }
 

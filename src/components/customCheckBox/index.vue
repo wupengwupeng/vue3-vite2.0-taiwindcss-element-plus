@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts" name="CustomCheckBox">
-import { ref, computed, unref, Ref, useSlots } from 'vue'
+import { computed, unref, Ref, useSlots } from 'vue'
 import { defaultProps } from './props'
 import { defaultEmits } from './emits'
 import { useDefaultProps, useDefaultEmits, useModelVal } from '@/utils/vueUse'

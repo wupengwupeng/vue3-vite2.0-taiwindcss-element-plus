@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, useSlots, h } from 'vue'
+import { defineComponent, h } from 'vue'
 import AppSvgIcon from '@/components/AppSvgIcon/index.vue'
 
 export default defineComponent({

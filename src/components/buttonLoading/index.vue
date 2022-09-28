@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, unref, toRefs, computed } from 'vue'
+import { ref } from 'vue'
 import api from './fetch'
 import { defaultProps } from './props'
 const props = defineProps(defaultProps)

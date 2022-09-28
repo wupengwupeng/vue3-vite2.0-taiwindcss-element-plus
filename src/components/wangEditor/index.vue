@@ -4,39 +4,38 @@ import { defineExpose, defineEmits, defineProps, onMounted, onBeforeUnmount, ref
 const props = defineProps({
   options: {
     type: Object,
-    default: {}
+    default: {},
   },
   modelValue: {
     type: String,
     default: '我是WangEditor',
-  }
+  },
 })
 const emits = defineEmits(['update:modelValue'])
 
 const { options, modelValue } = toRefs(props)
 const editor = ref<Ref<HTMLElement> | null>(null)
-let instance: WangEditor;
+let instance: WangEditor
 function initEditor() {
   instance = new WangEditor(unref(editor))
   Object.assign(instance.config, {
     onchange() {
       emits('update:modelValue', instance.txt.html())
-    }, ...unref(options)
+    },
+    ...unref(options),
   })
   instance.create()
   instance.txt.html(unref(modelValue))
 }
 defineExpose({
-  editor
+  editor,
 })
 onMounted(initEditor)
 onBeforeUnmount(() => {
-  instance.destroy();
-});
+  instance.destroy()
+})
 </script>
 
 <template>
-  <main-card>
-    <div ref="editor"></div>
-  </main-card>
+  <div ref="editor"></div>
 </template>

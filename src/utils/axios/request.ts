@@ -1,7 +1,7 @@
 import { AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import axios from './index'
 import * as redirect from '@/utils/config/redirect'
-import { errorMessage } from '@/components/dialog/DialogMessage'
+import { errorMessage } from '@/components/Dialog/DialogMessage'
 export type ApiResponse = {
   code: any
   status?: number

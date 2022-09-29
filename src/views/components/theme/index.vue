@@ -21,17 +21,17 @@
       <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">ayyyyyyyyy</li>
       <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
       <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">
+      <li class="w-100 h-24 flex-shrink-0">
         <div>
           <el-button class="w-100" size="small" @click="handlerAdd(1)">打开我</el-button>
         </div>
       </li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">
+      <li class="w-100 h-24 flex-shrink-0">
         <div>
           <el-button class="w-100" size="small" @click="handlerAdd(2)">打开我</el-button>
         </div>
       </li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">
+      <li class="w-100 h-24 flex-shrink-0">
         <div>
           <el-button class="w-100" size="small" @click="handlerAdd(3)">打开我</el-button>
         </div>

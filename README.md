@@ -1,14 +1,6 @@
-# vue3-vite2.0-taiwindcss-element-plus
+# vue3-vite2.0-taiwindcss-element-plus 后台管理系统 vue3 模板
 
 > 2022/03/04 by wupeng
-
-# 使用的技术主要有 vue3 以及 element-plus 框架，taiwindcss。
-
-# 这个项目的目的是 tailWindCss 和 element-plus 的样式兼容，以及 vue3 的组件按需导入
-
-# 还有就是动态切换主题样式
-
-> A starter kit for Element Plus with Vite
 
 <img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
 
@@ -49,6 +41,9 @@ npm i
 npm run dev
 ```
 
-### Custom theme
+## 计划
 
-See `src/styles/element/index.scss`.
+> - 优化导航右侧的样式。
+> - 菜单的主题的多种切换的优化方式。
+> - 细分项目中各个模块并独立出来。
+> - 引入更多的组件内容。

@@ -3,7 +3,7 @@
     <template #header>
       <div class="headPicture" @click="visible = true">
         <el-avatar :size="40" :src="circleUrl" />
-        <span class="text-gray-300 dark:text-white">wupeng</span>
+        <span class="text-gray-900 dark:text-white">wupeng</span>
       </div>
     </template>
     <template #default>

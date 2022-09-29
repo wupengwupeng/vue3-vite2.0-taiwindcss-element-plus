@@ -6,7 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppSvgIcon: typeof import('./components/AppSvgIcon/index.vue')['default']
     ButtonLoading: typeof import('./components/ButtonLoading/index.vue')['default']
-    ChangeTheme: typeof import('./components/Theme/ChangeTheme.vue')['default']
+    ChangeTheme: typeof import('./components/ChangeTheme/index.vue')['default']
     CreateElement: typeof import('./components/CreateElement/index.vue')['default']
     CustomCheckBox: typeof import('./components/CustomCheckBox/index.vue')['default']
     CustomDataPicker: typeof import('./components/CustomDataPicker/index.vue')['default']

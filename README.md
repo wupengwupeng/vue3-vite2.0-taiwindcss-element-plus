@@ -2,7 +2,7 @@
 
 > 2022/03/04 by wupeng
 
-<img width="800" alt="Element Plus" src="https://user-images.githubusercontent.com/10731096/97282764-0726eb80-187a-11eb-9658-6dc98ccb8f8d.png">
+![vue3后台管理模板](/src/assets/vue3-manger.png)
 
 ## 建议用 pnpm 下载依赖
 

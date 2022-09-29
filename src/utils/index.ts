@@ -1,16 +1,16 @@
 import { nextTick } from 'vue'
-import { setTheme } from '@/utils/storage/index'
+import { setTheme, getTheme } from '@/utils/storage/index'
 import { RouteRecordRaw } from 'vue-router'
 import printJS from 'print-js' // TODO
 import type { App, Plugin } from 'vue'
 import { shadeBgColor, writeNewStyle, createNewStyle } from '@/utils/theme/index'
 
 interface deviceInter {
-  match: Fn;
+  match: Fn
 }
 
 const modules = import.meta.globEager('./modules/*.ts')
-const newObj: any = {};
+const newObj: any = {}
 for (const key in modules) {
   for (const inKes in modules[key]) {
     if (!newObj.hasOwnProperty(inKes)) {
@@ -21,62 +21,55 @@ for (const key in modules) {
 
 type StringNumber = string | number
 export const mix = (color1: string, color2: string, weight: StringNumber) => {
-  weight = Math.max(Math.min(Number(weight), 1), 0);
-  let r1 = parseInt(color1.substring(1, 3), 16);
-  let g1 = parseInt(color1.substring(3, 5), 16);
-  let b1 = parseInt(color1.substring(5, 7), 16);
-  let r2 = parseInt(color2.substring(1, 3), 16);
-  let g2 = parseInt(color2.substring(3, 5), 16);
-  let b2 = parseInt(color2.substring(5, 7), 16);
-  let r: StringNumber = Math.round(r1 * (1 - weight) + r2 * weight);
-  let g: StringNumber = Math.round(g1 * (1 - weight) + g2 * weight);
-  let b: StringNumber = Math.round(b1 * (1 - weight) + b2 * weight);
-  r = ("0" + (r || 0).toString(16)).slice(-2);
-  g = ("0" + (g || 0).toString(16)).slice(-2);
-  b = ("0" + (b || 0).toString(16)).slice(-2);
-  return "#" + r + g + b;
-};
+  weight = Math.max(Math.min(Number(weight), 1), 0)
+  let r1 = parseInt(color1.substring(1, 3), 16)
+  let g1 = parseInt(color1.substring(3, 5), 16)
+  let b1 = parseInt(color1.substring(5, 7), 16)
+  let r2 = parseInt(color2.substring(1, 3), 16)
+  let g2 = parseInt(color2.substring(3, 5), 16)
+  let b2 = parseInt(color2.substring(5, 7), 16)
+  let r: StringNumber = Math.round(r1 * (1 - weight) + r2 * weight)
+  let g: StringNumber = Math.round(g1 * (1 - weight) + g2 * weight)
+  let b: StringNumber = Math.round(b1 * (1 - weight) + b2 * weight)
+  r = ('0' + (r || 0).toString(16)).slice(-2)
+  g = ('0' + (g || 0).toString(16)).slice(-2)
+  b = ('0' + (b || 0).toString(16)).slice(-2)
+  return '#' + r + g + b
+}
 
-
-// 改变主题
+// 改变主题 TODO
 export function changeTheme(color: string) {
-  nextTick(() => {
-    writeNewStyle(createNewStyle(color))
-    const node = document.documentElement
-    // 变量前缀
-    const pre = '--el-color-primary'
-    // // 白色混合色
-    // const mixWhite = '#ffffff'
-    // // 黑色混合色
-    // const mixBlack = '#000000'
-    node.style.setProperty(pre, color)
-    setTheme(color)
-    node.style.setProperty('--el-color-primary', color)
-    node.style.setProperty('--el-color-primary-active', shadeBgColor(color))
-    // 这里是覆盖原有颜色的核心代码
-    // for (let i = 1; i < 10; i += 1) {
-    //   node.style.setProperty(`${pre}-light-${i}`, mix(color, mixWhite, i * 0.1))
-    //   node.style.setProperty(`--el-color-primary-dark-${i}`, mix(color, mixBlack, 0.1))
-    // }
-
-  })
-
-
-
-  // window.matchMedia('(prefers-color-scheme: dark)');
-  // document.documentElement.setAttribute('data-theme', 'dark');
-
+  writeNewStyle(createNewStyle(color))
+  const body = document.documentElement
+  setTheme(color)
+  body.style.setProperty('--el-color-primary-active', shadeBgColor(color))
+}
+// 暗黑主题
+export function darkTheme(isDark, theme?: string) {
+  const color = theme || getTheme()
+  const node = document.documentElement
+  // 变量前缀
+  const pre = '--el-color-primary'
+  // 黑色混合色
+  const mixBlackOrWhite = isDark ? '#000000' : '#ffffff'
+  node.style.setProperty(pre, color)
+  node.style.setProperty('--el-color-primary-active', shadeBgColor(color))
+  // 暗色模式的遮罩层
+  for (let i = 1; i < 10; i += 1) {
+    node.style.setProperty(`${pre}-light-${i}`, mix(color, mixBlackOrWhite, i * 0.1))
+  }
 }
 // Return newRoutes
 export function setRoutes(routes: RouteRecordRaw[]) {
   // 去除errorpage
   const newRoutess: RouteRecordRaw[] = [routes[0]]
-  const newRoutes = newRoutess.map((res: RouteRecordRaw) => {
-    return res.children?.filter((item: any) => Boolean(item.meta.isShow))
-  }).flat(1)
+  const newRoutes = newRoutess
+    .map((res: RouteRecordRaw) => {
+      return res.children?.filter((item: any) => Boolean(item.meta.isShow))
+    })
+    .flat(1)
   return newRoutes
 }
-
 
 type TreeListRow = {
   id?: string
@@ -91,7 +84,7 @@ export function treeToList(tree: Array<TreeListRow | any>) {
   const newTree: TreeListRow[] = tree.concat([])
   const data = []
   while (newTree.length !== 0) {
-    let shift = (<TreeListRow>newTree.pop()) // stack.pop()
+    let shift = <TreeListRow>newTree.pop() // stack.pop()
     data.unshift(shift)
     let children = shift['children']
     if (children) {
@@ -104,10 +97,10 @@ export function treeToList(tree: Array<TreeListRow | any>) {
 }
 
 type ListRow = {
-  id?: string,
-  pid?: string,
-  name?: string,
-  url?: string,
+  id?: string
+  pid?: string
+  name?: string
+  url?: string
   children?: ListRow[]
 }
 type TagsProps = {
@@ -156,19 +149,17 @@ export function isMobile(): boolean {
 }
 // 检测设备类型(手机返回true,反之)
 export const deviceDetection = () => {
-  const sUserAgent: deviceInter = navigator.userAgent.toLowerCase();
+  const sUserAgent: deviceInter = navigator.userAgent.toLowerCase()
   // const bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-  const bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-  const bIsMidp = sUserAgent.match(/midp/i) == "midp";
-  const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-  const bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-  const bIsAndroid = sUserAgent.match(/android/i) == "android";
-  const bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-  const bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-  return (
-    bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM
-  );
-};
+  const bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os'
+  const bIsMidp = sUserAgent.match(/midp/i) == 'midp'
+  const bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4'
+  const bIsUc = sUserAgent.match(/ucweb/i) == 'ucweb'
+  const bIsAndroid = sUserAgent.match(/android/i) == 'android'
+  const bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce'
+  const bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile'
+  return bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM
+}
 
 // print-js
 export function printJs({ ...org }) {
@@ -179,14 +170,14 @@ export function printJs({ ...org }) {
  * Convert an Array-like object to a real Array.
  */
 export function toArray(list: any[], start = 0) {
-  let i = list.length - start;
-  const ret = new Array(i);
-  while (i--) { // eslint-disable-line no-plusplus
-    ret[i] = list[i + start];
+  let i = list.length - start
+  const ret = new Array(i)
+  while (i--) {
+    // eslint-disable-line no-plusplus
+    ret[i] = list[i + start]
   }
-  return ret;
+  return ret
 }
-
 
 // 对vue进行类型补充说明
 declare module '@vue/runtime-core' {
@@ -204,7 +195,7 @@ const methd: any = {
   formatTree,
   isMobile,
   printJs,
-  ...newObj
+  ...newObj,
 }
 
 export const install = {
@@ -215,7 +206,5 @@ export const install = {
   },
 }
 export default {
-  ...methd
+  ...methd,
 }
-
-

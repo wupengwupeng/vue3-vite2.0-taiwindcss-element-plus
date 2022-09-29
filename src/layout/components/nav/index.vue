@@ -23,7 +23,7 @@
       </div>
     </div>
     <!-- 标签-->
-    <div class="h-40 flex items-center bg-white shadow px-12 w-full border-t">
+    <div class="h-40 flex items-center bg-white dark:bg-black shadow px-12 w-full border-t dark:border-t-[#4c4d4f]">
       <el-button size="small" @click="handleScroll(180)">
         <app-svg-icon iconName="arrow-left"></app-svg-icon>
       </el-button>
@@ -31,12 +31,14 @@
         <div class="flex flex-nowrap gap-12 overflow-visible" ref="tabDom" :style="getTabStyle">
           <el-tag
             v-for="(tag, index) in tags"
-            class="cursor-pointer aaa"
+            class="hover: cursor-pointer"
+            :class="tag.name === isActive ? '' : 'tag-active'"
             :ref="'dynamic' + index"
             :key="tag.name"
             closable
             :type="tag.type"
-            :color="tag.name === isActive ? getColor : '#fff'"
+            round
+            :effect="elTagEffect"
             @click="handlerClickTag(tag)"
             @close="handleCloseTags(tag.name)"
           >
@@ -61,7 +63,7 @@ import { useStore } from '@/store/index'
 import { RootMutations } from '@/store/type'
 import { emitter } from '@/utils/mitt'
 import { deviceDetection } from '@/utils/index'
-import { useResizeObserver, useDebounceFn } from '@vueuse/core'
+import { useResizeObserver, useDebounceFn, useDark } from '@vueuse/core'
 import navBreadCrumbVue from './navBreadCrumb.vue'
 import settingDrawerVue from './settingDrawer.vue'
 import horizontalVue from '../sidebar/horizontal.vue'
@@ -136,10 +138,13 @@ export default defineComponent({
         isShowBreadCrumb.value = true
       }
     })
+    const elTagEffect = computed(() => {
+      return store.state.config.dayDark === '2' ? 'dark' : 'light'
+    })
 
     const navRight = computed(() => {
       if ((store.state.config.nav === '2' || store.state.config.nav === '3') && store.state.config.dayDark === '1') {
-        return 'bg-[#001529] text-[#fff]'
+        return `bg-[#001529] text-[#fff]`
       }
       return ''
     })
@@ -268,6 +273,7 @@ export default defineComponent({
       getColor,
       translateX,
       getTabStyle,
+      elTagEffect,
       ...toRefs(state),
       handlerClickIcon,
       getMenus,
@@ -282,7 +288,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-::v-deep(.aaa:hover) {
-  background: var(--el-tag-bg-color);
+.tag-active {
+  color: var(--el-color-primary);
+  background-color: var(--el-bg-color);
+  border-color: var(--el-border-color);
+  svg {
+    color: var(--el-color-primary);
+  }
 }
 </style>

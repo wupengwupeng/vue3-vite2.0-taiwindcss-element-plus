@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-const emits = defineEmits(["openSetting"])
+const emits = defineEmits(['openSetting'])
 const handlerClick = () => {
-  emits("openSetting")
+  emits('openSetting')
 }
 </script>
 
@@ -23,6 +23,9 @@ const handlerClick = () => {
     background-color: #f6f6f6;
     color: #000;
     cursor: pointer;
+    svg {
+      color: #000;
+    }
   }
 }
 </style>

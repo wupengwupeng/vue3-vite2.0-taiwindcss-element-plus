@@ -2,13 +2,16 @@ import { setTheme } from '@/utils/storage'
 import type { MutationTree } from 'vuex'
 import type { RootState } from './type'
 import { RootMutations } from './type'
-import { changeTheme } from '@/utils/index'
+import { changeTheme, darkTheme } from '@/utils/index'
 import { RouteRecordRaw } from 'vue-router'
+import { useDark } from '@vueuse/core'
+
 const mutations: MutationTree<RootState> = {
   [RootMutations.SET_THEME](state, theme: string) {
+    const isDark = useDark()
     state.theme = theme
-    setTheme(theme)
     changeTheme(theme)
+    darkTheme(isDark.value, theme)
   },
   [RootMutations.SET_ROUTES](state, routes: Array<RouteRecordRaw>) {
     state.routes = routes

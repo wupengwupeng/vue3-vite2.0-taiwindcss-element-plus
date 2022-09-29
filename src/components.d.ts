@@ -6,7 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppSvgIcon: typeof import('./components/AppSvgIcon/index.vue')['default']
     ButtonLoading: typeof import('./components/ButtonLoading/index.vue')['default']
-    ChangeTheme: typeof import('./components/Theme/ChangeTheme.vue')['default']
+    ChangeTheme: typeof import('./components/ChangeTheme/index.vue')['default']
     CreateElement: typeof import('./components/CreateElement/index.vue')['default']
     CustomCheckBox: typeof import('./components/CustomCheckBox/index.vue')['default']
     CustomDataPicker: typeof import('./components/CustomDataPicker/index.vue')['default']
@@ -43,7 +43,6 @@ declare module 'vue' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
-    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']

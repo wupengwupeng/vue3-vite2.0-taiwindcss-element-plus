@@ -1,11 +1,12 @@
 @use 'tailwindcss/base';
-// @use "element-plus/dist/index.css";
+// @use 'element-plus/dist/index.css';
+@use 'element-plus/theme-chalk/dark/css-vars.css';
 @use './font';
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
-@use './taiwindcss/index.scss' as taiwindCss;
+@use './taiwindcss/index.scss' as taiWindCss;
 @use './taiwindcss/reboot';
 @use './element/element-plus/index.scss' as elementPlus;
 @use './theme';
 @use './global';
-@use './layout/index.scss';
+@use './layout/layout';

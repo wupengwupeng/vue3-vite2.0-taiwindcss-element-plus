@@ -192,7 +192,7 @@ watch(value, () => {
       </el-table>
     </div>
     <el-divider />
-    <div class="border">
+    <div class="border dark:border-[#4c4d4f]">
       <tree-list :tree-list="options"></tree-list>
     </div>
     <el-divider></el-divider>

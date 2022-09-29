@@ -93,10 +93,15 @@
 }
 
 .tag-active {
-  color: var(--el-color-primary);
+  color: var(--el-text-color-primary) !important;
   background-color: var(--el-color-primary-light-9);
   border-color: var(--el-border-color);
   svg {
-    color: var(--el-color-primary);
+    color: var(--el-text-color-primary);
+  }
+  &:hover {
+    i svg {
+      color: #fff;
+    }
   }
 }

@@ -102,7 +102,7 @@ html.dark {
   .tag-active {
     background-color: var(--el-bg-color);
     i svg {
-      color: var(--el-color-primary);
+      color: var(--el-text-color-primary) !important;
     }
   }
 }

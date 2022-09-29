@@ -23,7 +23,7 @@
         <div class="w-full h-3/4 bg-gray-100"></div>
       </li>
       <li class="w-60 h-60 flex flex-col hover:cursor-pointer" :class="navThreeStyle" @click="handlerSaveNav('3')">
-        <div class="w-full h-25 bg-[#272a36]"></div>
+        <div class="w-full h-1/4 bg-[#272a36]"></div>
         <div class="flex flex-1 overflow-hidden">
           <div class="w-1/3 h-full bg-[#3e4252]"></div>
           <div class="flex-1 bg-gray-100"></div>

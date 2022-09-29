@@ -10,7 +10,7 @@
         @click="handerClickItem(index)"
       ></li>
     </ul>
-    <h1 class="text-black font-extrabold text-60">asdasdfasfasf</h1>
+    <h1 class="font-extrabold text-60">asdasdfasfasf</h1>
     <span>asdfasdfadf</span>
     <a href="">nihao</a>
 

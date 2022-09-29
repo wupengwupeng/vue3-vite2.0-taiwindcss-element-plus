@@ -1,7 +1,7 @@
 <script setup lang="ts" name="ScreenFull">
-import { useFullscreen } from "@vueuse/core";
+import { useFullscreen } from '@vueuse/core'
 
-const { isFullscreen, toggle } = useFullscreen();
+const { isFullscreen, toggle } = useFullscreen()
 </script>
 
 <template>
@@ -22,6 +22,9 @@ const { isFullscreen, toggle } = useFullscreen();
     background-color: #f6f6f6;
     color: #000;
     cursor: pointer;
+    svg {
+      color: #000;
+    }
   }
 }
 </style>

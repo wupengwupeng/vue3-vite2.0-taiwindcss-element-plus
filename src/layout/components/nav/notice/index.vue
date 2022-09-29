@@ -8,9 +8,7 @@
       </div>
     </template>
     <template #default>
-      <div>
-        消息通知
-      </div>
+      <div>消息通知</div>
     </template>
   </popover-custom>
 </template>
@@ -30,8 +28,10 @@ const visible = ref(false)
 
   &:hover {
     background-color: #f6f6f6;
-    color: #000;
     cursor: pointer;
+    svg {
+      color: #000;
+    }
   }
 }
 </style>

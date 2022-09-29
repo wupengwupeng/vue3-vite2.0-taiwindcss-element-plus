@@ -3,7 +3,6 @@
     <el-divider>主题</el-divider>
     <div class="flex w-full items-center flex-col">
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon" :inactive-icon="lightIcon" @change="dataThemeChange" />
-      <el-button @click="toggle()">第二种主题开发中主题</el-button>
     </div>
     <el-divider>主题色</el-divider>
     <div class="flex w-full gap-x-12 justify-center items-center">
@@ -12,18 +11,18 @@
     </div>
     <el-divider>导航栏模式</el-divider>
     <ul class="grid grid-cols-3 justify-center justify-items-center">
-      <li class="w-100 h-100 flex hover:cursor-pointer" :class="navOneStyle" @click="handlerSaveNav('1')">
+      <li class="w-60 h-60 flex hover:cursor-pointer" :class="navOneStyle" @click="handlerSaveNav('1')">
         <div class="w-1/3 h-full bg-[#272a36]"></div>
         <div class="w-2/3 h-full">
           <div class="w-full h-1/4 bg-gray-50"></div>
           <div class="w-full h-3/4 bg-gray-100"></div>
         </div>
       </li>
-      <li class="w-100 h-100 flex flex-col hover:cursor-pointer" :class="navTwoStyle" @click="handlerSaveNav('2')">
+      <li class="w-60 h-60 flex flex-col hover:cursor-pointer" :class="navTwoStyle" @click="handlerSaveNav('2')">
         <div class="w-full h-1/4 bg-[#272a36]"></div>
         <div class="w-full h-3/4 bg-gray-100"></div>
       </li>
-      <li class="w-100 h-100 flex flex-col hover:cursor-pointer" :class="navThreeStyle" @click="handlerSaveNav('3')">
+      <li class="w-60 h-60 flex flex-col hover:cursor-pointer" :class="navThreeStyle" @click="handlerSaveNav('3')">
         <div class="w-full h-25 bg-[#272a36]"></div>
         <div class="flex flex-1 overflow-hidden">
           <div class="w-1/3 h-full bg-[#3e4252]"></div>
@@ -39,7 +38,7 @@ import { ref, computed, Ref, defineComponent, h, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { useStore } from '@/store'
 import { setNav, setDayDark } from '@/utils/storage'
-import { errorMessage } from '@/components/Dialog/DialogMessage'
+import { darkTheme } from '@/utils/index'
 import { RootMutations } from '@/store/type'
 import AppSvgIcon from '@/components/AppSvgIcon/index.vue'
 const props = defineProps({
@@ -93,6 +92,8 @@ const handlerSaveNav = (type: string) => {
   setNav(type)
 }
 const dataThemeChange = (type: boolean) => {
+  darkTheme(!isDark.value)
+  toggle()
   const newType = type ? '2' : '1'
   store.commit(RootMutations.SET_DATDARK, newType)
   setDayDark(newType)
@@ -101,7 +102,8 @@ watch(
   lightDark,
   () => {
     if (lightDark.value) {
-      body.setAttribute('data-theme', 'dark')
+      // TODO
+      // body.setAttribute('data-theme', 'dark')
     } else {
       body.setAttribute('data-theme', '')
     }

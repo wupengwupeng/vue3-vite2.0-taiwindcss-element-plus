@@ -1,3 +1,11 @@
+.app-content {
+  width: 100%;
+  height: 100%;
+  background: var(--el-bg-color);
+  border-top: 1px solid var(--el-border-color);
+  padding: 12px 12px;
+  color: var(--el-text-color-primary);
+}
 .app-content-menu {
   background: var(--menuBg);
   display: flex;
@@ -5,7 +13,6 @@
   height: 100vh;
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  border-right: 1px solid var(--menuBorder);
   .el-scrollbar {
     .scrollbar-wrapper {
       flex: 1;
@@ -71,7 +78,7 @@
   .side-bar-left {
     width: 200px;
     height: 100%;
-    background: red;
+    // background: red;
     animation: 1s sideBarAnimation;
   }
   @keyframes sideBarAnimation {
@@ -81,5 +88,14 @@
     100% {
       width: 200px;
     }
+  }
+}
+
+.tag-active {
+  color: var(--el-color-primary);
+  background-color: var(--el-color-primary-light-9);
+  border-color: var(--el-border-color);
+  svg {
+    color: var(--el-color-primary);
   }
 }

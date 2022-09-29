@@ -95,7 +95,6 @@ export default defineComponent({
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: var(--el-bg-color);
 
   .footer-left {
     flex: 1;

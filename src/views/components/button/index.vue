@@ -30,7 +30,7 @@
           </footer>
         </article>
         <aside>
-          <section class="w-1/2 border">
+          <section class="w-1/2">
             <custom-form></custom-form>
             <div class="w-300">
               <tag-scroll :options="options"></tag-scroll>

@@ -1,7 +1,7 @@
 <template>
   <div class="search-menu" @click="handlerClick">
     <app-svg-icon class="mr-4" icon-name="nav-search"></app-svg-icon>
-    <span>Search</span>
+    <span class="text-gray-300 dark:text-white">Search</span>
     <span>Shift+P</span>
   </div>
   <SearchDialog v-if="visible" v-model:visible="visible"></SearchDialog>
@@ -62,6 +62,9 @@ onKeyStroke(['P', 'p'], keyBoardP)
   &:hover {
     // color: #000;
     cursor: pointer;
+    span {
+      color: var(--color-gray-600);
+    }
     span:nth-child(3) {
       color: var(--el-color-primary);
       border-color: var(--el-color-primary);

@@ -1,24 +1,28 @@
 import type { InjectionKey } from 'vue'
 import type { Store } from 'vuex'
+import { useDark } from '@vueuse/core'
 import { createStore, useStore as baseUseStore } from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import { RootState } from './type'
 import { getTheme, getNav, getDayDark, getLang } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
-import { changeTheme, setRoutes } from '@/utils/index'
-import { routes } from '@/router'
+import { changeTheme, darkTheme } from '@/utils/index'
 // Default topic
 const defaultColor = '#AB4BF5'
 // Init topic
 let theme: string = getTheme() || defaultColor // It may be an empty string or not in an existing topic
-if (theme) changeTheme(theme)
+const isDark = useDark()
+if (theme) {
+  darkTheme(isDark.value, theme)
+  changeTheme(theme)
+}
 
 export function getDefaultRootState() {
   const state: RootState = {
     name: '',
     theme,
-    routes: [], //setRoutes(routes)
+    routes: [],
     tags: [],
     config: {
       nav: getNav() || '1', // 导航条类型 1竖屏2横屏

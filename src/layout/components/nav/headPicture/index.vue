@@ -3,18 +3,16 @@
     <template #header>
       <div class="headPicture" @click="visible = true">
         <el-avatar :size="40" :src="circleUrl" />
-        <span>wupeng</span>
+        <span class="text-gray-300 dark:text-white">wupeng</span>
       </div>
     </template>
     <template #default>
-      <div>
-        退出系统
-      </div>
+      <div>退出系统</div>
     </template>
   </popover-custom>
 </template>
 
-<script  lang="ts">
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
 import circleUrl from '@/assets/logo.png'
 export default defineComponent({
@@ -24,7 +22,7 @@ export default defineComponent({
       circleUrl,
       visible,
     }
-  }
+  },
 })
 </script>
 
@@ -35,15 +33,16 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-around;
-
-  &>span {
+  & > span {
     margin: 0px 5px;
   }
 
   &:hover {
     background-color: #f6f6f6;
-    color: #000;
     cursor: pointer;
+    span {
+      color: #000;
+    }
   }
 }
 </style>

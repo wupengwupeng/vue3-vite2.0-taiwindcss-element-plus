@@ -24,6 +24,7 @@
   background: var(--el-bg-color);
   border-top: 1px solid var(--el-border-color);
   padding: 12px 12px;
+  color: var(--el-text-color-primary);
 }
 
 .fade-enter-active,

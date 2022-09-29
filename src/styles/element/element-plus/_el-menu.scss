@@ -88,5 +88,6 @@
 }
 
 .el-popper.is-light {
-  border: none !important;
+  // border: none !important;
+  background-color: var(--el-bg-color) !important;
 }

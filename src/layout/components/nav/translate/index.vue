@@ -56,6 +56,9 @@ const handlerChangeLang = (item: string) => {
     background-color: #f6f6f6;
     color: #000;
     cursor: pointer;
+    svg {
+      color: #000;
+    }
   }
 }
 .translate-content {

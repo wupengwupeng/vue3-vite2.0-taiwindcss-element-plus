@@ -1,52 +1,54 @@
 <template>
-  <div class="w-full h-25">
-    <ul class="flex gap-x-12 items-center group">
-      <li
-        class="w-30 h-30 flex items-center justify-center group-hover: cursor-pointer"
-        v-for="(item, index) in styleArr"
-        :key="item"
-        :style="{ background: item }"
-        :class="isActive === index ? 'themActive' : ''"
-        @click="handerClickItem(index)"
-      ></li>
-    </ul>
-    <h1 class="font-extrabold text-60">asdasdfasfasf</h1>
-    <span>asdfasdfadf</span>
-    <a href="">nihao</a>
+  <main-card>
+    <div class="w-full h-25">
+      <ul class="flex gap-x-12 items-center group">
+        <li
+          class="w-30 h-30 flex items-center justify-center group-hover: cursor-pointer"
+          v-for="(item, index) in styleArr"
+          :key="item"
+          :style="{ background: item }"
+          :class="isActive === index ? 'themActive' : ''"
+          @click="handerClickItem(index)"
+        ></li>
+      </ul>
+      <h1 class="font-extrabold text-60">asdasdfasfasf</h1>
+      <span>asdfasdfadf</span>
+      <a href="">nihao</a>
 
-    <custom-ellipsis-box>
-      <li class="w-100 h-24 bg-red-500 flex-shrink-0">kkkkkkkkkkkkk</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">kkkkkkkkkkk</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adoooooooo</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">ayyyyyyyyy</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
-      <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
-      <li class="w-100 h-24 flex-shrink-0">
-        <div>
-          <el-button class="w-100" size="small" @click="handlerAdd(1)">打开我</el-button>
-        </div>
-      </li>
-      <li class="w-100 h-24 flex-shrink-0">
-        <div>
-          <el-button class="w-100" size="small" @click="handlerAdd(2)">打开我</el-button>
-        </div>
-      </li>
-      <li class="w-100 h-24 flex-shrink-0">
-        <div>
-          <el-button class="w-100" size="small" @click="handlerAdd(3)">打开我</el-button>
-        </div>
-      </li>
-    </custom-ellipsis-box>
-    <div class="mt-100">
-      <el-scrollbar wrap-class="box" :min-size="1" :always="true" ref="scroll" @wheel.native.prevent="changeScroll">
-        <div class="content">
-          <div class="content-item" v-for="item in 40">
-            <span>{{ item }}kkkkkasd</span>
+      <custom-ellipsis-box>
+        <li class="w-100 h-24 bg-red-500 flex-shrink-0">kkkkkkkkkkkkk</li>
+        <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">kkkkkkkkkkk</li>
+        <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adoooooooo</li>
+        <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">ayyyyyyyyy</li>
+        <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
+        <li class="w-100 h-24 bg-yellow-400 flex-shrink-0">adrrrrrrrrrrf</li>
+        <li class="w-100 h-24 flex-shrink-0">
+          <div>
+            <el-button class="w-100" size="small" @click="handlerAdd(1)">打开我</el-button>
           </div>
-        </div>
-      </el-scrollbar>
+        </li>
+        <li class="w-100 h-24 flex-shrink-0">
+          <div>
+            <el-button class="w-100" size="small" @click="handlerAdd(2)">打开我</el-button>
+          </div>
+        </li>
+        <li class="w-100 h-24 flex-shrink-0">
+          <div>
+            <el-button class="w-100" size="small" @click="handlerAdd(3)">打开我</el-button>
+          </div>
+        </li>
+      </custom-ellipsis-box>
+      <div class="mt-100">
+        <el-scrollbar wrap-class="box" :min-size="1" :always="true" ref="scroll" @wheel.native.prevent="changeScroll">
+          <div class="content">
+            <div class="content-item" v-for="item in 40">
+              <span>{{ item }}kkkkkasd</span>
+            </div>
+          </div>
+        </el-scrollbar>
+      </div>
     </div>
-  </div>
+  </main-card>
 </template>
 
 <script setup lang="ts">

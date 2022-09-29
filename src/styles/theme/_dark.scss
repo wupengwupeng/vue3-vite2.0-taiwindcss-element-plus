@@ -47,7 +47,7 @@ html.dark {
   --el-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.72);
   --el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
   --el-bg-color-page: #0a0a0a;
-  --el-bg-color: #141414;
+  --el-bg-color: #0d1117;
   --el-bg-color-overlay: #1d1e1f;
   --el-text-color-primary: #e5eaf3;
   --el-text-color-regular: #cfd3dc;
@@ -70,11 +70,11 @@ html.dark {
   --el-mask-color: rgba(0, 0, 0, 0.8);
   --el-mask-color-extra-light: rgba(0, 0, 0, 0.3);
 
-  --menuBg: '#000000' !important;
+  --menuBg: '#0d1117' !important;
   --menuText: var(--el-text-color-primary);
 }
 html.dark {
-  background-color: #000;
+  background-color: #0d1117;
   svg {
     color: white;
   }
@@ -104,5 +104,8 @@ html.dark {
     i svg {
       color: var(--el-text-color-primary) !important;
     }
+  }
+  .card-main {
+    border: 1px solid var(--el-border-color);
   }
 }

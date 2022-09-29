@@ -50,6 +50,7 @@
     justify-content: center;
   }
   .horizontal-content {
+    height: 100%;
     flex: 1;
     overflow: hidden;
     border-bottom: none !important;
@@ -78,7 +79,7 @@
   .side-bar-left {
     width: 200px;
     height: 100%;
-    // background: red;
+    background-color: var(--el-bg-color);
     animation: 1s sideBarAnimation;
   }
   @keyframes sideBarAnimation {

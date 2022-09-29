@@ -286,14 +286,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.tag-active {
-  color: var(--el-color-primary);
-  background-color: var(--el-bg-color);
-  border-color: var(--el-border-color);
-  svg {
-    color: var(--el-color-primary);
-  }
-}
-</style>

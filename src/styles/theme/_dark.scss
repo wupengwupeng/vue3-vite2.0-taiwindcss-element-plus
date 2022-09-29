@@ -101,6 +101,7 @@ html.dark {
   }
   .tag-active {
     background-color: var(--el-bg-color);
+    border-color: var(--el-border-color);
     i svg {
       color: var(--el-text-color-primary) !important;
     }

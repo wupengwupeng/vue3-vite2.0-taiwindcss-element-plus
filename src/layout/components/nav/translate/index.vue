@@ -2,7 +2,7 @@
   <el-dropdown trigger="click" placement="bottom">
     <el-tooltip :show-after="500" :enterable="false" :content="'语言'">
       <div class="nav-right-button">
-        <app-svg-icon icon-name="nav-translate"></app-svg-icon>
+        <app-svg-icon :class="translateClass" icon-name="nav-translate"></app-svg-icon>
       </div>
     </el-tooltip>
     <template #dropdown>
@@ -19,6 +19,7 @@
 import { setLang } from '@/utils/storage'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
+import { computed } from 'vue'
 // 所有语言
 const LANGUAGES: App.Language[] = [
   {
@@ -37,6 +38,13 @@ const LANGUAGES: App.Language[] = [
 
 const store = useStore()
 const lang = store.state.config.lang
+const translateClass = computed(() => {
+  if (store.state.config.nav === '2' || store.state.config.nav === '3') {
+    return 'text-white'
+  } else {
+    return ''
+  }
+})
 const changeLanguage = item => {
   store.commit(RootMutations.SET_LANG, item.lang)
   setLang(item.lang)

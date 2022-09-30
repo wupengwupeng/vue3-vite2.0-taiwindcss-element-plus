@@ -32,7 +32,7 @@ export function succesMsg(msgInfo: string, arg?: Omit<MessageProps, any>) {
   ElMessage({
     type: 'success',
     showClose: true,
-    dangerouslyUseHTMLString: true,
+    // dangerouslyUseHTMLString: true,
     message: msgInfo,
     ...arg,
   })

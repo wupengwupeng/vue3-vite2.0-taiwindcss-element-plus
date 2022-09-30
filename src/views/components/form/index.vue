@@ -16,7 +16,7 @@
       <!-- <custom-input-number v-model="value"></custom-input-number> -->
 
       <div>222222222</div>
-      <custom-input v-model="value" :argOptions="{ maxLength: 4, reg: /[^\d\,]/g }" />
+      <custom-input v-model="value" />
     </section>
     <section class="">
       <div class="w-200">

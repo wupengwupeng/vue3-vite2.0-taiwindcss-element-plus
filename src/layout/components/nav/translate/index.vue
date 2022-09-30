@@ -2,7 +2,7 @@
   <el-dropdown trigger="click" placement="bottom">
     <el-tooltip :show-after="500" :enterable="false" :content="'语言'">
       <div class="nav-right-button">
-        <app-svg-icon icon-name="globalization"></app-svg-icon>
+        <app-svg-icon icon-name="nav-translate"></app-svg-icon>
       </div>
     </el-tooltip>
     <template #dropdown>
@@ -43,11 +43,3 @@ const changeLanguage = item => {
   if (item.lang !== lang) window.location.reload()
 }
 </script>
-
-<style lang="scss" scoped>
-@mixin flex-box($display: flex, $alignItems: center, $justifyContent: center) {
-  display: $display;
-  align-items: $alignItems;
-  justify-content: $justifyContent;
-}
-</style>

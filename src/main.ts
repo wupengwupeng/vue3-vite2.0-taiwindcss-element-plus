@@ -9,6 +9,7 @@ import mitt from 'mitt'
 import 'virtual:svg-icons-register'
 import '~/styles/index.scss'
 import 'nprogress/nprogress.css'
+import 'driver.js/dist/driver.min.css'
 import { createElementPlus } from '@/utils/plugin/element'
 import directives from './directives/index'
 

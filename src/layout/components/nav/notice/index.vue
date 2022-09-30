@@ -1,11 +1,13 @@
 <template>
   <popover-custom v-model:visible="visible">
     <template #header>
-      <div class="notice" @click="visible = true">
-        <el-badge :value="12" class="item">
-          <app-svg-icon icon-name="notification"></app-svg-icon>
-        </el-badge>
-      </div>
+      <el-tooltip :show-after="500" :enterable="false" :content="'通知'">
+        <div class="nav-right-button-notice" @click="visible = true">
+          <el-badge :value="12" class="item">
+            <app-svg-icon icon-name="notification"></app-svg-icon>
+          </el-badge>
+        </div>
+      </el-tooltip>
     </template>
     <template #default>
       <div>消息通知</div>
@@ -18,20 +20,4 @@ import { ref } from 'vue'
 const visible = ref(false)
 </script>
 
-<style lang="scss" scoped>
-.notice {
-  min-width: 56px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  &:hover {
-    background-color: #f6f6f6;
-    cursor: pointer;
-    svg {
-      color: #000;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

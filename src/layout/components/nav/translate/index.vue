@@ -1,43 +1,46 @@
 <template>
-  <popover-custom v-model:visible="visible">
-    <template #header>
-      <div class="translate" @click="visible = true">
+  <el-dropdown trigger="click" placement="bottom">
+    <el-tooltip :show-after="500" :enterable="false" :content="'语言'">
+      <div class="nav-right-button">
         <app-svg-icon icon-name="globalization"></app-svg-icon>
       </div>
+    </el-tooltip>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item v-for="(language, index) in LANGUAGES" :key="index" :disabled="lang === language.lang" @click="changeLanguage(language)">{{
+          language.name
+        }}</el-dropdown-item>
+      </el-dropdown-menu>
     </template>
-    <template #default>
-      <div class="translate-content" :class="{ isActive: item === LONGBOW[lang] }" v-for="item in LANGARR" :key="item" @click="handlerChangeLang(item)">
-        <span>{{ item }}</span> <app-svg-icon icon-name="right_arrow_o"></app-svg-icon>
-      </div>
-    </template>
-  </popover-custom>
+  </el-dropdown>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getLang, setLang } from '@/utils/storage'
+import { setLang } from '@/utils/storage'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
-const visible = ref(false)
-const LANGARR = ['中文', '英文', '繁体']
-const LONGBOW: { [key: string]: string } = {
-  en: '英文',
-  'zh-CN': '中文',
-  'zh-TW': '繁体',
-}
+// 所有语言
+const LANGUAGES: App.Language[] = [
+  {
+    lang: 'zh-CN',
+    name: '简体中文',
+  },
+  {
+    lang: 'zh-TW',
+    name: '繁體中文',
+  },
+  {
+    lang: 'en',
+    name: 'English',
+  },
+]
 
 const store = useStore()
 const lang = store.state.config.lang
-const handlerChangeLang = (item: string) => {
-  const obj = {
-    中文: 'zh-CN',
-    英文: 'en',
-    繁体: 'zh-TW',
-  }
-  if (obj[item] === getLang()) return
-  store.commit(RootMutations.SET_LANG, obj[item])
-  setLang(obj[item])
-  window.location.reload()
+const changeLanguage = item => {
+  store.commit(RootMutations.SET_LANG, item.lang)
+  setLang(item.lang)
+  if (item.lang !== lang) window.location.reload()
 }
 </script>
 
@@ -46,41 +49,5 @@ const handlerChangeLang = (item: string) => {
   display: $display;
   align-items: $alignItems;
   justify-content: $justifyContent;
-}
-
-.translate {
-  min-width: 40px;
-  height: 58px;
-  @include flex-box(flex, center, space-around);
-  &:hover {
-    background-color: #f6f6f6;
-    color: #000;
-    cursor: pointer;
-    svg {
-      color: #000;
-    }
-  }
-}
-.translate-content {
-  width: 100%;
-  height: 30px;
-  border-radius: 6px;
-  margin-bottom: 2px;
-  @include flex-box;
-  &:hover {
-    cursor: pointer;
-    background-color: var(--el-color-primary-light-8);
-    color: var(--el-color-primary);
-    border: 1px dashed var(--el-color-primary);
-  }
-}
-.isActive {
-  background-color: var(--el-color-primary-light-8);
-  color: var(--el-color-primary);
-  border: 1px dashed var(--el-color-primary);
-  // pointer-events: none;
-  &:hover {
-    cursor: not-allowed !important;
-  }
 }
 </style>

@@ -4,6 +4,7 @@ const THEME = 'THEME'
 const SETTINGNAV = 'SETTINGNAV'
 const DAYDARK = 'DAYDARK'
 const LANG = 'LANG'
+
 // 设置语言环境
 export const getLang = (): string => storage.get(LANG, '')
 export const setLang = (lang: string) => storage.set(LANG, lang)
@@ -23,3 +24,8 @@ export const removeNav = () => storage.remove(SETTINGNAV)
 export const getDayDark = (): string => storage.get(DAYDARK, '')
 export const setDayDark = (theme: string) => storage.set(DAYDARK, theme)
 export const removeDayDark = () => storage.remove(DAYDARK)
+
+// 新手指引
+export const getDriver = (driverName): string => storage.get(driverName, '')
+export const setDriver = (driverName, driver: boolean) => storage.set(driverName, driver)
+export const removeDriver = driverName => storage.remove(driverName)

@@ -18,14 +18,7 @@
 </template>
 
 <style lang="scss" scoped>
-.app-content {
-  width: 100%;
-  height: 100%;
-  background: var(--el-bg-color);
-  border-top: 1px solid var(--el-border-color);
-  padding: 12px 12px;
-  color: var(--el-text-color-primary);
-}
+
 
 .fade-enter-active,
 .fade-leave-active {

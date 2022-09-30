@@ -4,11 +4,10 @@ import type { RootState } from './type'
 import { RootMutations } from './type'
 import { changeTheme, darkTheme } from '@/utils/index'
 import { RouteRecordRaw } from 'vue-router'
-import { useDark } from '@vueuse/core'
+import { isDark } from '@/utils/config/index'
 
 const mutations: MutationTree<RootState> = {
   [RootMutations.SET_THEME](state, theme: string) {
-    const isDark = useDark()
     state.theme = theme
     changeTheme(theme)
     darkTheme(isDark.value, theme)
@@ -44,6 +43,9 @@ const mutations: MutationTree<RootState> = {
   },
   [RootMutations.SET_LANG](state, type) {
     state.config.lang = type
+  },
+  [RootMutations.SET_DRIVER](state, diver) {
+    state.config.dirver = diver
   },
 }
 

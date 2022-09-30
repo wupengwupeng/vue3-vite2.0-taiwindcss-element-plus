@@ -1,27 +1,23 @@
 import type { InjectionKey } from 'vue'
 import type { Store } from 'vuex'
-import { useDark } from '@vueuse/core'
 import { createStore, useStore as baseUseStore } from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import { RootState } from './type'
-import { getTheme, getNav, getDayDark, getLang } from '@/utils/storage'
+import { getNav, getDayDark, getLang } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
 import { changeTheme, darkTheme } from '@/utils/index'
-// Default topic
-const defaultColor = '#AB4BF5'
-// Init topic
-let theme: string = getTheme() || defaultColor // It may be an empty string or not in an existing topic
-const isDark = useDark()
-if (theme) {
-  darkTheme(isDark.value, theme)
-  changeTheme(theme)
+import { defaultTheme, isDark } from '@/utils/config/index'
+
+if (defaultTheme) {
+  darkTheme(isDark.value, defaultTheme)
+  changeTheme(defaultTheme)
 }
 
 export function getDefaultRootState() {
   const state: RootState = {
     name: '',
-    theme,
+    theme: defaultTheme,
     routes: [],
     tags: [],
     config: {

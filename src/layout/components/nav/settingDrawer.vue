@@ -35,12 +35,13 @@
 
 <script setup lang="ts">
 import { ref, computed, Ref, defineComponent, h, watch } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
+import { useToggle } from '@vueuse/core'
 import { useStore } from '@/store'
 import { setNav, setDayDark } from '@/utils/storage'
 import { darkTheme } from '@/utils/index'
 import { RootMutations } from '@/store/type'
 import AppSvgIcon from '@/components/AppSvgIcon/index.vue'
+import { isDark } from '@/utils/config/index'
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -48,7 +49,6 @@ const props = defineProps({
   },
 })
 const emits = defineEmits(['update:visible'])
-const isDark = useDark()
 const toggle = useToggle(isDark)
 const store = useStore()
 const body = document.documentElement as HTMLElement
@@ -56,7 +56,9 @@ const lightDark = computed(() => {
   return store.state.config.dayDark === '2'
 })
 
-const isActiveNav: Ref<string> = ref(store.state.config.nav)
+let isActiveNav: Ref<string> = computed(() => {
+  return store.state.config.nav
+})
 
 const darkIcon = defineComponent({
   setup() {

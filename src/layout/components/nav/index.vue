@@ -13,13 +13,23 @@
       </div>
       <!-- 菜单类型3 -->
       <div v-if="isMenuThreeNav" class="flex-1 overflow-hidden"><MixHorizontal /></div>
-      <div class="w-auto flex items-center justify-between" :class="navRight">
-        <searchVue />
-        <notice />
-        <screenFullVue />
-        <translateVue />
+      <div class="flex items-center justify-between" :class="navRight">
+        <div id="searchVue">
+          <searchVue />
+        </div>
+        <div id="notice">
+          <notice />
+        </div>
+        <div id="screenFull">
+          <screenFullVue />
+        </div>
+        <div id="translate">
+          <translateVue />
+        </div>
+        <div id="setting">
+          <settingVue @openSetting="visible = true" />
+        </div>
         <headPicture />
-        <settingVue @openSetting="visible = true" />
       </div>
     </div>
     <!-- 标签-->
@@ -52,6 +62,7 @@
     </div>
     <settingDrawerVue ref="settingRef" v-model:visible="visible"></settingDrawerVue>
   </div>
+  <Driver :storeName="'driver'" :steps="steps"></Driver>
 </template>
 
 <script lang="ts">
@@ -63,7 +74,7 @@ import { useStore } from '@/store/index'
 import { RootMutations } from '@/store/type'
 import { emitter } from '@/utils/mitt'
 import { deviceDetection } from '@/utils/index'
-import { useResizeObserver, useDebounceFn, useDark } from '@vueuse/core'
+import { useResizeObserver, useDebounceFn } from '@vueuse/core'
 import navBreadCrumbVue from './navBreadCrumb.vue'
 import settingDrawerVue from './settingDrawer.vue'
 import horizontalVue from '../sidebar/horizontal.vue'
@@ -74,6 +85,7 @@ import headPicture from './headPicture/index.vue'
 import notice from './notice/index.vue'
 import searchVue from './search/index.vue'
 import translateVue from './translate/index.vue'
+import { steps } from './index'
 export default defineComponent({
   components: {
     navIcon,
@@ -118,6 +130,7 @@ export default defineComponent({
     const router: any = useRouter()
     const tags: any = store.state.tags
     const translateX = ref<number>(0)
+
     const state = reactive({
       menus: [] as Array<RouteLocationMatched>,
       isActive: route.meta.title,
@@ -274,6 +287,7 @@ export default defineComponent({
       translateX,
       getTabStyle,
       elTagEffect,
+      steps,
       ...toRefs(state),
       handlerClickIcon,
       getMenus,

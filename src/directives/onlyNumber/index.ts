@@ -1,5 +1,4 @@
-import { Directive, ref, DirectiveBinding, Ref, unref, App, nextTick, onMounted } from 'vue'
-import { MessageProps, ElMessage } from 'element-plus'
+import { Directive, ref, DirectiveBinding, Ref, unref, App } from 'vue'
 import { warnMsg } from '@/components/Dialog/DialogMessage'
 import { debounce } from 'lodash'
 
@@ -46,8 +45,8 @@ function tip() {
 }
 
 export const onlyNumber: Directive = {
-  mounted(el: any, binding: DirectiveBinding, vnode: any) {
-    const input = el.children[0]
+  beforeMount(el: any, binding: DirectiveBinding, vnode: any) {
+    const input = el.querySelector('input')
     if (binding.arg) {
       try {
         obj.value = parseJson(binding.arg)
@@ -62,9 +61,7 @@ export const onlyNumber: Directive = {
     if (binding.value) {
       reg = binding.value
     }
-    console.log(input, 'input')
-    input.oninput = function (e) {
-      console.log(e, 'e')
+    input.oninput = function () {
       inputValue.value = this.value
       this.value = this.value.replace(reg, '')
       if (unref(obj).maxLength) {

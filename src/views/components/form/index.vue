@@ -11,14 +11,14 @@
         </template>
       </form-custom>
     </section>
-    <section class="h-auto">
+    <section class="border h-auto">
       <el-button @click="handlerOpen">点击我打开弹框</el-button>
       <!-- <custom-input-number v-model="value"></custom-input-number> -->
 
       <div>222222222</div>
       <custom-input v-model="value" :argOptions="{ maxLength: 4, reg: /[^\d\,]/g }" />
     </section>
-    <section class="">
+    <section class="border">
       <div class="w-200">
         <ellipsis-box
           :is-more="true"

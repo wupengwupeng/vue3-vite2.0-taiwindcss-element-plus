@@ -28,7 +28,7 @@
       <div class="w-full flex items-center justify-start gap-x-8 relative">
         <span v-for="(index, item) in OBJICON" :key="index">
           <span class="inline-flex items-center justify-center w-28 h-28 bg-white border rounded shadow-2xl" :class="{ 'rotate-180': item === '向上' }">
-            <AppSvgIcon :icon-name="OBJICON[item]"></AppSvgIcon>
+            <AppSvgIcon class="dark:text-black" :icon-name="OBJICON[item]"></AppSvgIcon>
           </span>
           <span class="ml-4">{{ item }}</span>
         </span>

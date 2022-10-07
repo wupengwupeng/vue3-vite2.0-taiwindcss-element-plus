@@ -11,5 +11,4 @@ export enum RootMutations {
   LOGOUT = 'LOGOUT',
   SET_TAGS = 'SET_TAGS',
   SET_NAV = 'SET_NAV',
-  SET_DRIVER = 'SET_DRIVER',
 }

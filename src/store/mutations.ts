@@ -1,4 +1,3 @@
-import { setTheme } from '@/utils/storage'
 import type { MutationTree } from 'vuex'
 import type { RootState } from './type'
 import { RootMutations } from './type'
@@ -43,9 +42,6 @@ const mutations: MutationTree<RootState> = {
   },
   [RootMutations.SET_LANG](state, type) {
     state.config.lang = type
-  },
-  [RootMutations.SET_DRIVER](state, diver) {
-    state.config.dirver = diver
   },
 }
 

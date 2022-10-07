@@ -1,57 +1,55 @@
 <script setup lang="ts">
-import { defineProps, unref, toRefs, ref, reactive } from 'vue';
+import { defineProps, unref, toRefs, ref, reactive } from 'vue'
 import Child from './child.vue'
 
-import { templateRef } from "@vueuse/core";
+import { templateRef } from '@vueuse/core'
 const info = ref<string>('')
 const handlerSubmit = (val: string): void => {
   info.value = val
 }
 
-
 // eslint-disable-next-line no-undef
-const scroll = templateRef<any>("scroll", null);
+const scroll = templateRef<any>('scroll', null)
 
 let listData = ref([
   {
-    title: "无缝滚动第一行无缝滚动第一行！！！！！！！！！！"
+    title: '无缝滚动第一行无缝滚动第一行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第二行无缝滚动第二行！！！！！！！！！！"
+    title: '无缝滚动第二行无缝滚动第二行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第三行无缝滚动第三行！！！！！！！！！！"
+    title: '无缝滚动第三行无缝滚动第三行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第四行无缝滚动第四行！！！！！！！！！！"
+    title: '无缝滚动第四行无缝滚动第四行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第五行无缝滚动第五行！！！！！！！！！！"
+    title: '无缝滚动第五行无缝滚动第五行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第六行无缝滚动第六行！！！！！！！！！！"
+    title: '无缝滚动第六行无缝滚动第六行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第七行无缝滚动第七行！！！！！！！！！！"
+    title: '无缝滚动第七行无缝滚动第七行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第八行无缝滚动第八行！！！！！！！！！！"
+    title: '无缝滚动第八行无缝滚动第八行！！！！！！！！！！',
   },
   {
-    title: "无缝滚动第九行无缝滚动第九行！！！！！！！！！！"
-  }
-]);
+    title: '无缝滚动第九行无缝滚动第九行！！！！！！！！！！',
+  },
+])
 
 let classOption = reactive({
-  direction: "top"
-});
+  direction: 'top',
+})
 
 function changeDirection(val: string) {
   // @ts-ignore
-  unref(scroll).reset();
-  unref(classOption).direction = val;
+  unref(scroll).reset()
+  unref(classOption).direction = val
 }
-
 </script>
 
 <template>
@@ -64,20 +62,21 @@ function changeDirection(val: string) {
         <template #header>
           <div class="card-header">
             <span>无缝滚动示例</span>
-            <el-button class="button" type="text" @click="changeDirection('top')">
+            <el-button class="button" type="primary" @click="changeDirection('top')">
               <span :style="{ color: classOption.direction === 'top' ? 'red' : '' }">向上滚动</span>
             </el-button>
-            <el-button class="button" type="text" @click="changeDirection('bottom')">
+            <el-button class="button" type="primary" @click="changeDirection('bottom')">
               <span
                 :style="{
-                  color: classOption.direction === 'bottom' ? 'red' : ''
+                  color: classOption.direction === 'bottom' ? 'red' : '',
                 }"
-              >向下滚动</span>
+                >向下滚动</span
+              >
             </el-button>
-            <el-button class="button" type="text" @click="changeDirection('left')">
+            <el-button class="button" type="primary" @click="changeDirection('left')">
               <span :style="{ color: classOption.direction === 'left' ? 'red' : '' }">向左滚动</span>
             </el-button>
-            <el-button class="button" type="text" @click="changeDirection('right')">
+            <el-button class="button" type="primary" @click="changeDirection('right')">
               <span :style="{ color: classOption.direction === 'right' ? 'red' : '' }">向右滚动</span>
             </el-button>
           </div>

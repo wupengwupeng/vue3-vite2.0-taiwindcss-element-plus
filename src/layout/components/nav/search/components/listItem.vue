@@ -7,7 +7,7 @@
           <span class="ml-5" v-html="replaceSearchTitle(props?.item?.meta?.title)"> </span>
         </div>
         <template v-if="props.item && props.item.children && props.item.children.length > 1">
-          <list-item
+          <ListItem
             class="w-full"
             v-for="(res, inx) in props.item.children"
             :item="res"
@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="ListItem">
 import { ref, PropType, computed } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
 

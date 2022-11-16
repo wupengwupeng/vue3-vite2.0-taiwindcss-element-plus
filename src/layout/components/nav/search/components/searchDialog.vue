@@ -1,5 +1,5 @@
 <template>
-  <Dialog v-model:visible="visible" title="菜单搜索" :footer-right="false" @close="handlerClose">
+  <Dialog v-model:visible="props.visible" title="菜单搜索" :footer-right="false" @close="handlerClose">
     <el-row>
       <el-col :span="24">
         <el-input v-model="search" size="large" v-focus placeholder="请输入查询菜单" clearable></el-input>
@@ -45,7 +45,7 @@ import { routes as defaultRoutes } from '@/router/modules/index'
 import { debounce } from '@/utils/modules/common'
 import { treeToList } from '@/utils/index'
 import { useRouter, RouteRecordRaw } from 'vue-router'
-import ListItem from './listItem.vue'
+import ListItem from './ListItem.vue'
 import { cloneDeep } from 'lodash'
 import { useStore } from '@/store'
 import { RootMutations } from '@/store/type'
@@ -285,6 +285,7 @@ const findActiveId = (array, label) => {
 const handlerSearch = () => {
   menus.value = searchTreeDateList(cloneDeep(defaultRoutes) as RouteRecordRaw[], search.value)
   activeId.value = '0'
+  console.log(menus.value, 'menus.value')
 }
 const handlerClickItem = (item: RouteRecordRaw) => {
   // 高亮显示

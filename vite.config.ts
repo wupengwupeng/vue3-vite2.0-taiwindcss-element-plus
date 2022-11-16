@@ -6,6 +6,8 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 const pathSrc = path.resolve(__dirname, 'src')
 
 // https://vitejs.dev/config/
@@ -15,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '~/': `${pathSrc}/`,
         '@': path.resolve(__dirname, './src'),
-        'path': 'path-browserify'
+        path: 'path-browserify',
         // fs: require.resolve('rollup-plugin-node-builtins')
       },
     },
@@ -44,7 +46,9 @@ export default defineConfig(({ command, mode }) => {
         iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
         // Specify symbolId format
         symbolId: 'icon-[dir]-[name]',
-      })
+      }),
+      PkgConfig(),
+      OptimizationPersist(),
     ],
     build: {
       rollupOptions: {
@@ -61,6 +65,6 @@ export default defineConfig(({ command, mode }) => {
         entry: './src/components/customInput/index.ts',
         name: 'number-input',
       },
-    }
+    },
   }
 })

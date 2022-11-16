@@ -1,5 +1,5 @@
 <template>
-  <custom-drawer v-model:visible="visible" title="系统设置" :size="350" @close="handlerClose">
+  <custom-drawer v-model:visible="props.visible" title="系统设置" :size="350" @close="handlerClose">
     <el-divider>主题</el-divider>
     <div class="flex w-full items-center flex-col">
       <el-switch v-model="lightDark" style="margin-left: 24px" inline-prompt :active-icon="darkIcon" :inactive-icon="lightIcon" @change="dataThemeChange" />

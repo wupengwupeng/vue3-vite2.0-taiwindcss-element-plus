@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts" name="TreeItem">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, PropType } from 'vue'
 const props = defineProps({
   item: {
     type: Object,

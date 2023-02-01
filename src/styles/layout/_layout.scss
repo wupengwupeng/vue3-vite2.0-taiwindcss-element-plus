@@ -19,7 +19,7 @@
       flex: 1;
       overflow: auto;
       .el-menu-vertical-demo {
-        border-right: none;
+        border-right: none; // 多出来1px
 
         &:not(.el-menu--collapse) {
           width: 200px;
@@ -98,11 +98,11 @@
   background-color: var(--el-bg-color) !important;
   border-color: var(--el-border-color) !important;
   svg {
-    color: var(--el-text-color-primary);
+    // color: var(--el-text-color-primary);
   }
   &:hover {
     i svg {
-      color: #fff;
+      // color: #fff;
     }
   }
 }

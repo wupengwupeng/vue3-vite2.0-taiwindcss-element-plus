@@ -70,8 +70,12 @@ html.dark {
   --el-mask-color: rgba(0, 0, 0, 0.8);
   --el-mask-color-extra-light: rgba(0, 0, 0, 0.3);
 
-  --menuBg: '#0d1117' !important;
+  --menuBg: '#33446f' !important;
+  --subMenuBg: var(--el-bg-color);
   --menuText: var(--el-text-color-primary);
+
+  --el-main-card-bg: var(--el-bg-color);
+  --el-view-bg: var(--el-bg-color);
 }
 html.dark {
   background-color: #0d1117;

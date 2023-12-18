@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-full">
     <el-select v-bind="$attrs" v-model="val">
       <el-option v-for="(item, index) in options" :key="index + 'gs'" :label="item.label" :value="item.value">
         <slot v-if="slots.option" name="option" :item="item">default</slot>
@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="CustomSelect">
 import { ref, PropType, computed, useSlots, useAttrs, watch, Ref } from 'vue'
 type OptionRaw = Array<{
   value: string

@@ -231,3 +231,46 @@ export function findRouteByPath(path: string, routes: RouteRecordRaw[]) {
     return null
   }
 }
+
+export function dealTreeDate(tree: any[]) {
+  tree.forEach(res => {
+    if (res.aclType == 'CATEGORY') {
+      if (res.aclRouter) {
+        res.aclRouter.replace(/(^\/\w*)\//, (a, b) => {
+          res.path = b
+        })
+      } else {
+        res.children[0].aclRouter.replace(/(^\/\w*)\//, (a, b) => {
+          res.path = b
+        })
+      }
+    } else {
+      res.path = res.aclRouter
+    }
+    res.meta = {
+      icon: res.aclIcon,
+      title: res.aclName,
+      i18n: false,
+      rank: 14,
+    }
+    if (res.children) {
+      if (res.aclType == 'PAGE') {
+        res.children = []
+      }
+      dealTreeDate(res.children)
+    } else {
+      if (res.aclType !== 'CATEGORY') return
+      res.children = [
+        {
+          path: res.aclRouter,
+          meta: {
+            icon: res.aclIcon,
+            title: res.aclName,
+            i18n: false,
+            rank: 14,
+          },
+        },
+      ]
+    }
+  })
+}

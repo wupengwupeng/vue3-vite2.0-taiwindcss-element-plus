@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, h, PropType, toRefs } from 'vue'
+import { defineComponent, h, PropType, toRefs, resolveComponent } from 'vue'
 export default defineComponent({
   props: {
     item: {
@@ -26,11 +26,13 @@ export default defineComponent({
   render() {
     const app = h(this.componentType, { ...this.hProps }, this.$slots?.default?.call(this))
     const other = h(this.componentType, { ...this.hProps }, this.$slots?.other?.call(this, this.item))
-    const isSlots = Object.keys(this.slots).length
+    const isSlots = this.slots && Object.keys(this.slots)?.length
+    // return h(resolveComponent(this.componentType), { ...this.hProps }, { ...this.slots })
     if (isSlots) {
-      return ['div', [h(this.componentType, { ...this.hProps }, { ...this.slots })]]
+      return h(resolveComponent(this.componentType), { ...this.hProps }, { ...this.slots })
     } else {
-      return [h('div', [this.$slots.default ? app : other])]
+      console.log(this.$slots, 'default')
+      return h('div', {}, [this.$slots.default])
     }
   },
 })

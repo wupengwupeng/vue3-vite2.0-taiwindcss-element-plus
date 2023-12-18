@@ -18,8 +18,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-
 .fade-enter-active,
 .fade-leave-active {
   transition: all 600ms;

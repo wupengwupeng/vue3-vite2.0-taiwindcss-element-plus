@@ -17,9 +17,9 @@
         <div id="searchVue">
           <searchVue />
         </div>
-        <div id="notice">
+        <!-- <div id="notice">
           <notice />
-        </div>
+        </div> -->
         <div id="screenFull">
           <screenFullVue />
         </div>
@@ -30,10 +30,11 @@
           <settingVue @openSetting="visible = true" />
         </div>
         <headPicture />
+        <roleSelect />
       </div>
     </div>
     <!-- 标签-->
-    <div class="h-40 flex items-center bg-white dark:bg-black shadow px-12 w-full border-t dark:border-t-[#4c4d4f]">
+    <div class="h-40 flex items-center bg-white dark:bg-[#0d1117] shadow px-12 w-full border-t dark:border-t-[#4c4d4f]">
       <el-button size="small" @click="handleScroll(180)">
         <app-svg-icon iconName="arrow-left"></app-svg-icon>
       </el-button>
@@ -85,6 +86,7 @@ import headPicture from './headPicture/index.vue'
 import notice from './notice/index.vue'
 import searchVue from './search/index.vue'
 import translateVue from './translate/index.vue'
+import roleSelect from './roleSelect/index.vue'
 import { steps } from './index'
 export default defineComponent({
   components: {
@@ -99,6 +101,7 @@ export default defineComponent({
     notice,
     searchVue,
     translateVue,
+    roleSelect,
   },
   props: {
     modelValue: {
@@ -128,7 +131,7 @@ export default defineComponent({
     const store = useStore()
     const route: any = useRoute()
     const router: any = useRouter()
-    const tags: any = store.state.tags
+    const tags: any = computed(() => store.state.tags)
     const translateX = ref<number>(0)
 
     const state = reactive({
@@ -179,7 +182,7 @@ export default defineComponent({
       emit('handlerClickIcon', data)
     }
     const moveToTags = () => {
-      const index = tags.findIndex((res: any) => res.name === route.meta.title)
+      const index = unref(tags).findIndex((res: any) => res.name === route.meta.title)
       moveToView(index)
     }
     useResizeObserver(
@@ -249,8 +252,8 @@ export default defineComponent({
     function handleCloseTags(name: any) {
       store.commit(RootMutations.REMOVE_TAGS, name)
       if (name === route.meta.title) {
-        if (tags.length >= 1) {
-          router.push(tags[tags.length - 1].path)
+        if (unref(tags).length >= 1) {
+          router.push(unref(tags)[unref(tags).length - 1].path)
         }
       }
     }

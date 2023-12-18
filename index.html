@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Element Plus Vite Starter</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Element Plus Vite Starter</title>
-</head>
-
-<body>
-  <div id="app">
-   <style>
+  <body>
+    <div id="app">
+      <style>
         html,
         body,
         #app {
@@ -52,7 +51,7 @@
 
         .loader:before,
         .loader:after {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
         }
@@ -91,16 +90,15 @@
           }
         }
 
-      @media (min-width: 1024px) {
-        ::-webkit-scrollbar {
-          width: 16px;
-          height: 16px;
+        @media (min-width: 1024px) {
+          ::-webkit-scrollbar {
+            width: 16px;
+            height: 16px;
+          }
         }
-      }
-    </style>
-    <div class="loader"></div>
-  </div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+      </style>
+      <div class="loader"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

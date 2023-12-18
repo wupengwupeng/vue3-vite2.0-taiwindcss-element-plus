@@ -1,5 +1,6 @@
 import { markRaw, h, ref } from 'vue'
 import CustomSelect from '@/components/CustomSelect/index.vue'
+import CustomUpload from '@/components/CustomUpload/index.vue'
 import mitt from 'mitt'
 export const emitter = mitt()
 
@@ -58,14 +59,40 @@ export const column = markRaw([
     componentsProps: { clearable: true, type: 'textarea', placeholder: '请输入你的意见或者建议' },
     type: 'el-input',
   },
+  // {
+  //   col: { span: 24 },
+  //   formItemProps: {},
+  //   label: '按钮',
+  //   prop: 'val5',
+  //   componentsProps: {},
+  //   slot: { default: () => '按钮' },
+  //   type: 'el-button',
+  // },
   {
     col: { span: 12 },
     formItemProps: {},
-    label: '按钮',
-    prop: 'val5',
-    componentsProps: {},
-    slot: { default: () => 'asf' },
-    type: 'el-button',
+    label: '上传图片',
+    prop: 'val6',
+    componentsProps: {
+      action: 'https://ggfw.rlsbj.cq.gov.cn/cqldzc/test/basic/file/upload',
+      'show-file-list': true,
+      'list-type': 'picture-card',
+      limit: 1,
+    },
+    type: CustomUpload,
+  },
+  {
+    col: { span: 12 },
+    formItemProps: {},
+    label: '上传身份证',
+    prop: 'val7',
+    componentsProps: {
+      action: 'https://ggfw.rlsbj.cq.gov.cn/cqldzc/test/basic/file/upload',
+      'show-file-list': true,
+      'list-type': 'picture-card',
+      limit: 1,
+    },
+    type: CustomUpload,
   },
   {
     slotName: 'footer',

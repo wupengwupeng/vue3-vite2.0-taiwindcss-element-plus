@@ -2,8 +2,11 @@
   <popover-custom v-model:visible="visible">
     <template #header>
       <div class="headPicture" @click="visible = true">
-        <el-avatar :size="40" :src="circleUrl" />
-        <span class="name">wupeng</span>
+        <el-avatar :size="40" :src="pngUrl" />
+        <span class="name">
+          <svg-icon type="mdi" :path="$midIcon.mdiAccount" :size="20"></svg-icon>
+          您好, {{ userName }}
+        </span>
       </div>
     </template>
     <template #default>
@@ -13,14 +16,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import circleUrl from '@/assets/logo.png'
+import { useStore } from '@/store'
+
 export default defineComponent({
   setup() {
     const visible = ref(false)
+    const store = useStore()
+    const userName = computed(() => store.state.loginInfo.userName)
+    const pngUrl = computed(() => store.state.loginInfo.userInfo.handCertificateUrl)
     return {
       circleUrl,
+      pngUrl,
       visible,
+      userName,
     }
   },
 })

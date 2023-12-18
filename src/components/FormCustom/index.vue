@@ -14,7 +14,7 @@
                 </create-element>
               </template> -->
               <template v-if="item.slot">
-                <create-element :slots="item.slot"></create-element>
+                <create-element :slots="item.slot" :component-type="item.slot?.componentType"></create-element>
               </template>
             </component>
           </el-form-item>

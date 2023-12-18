@@ -167,6 +167,7 @@ const printHtml = () => {
       </el-table>
       <el-button @click="printHtml">打印</el-button>
     </div>
+
     <div class="pt-12" v-if="false">
       <el-table :data="tableData" :span-method="arraySpanMethod" border style="width: 100%">
         <el-table-column prop="date" label="日期" width="150"></el-table-column>

@@ -1,7 +1,9 @@
 import { AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import axios from './index'
 import * as redirect from '@/utils/config/redirect'
-import { errorMessage } from '@/components/Dialog/DialogMessage'
+import { errorMessage } from '@/components/dialog/DialogMessage'
+import api from '@/api'
+import { getRefreshToken, setToken, setRefreshToken, clearAllUserDate } from '@/utils/storage/index'
 export type ApiResponse = {
   code: any
   status?: number
@@ -30,22 +32,43 @@ function handlerAxiosResponseError(res: AxiosResponse) {
   }
 }
 // 拦截接口code的一些常见错误
-function handlerApiResponseError(res: ApiResponse) {
+function handlerApiResponseError(res: ApiResponse, axiosConfig?: AxiosResponse<ApiResponse>) {
   const code = res.code
   switch (code) {
-    case '1002':
-      errorMessage(`${res.message || 'Exception not caught by server'}`)
+    case 1002: // // TOKEN失效，刷新TOKEN 重新发送请求
+      api.login.refreshToken({ refreshToken: getRefreshToken() }).then(data => {
+        const [newDate] = data
+        if (newDate?.code == 1000) {
+          setToken(newDate.data.authToken)
+          setRefreshToken(newDate.data.refreshToken)
+          /*这边不需要baseURL是因为会重新请求url
+           *url中已经包含baseURL的部分了
+           *如果不修改成空字符串，会变成'api/api/xxxx'的情况*/
+          axiosConfig.config.headers.JWTToken = newDate.data.authToken
+          axiosConfig.config.baseURL = ''
+          //重新请求
+          return axios(axiosConfig.config)
+            .then(responsedata => {
+              return responsedata
+            })
+            .catch(response => {
+              return response
+            })
+        }
+      })
       break
-    case '1003':
-      errorMessage(`${res.message || '服务器内部异常'}`)
+    case 1001: // 超时退出
+    case 1008:
+      errorMessage(`${res.message}` || '超时退出')
+      redirect.login().then(() => {
+        clearAllUserDate()
+      })
       break
-    case '1004':
-      errorMessage(`${res.message || '未授权'}`)
-      redirect.login()
-      break
-    case '1005':
-      errorMessage(`${res.message || '未认证'}`)
-      redirect.login()
+    case 1009: // 异地登录
+      errorMessage(`异地登录`)
+      redirect.login().then(() => {
+        clearAllUserDate()
+      })
       break
     default:
       errorMessage(`${res.message || 'Exception not caught by server'}`)
@@ -57,16 +80,10 @@ async function to(promise: AxiosPromise<ApiResponse>): Promise<[ApiResponse, nul
     const res = await promise
     const data = res.data
     const code: string | number = data.code
-    // if (data.Debug) {
-    //   console.debug(res.config.url, {
-    //     Debug: data.Debug,
-    //     TraceIdentifier: data.TraceIdentifier,
-    //   })
-    // }
-    if (code === '1001') {
+    if (code === 1000) {
       return [data, null]
     } else {
-      handlerApiResponseError(data)
+      handlerApiResponseError(data, res)
       return [null, data]
     }
   } catch (error) {

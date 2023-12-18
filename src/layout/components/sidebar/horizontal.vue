@@ -15,6 +15,7 @@ import { useRoute } from 'vue-router'
 import sidebarItemVue from './sidebarItem.vue'
 import logoVue from '../nav/logo.vue'
 import { routes as defaultRoutes } from '@/router/modules/index'
+import { useStore } from '@/store'
 
 const props = defineProps({
   isCollapse: {
@@ -31,7 +32,9 @@ const props = defineProps({
   },
 })
 const route = useRoute()
-const menuData = ref(defaultRoutes)
+const store = useStore()
+
+const menuData = ref(store.state.menuList)
 </script>
 
 <style lang="scss" scoped></style>

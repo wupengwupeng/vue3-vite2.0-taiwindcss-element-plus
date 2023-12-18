@@ -2,24 +2,24 @@
 $subMenuActiveText: #fff !default;
 
 /* 菜单背景 */
-$menuBg: #001529 !default;
+$menuBg: #33446f !default;
 /* dark 菜单背景*/
 $menuBgDark: #ffffff !default;
 
 /* 鼠标覆盖到菜单时的背景 */
-$menuHover: #0b274b !default;
+$menuHover: #2778ff !default;
 
 /* 子菜单背景 */
-$subMenuBg: #0f0303 !default;
+$subMenuBg: #33446f !default;
 
 /* 有无子集的激活菜单背景 */
-$subMenuActiveBg: var(--el-color-primary-light-3) !default;
-$menuText: rgb(254 254 254 / 65%) !default;
+$subMenuActiveBg: #2778ff !default;
+$menuText: white !default;
 
 /* 鼠标覆盖到菜单时的字体颜色 */
 $menuTitleHover: #fff !default;
 $menuTitleHoverDark: #000 !default;
-$--menuTextActive: var(--el-color-primary) !default;
+$--menuTextActive: white !default;
 
 :root {
   color-scheme: light;
@@ -165,4 +165,7 @@ $--menuTextActive: var(--el-color-primary) !default;
   /* 鼠标覆盖到菜单时的字体颜色 */
   /* 鼠标覆盖到菜单时的字体颜色 */
   --menuTitleHover: #{$menuTitleHover};
+
+  --el-main-card-bg: #fff;
+  --el-view-bg: #f2f3f5;
 }

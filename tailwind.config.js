@@ -21,6 +21,9 @@ module.exports = {
   },
   mode: 'jit',
   theme: {
+    zIndex: {
+      1900: 1900,
+    },
     spacing,
     colors: {
       transparent: 'transparent',

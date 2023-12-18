@@ -1,15 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import nProgress from "nprogress"
+import nProgress from 'nprogress'
 import errorRouter from './errorRouter'
 import { routes as defaultRoutes } from './modules/index'
-export const routes: Array<RouteRecordRaw> = [
-  ...defaultRoutes,
-  ...errorRouter,
-  { path: '/:pathMatch(.*)*', redirect: '/404' },
-]
+export const routes: Array<RouteRecordRaw> = [...defaultRoutes, ...errorRouter, { path: '/:pathMatch(.*)*', redirect: '/404' }]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/cqldzc/test'),
   scrollBehavior: () => ({
     left: 0,
     top: 0,
@@ -19,9 +15,8 @@ const router = createRouter({
 router.beforeEach((from, to, next) => {
   nProgress.start() && next()
   // 判断是否登录
+})
 
-});
+router.afterEach(() => nProgress.done())
 
-router.afterEach(() => nProgress.done());
-
-export default router;
+export default router

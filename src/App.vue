@@ -10,6 +10,8 @@ const { messages, locale }: { messages: any; locale: any } = useI18n({
   </el-config-provider>
 </template>
 
-<style>
-
+<style lang="scss">
+body {
+  overflow: hidden;
+}
 </style>

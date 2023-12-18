@@ -4,7 +4,7 @@ import { createStore, useStore as baseUseStore } from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import { RootState } from './type'
-import { getNav, getDayDark, getLang } from '@/utils/storage'
+import { getNav, getDayDark, getLang, getToken, getLoginInfo, getRefreshToken, getMenuList } from '@/utils/storage'
 import { test } from '@/store/modules/test/index'
 import { changeTheme, darkTheme } from '@/utils/index'
 import { defaultTheme, isDark } from '@/utils/config/index'
@@ -25,12 +25,16 @@ export function getDefaultRootState() {
       dayDark: getDayDark() || '1',
       lang: getLang() || 'zh-CN', // 中英文切换
     },
+    token: getToken() || '',
+    loginInfo: getLoginInfo(),
+    refreshToken: getRefreshToken() || '',
+    menuList: getMenuList(),
   } as any
   return state
 }
 const state = getDefaultRootState()
 export const store = createStore({
-  strict: true,
+  strict: false,
   state,
   getters,
   mutations,

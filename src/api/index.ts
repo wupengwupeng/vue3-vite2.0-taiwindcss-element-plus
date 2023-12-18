@@ -18,9 +18,10 @@
 // }
 import task from './task'
 import tastTwo from './tastTwo'
+import login from './login'
 const api = {
   task,
   tastTwo,
+  login,
 }
-console.log(api, "api")
 export default api

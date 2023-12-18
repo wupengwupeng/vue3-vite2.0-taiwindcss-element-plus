@@ -18,24 +18,26 @@ import { routes as defaultRoutes } from '@/router/modules/index'
 import { getParentPaths, findRouteByPath } from '@/utils/modules/common'
 import { emitter } from '@/utils/mitt'
 import { navUse } from '../navUse'
+import { useStore } from '@/store'
 
 const { handlerRouteAddTags } = navUse()
 
 const route = useRoute()
+const store = useStore()
 let defaultActive = ref(null)
 function getDefaultActive(routePath) {
   // 当前路由的父级路径
-  const parentRoutes = getParentPaths(routePath, defaultRoutes)[0]
+  const parentRoutes = getParentPaths(routePath, store.state.menuList)[0]
   // 获取当前路由的激活父级路径
-  defaultActive.value = findRouteByPath(parentRoutes, defaultRoutes)?.children[0]?.path
+  defaultActive.value = findRouteByPath(parentRoutes, store.state.menuList)?.children[0]?.path
 }
 // 获取当前路由的寻找祖父级路由信息
 function getRouteParents() {
   // 获取第一级的路径
-  const parentRoutes = getParentPaths(route.path, defaultRoutes)[0]
-  for (let i = 0; i < defaultRoutes.length; i++) {
-    if (defaultRoutes[i].path === parentRoutes) {
-      return defaultRoutes[i]
+  const parentRoutes = getParentPaths(route.path, store.state.menuList)[0]
+  for (let i = 0; i < store.state.menuList.length; i++) {
+    if (store.state.menuList[i].path === parentRoutes) {
+      return store.state.menuList[i]
     }
   }
 }

@@ -13,6 +13,7 @@ export function navUse() {
       type: '',
       color: '#fff',
     }
+    console.log(tags, 'tages')
     store.commit(RootMutations.SET_TAGS, tags)
   }
   return {

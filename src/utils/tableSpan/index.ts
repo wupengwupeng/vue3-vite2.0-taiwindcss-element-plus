@@ -1,6 +1,5 @@
-import { watch, computed, unref } from 'vue';
-import utils from '@/utils';
-
+import { watch, computed, unref } from 'vue'
+import utils from '@/utils'
 
 let rowspanArray: any
 
@@ -8,6 +7,7 @@ function spanRow({ row, column, rowIndex, columnIndex }: any, data: any, option:
   if (rowIndex === 0 && columnIndex === 0) {
     computeSpanRow(data, option)
   }
+  // 动态计算第几行需要合并单元格 返回的是行数需要合并
   if ((unref(getCollection(data)) as number[]).includes(rowIndex)) {
     if (columnIndex === 1) {
       return [1, 2]
@@ -21,13 +21,13 @@ function spanRow({ row, column, rowIndex, columnIndex }: any, data: any, option:
 
     return {
       rowspan: rowspan,
-      colspan: colspan
+      colspan: colspan,
     }
   }
 
   return {
     rowspan: 1,
-    colspan: 1
+    colspan: 1,
   }
 }
 // 获取分组得个数集合
@@ -44,6 +44,7 @@ function getCollection(data: any) {
     //   }
     // });
     newData = utils.groupArr(data, 'field1')
+    console.log(newData, 'newData')
     Object.keys(newData).forEach((res: any, index: number) => {
       if (newData[res].length) {
         if (!arr.length) {
@@ -53,9 +54,9 @@ function getCollection(data: any) {
         }
       }
     })
+    console.log(arr, 'arr')
     return arr
   })
-
 }
 
 function computeSpanRow(data: any, option: any) {
@@ -64,8 +65,8 @@ function computeSpanRow(data: any, option: any) {
   let tempRow = []
   for (let i = 0; i < data.length; i++) {
     for (let j = 0; j < option.length; j++) {
-      let index = option[j].index;
-      let field = option[j].field;
+      let index = option[j].index
+      let field = option[j].field
 
       if (i === 0) {
         tempRow[index] = 0

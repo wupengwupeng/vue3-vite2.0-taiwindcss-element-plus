@@ -12,6 +12,10 @@ export interface RootState {
   routes: RouteRecordRaw[]
   tags: Array<any>
   config: Config
+  token: String
+  loginInfo: any
+  refreshToken: string
+  menuList: any[]
 }
 
 export enum RootMutations {
@@ -19,7 +23,12 @@ export enum RootMutations {
   SET_ROUTES = 'SET_ROUTES',
   SET_TAGS = 'SET_TAGS',
   REMOVE_TAGS = 'REMOVE_TAGS',
+  REMOVE_ALLTAGS = 'REMOVE_ALLTAGS',
   SET_NAV = 'SET_NAV',
   SET_DATDARK = 'SET_DATDARK',
   SET_LANG = 'SET_LANG',
+  SET_TOKEN = 'SET_TOKEN',
+  SET_LOGININFO = 'SET_LOGININFO',
+  SET_REFRESHTOKEN = 'SET_REFRESHTOKEN',
+  SET_MENULIST = 'SET_MENULIST',
 }

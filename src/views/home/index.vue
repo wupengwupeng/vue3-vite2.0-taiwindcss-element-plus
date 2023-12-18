@@ -16,6 +16,9 @@
       <div>
         <el-tag v-for="tag in tags" :key="tag.name" class="mx-1" closable :type="tag.type">{{ tag.name }}</el-tag>
       </div>
+      <el-button type="primary">
+        <svg-icon type="mdi" :path="$midIcon.mdiReload" :size="20"></svg-icon>
+      </el-button>
       <el-button>
         <template #icon>
           <app-svg-icon icon-name="fn-shezhiq" class="w-20 h-20"></app-svg-icon>
@@ -43,7 +46,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { successMessage } from '@/components/Dialog/DialogMessage'
+import { successMessage } from '@/components/dialog/DialogMessage'
 import DetialDialog from './DetialDialog.vue'
 export default defineComponent({
   name: 'Test',

@@ -3,7 +3,7 @@
     <logoVue :isCollapse="isCollapse" :isHorizontalNav="isHorizontalNav"></logoVue>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu class="el-menu-vertical-demo" menu-trigger="click" :default-active="route.path" unique-opened router :collapse="isCollapse">
-        <SideBarItem v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" />
+        <SideBarItem v-for="routes in menuList" :key="routes.path + routes.aclName" :item="routes" :base-path="routes.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -35,14 +35,26 @@ export default defineComponent({
     const { isCollapse } = toRefs(props)
     const store = useStore()
     const route: any = useRoute()
+    console.log(store.state.menuList, 'menuList')
+    const menuList = computed(() => {
+      return store.state.menuList
+    })
     const state = reactive({
       routess: store.state.routes as any,
       tags: store.state.tags,
       menuData: defaultRoutes,
     })
+    watch(
+      menuList,
+      () => {
+        console.log(menuList, 'sdfsdf')
+      },
+      { deep: true }
+    )
     return {
       route,
       isCollapse,
+      menuList,
       ...toRefs(state),
     }
   },

@@ -1,27 +1,27 @@
-const Layout = () => import("@/layout/index.vue");
+const Layout = () => import('@/layout/index.vue')
 
 const homeRouter = {
-  path: "/",
+  path: '/staff',
   component: Layout,
-  redirect: "/home",
+  redirect: '/staff/watiList',
   meta: {
-    icon: "fn-tuodon",
-    title: "主页",
+    icon: 'fn-tuodon',
+    title: '待办事项',
     i18n: false,
-    rank: 14
+    rank: 14,
   },
   children: [
     {
-      path: "/home",
-      name: "Home",
-      component: () => import("@/views/home/index.vue"),
+      path: '/staff/watiList',
+      name: 'Home',
+      component: () => import('@/views/home/index.vue'),
       meta: {
-        title: "主页",
+        title: '待办事项',
         i18n: false,
-        icon: "fn-tuodon"
+        icon: 'fn-tuodon',
       },
     },
-  ]
-};
+  ],
+}
 
-export default homeRouter;
+export default homeRouter

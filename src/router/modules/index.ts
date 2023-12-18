@@ -2,9 +2,10 @@ import home from './home'
 import systemRouter from './system'
 import aboutRouter from './about'
 import components from './components'
-export const routes = [
-  home,
-  systemRouter,
-  aboutRouter,
-  components
-]
+import login from './login'
+import caseList from './caseList'
+import admin from './adminConfiguration'
+import userHome from './userHome'
+import flowConfig from './adminFlowConfig'
+// import staff from './staff'
+export const routes = [home, caseList, admin, userHome, flowConfig, login]

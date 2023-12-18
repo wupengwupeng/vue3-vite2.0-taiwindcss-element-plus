@@ -10,7 +10,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="模板类型:" prop="templateType">
-              <CustomSelect size="small" :options="options" v-model="ruleForm.templateType"></CustomSelect>
+              <!-- <CustomSelect size="small" :options="options" v-model="ruleForm.templateType"></CustomSelect> -->
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -53,7 +53,7 @@
 import { reactive, ref, Ref } from 'vue'
 
 import TemplateDown from '@/components/Dialog/index.vue'
-import CustomSelect from '@/components/CustomSelect/index.vue'
+// import CustomSelect from '@/components/CustomSelect/index.vue'
 import TemplateManger from './templateManger.vue'
 const emits = defineEmits(['update:visible'])
 const props = defineProps({

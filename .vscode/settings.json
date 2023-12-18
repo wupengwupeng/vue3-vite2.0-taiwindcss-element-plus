@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["vueuse"]
+  // "typescript.tsdk": "node_modules/typescript/lib",
+  "vue.codeActions.enabled": false
 }

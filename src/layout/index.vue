@@ -19,7 +19,7 @@
     <div v-if="isHideSideBar && menuTypeThree"><MenuMix :isCollapse="isCollapse" key="side-three-key" :isMenuThreeNav="menuTypeThree" :menuDate="menuDate" /></div>
     <div class="flex-1 flex flex-col overflow-hidden">
       <NavBar v-model="isCollapse" :isHorizontalNav="!isHorizontalNav" :isMenuThreeNav="menuTypeThree" @handlerClickIcon="handlerClickIcon" />
-      <div class="flex-1 overflow-hidden">
+      <div class="flex-1 overflow-hidden app-main">
         <AppMain></AppMain>
       </div>
     </div>
@@ -88,7 +88,7 @@ export default defineComponent({
       }
     })
     emitter.on('emitsCustom', function (item) {
-      menuDate.value = (item as RouteRecordRaw | any).children
+      menuDate.value = (item as RouteRecordRaw | any)?.children
     })
     onClickOutside(target, event => {
       isCollapseIphone.value = true
@@ -113,3 +113,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.app-main {
+  background: var(--el-bg-color);
+}
+</style>

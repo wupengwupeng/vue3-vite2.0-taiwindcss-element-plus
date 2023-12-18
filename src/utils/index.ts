@@ -183,6 +183,7 @@ export function toArray(list: any[], start = 0) {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     addSum: any
+    $midIcon: any
   }
 }
 

@@ -32,18 +32,23 @@
 .el-dialog__header {
   display: flex !important;
   width: 100% !important;
-  height: 70px !important;
+  height: 54px !important;
   user-select: none;
   align-items: center !important;
   border-bottom: thin solid var(--el-border-color);
-
+  background-color: var(--el-color-primary);
+  .el-dialog__title {
+    color: #fff;
+  }
   &btn {
     width: 40px;
     height: 40px;
-    transform: translateY(8px);
 
+    // transform: translateY(8px);
     .el-dialog__close {
       font-size: 20px;
+
+      color: #fff !important;
     }
   }
 }
@@ -66,4 +71,8 @@
   border-top: thin solid var(--el-border-color);
   background-color: var(--el-bg-color);
   color: var(--el-text-color-primary);
+}
+
+.el-overlay-dialog {
+  overflow: hidden;
 }

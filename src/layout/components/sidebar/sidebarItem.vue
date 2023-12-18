@@ -6,15 +6,15 @@
   "
   >
     <el-menu-item :index="resolvePath(onlyOneChild.path)" @click="handlerMenuItem(onlyOneChild, basePath)">
-      <app-svg-icon :icon-name="onlyOneChild.meta.icon"></app-svg-icon>
+      <app-svg-icon :icon-name="onlyOneChild.meta?.icon"></app-svg-icon>
       <template #title>
         <span>{{ onlyOneChild.meta?.title }}</span>
       </template>
     </el-menu-item>
   </template>
-  <el-sub-menu v-else :index="resolvePath(props.item!.path)" popper-append-to-body>
+  <el-sub-menu v-else :index="resolvePath(props.item!.path)+props.item.meta.title" popper-append-to-body>
     <template #title>
-      <app-svg-icon :icon-name="item.meta.icon + ''"></app-svg-icon>
+      <app-svg-icon :icon-name="'fn-tuodon' + ''"></app-svg-icon>
       <span>{{ item?.meta?.title }}</span>
     </template>
     <SideBarItem v-for="child in item?.children" :key="child.path" :is-nest="true" :item="child" :base-path="resolvePath(child.path)"></SideBarItem>
@@ -44,7 +44,6 @@ const props = defineProps({
 const emits = defineEmits(['handlerItem'])
 const { handlerRouteAddTags } = navUse()
 const onlyOneChild: Ref<childrenType> = ref(null)
-
 function hasOneShowingChild(children: childrenType[] = [], parent: childrenType) {
   const showingChildren = children.filter((item: any) => {
     onlyOneChild.value = item
@@ -60,7 +59,7 @@ function hasOneShowingChild(children: childrenType[] = [], parent: childrenType)
   }
 
   if (showingChildren.length === 0) {
-    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true }
+    onlyOneChild.value = { ...parent, noShowingChildren: true }
     return true
   }
   return false
@@ -71,7 +70,12 @@ function resolvePath(routePath: any) {
   if (httpReg.test(routePath) || httpReg.test(props.basePath)) {
     return routePath || props.basePath
   } else {
-    return path.resolve(props.basePath, routePath)
+    if (props.basePath && routePath) {
+      const call = path.resolve(props.basePath, routePath)
+      return call
+    } else {
+      return props.basePath
+    }
   }
 }
 function handlerMenuItem(data: childrenType, basePath: string) {

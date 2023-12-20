@@ -110,6 +110,15 @@ const componentsRouter: RouteRecordRaw = {
         icon: 'icon-apps-add',
       },
     },
+    {
+      path: '/components/earth',
+      name: 'Earth',
+      component: () => import('@/views/components/earth/index.vue'),
+      meta: {
+        title: '地球',
+        icon: 'icon-apps-add',
+      },
+    },
   ],
 }
 

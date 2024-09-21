@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, nextTick } from 'vue'
 import { successMessage } from '@/components/Dialog/DialogMessage'
 import DetialDialog from './DetialDialog.vue'
 export default defineComponent({
@@ -61,7 +61,29 @@ export default defineComponent({
       { name: 'Tag 5', type: 'danger' },
     ])
     const a = ref('099999sdddddddd')
-
+    const ab = () => {
+      nextTick(() => {
+        console.log(1)
+        console.log(1.1)
+      })
+      nextTick(() => {
+        console.log(2)
+        console.log(2.2)
+      })
+      nextTick(() => {
+        console.log(3)
+        console.log(3.3)
+      })
+      nextTick(() => {
+        console.log(4)
+        console.log(4.4)
+      })
+      nextTick(() => {
+        console.log(5)
+        console.log(5.5)
+      })
+    }
+    ab()
     function computedLength() {
       const arr = a.value.split('')
       const newArr = arr

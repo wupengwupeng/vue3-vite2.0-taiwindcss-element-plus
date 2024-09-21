@@ -8,11 +8,13 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import OptimizationPersist from 'vite-plugin-optimize-persist'
 import PkgConfig from 'vite-plugin-package-config'
+import { viteExternalsPlugin } from 'vite-plugin-externals'
 const pathSrc = path.resolve(__dirname, 'src')
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   return {
+    // base: '/test/',
     resolve: {
       alias: {
         '~/': `${pathSrc}/`,
@@ -49,22 +51,29 @@ export default defineConfig(({ command, mode }) => {
       }),
       PkgConfig(),
       OptimizationPersist(),
+      viteExternalsPlugin({
+        Cesium: 'Cesium',
+      }),
     ],
+    server: {
+      port: 8081,
+    },
     build: {
-      rollupOptions: {
-        // 请确保外部化那些你的库中不需要的依赖
-        external: ['vue'],
-        output: {
-          // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-          globals: {
-            vue: 'Vue',
-          },
-        },
-      },
-      lib: {
-        entry: './src/components/customInput/index.ts',
-        name: 'number-input',
-      },
+      // outDir: 'test',
+      // rollupOptions: {
+      //   // 请确保外部化那些你的库中不需要的依赖
+      //   external: ['vue'],
+      //   output: {
+      //     // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+      //     globals: {
+      //       vue: 'Vue',
+      //     },
+      //   },
+      // },
+      // lib: {
+      //   entry: './src/components/customInput/index.ts',
+      //   name: 'number-input',
+      // },
     },
   }
 })

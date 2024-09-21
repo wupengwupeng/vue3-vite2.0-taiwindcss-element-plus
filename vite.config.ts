@@ -14,6 +14,7 @@ const pathSrc = path.resolve(__dirname, 'src')
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   return {
+    // base: '/test/',
     resolve: {
       alias: {
         '~/': `${pathSrc}/`,
@@ -54,7 +55,11 @@ export default defineConfig(({ command, mode }) => {
         Cesium: 'Cesium',
       }),
     ],
+    server: {
+      port: 8081,
+    },
     build: {
+      // outDir: 'test',
       // rollupOptions: {
       //   // 请确保外部化那些你的库中不需要的依赖
       //   external: ['vue'],

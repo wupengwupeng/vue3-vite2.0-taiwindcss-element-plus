@@ -42,3 +42,26 @@ export function createPolygon(viewer) {
     },
   })
 }
+// 创建一个label
+export function createLable(viewer) {
+  var entity = viewer.entities.add({
+    position: (Cesium as any).Cartesian3.fromDegrees(-75.59777, 40.03883),
+    label: {
+      text: 'Hello, Cesium!', // 设置标签文本
+      font: '24px sans-serif', // 设置字体样式
+      fillColor: (Cesium as any).Color.YELLOW, // 设置文本颜色
+      outlineColor: (Cesium as any).Color.BLACK, // 设置轮廓颜色
+      outlineWidth: 2, // 设置轮廓宽度
+      showBackground: true,
+      // 添加背景颜色
+      backgroundColor: (Cesium as any).Color(0.5, 0.5, 0.5, 1), // 背景颜色以及透明度,
+      style: (Cesium as any).LabelStyle.FILL_AND_OUTLINE, // 设置标签样式
+      pixelOffset: new (Cesium as any).Cartesian2(0, -40), // 设置像素偏移量
+      verticalOrigin: (Cesium as any).VerticalOrigin.BOTTOM, // 设置垂直方向上的对齐方式
+      heightReference: (Cesium as any).HeightReference.RELATIVE_TO_GROUND, // 设置高度参考
+    },
+  })
+  // viewer.camera.flyTo({
+  //   destination: (Cesium as any).Cartesian3.fromDegrees(-75.59777, 40.03883, 1230213),
+  // })
+}

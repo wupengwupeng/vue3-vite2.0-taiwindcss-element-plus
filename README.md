@@ -1,8 +1,9 @@
-# vue3-vite2.0-taiwindcss-element-plus 后台管理系统 vue3 模板
+# vue3-vite2.0-taiwindcss-element-plus 后台管理系统 vue3 模板 + cesium.js 的应用
 
 > 2022/03/04 by wupeng
 
 ![vue3后台管理模板](/src/assets/vue3-manger.png)
+![数字地球](/src/assets/earth.png)
 
 ## 建议用 pnpm 下载依赖
 

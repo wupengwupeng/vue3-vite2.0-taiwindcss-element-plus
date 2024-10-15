@@ -8,15 +8,22 @@
     </div>
     <div id="zoomHeight" style="position: absolute; bottom: 10px; right: 10px; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 5px"></div>
     <div class="absolute left-10 top-10">
-      <el-button type="primary" @click="createPointAdd">画点</el-button>
-      <el-button type="primary" @click="clearPointAdd">清除点位</el-button>
-      <el-button type="primary" @click="handlerDrawLine">画线</el-button>
-      <el-button type="primary" @click="clearDrawLine">清除画线</el-button>
-      <el-button type="primary" @click="handlerDrawPolygon">绘制多边形</el-button>
-      <el-button type="primary" @click="clearDrawPolygon">清除多边形</el-button>
-      <el-button type="primary" @click="handlerDrawCircle">画圆</el-button>
-      <el-button type="primary" @click="clearDrawCircle">清除画圆</el-button>
-      <el-button type="primary" @click="backCenters">回到中心</el-button>
+      <div class="flex gap-5 flex-wrap">
+        <el-button type="primary" @click="createPointAdd">画点</el-button>
+        <el-button type="primary" @click="clearPointAdd">清除点位</el-button>
+        <el-button type="primary" @click="handlerDrawLine">画线</el-button>
+        <el-button type="primary" @click="clearDrawLine">清除画线</el-button>
+        <el-button type="primary" @click="handlerDrawPolygon">绘制多边形</el-button>
+        <el-button type="primary" @click="clearDrawPolygon">清除多边形</el-button>
+        <el-button type="primary" @click="handlerDrawCircle">画圆</el-button>
+        <el-button type="primary" @click="clearDrawCircle">清除画圆</el-button>
+        <el-button type="primary" @click="backCenters">回到中心</el-button>
+        <el-button type="primary" @click="distanceBox">空间距离</el-button>
+        <el-button type="primary" @click="distanceArea">空间面积</el-button>
+        <el-button type="primary" @click="triangulationArea">三角量测</el-button>
+        <el-button type="primary" @click="clearDistance">清除测距</el-button>
+        <el-button type="primary" @click="addModel">加载模型</el-button>
+      </div>
     </div>
     <DialogTip :positionXy="positionXy" ref="dialogTipRef"></DialogTip>
   </div>
@@ -62,6 +69,9 @@ const drawLine: Ref<any> = ref(null)
 const drawPolygon: Ref<any> = ref(null)
 // 圆
 const drawCircle: Ref<any> = ref(null)
+
+// 测距
+const measure: Ref<any> = ref(null)
 onMounted(() => {
   init()
 })
@@ -73,6 +83,11 @@ function init() {
   drawLine.value = new DrawPolyLine(viewer)
   drawPolygon.value = new DrawPolygon(viewer)
   drawCircle.value = new DrawCircle(viewer)
+
+  measure.value = new (Cesium as any).Measure(viewer)
+  // 测试cesium-measure.js 空间距离
+  // // 空间距离
+  // measure.drawLineMeasureGraphics({ clampToGround: false, callback: () => {} })
   computedHeight(viewer)
   contentViewer.value = viewer
   changeImagery(viewer)
@@ -197,6 +212,34 @@ function changeImagery(viewer) {
   })
 
   viewer.imageryLayers.addImageryProvider(cia) //添加到cesium图层上
+}
+// 空间距离
+function distanceBox() {
+  measure.value.drawLineMeasureGraphics({ clampToGround: false, callback: () => {} })
+}
+// 空间面积
+function distanceArea() {
+  measure.value.drawAreaMeasureGraphics({ clampToGround: false, callback: () => {} })
+}
+// 三角量测
+function triangulationArea() {
+  measure.value.drawTrianglesMeasureGraphics({ callback: () => {} })
+}
+// 清除测距
+function clearDistance() {
+  measure.value._drawLayer.entities.removeAll()
+}
+// 加载模型
+function addModel() {
+  const entRef = contentViewer.value.entities.add({
+    position: (Cesium as any).Cartesian3.fromDegrees(116.32878855240442, 39.95208707482746, 0.0),
+    model: { uri: '/gltf/qiche.gltf' },
+  })
+  console.log(entRef, 'entRef-entRef')
+
+  contentViewer.value.camera.flyTo({
+    destination: (Cesium as any).Cartesian3.fromDegrees(116.32878855240442, 39.95208707482746, 0.0), //将经纬度转为笛卡尔坐标
+  })
 }
 </script>
 

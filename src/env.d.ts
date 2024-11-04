@@ -56,3 +56,7 @@ declare module 'Cesium' {
 declare interface Fn<T = any, R = T> {
   (...arg: T[]): R
 }
+
+declare global {
+  type Cesium = any
+}

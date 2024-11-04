@@ -23,6 +23,7 @@
         <el-button type="primary" @click="triangulationArea">三角量测</el-button>
         <el-button type="primary" @click="clearDistance">清除测距</el-button>
         <el-button type="primary" @click="addModel">加载模型</el-button>
+        <el-button type="primary" @click="trackInit">航迹模拟</el-button>
       </div>
     </div>
     <DialogTip :positionXy="positionXy" ref="dialogTipRef"></DialogTip>
@@ -48,7 +49,45 @@ import {
 import { createPoint, createPolygon, createLable } from './earthUtil'
 import * as Cesium from 'Cesium'
 import DialogTip from './dialogs.vue'
-
+import { Track } from './track'
+var b = [
+  {
+    shootId: 1, // 拍摄点ID
+    aircraftAltitude: 294.4321622812281, // 无人机高度
+    aircraftLatitude: 29.332291372123606, // 无人机纬度
+    aircraftLongitude: 106.3275423851136, // 无人机经度
+    gimbalPitchValue: -34.86589098646805, // 无人机云台俯仰角
+    gimbalYawValue: -141.52559172027878, // 无人机云台偏航角
+    isShoot: false, // 是否为拍摄点
+  },
+  {
+    shootId: 2,
+    aircraftAltitude: 296.4321622812281,
+    aircraftLatitude: 29.33218636728018,
+    aircraftLongitude: 106.3274449132526,
+    gimbalPitchValue: -29.77056379217234,
+    gimbalYawValue: -141.52559171972544,
+    isShoot: false,
+  },
+  {
+    shootId: 3,
+    aircraftAltitude: 296.4321622812281,
+    aircraftLatitude: 29.332086291515342,
+    aircraftLongitude: 106.32743456106668,
+    gimbalPitchValue: -49.79999923706055,
+    gimbalYawValue: -143.6999969482422,
+    isShoot: false,
+  },
+  {
+    shootId: 4,
+    aircraftAltitude: 273.1146622812281,
+    aircraftLatitude: 29.3320829466482,
+    aircraftLongitude: 106.32743569795478,
+    gimbalPitchValue: 0,
+    gimbalYawValue: -96.52559172238325,
+    isShoot: false,
+  },
+]
 const lotLatObj = reactive({
   longitude: '',
   latitude: '',
@@ -85,9 +124,6 @@ function init() {
   drawCircle.value = new DrawCircle(viewer)
 
   measure.value = new (Cesium as any).Measure(viewer)
-  // 测试cesium-measure.js 空间距离
-  // // 空间距离
-  // measure.drawLineMeasureGraphics({ clampToGround: false, callback: () => {} })
   computedHeight(viewer)
   contentViewer.value = viewer
   changeImagery(viewer)
@@ -239,7 +275,69 @@ function addModel() {
 
   contentViewer.value.camera.flyTo({
     destination: (Cesium as any).Cartesian3.fromDegrees(116.32878855240442, 39.95208707482746, 0.0), //将经纬度转为笛卡尔坐标
+    orientation: {
+      heading: (Cesium as any).Math.toRadians(363.2757), // 角度转为弧度
+      pitch: (Cesium as any).Math.toRadians(-90), // 角度转为弧度
+    },
   })
+}
+// 航迹模拟
+function trackInit() {
+  let roaming = new Track(contentViewer.value, {
+    Lines: b,
+    stayTime: 1,
+    speed: 3,
+    frustumFar: 10,
+    shootCallback: function (shootId) {
+      console.log(shootId, 'shootid')
+    },
+  })
+  /**
+   *航迹模拟开始飞行
+   * @memberof roaming.StartFlying()
+   */
+
+  roaming.StartFlying()
+
+  /**
+   *航迹模拟的暂停和继续
+   *
+   * @param {*} state bool类型 false为暂停，ture为继续
+   * @memberof roaming.PauseOrContinue(state)
+   */
+
+  //roaming.PauseOrContinue(true)//false为暂停，ture为继续
+
+  /**
+   *改变飞行的速度
+   *
+   * @param {*} value  整数类型 建议（1-20）
+   * @memberof roaming.ChangeRoamingSpeed(value)
+   */
+
+  //roaming.ChangeRoamingSpeed(1)
+
+  /**
+   * 改变观看角度
+   *
+   * @param {*} name string
+   *
+   * ViewTopDown:顶视图
+   * ViewSide ：正视图
+   * trackedEntity：跟随模型
+   *
+   * @memberof ChangePerspective(name)
+   */
+
+  roaming.ChangePerspective('trackedEntity')
+
+  /**
+   *取消航迹模拟
+   *
+   * @memberof roaming.EndRoaming()
+   */
+
+  //roaming.EndRoaming()
 }
 </script>
 

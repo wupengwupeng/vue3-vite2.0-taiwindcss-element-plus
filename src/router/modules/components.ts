@@ -30,6 +30,15 @@ const componentsRouter: RouteRecordRaw = {
       },
     },
     {
+      path: '/components/flowStep',
+      name: 'FlowStep',
+      component: () => import('@/views/components/flowStep/index.vue'),
+      meta: {
+        title: 'flow流程节点',
+        icon: 'icon-settings',
+      },
+    },
+    {
       path: '/components/flowTest',
       name: 'FlowTest',
       component: () => import('@/views/components/flowTest/index.vue'),
@@ -119,6 +128,15 @@ const componentsRouter: RouteRecordRaw = {
         icon: 'icon-apps-add',
       },
     },
+    // {
+    //   path: '/components/ssq',
+    //   name: 'ssq',
+    //   component: () => import('@/views/components/ssq/index.vue'),
+    //   meta: {
+    //     title: 'ssq',
+    //     icon: 'icon-apps-add',
+    //   },
+    // },
   ],
 }
 

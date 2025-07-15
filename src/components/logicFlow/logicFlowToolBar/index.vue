@@ -1,9 +1,16 @@
 <template>
   <div class="flex justify-start items-center px-2 py-1">
-    <el-button v-for="(item, key) in toolbarItemList" :key="item.type" size="small" :ref="'controlButton' + key"
-      :disabled="item.disabled" :style="{
+    <el-button
+      v-for="(item, key) in toolbarItemList"
+      :key="item.type"
+      size="small"
+      :ref="'controlButton' + key"
+      :disabled="item.disabled"
+      :style="{
         cursor: item.disabled === false ? 'pointer' : 'not-allowed',
-      }" @click="onControl(item)">
+      }"
+      @click="onControl(item)"
+    >
       <span :class="'iconfont ' + item.icon"></span>
       <p>{{ item.tooltip }}</p>
     </el-button>
@@ -129,7 +136,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-@import './assets/iconfont/iconfont.css';
+@use './assets/iconfont/iconfont.css';
 
 html[data-theme='dark'] {
   .lf-dnd {

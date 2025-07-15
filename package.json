@@ -46,7 +46,8 @@
     "vue3-virtual-list": "^1.0.2",
     "vue3-virtual-scroll-list": "^0.2.0",
     "vuex": "^4.0.2",
-    "wangeditor": "^4.7.12"
+    "wangeditor": "^4.7.12",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.172",
